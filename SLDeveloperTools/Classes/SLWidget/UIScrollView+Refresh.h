@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MJRefresh.h"
-#import "BXFooterView.h"
 
+@class BXFooterView;
 #define kFooterRefreshSpace 120
 
 @interface UIScrollView (Refresh)

@@ -7,7 +7,7 @@
 //
 
 #import "SLViewController.h"
-#import <UIColor+Kit.h>
+#import <SLDeveloperTools.h>
 
 @interface SLViewController ()
 

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -30,13 +30,26 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'SLDeveloperTools/Classes/**/*'
-  
-  s.subspec 'HHRefresh' do |sh|
-    sh.source_files = 'SLDeveloperTools/Classes/HHRefresh/*.{h,m}'
-    sh.public_header_files = 'SLDeveloperTools/Classes/HHRefresh/*.h'
-    sh.dependency 'MJRefresh'
-    sh.dependency 'Masonry'
+  s.source_files = 'SLDeveloperTools/Classes/SLDeveloperTools.h'
+  s.public_header_files = 'SLDeveloperTools/Classes/SLDeveloperTools.h'
+
+  s.subspec 'SLCategory' do |category|
+      category.source_files = 'SLDeveloperTools/Classes/SLCategory/*.{h,m}'
+      category.public_header_files = 'SLDeveloperTools/Classes/SLCategory/*.h'
+      category.dependency 'MJRefresh'
+  end
+
+  s.subspec 'SLUtilities' do |utils|
+      utils.source_files = 'SLDeveloperTools/Classes/SLUtilities/*.{h,m}'
+      utils.public_header_files = 'SLDeveloperTools/Classes/SLUtilities/*.h'
+  end
+
+  s.subspec 'SLWidget' do |widget|
+      widget.source_files = 'SLDeveloperTools/Classes/SLWidget/*.{h,m}'
+      widget.public_header_files = 'SLDeveloperTools/Classes/SLWidget/*.h'
+      widget.dependency 'Masonry'
+      widget.dependency 'SLDeveloperTools/SLCategory'
+      widget.dependency 'MJRefresh'
   end
 
   s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle'

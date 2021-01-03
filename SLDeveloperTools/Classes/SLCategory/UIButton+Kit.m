@@ -260,9 +260,6 @@
 
 - (UIButton *)initWithFrame:(CGRect)frame Title:(NSString *__nullable)title Font:(UIFont *)font Color:(UIColor *__nullable)color Image:(UIImage *__nullable)image Target:(nullable id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents ImagePosition:(ImagePosition)postion spacing:(CGFloat)spacing
 {
-    
-    //    UIButton *btn = [UIButton buttonWithFrame:frame Title:title Font:font Color:color Image:image Target:target action:action forControlEvents:controlEvents];
-    
     self = [super initWithFrame:frame];
     if (self) {
         //        self = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -7,8 +7,9 @@
 //
 
 #import "UIScrollView+Refresh.h"
-#import "BXRefreshHeader.h"
 #import "BXRefreshFooter.h"
+#import "BXRefreshHeader.h"
+#import "BXFooterView.h"
 
 @interface UIScrollView ()
 

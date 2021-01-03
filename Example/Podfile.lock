@@ -4,10 +4,21 @@ PODS:
   - MMKV (1.2.7):
     - MMKVCore (~> 1.2.7)
   - MMKVCore (1.2.7)
-  - SLDeveloperTools (0.1.0):
+  - SLDeveloperTools (0.1.3):
+    - MMKV
+    - SLDeveloperTools/SLCategory (= 0.1.3)
+    - SLDeveloperTools/SLUtilities (= 0.1.3)
+    - SLDeveloperTools/SLWidget (= 0.1.3)
+  - SLDeveloperTools/SLCategory (0.1.3):
+    - MJRefresh
+    - MMKV
+  - SLDeveloperTools/SLUtilities (0.1.3):
+    - MMKV
+  - SLDeveloperTools/SLWidget (0.1.3):
     - Masonry
     - MJRefresh
-    - MMKV (~> 1.2.7)
+    - MMKV
+    - SLDeveloperTools/SLCategory
 
 DEPENDENCIES:
   - SLDeveloperTools (from `../`)
@@ -28,7 +39,7 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   MMKV: 22e5136f7d00197bc0fc9694b7f71519f0d1ca12
   MMKVCore: 607b7b05f2c2140056b5d338e45f2c14bf3f4232
-  SLDeveloperTools: f0e7358e727048ead538883791457d59c1a8f778
+  SLDeveloperTools: f6173e0f3c5813931d6de04ae49eecc79bcd1cbb
 
 PODFILE CHECKSUM: 0ff258196475cb69fe41f3563b75cd2895d7501b
 
