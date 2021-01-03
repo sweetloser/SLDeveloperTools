@@ -1,0 +1,35 @@
+PODS:
+  - Masonry (1.1.0)
+  - MJRefresh (3.5.0)
+  - MMKV (1.2.7):
+    - MMKVCore (~> 1.2.7)
+  - MMKVCore (1.2.7)
+  - SLDeveloperTools (0.1.0):
+    - Masonry
+    - MJRefresh
+    - MMKV (~> 1.2.7)
+
+DEPENDENCIES:
+  - SLDeveloperTools (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - MJRefresh
+    - MMKV
+    - MMKVCore
+
+EXTERNAL SOURCES:
+  SLDeveloperTools:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  MMKV: 22e5136f7d00197bc0fc9694b7f71519f0d1ca12
+  MMKVCore: 607b7b05f2c2140056b5d338e45f2c14bf3f4232
+  SLDeveloperTools: f0e7358e727048ead538883791457d59c1a8f778
+
+PODFILE CHECKSUM: 0ff258196475cb69fe41f3563b75cd2895d7501b
+
+COCOAPODS: 1.10.0
