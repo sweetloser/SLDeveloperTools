@@ -7,7 +7,7 @@
 //
 
 #import "BXRefreshFooter.h"
-#import "UIColor+Kit.h"
+#import "../UIColor+Kit.h"
 @interface BXRefreshFooter ()
 
 @property (strong, nonatomic) UIImageView *logoView;

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -32,11 +32,16 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'SLDeveloperTools/Classes/**/*'
   
+  s.subspec 'HHRefresh' do |sh|
+    sh.source_files = 'SLDeveloperTools/Classes/HHRefresh/*.{h,m}'
+    sh.public_header_files = 'SLDeveloperTools/Classes/HHRefresh/*.h'
+    sh.dependency 'MJRefresh'
+    sh.dependency 'Masonry'
+  end
+
   s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'MMKV', '~> 1.2.7'
-  s.dependency 'MJRefresh'
-  s.dependency 'Masonry'
+  s.dependency 'MMKV'
 end

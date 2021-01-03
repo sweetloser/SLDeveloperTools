@@ -12,7 +12,7 @@
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView;
 
-@property (copy, nonatomic) void (^contentSizeDidChange)();
+@property (copy, nonatomic) void (^contentSizeDidChange)(void);
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetBottom;
 
 /** 记录scrollView刚开始的inset */
