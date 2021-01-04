@@ -36,6 +36,7 @@ TODO: Add long description of the pod here.
   s.subspec 'SLCategory' do |category|
       category.source_files = 'SLDeveloperTools/Classes/SLCategory/*.{h,m}'
       category.public_header_files = 'SLDeveloperTools/Classes/SLCategory/*.h'
+      category.dependency 'SLDeveloperTools/SLMacro'
       category.dependency 'MJRefresh'
       s.frameworks = 'OpenGLES'
   end
@@ -48,8 +49,9 @@ TODO: Add long description of the pod here.
   s.subspec 'SLWidget' do |widget|
       widget.source_files = 'SLDeveloperTools/Classes/SLWidget/*.{h,m}'
       widget.public_header_files = 'SLDeveloperTools/Classes/SLWidget/*.h'
-      widget.dependency 'Masonry'
       widget.dependency 'SLDeveloperTools/SLCategory'
+      widget.dependency 'SLDeveloperTools/SLMacro'
+      widget.dependency 'Masonry'
       widget.dependency 'MJRefresh'
   end
 
