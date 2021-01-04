@@ -7,7 +7,8 @@
 //
 
 #import "BXRefreshHeader.h"
-
+#import "../SLCategory/UIColor+Kit.h"
+#import "../SLMacro/SLMacro.h"
 @interface BXRefreshHeader ()
 
 
@@ -20,13 +21,7 @@
 @end
 
 @implementation BXRefreshHeader
--(instancetype)init{
-    if (self == [super init]) {
-        _StrokeCircleColor = [UIColor redColor];
-        _TitleColor = [UIColor colorWithRed:155 green:155 blue:155 alpha:1];
-    }
-    return self;
-}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -52,7 +47,7 @@ CGRect kBounds = {0,0,25,25};
     
     _titleLb = [[UILabel alloc]init];
     _titleLb.font = [UIFont systemFontOfSize:12];
-    _titleLb.textColor = [UIColor colorWithRed:155 green:155 blue:155 alpha:1];
+    _titleLb.textColor = CHH_RGBCOLOR(155, 155, 155, 1.0);
     _titleLb.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_titleLb];
     
@@ -112,7 +107,7 @@ CGRect kBounds = {0,0,25,25};
     UIBezierPath *path       = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds)) radius:CGRectGetMidX(bounds) startAngle:startAngle endAngle:endAngle clockwise:clockwise];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.fillColor     = [UIColor clearColor].CGColor;
-    shapeLayer.strokeColor   = [UIColor colorWithRed:155 green:155 blue:155 alpha:1].CGColor;
+    shapeLayer.strokeColor   = sl_normalColors.CGColor;
     shapeLayer.lineWidth     = 1.8;
     shapeLayer.path          = path.CGPath;
     shapeLayer.frame         = bounds;

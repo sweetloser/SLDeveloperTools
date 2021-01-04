@@ -8,6 +8,7 @@
 
 #import "BXRefreshFooter.h"
 #import "../SLCategory/UIColor+Kit.h"
+#import "../SLMacro/SLMacro.h"
 @interface BXRefreshFooter ()
 
 @property (strong, nonatomic) UIImageView *logoView;
@@ -44,7 +45,7 @@ CGRect kABounds = {0,0,25,25};
     _noMoreDataLb = [[UILabel alloc]init];
     _noMoreDataLb.font = [UIFont systemFontOfSize:12];
     _noMoreDataLb.text = @"没有了哦";
-    _noMoreDataLb.textColor = [UIColor sl_colorWithHex:0x9B9B9B];
+    _noMoreDataLb.textColor = CHH_RGBCOLOR(155, 155, 155, 1.0);
     _noMoreDataLb.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_noMoreDataLb];
     _noMoreDataLb.hidden = YES;
@@ -80,7 +81,7 @@ CGRect kABounds = {0,0,25,25};
     UIBezierPath *path       = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds)) radius:CGRectGetMidX(bounds) startAngle:startAngle endAngle:endAngle clockwise:clockwise];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.fillColor     = [UIColor clearColor].CGColor;
-    shapeLayer.strokeColor   = [UIColor sl_colorWithHex:0xF52828].CGColor;
+    shapeLayer.strokeColor   = sl_normalColors.CGColor;
     shapeLayer.lineWidth     = 1.8;
     shapeLayer.path          = path.CGPath;
     shapeLayer.frame         = bounds;

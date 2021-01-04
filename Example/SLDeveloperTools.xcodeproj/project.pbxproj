@@ -24,6 +24,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		865A75B0E039AA074B1AB9ED /* Pods_SLDeveloperTools_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC4BB44DF6F483A8AC06B97 /* Pods_SLDeveloperTools_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		D0ACC15B25A2F59000C14D72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ACC15A25A2F59000C14D72 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		B07CA244CDD374B3FF7C98F1 /* Pods-SLDeveloperTools_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLDeveloperTools_Tests.release.xcconfig"; path = "Target Support Files/Pods-SLDeveloperTools_Tests/Pods-SLDeveloperTools_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B647CC0088FDE8041837F797 /* Pods_SLDeveloperTools_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLDeveloperTools_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C27032CFBBB85C9F23D49247 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D0ACC15A25A2F59000C14D72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DC2B18F93C31A633F37E6DFB /* Pods-SLDeveloperTools_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLDeveloperTools_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SLDeveloperTools_Tests/Pods-SLDeveloperTools_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E26D2677BF3A72D9BAB63FDE /* Pods-SLDeveloperTools_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLDeveloperTools_Example.debug.xcconfig"; path = "Target Support Files/Pods-SLDeveloperTools_Example/Pods-SLDeveloperTools_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FDC4BB44DF6F483A8AC06B97 /* Pods_SLDeveloperTools_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLDeveloperTools_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0ACC15B25A2F59000C14D72 /* OpenGLES.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -119,6 +122,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0ACC15A25A2F59000C14D72 /* OpenGLES.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,

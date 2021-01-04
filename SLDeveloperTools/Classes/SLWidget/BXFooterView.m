@@ -9,7 +9,9 @@
 #import "BXFooterView.h"
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
+#import "../SLMacro/SLMacro.h"
 @interface BXFooterView ()
+
 
 @property (weak, nonatomic) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *logoView;
@@ -57,8 +59,7 @@
         UILabel *noMoreDataLb = [[UILabel alloc]init];
         noMoreDataLb.font = [UIFont systemFontOfSize:12];
         noMoreDataLb.text = @"没有了哦";
-        noMoreDataLb.textColor = [UIColor colorWithRed:155.0 green:155 blue:155 alpha:1.0];
-//        CHH_RGBCOLOR(155, 155, 155, 1.0);
+        noMoreDataLb.textColor = CHH_RGBCOLOR(155, 155, 155, 1.0);
         noMoreDataLb.textAlignment = NSTextAlignmentCenter;
         [self addSubview:noMoreDataLb];
         [noMoreDataLb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,7 +92,7 @@
     UIBezierPath *path       = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds)) radius:CGRectGetMidX(bounds) startAngle:startAngle endAngle:endAngle clockwise:clockwise];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.fillColor     = [UIColor clearColor].CGColor;
-    shapeLayer.strokeColor   = [UIColor redColor].CGColor;
+    shapeLayer.strokeColor   = sl_normalColors.CGColor;
     shapeLayer.lineWidth     = 1.8;
     shapeLayer.path          = path.CGPath;
     shapeLayer.frame         = bounds;
