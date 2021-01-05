@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.1.4'
+  s.version          = '0.1.6'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -27,18 +27,24 @@ TODO: Add long description of the pod here.
   s.author           = { 'sweetloser' => '18272160172@163.com' }
   s.source           = { :git => 'https://github.com/sweetloser/SLDeveloperTools.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
   s.ios.deployment_target = '9.0'
-
-  s.source_files = 'SLDeveloperTools/Classes/SLDeveloperTools.h'
+  s.platform     = :ios, "9.0"
+#  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
+#  s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
+  s.requires_arc = true
+  s.static_framework = true
+  
+#  s.default_subspecs = 'SLCategory', 'SLUtilities', 'SLWidget'
+  
   s.public_header_files = 'SLDeveloperTools/Classes/SLDeveloperTools.h'
-
+  s.source_files = 'SLDeveloperTools/Classes/SLDeveloperTools.h'
   s.subspec 'SLCategory' do |category|
       category.source_files = 'SLDeveloperTools/Classes/SLCategory/*.{h,m}'
       category.public_header_files = 'SLDeveloperTools/Classes/SLCategory/*.h'
       category.dependency 'SLDeveloperTools/SLMacro'
       category.dependency 'MJRefresh'
-      s.frameworks = 'OpenGLES'
+      category.dependency 'MMKV'
+      category.frameworks = 'OpenGLES'
   end
 
   s.subspec 'SLUtilities' do |utils|
@@ -53,6 +59,7 @@ TODO: Add long description of the pod here.
       widget.dependency 'SLDeveloperTools/SLMacro'
       widget.dependency 'Masonry'
       widget.dependency 'MJRefresh'
+      widget.dependency 'MMKV'
   end
 
   s.subspec 'SLMacro' do |macro|
@@ -63,16 +70,16 @@ TODO: Add long description of the pod here.
   s.subspec 'SLNetTools' do |netTools|
     netTools.source_files = 'SLDeveloperTools/Classes/SLNetTools/*.{h,m}'
     netTools.public_header_files = 'SLDeveloperTools/Classes/SLNetTools/*.h'
-    netTools.dependency 'SLDeveloperTools/SLMacro'
-    netTools.dependency 'SLDeveloperTools/SLUtilities'
-    netTools.dependency 'SLDeveloperTools/SLCategory'
-    netTools.dependency 'SLDeveloperTools/SLAppInfo'
+#    netTools.dependency 'SLDeveloperTools/SLMacro'
+#    netTools.dependency 'SLDeveloperTools/SLUtilities'
+#    netTools.dependency 'SLDeveloperTools/SLCategory'
+#    netTools.dependency 'SLDeveloperTools/SLAppInfo'
     netTools.dependency 'AFNetworking'
-    netTools.dependency 'Qiniu', '= 8.0.5'
+#    netTools.dependency 'Qiniu', '= 8.0.5'
     netTools.dependency 'SDWebImage', '= 5.10.0'
-    netTools.dependency 'YYWebImage', '~> 1.0.5'
-    netTools.dependency 'RealReachability', '~> 1.3.0'
-    netTools.frameworks = 'UIKit'
+#    netTools.dependency 'YYWebImage', '~> 1.0.5'
+#    netTools.dependency 'RealReachability', '~> 1.3.0'
+#    netTools.frameworks = 'UIKit'
   end
   
   s.subspec "SLMaskTools" do |maskTools|
@@ -85,39 +92,56 @@ TODO: Add long description of the pod here.
     maskTools.dependency 'Masonry'
     maskTools.dependency 'lottie-ios', '2.5.3'
   end
-  
+
   s.subspec "SLVideoWaterMaskTools" do |videoWaterMaskTools|
     videoWaterMaskTools.source_files = 'SLDeveloperTools/Classes/SLVideoWaterMaskTools/*.{h,m}'
-    videoWaterMaskTools.public_header_files = 'SLDeveloperTools/Classes/SLVideoWaterMaskTools/*.{h,m}'
+    videoWaterMaskTools.public_header_files = 'SLDeveloperTools/Classes/SLVideoWaterMaskTools/*.h'
+    videoWaterMaskTools.dependency 'SLDeveloperTools/SLMaskTools'
+    videoWaterMaskTools.dependency 'SLDeveloperTools/SLCategory'
+    videoWaterMaskTools.dependency 'SLDeveloperTools/SLMacro'
     videoWaterMaskTools.dependency 'SLDeveloperTools/SLUtilities'
     videoWaterMaskTools.dependency 'GPUImage', '~> 0.1.7'
     videoWaterMaskTools.dependency 'Aspects'
     videoWaterMaskTools.dependency 'YYWebImage', '~> 1.0.5'
+    videoWaterMaskTools.frameworks = 'Photos', 'UIKit'
+  end
+
+  s.subspec "SLBaseClass" do |baseClass|
+    baseClass.source_files = 'SLDeveloperTools/Classes/SLBaseClass/*.{h,m}'
+    baseClass.public_header_files = 'SLDeveloperTools/Classes/SLBaseClass/*.h'
+    baseClass.dependency "SLDeveloperTools/SLCategory"
+    baseClass.dependency "SLDeveloperTools/SLMacro"
+    baseClass.dependency 'SDWebImage', '= 5.10.0'
+    baseClass.dependency 'YYWebImage', '~> 1.0.5'
+    baseClass.dependency 'AFNetworking'
+    baseClass.frameworks = 'UIKit', 'Foundation'
   end
   
   s.subspec "SLAppInfo" do |appInfo|
     appInfo.source_files = 'SLDeveloperTools/Classes/SLAppInfo/*.{h,m}'
     appInfo.public_header_files = 'SLDeveloperTools/Classes/SLAppInfo/*.h'
     appInfo.dependency 'SLDeveloperTools/SLBaseClass'
+    appInfo.dependency 'SLDeveloperTools/SLCategory'
     appInfo.dependency 'SLDeveloperTools/SLMacro'
     appInfo.dependency 'SLDeveloperTools/SLUtilities'
     appInfo.dependency 'MJExtension', '~> 3.2.2'
     appInfo.dependency 'MMKV'
     appInfo.dependency 'UMCPush'
+    appInfo.dependency 'UMCCommon'
+#    appInfo.dependency 'UMCAnalytics'
+#    appInfo.dependency 'UMCSecurityPlugins'
     appInfo.dependency 'YYText'
+    appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony'
+    appInfo.weak_frameworks    = "UserNotifications"
+    appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+    appInfo.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   end
   
-  s.subspec "SLBaseClass" do |baseClass|
-    baseClass.source_files = 'SLDeveloperTools/Classes/SLBaseClass/*.{h,m}'
-    baseClass.public_header_files = 'SLDeveloperTools/Classes/SLBaseClass/*.h'
-    baseClass.dependency "SLDeveloperTools/SLCategory"
-    baseClass.frameworks = 'UIKit', 'Foundation'
-  end
+  
   
   s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'MMKV'
-  s.static_framework = true
+  
 end

@@ -16,7 +16,6 @@ PODS:
     - AFNetworking/NSURLSession
   - Aspects (1.4.1)
   - GPUImage (0.1.7)
-  - HappyDNS (0.3.17)
   - lottie-ios (2.5.3)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
@@ -25,72 +24,60 @@ PODS:
   - MMKV (1.2.7):
     - MMKVCore (~> 1.2.7)
   - MMKVCore (1.2.7)
-  - Qiniu (8.0.5):
-    - HappyDNS (~> 0.3.17)
-  - RealReachability (1.3.0):
-    - RealReachability/Connection (= 1.3.0)
-    - RealReachability/Ping (= 1.3.0)
-  - RealReachability/Connection (1.3.0)
-  - RealReachability/Ping (1.3.0)
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
-  - SLDeveloperTools (0.1.4):
-    - MMKV
-    - SLDeveloperTools/SLAppInfo (= 0.1.4)
-    - SLDeveloperTools/SLBaseClass (= 0.1.4)
-    - SLDeveloperTools/SLCategory (= 0.1.4)
-    - SLDeveloperTools/SLMacro (= 0.1.4)
-    - SLDeveloperTools/SLMaskTools (= 0.1.4)
-    - SLDeveloperTools/SLNetTools (= 0.1.4)
-    - SLDeveloperTools/SLUtilities (= 0.1.4)
-    - SLDeveloperTools/SLVideoWaterMaskTools (= 0.1.4)
-    - SLDeveloperTools/SLWidget (= 0.1.4)
-  - SLDeveloperTools/SLAppInfo (0.1.4):
+  - SLDeveloperTools (0.1.5):
+    - SLDeveloperTools/SLAppInfo (= 0.1.5)
+    - SLDeveloperTools/SLBaseClass (= 0.1.5)
+    - SLDeveloperTools/SLCategory (= 0.1.5)
+    - SLDeveloperTools/SLMacro (= 0.1.5)
+    - SLDeveloperTools/SLMaskTools (= 0.1.5)
+    - SLDeveloperTools/SLNetTools (= 0.1.5)
+    - SLDeveloperTools/SLUtilities (= 0.1.5)
+    - SLDeveloperTools/SLVideoWaterMaskTools (= 0.1.5)
+    - SLDeveloperTools/SLWidget (= 0.1.5)
+  - SLDeveloperTools/SLAppInfo (0.1.5):
     - MJExtension (~> 3.2.2)
     - MMKV
     - SLDeveloperTools/SLBaseClass
+    - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLUtilities
+    - UMCCommon
     - UMCPush
     - YYText
-  - SLDeveloperTools/SLBaseClass (0.1.4):
-    - MMKV
+  - SLDeveloperTools/SLBaseClass (0.1.5):
+    - AFNetworking
+    - SDWebImage (= 5.10.0)
     - SLDeveloperTools/SLCategory
-  - SLDeveloperTools/SLCategory (0.1.4):
+    - SLDeveloperTools/SLMacro
+    - YYWebImage (~> 1.0.5)
+  - SLDeveloperTools/SLCategory (0.1.5):
     - MJRefresh
     - MMKV
     - SLDeveloperTools/SLMacro
-  - SLDeveloperTools/SLMacro (0.1.4):
-    - MMKV
-  - SLDeveloperTools/SLMaskTools (0.1.4):
+  - SLDeveloperTools/SLMacro (0.1.5)
+  - SLDeveloperTools/SLMaskTools (0.1.5):
     - lottie-ios (= 2.5.3)
     - Masonry
     - MBProgressHUD
-    - MMKV
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - SVProgressHUD
-  - SLDeveloperTools/SLNetTools (0.1.4):
+  - SLDeveloperTools/SLNetTools (0.1.5):
     - AFNetworking
-    - MMKV
-    - Qiniu (= 8.0.5)
-    - RealReachability (~> 1.3.0)
     - SDWebImage (= 5.10.0)
-    - SLDeveloperTools/SLAppInfo
-    - SLDeveloperTools/SLCategory
-    - SLDeveloperTools/SLMacro
-    - SLDeveloperTools/SLUtilities
-    - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLUtilities (0.1.4):
-    - MMKV
-  - SLDeveloperTools/SLVideoWaterMaskTools (0.1.4):
+  - SLDeveloperTools/SLUtilities (0.1.5)
+  - SLDeveloperTools/SLVideoWaterMaskTools (0.1.5):
     - Aspects
     - GPUImage (~> 0.1.7)
-    - MMKV
+    - SLDeveloperTools/SLCategory
+    - SLDeveloperTools/SLMacro
+    - SLDeveloperTools/SLMaskTools
     - SLDeveloperTools/SLUtilities
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLWidget (0.1.4):
+  - SLDeveloperTools/SLWidget (0.1.5):
     - Masonry
     - MJRefresh
     - MMKV
@@ -121,7 +108,6 @@ SPEC REPOS:
     - AFNetworking
     - Aspects
     - GPUImage
-    - HappyDNS
     - lottie-ios
     - Masonry
     - MBProgressHUD
@@ -129,8 +115,6 @@ SPEC REPOS:
     - MJRefresh
     - MMKV
     - MMKVCore
-    - Qiniu
-    - RealReachability
     - SDWebImage
     - SVProgressHUD
     - UMAPM
@@ -150,7 +134,6 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
-  HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -158,10 +141,8 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   MMKV: 22e5136f7d00197bc0fc9694b7f71519f0d1ca12
   MMKVCore: 607b7b05f2c2140056b5d338e45f2c14bf3f4232
-  Qiniu: 99b85defaf831bc788efdda01dc6f0406ece6964
-  RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: e47438d9061cecb4bba3e61f5be64b215955031c
+  SLDeveloperTools: 44904f660943a8b2a5ce18ae4aee9d449f78472e
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
@@ -172,6 +153,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 0ff258196475cb69fe41f3563b75cd2895d7501b
+PODFILE CHECKSUM: b1b432126c1037d4538373e914a369af81a1a7c7
 
 COCOAPODS: 1.10.0

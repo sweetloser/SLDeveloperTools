@@ -7,8 +7,8 @@
 //
 
 #import "SLViewController.h"
-#import <SLDeveloperTools.h>
-
+//#import <SLDeveloperTools.h>
+#import <UMPush/UMessage.h>
 @interface SLViewController ()
 
 @end
@@ -18,7 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor sl_colorWithHex:0x8f8f8f];
+    [UMessage addLaunchMessage];
+//    self.view.backgroundColor = [UIColor sl_colorWithHex:0x8f8f8f];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

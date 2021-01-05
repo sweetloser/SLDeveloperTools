@@ -592,21 +592,21 @@
     return self;
 }
 
-- (UIView *)setWidth:(CGFloat)width
-{
-    CGRect rect = self.frame;
-    rect.size.width = width;
-    self.frame = rect;
-    return self;
-}
-
-- (UIView *)setHeight:(CGFloat)height
-{
-    CGRect rect = self.frame;
-    rect.size.height = height;
-    self.frame = rect;
-    return self;
-}
+//- (UIView *)setWidth:(CGFloat)width
+//{
+//    CGRect rect = self.frame;
+//    rect.size.width = width;
+//    self.frame = rect;
+//    return self;
+//}
+//
+//- (UIView *)setHeight:(CGFloat)height
+//{
+//    CGRect rect = self.frame;
+//    rect.size.height = height;
+//    self.frame = rect;
+//    return self;
+//}
 
 - (UIView *)shrink:(CGSize)size
 {

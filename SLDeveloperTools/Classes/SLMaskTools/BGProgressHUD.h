@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+
+@class MBProgressHUD;
 @interface BGProgressHUD : NSObject
 
 

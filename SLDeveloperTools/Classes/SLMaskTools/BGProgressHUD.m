@@ -8,6 +8,7 @@
 
 #import "BGProgressHUD.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "BXLoadingView.h"
 #import "../SLMacro/SLCommonMacro.h"
 #import "../SLCategory/UIApplication+ActivityViewController.h"

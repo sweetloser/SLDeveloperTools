@@ -27,10 +27,9 @@
 #define ZZL(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 //账号信息
-//#define INIT_TOKEN               @"1a25bf6050ceed1a9303ab60a08fef0dee9d55cc"
 #define INIT_TOKEN               @"2bc29158f230db6c2a7a6712e57de6e4b48116f2"
 
-#define Version                  @"ios_100"
+//#define Version                  @"ios_100"
 #define CHANNEL                  @"common"
 
 #define leftW 33

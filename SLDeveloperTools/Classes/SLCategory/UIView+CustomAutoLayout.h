@@ -145,8 +145,8 @@
 - (UIView *)heigthEqualTo:(UIView *)brotherView;
 - (UIView *)sizeEqualTo:(UIView *)brotherView;
 - (UIView *)sizeWith:(CGSize)size;
-- (UIView *)setWidth:(CGFloat)width;
-- (UIView *)setHeight:(CGFloat)height;
+//- (UIView *)setWidth:(CGFloat)width;
+//- (UIView *)setHeight:(CGFloat)height;
 
 - (UIView *)shrink:(CGSize)size;
 - (UIView *)shrinkHorizontal:(CGFloat)margin;

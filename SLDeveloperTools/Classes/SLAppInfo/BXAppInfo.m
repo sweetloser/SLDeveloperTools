@@ -7,6 +7,7 @@
 //
 
 #import "BXAppInfo.h"
+#import "../SLBaseClass/SLBaseClass.h"
 #import "../SLUtilities/CacheHelper.h"
 #import <MJExtension/MJExtension.h>
 #import "../SLCategory/SLCategory.h"

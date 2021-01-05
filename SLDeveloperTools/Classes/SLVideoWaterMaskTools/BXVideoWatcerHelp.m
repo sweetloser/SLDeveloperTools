@@ -10,11 +10,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
-#import "../SLUtilities/TimeHelper.h"
+#import "../SLUtilities/SLUtilities.h"
 #import "../SLMaskTools/SLMaskTools.h"
 #import "../SLCategory/SLCategory.h"
 #import "../SLMacro/SLMacro.h"
-#import "FilePathHelper.h"
 #import <GPUImage/GPUImage.h>
 #import <Aspects/Aspects.h>
 #import <YYWebImage/YYWebImage.h>
