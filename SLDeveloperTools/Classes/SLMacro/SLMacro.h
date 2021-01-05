@@ -10,5 +10,6 @@
 
 #import "SLCommonConst.h"
 #import "SLCommonMacro.h"
+#import "SLSingleton.h"
 
 #endif /* SLMacro_h */

@@ -60,9 +60,64 @@ TODO: Add long description of the pod here.
     macro.public_header_files = 'SLDeveloperTools/Classes/SLMacro/*.h'
   end
   
+  s.subspec 'SLNetTools' do |netTools|
+    netTools.source_files = 'SLDeveloperTools/Classes/SLNetTools/*.{h,m}'
+    netTools.public_header_files = 'SLDeveloperTools/Classes/SLNetTools/*.h'
+    netTools.dependency 'SLDeveloperTools/SLMacro'
+    netTools.dependency 'SLDeveloperTools/SLUtilities'
+    netTools.dependency 'SLDeveloperTools/SLCategory'
+    netTools.dependency 'SLDeveloperTools/SLAppInfo'
+    netTools.dependency 'AFNetworking'
+    netTools.dependency 'Qiniu', '= 8.0.5'
+    netTools.dependency 'SDWebImage', '= 5.10.0'
+    netTools.dependency 'YYWebImage', '~> 1.0.5'
+    netTools.dependency 'RealReachability', '~> 1.3.0'
+    netTools.frameworks = 'UIKit'
+  end
+  
+  s.subspec "SLMaskTools" do |maskTools|
+    maskTools.source_files = 'SLDeveloperTools/Classes/SLMaskTools/*.{h,m}'
+    maskTools.public_header_files = 'SLDeveloperTools/Classes/SLMaskTools/*.h'
+    maskTools.dependency 'SLDeveloperTools/SLMacro'
+    maskTools.dependency 'SLDeveloperTools/SLCategory'
+    maskTools.dependency 'SVProgressHUD'
+    maskTools.dependency 'MBProgressHUD'
+    maskTools.dependency 'Masonry'
+    maskTools.dependency 'lottie-ios', '2.5.3'
+  end
+  
+  s.subspec "SLVideoWaterMaskTools" do |videoWaterMaskTools|
+    videoWaterMaskTools.source_files = 'SLDeveloperTools/Classes/SLVideoWaterMaskTools/*.{h,m}'
+    videoWaterMaskTools.public_header_files = 'SLDeveloperTools/Classes/SLVideoWaterMaskTools/*.{h,m}'
+    videoWaterMaskTools.dependency 'SLDeveloperTools/SLUtilities'
+    videoWaterMaskTools.dependency 'GPUImage', '~> 0.1.7'
+    videoWaterMaskTools.dependency 'Aspects'
+    videoWaterMaskTools.dependency 'YYWebImage', '~> 1.0.5'
+  end
+  
+  s.subspec "SLAppInfo" do |appInfo|
+    appInfo.source_files = 'SLDeveloperTools/Classes/SLAppInfo/*.{h,m}'
+    appInfo.public_header_files = 'SLDeveloperTools/Classes/SLAppInfo/*.h'
+    appInfo.dependency 'SLDeveloperTools/SLBaseClass'
+    appInfo.dependency 'SLDeveloperTools/SLMacro'
+    appInfo.dependency 'SLDeveloperTools/SLUtilities'
+    appInfo.dependency 'MJExtension', '~> 3.2.2'
+    appInfo.dependency 'MMKV'
+    appInfo.dependency 'UMCPush'
+    appInfo.dependency 'YYText'
+  end
+  
+  s.subspec "SLBaseClass" do |baseClass|
+    baseClass.source_files = 'SLDeveloperTools/Classes/SLBaseClass/*.{h,m}'
+    baseClass.public_header_files = 'SLDeveloperTools/Classes/SLBaseClass/*.h'
+    baseClass.dependency "SLDeveloperTools/SLCategory"
+    baseClass.frameworks = 'UIKit', 'Foundation'
+  end
+  
   s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'MMKV'
+  s.static_framework = true
 end

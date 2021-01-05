@@ -11,4 +11,7 @@
 #import "YYReachability.h"
 #import "UIDeviceHardware.h"
 #import "ZFModalTransitionAnimator.h"
+#import "getUUID.h"
+#import "KeyChainStore.h"
+
 #endif /* SLUtilities_h */
