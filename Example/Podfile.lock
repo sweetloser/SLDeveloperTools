@@ -24,52 +24,61 @@ PODS:
   - MMKV (1.2.7):
     - MMKVCore (~> 1.2.7)
   - MMKVCore (1.2.7)
+  - RealReachability (1.3.0):
+    - RealReachability/Connection (= 1.3.0)
+    - RealReachability/Ping (= 1.3.0)
+  - RealReachability/Connection (1.3.0)
+  - RealReachability/Ping (1.3.0)
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
-  - SLDeveloperTools (0.1.5):
-    - SLDeveloperTools/SLAppInfo (= 0.1.5)
-    - SLDeveloperTools/SLBaseClass (= 0.1.5)
-    - SLDeveloperTools/SLCategory (= 0.1.5)
-    - SLDeveloperTools/SLMacro (= 0.1.5)
-    - SLDeveloperTools/SLMaskTools (= 0.1.5)
-    - SLDeveloperTools/SLNetTools (= 0.1.5)
-    - SLDeveloperTools/SLUtilities (= 0.1.5)
-    - SLDeveloperTools/SLVideoWaterMaskTools (= 0.1.5)
-    - SLDeveloperTools/SLWidget (= 0.1.5)
-  - SLDeveloperTools/SLAppInfo (0.1.5):
+  - SLDeveloperTools (0.1.6):
+    - SLDeveloperTools/SLAppInfo (= 0.1.6)
+    - SLDeveloperTools/SLBaseClass (= 0.1.6)
+    - SLDeveloperTools/SLCategory (= 0.1.6)
+    - SLDeveloperTools/SLMacro (= 0.1.6)
+    - SLDeveloperTools/SLMaskTools (= 0.1.6)
+    - SLDeveloperTools/SLNetTools (= 0.1.6)
+    - SLDeveloperTools/SLUtilities (= 0.1.6)
+    - SLDeveloperTools/SLVideoWaterMaskTools (= 0.1.6)
+    - SLDeveloperTools/SLWidget (= 0.1.6)
+  - SLDeveloperTools/SLAppInfo (0.1.6):
     - MJExtension (~> 3.2.2)
     - MMKV
+    - RealReachability
     - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
+    - SLDeveloperTools/SLNetTools
     - SLDeveloperTools/SLUtilities
     - UMCCommon
     - UMCPush
     - YYText
-  - SLDeveloperTools/SLBaseClass (0.1.5):
+  - SLDeveloperTools/SLBaseClass (0.1.6):
     - AFNetworking
     - SDWebImage (= 5.10.0)
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLCategory (0.1.5):
+  - SLDeveloperTools/SLCategory (0.1.6):
     - MJRefresh
     - MMKV
     - SLDeveloperTools/SLMacro
-  - SLDeveloperTools/SLMacro (0.1.5)
-  - SLDeveloperTools/SLMaskTools (0.1.5):
+  - SLDeveloperTools/SLMacro (0.1.6)
+  - SLDeveloperTools/SLMaskTools (0.1.6):
     - lottie-ios (= 2.5.3)
     - Masonry
     - MBProgressHUD
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - SVProgressHUD
-  - SLDeveloperTools/SLNetTools (0.1.5):
+  - SLDeveloperTools/SLNetTools (0.1.6):
     - AFNetworking
     - SDWebImage (= 5.10.0)
-  - SLDeveloperTools/SLUtilities (0.1.5)
-  - SLDeveloperTools/SLVideoWaterMaskTools (0.1.5):
+    - SLDeveloperTools/SLCategory
+    - SLDeveloperTools/SLUtilities
+  - SLDeveloperTools/SLUtilities (0.1.6)
+  - SLDeveloperTools/SLVideoWaterMaskTools (0.1.6):
     - Aspects
     - GPUImage (~> 0.1.7)
     - SLDeveloperTools/SLCategory
@@ -77,7 +86,7 @@ PODS:
     - SLDeveloperTools/SLMaskTools
     - SLDeveloperTools/SLUtilities
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLWidget (0.1.5):
+  - SLDeveloperTools/SLWidget (0.1.6):
     - Masonry
     - MJRefresh
     - MMKV
@@ -115,6 +124,7 @@ SPEC REPOS:
     - MJRefresh
     - MMKV
     - MMKVCore
+    - RealReachability
     - SDWebImage
     - SVProgressHUD
     - UMAPM
@@ -141,8 +151,9 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   MMKV: 22e5136f7d00197bc0fc9694b7f71519f0d1ca12
   MMKVCore: 607b7b05f2c2140056b5d338e45f2c14bf3f4232
+  RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 44904f660943a8b2a5ce18ae4aee9d449f78472e
+  SLDeveloperTools: 45a4d926b4b9758f2fc5579979e2dd146ca8ca91
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788

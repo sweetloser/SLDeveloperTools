@@ -10,6 +10,7 @@
 
 //秉信 测试 服务器
 #define New_Http_Base_Url @"http://v1.live.libx.com.cn/api.php?"
+
 #define New_Http_Base_Url_Without @"http://v1.live.libx.com.cn/api.php"
 
 #define New_Http_Base_domain @"http://v1.live.libx.com.cn/"

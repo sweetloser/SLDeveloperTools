@@ -70,16 +70,10 @@ TODO: Add long description of the pod here.
   s.subspec 'SLNetTools' do |netTools|
     netTools.source_files = 'SLDeveloperTools/Classes/SLNetTools/*.{h,m}'
     netTools.public_header_files = 'SLDeveloperTools/Classes/SLNetTools/*.h'
-#    netTools.dependency 'SLDeveloperTools/SLMacro'
-#    netTools.dependency 'SLDeveloperTools/SLUtilities'
-#    netTools.dependency 'SLDeveloperTools/SLCategory'
-#    netTools.dependency 'SLDeveloperTools/SLAppInfo'
+    netTools.dependency 'SLDeveloperTools/SLUtilities'
+    netTools.dependency 'SLDeveloperTools/SLCategory'
     netTools.dependency 'AFNetworking'
-#    netTools.dependency 'Qiniu', '= 8.0.5'
     netTools.dependency 'SDWebImage', '= 5.10.0'
-#    netTools.dependency 'YYWebImage', '~> 1.0.5'
-#    netTools.dependency 'RealReachability', '~> 1.3.0'
-#    netTools.frameworks = 'UIKit'
   end
   
   s.subspec "SLMaskTools" do |maskTools|
@@ -124,13 +118,13 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'SLDeveloperTools/SLCategory'
     appInfo.dependency 'SLDeveloperTools/SLMacro'
     appInfo.dependency 'SLDeveloperTools/SLUtilities'
+    appInfo.dependency 'SLDeveloperTools/SLNetTools'
     appInfo.dependency 'MJExtension', '~> 3.2.2'
     appInfo.dependency 'MMKV'
     appInfo.dependency 'UMCPush'
     appInfo.dependency 'UMCCommon'
-#    appInfo.dependency 'UMCAnalytics'
-#    appInfo.dependency 'UMCSecurityPlugins'
     appInfo.dependency 'YYText'
+    appInfo.dependency 'RealReachability'
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }

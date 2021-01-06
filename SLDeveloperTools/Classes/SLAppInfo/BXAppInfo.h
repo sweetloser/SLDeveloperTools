@@ -115,4 +115,6 @@
 + (NSString *)getPhoneArea;
 + (NSString *)getPhoneCode;
 
++ (NSDictionary *)getAllParametersWithParameters:(NSDictionary *)parameters;
++ (void)refreshTokenWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
 @end

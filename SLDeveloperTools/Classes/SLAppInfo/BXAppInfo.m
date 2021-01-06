@@ -7,13 +7,18 @@
 //
 
 #import "BXAppInfo.h"
-#import "../SLBaseClass/SLBaseClass.h"
-#import "../SLUtilities/CacheHelper.h"
-#import <MJExtension/MJExtension.h>
-#import "../SLCategory/SLCategory.h"
-#import <MMKV/MMKV.h>
-#import "../SLMacro/SLMacro.h"
 #import "SLAppInfoConst.h"
+#import "SLAppInfoMacro.h"
+
+#import "../SLBaseClass/SLBaseClass.h"
+#import "../SLUtilities/SLUtilities.h"
+#import "../SLCategory/SLCategory.h"
+#import "../SLMacro/SLMacro.h"
+#import "../SLNetTools/SLNetTools.h"
+
+#import <MMKV/MMKV.h>
+#import <MJExtension/MJExtension.h>
+#import <RealReachability/RealReachability.h>
 
 #define kAppInfoKey               @"AppInfoKey"
 
@@ -152,6 +157,105 @@ MJCodingImplementation
         phone_code = [BXAppInfo appInfo].code;
     }
     return phone_code;
+}
+
++ (void)refreshTokenWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                        failure:(void(^)(NSError *error))failure {
+    
+    NSString *time = [NSString stringWithFormat:@"%ld",[TimeHelper getTimeSp]];
+    NSString *sign = [NSString stringWithFormat:@"%@%@%@%@%@",INIT_TOKEN,[getUUID getUUID],time,@"ios_100",CHANNEL];
+    NSString *app_unique = [[NSBundle mainBundle] bundleIdentifier];
+    
+    NSDictionary *params = @{@"time":time, @"sign":sign, @"channel":CHANNEL, @"app_unique":app_unique};
+    
+    NSDictionary *dict = [self getAllParametersWithParameters:params];
+    NSString *url = [New_Http_Base_Url stringByAppendingString:@"s=Common.refreshToken"];
+    
+    [[SLHttpManager sl_sharedNetManager] sl_post:url parameters:dict success:^(id  _Nullable responseObject) {
+        
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+        
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+#pragma mark - 获取app请求的公用参数
+/**
+ *  获取所有参数
+ *
+ *  @param parameters 参数
+ *
+ *  @return 返回加上公共参数的所有参数
+ */
++ (NSDictionary *)getAllParametersWithParameters:(NSDictionary *)parameters {
+    NSMutableDictionary *allParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    NSString *access_token = [BXAppInfo appInfo].access_token;
+    if (IsNilString(access_token)) {
+        access_token = @"";
+    }
+    NSString *os = allParameters[@"os"];
+    if (!os) {
+        os =[NSString stringWithFormat:@"ios_%@",[[UIDevice currentDevice] systemVersion]];
+    }
+    NSString *device_brand;
+    device_brand = [NSString stringWithFormat:@"Iphone.%@",[UIDeviceHardware platformString]];
+    allParameters[@"access_token"] = access_token;
+    allParameters[@"meid"] = [getUUID getUUID];
+    allParameters[@"v"] = @"ios_100";
+    allParameters[@"device_brand"] = device_brand;
+    allParameters[@"os"] = os;
+    allParameters[@"network_status"] = [self getNetconnType];
+    return allParameters;
+}
+#pragma mark - 获取网络状态
++ (NSString *)getNetconnType{
+    
+    NSString *netconnType = @"";
+    
+    ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+    WWANAccessType accessType = [GLobalRealReachability currentWWANtype];
+    
+    switch (status)
+    {
+        case RealStatusUnknown:
+        case RealStatusNotReachable:
+        {
+            netconnType = @"none";
+            break;
+        }
+        case RealStatusViaWiFi:
+        {
+            netconnType = @"Wifi";
+            break;
+        }
+        case RealStatusViaWWAN:
+        {
+            if (accessType == WWANType2G)
+            {
+                netconnType = @"2G";
+            }
+            else if (accessType == WWANType3G)
+            {
+                netconnType = @"3G";
+            }
+            else if (accessType == WWANType4G)
+            {
+                netconnType = @"4G";
+            }
+            break;
+        }
+        default:
+            break;
+        
+    }
+    
+    return netconnType;
 }
 
 @end
