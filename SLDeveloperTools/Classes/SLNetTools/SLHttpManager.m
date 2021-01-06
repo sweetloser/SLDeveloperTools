@@ -7,15 +7,12 @@
 //
 
 #import "SLHttpManager.h"
-#import <AFNetworking/AFNetworking.h>
 #import "../SLCategory/SLCategory.h"
 #import "../SLUtilities/SLUtilities.h"
 
 @interface SLHttpManager()
 
 @property (nonatomic,strong) AFHTTPSessionManager *sessionManager;
-
-@property (nonatomic,assign) AFNetworkReachabilityStatus netStatus;
 
 @end
 

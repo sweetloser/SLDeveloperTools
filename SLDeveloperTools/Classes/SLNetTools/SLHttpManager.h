@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking/AFNetworking.h>
 
 typedef void (^SL_NetProgress)(NSProgress * _Nonnull progress);        // 上传文件进度
 typedef void (^SL_NetSuccess)(id _Nullable responseObject);     // 成功Block
@@ -17,6 +18,8 @@ typedef NSURL *_Nonnull(^SL_destinationBlock)(NSURL * _Nonnull targetPath, NSURL
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLHttpManager : NSObject
+
+@property (nonatomic,assign) AFNetworkReachabilityStatus netStatus;
 
 + (instancetype)sl_sharedNetManager;
 

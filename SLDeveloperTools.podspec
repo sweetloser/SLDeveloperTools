@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.1.6'
+  s.version          = '0.1.7'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -119,13 +119,17 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'SLDeveloperTools/SLMacro'
     appInfo.dependency 'SLDeveloperTools/SLUtilities'
     appInfo.dependency 'SLDeveloperTools/SLNetTools'
+    appInfo.dependency 'SLDeveloperTools/SLMaskTools'
+    appInfo.dependency 'SLDeveloperTools/SLVideoWaterMaskTools'
     appInfo.dependency 'MJExtension', '~> 3.2.2'
     appInfo.dependency 'MMKV'
     appInfo.dependency 'UMCPush'
     appInfo.dependency 'UMCCommon'
     appInfo.dependency 'YYText'
     appInfo.dependency 'RealReachability'
-    appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony'
+    appInfo.dependency 'Bugly', '~> 2.5.4'
+    appInfo.dependency 'KTVHTTPCache', '~> 1.1.7'
+    appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
     appInfo.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }

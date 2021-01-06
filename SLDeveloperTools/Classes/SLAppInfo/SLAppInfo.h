@@ -9,8 +9,12 @@
 #define SLAppInfo_h
 
 #import "BXAppInfo.h"
+#import "BXKTVHTTPCacheManager.h"
+#import "BXLiveUser.h"
+#import "BXSavePhotoHelper.h"
+#import "NewHttpManager.h"
 #import "SLAppInfoConst.h"
 #import "SLAppInfoMacro.h"
-#import "BXLiveUser.h"
+
 
 #endif /* SLAppInfo_h */

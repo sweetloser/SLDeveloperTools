@@ -15,7 +15,13 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - Aspects (1.4.1)
+  - Bugly (2.5.71)
+  - CocoaAsyncSocket (7.6.5)
   - GPUImage (0.1.7)
+  - KTVCocoaHTTPServer (1.0.0):
+    - CocoaAsyncSocket
+  - KTVHTTPCache (1.1.7):
+    - KTVCocoaHTTPServer
   - lottie-ios (2.5.3)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
@@ -43,6 +49,8 @@ PODS:
     - SLDeveloperTools/SLVideoWaterMaskTools (= 0.1.6)
     - SLDeveloperTools/SLWidget (= 0.1.6)
   - SLDeveloperTools/SLAppInfo (0.1.6):
+    - Bugly (~> 2.5.4)
+    - KTVHTTPCache (~> 1.1.7)
     - MJExtension (~> 3.2.2)
     - MMKV
     - RealReachability
@@ -116,7 +124,11 @@ SPEC REPOS:
   trunk:
     - AFNetworking
     - Aspects
+    - Bugly
+    - CocoaAsyncSocket
     - GPUImage
+    - KTVCocoaHTTPServer
+    - KTVHTTPCache
     - lottie-ios
     - Masonry
     - MBProgressHUD
@@ -143,7 +155,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  Bugly: fd066c75c4a0eca1440f9b6a84bd37d51bfc85ac
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
+  KTVHTTPCache: 5c4c0544afe4007f620879d7f6a0455ee1c02d36
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -153,7 +169,7 @@ SPEC CHECKSUMS:
   MMKVCore: 607b7b05f2c2140056b5d338e45f2c14bf3f4232
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 45a4d926b4b9758f2fc5579979e2dd146ca8ca91
+  SLDeveloperTools: 3161e160881d31a689564afeafc44e71ce07794a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
