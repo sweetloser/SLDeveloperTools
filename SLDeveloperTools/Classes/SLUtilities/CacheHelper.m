@@ -63,30 +63,4 @@
     return [filePath stringByAppendingPathComponent:key];
 }
 
-//+ (BOOL)containsObjectForKey:(NSString *)key {
-//    return [[self getCache] containsObjectForKey:key];
-//}
-//
-//+ (void)setObject:(id)object forKey:(NSString *)key {
-//    [[self getCache] setObject:object forKey:key];
-//}
-//
-//+ (id<NSCoding>)objectForKey:(NSString *)key {
-//    return [[self getCache] objectForKey:key];
-//}
-//
-//+ (void)removeObjectForKey:(NSString *)key {
-//    [[self getCache] removeObjectForKey:key];
-//}
-//+ (void)removeAllObjects {
-//    [[self getCache] removeAllObjects];
-//}
-//
-//+ (YYCache*)getCache {
-//    if (!_cache) {
-//        _cache = [YYCache cacheWithName:@"HHCache"];
-//    }
-//    return _cache;
-//}
-
 @end

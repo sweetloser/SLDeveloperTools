@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.1.7'
+  s.version          = '0.1.8'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -48,6 +48,9 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec 'SLUtilities' do |utils|
+      utils.dependency 'KTVHTTPCache', '~> 1.1.7'
+      utils.dependency 'YYWebImage', '~> 1.0.5'
+      utils.dependency 'SDAutoLayout'
       utils.source_files = 'SLDeveloperTools/Classes/SLUtilities/*.{h,m}'
       utils.public_header_files = 'SLDeveloperTools/Classes/SLUtilities/*.h'
   end
@@ -57,6 +60,7 @@ TODO: Add long description of the pod here.
       widget.public_header_files = 'SLDeveloperTools/Classes/SLWidget/*.h'
       widget.dependency 'SLDeveloperTools/SLCategory'
       widget.dependency 'SLDeveloperTools/SLMacro'
+      widget.dependency 'SLDeveloperTools/SLNetTools'
       widget.dependency 'Masonry'
       widget.dependency 'MJRefresh'
       widget.dependency 'MMKV'
@@ -128,7 +132,6 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'YYText'
     appInfo.dependency 'RealReachability'
     appInfo.dependency 'Bugly', '~> 2.5.4'
-    appInfo.dependency 'KTVHTTPCache', '~> 1.1.7'
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }

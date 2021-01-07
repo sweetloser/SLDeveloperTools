@@ -37,18 +37,6 @@ static NSUInteger maxCacheSize =  0;
     }
 }
 
-//+ (void)load {
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        // 尝试清除缓存
-//        if (maxCacheSize > 0 && [self totalCacheSize] > 1024 * 1024 * maxCacheSize) {
-//            [self clearCaches];
-//        }
-//    });
-//}
-
-
-
 +(void)autoClearCacheWithLimitedToSize:(NSUInteger)mSize{
     maxCacheSize = mSize;
 }

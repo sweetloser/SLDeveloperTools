@@ -10,9 +10,13 @@
 #define SLWidget_h
 
 #import "BXFooterView.h"
+#import "BXNoNetworkView.h"
 #import "BXRefreshFooter.h"
 #import "BXRefreshHeader.h"
 #import "BXFooterView.h"
 #import "UIScrollView+Refresh.h"
+#import "BXNoNetworkView.h"
+#import "VersionTool.h"
+
 #endif /* SLWidget_h */
 

@@ -95,6 +95,8 @@ code
 - (void)APIPOST:(NSString *)URLString parameters:(NSDictionary * __nullable)parameters success:(Success)success failure:(Failure)failure{
     
     NSMutableDictionary *dict = (NSMutableDictionary *)[BXAppInfo getAllParametersWithParameters:parameters];
+    [dict setValue:@"ios" forKey:@"app_type"];
+    [dict setValue:@"苹果" forKey:@"app_type_name"];
     NSString *url = [SL_HTTP_BASE_API_URL stringByAppendingString:URLString];
     [self GeneralPOST:url parameters:dict success:success failure:failure];
 }
