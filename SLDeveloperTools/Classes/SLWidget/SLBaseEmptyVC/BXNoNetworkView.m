@@ -8,7 +8,7 @@
 
 #import "BXNoNetworkView.h"
 #import <Masonry/Masonry.h>
-#import "../SLMacro/SLMacro.h"
+#import "../../SLMacro/SLMacro.h"
 @interface BXNoNetworkView ()
 @property(nonatomic,strong)UIImageView *imgv;
 @end

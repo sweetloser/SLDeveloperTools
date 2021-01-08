@@ -85,16 +85,6 @@ static SLHttpManager *manager = nil;
 }
 
 #pragma mark - 上传图片
-/**
- 封装POST图片上传(多张图片)
- 
- @param operations   请求的参数
- @param imageArray   存放图片的数组
- @param urlString    请求的链接
- @param isShow       是否显示进度
- @param successBlock 发送成功的回调
- @param failureBlock 发送失败的回调
- */
 - (void)sl_uploadImageWithOperations:(NSDictionary *)operations withImageArray:(NSArray *)imageArray withUrlString:(NSString *)urlString withProgress:(SL_NetProgress)progress withSuccessBlock:(SL_NetSuccess)successBlock withFailurBlock:(SL_NetFailure)failureBlock{
     
     if (self.netStatus > 0) {

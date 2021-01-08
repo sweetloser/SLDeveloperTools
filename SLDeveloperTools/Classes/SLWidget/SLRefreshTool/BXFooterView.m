@@ -9,7 +9,7 @@
 #import "BXFooterView.h"
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
-#import "../SLMacro/SLMacro.h"
+#import "../../SLMacro/SLMacro.h"
 @interface BXFooterView ()
 
 

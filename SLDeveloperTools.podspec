@@ -56,8 +56,8 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec 'SLWidget' do |widget|
-      widget.source_files = 'SLDeveloperTools/Classes/SLWidget/*.{h,m}'
-      widget.public_header_files = 'SLDeveloperTools/Classes/SLWidget/*.h'
+      widget.source_files = 'SLDeveloperTools/Classes/SLWidget/*/*.{h,m}'
+      widget.public_header_files = 'SLDeveloperTools/Classes/SLWidget/SLWidget.h'
       widget.dependency 'SLDeveloperTools/SLCategory'
       widget.dependency 'SLDeveloperTools/SLMacro'
       widget.dependency 'SLDeveloperTools/SLNetTools'

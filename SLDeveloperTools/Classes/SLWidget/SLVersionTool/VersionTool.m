@@ -11,9 +11,9 @@
 
 #import "VersionTool.h"
 #import <Masonry/Masonry.h>
-#import "../SLCategory/SLCategory.h"
-#import "../SLMacro/SLMacro.h"
-#import "../SLNetTools/SLNetTools.h"
+#import "../../SLCategory/SLCategory.h"
+#import "../../SLMacro/SLMacro.h"
+#import "../../SLNetTools/SLNetTools.h"
 
 @interface VersionToolView : UIView
 
