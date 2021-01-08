@@ -13,5 +13,6 @@ static NSString *const kDefaultPhoneCode = @"DefaultPhoneCode";
 
 static NSString *const sl_HttpResponseCodeError = @"sl_HttpResponseCodeError";                        //http请求 code 不为 0
 static NSString *const sl_UploadFileResponseCodeError = @"sl_UploadFileResponseCodeError";                        //上传文件请求 code 不为 0
+static NSString *const kDidShareNotification = @"DidShareNotification";                               //分享完成
 
 #endif /* SLAppInfoConst_h */
