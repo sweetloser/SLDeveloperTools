@@ -64,7 +64,6 @@
 
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self
 
-
 //16进制color 使用方法：HEXCOLOR(0xffffff)
 #define CHHCOLOR(rgbValue,A) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:A]
 
@@ -76,13 +75,20 @@
 
 //新增
 #define SLClearColor [UIColor clearColor]
-#define DynDownLineColor  UIColorHex(#F5F9FC)
 
-#define DynUnSendButtonTitle UIColorHex(#8C8C8C)
-#define DynUnSendButtonBackColor UIColorHex(#F5F9FC)
+//f5f9fc
+#define DynDownLineColor  [UIColor colorWithRed:245/255.0 green:249/255.0 blue:252/255.0 alpha:1]
+
+//8c8c8c
+#define DynUnSendButtonTitle [UIColor colorWithRed:140/255.0 green:140/255.0 blue:140/255.0 alpha:1]
+
+//f5f9fc
+#define DynUnSendButtonBackColor [UIColor colorWithRed:245/255.0 green:249/255.0 blue:252/255.0 alpha:1]
 
 #define DynSendButtonTitle [UIColor whiteColor]
-#define DynSendButtonBackColor UIColorHex(#FF2D52)
+
+//FF2D52
+#define DynSendButtonBackColor [UIColor colorWithRed:255/255.0 green:45/255.0 blue:82/255.0 alpha:1]
 
 #define kDocumentFolder [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
@@ -192,7 +198,7 @@ alpha:1.f]
 #define LineDeeplColor             LineNormalColor
 
 //分割线-细（深）
-#define LineEAEAColor             UIColorHex(#EAEAEA)
+#define LineEAEAColor             [UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1]
 
 //主题色(#01D0C5)
 #define normalColors               [UIColor colorWithRed:1/255.0 green:208/255.0 blue:197/255.0 alpha:1]
@@ -213,20 +219,23 @@ alpha:1.f]
 //SL字体颜色（#282828）
 #define sl_textColors               [UIColor colorWithRed:40/255.0 green:40/255.0 blue:40/255.0 alpha:1]
 
-
-#define sl_HeigthLightTextColors  UIColorHex(#91B8F4)
+//91B8F4
+#define sl_HeigthLightTextColors  [UIColor colorWithRed:145/255.0 green:184/255.0 blue:244/255.0 alpha:1]
 
 //SLweb页进度条颜色
-#define sl_webProgressTintColor  UIColorHex(#FF2D52)
+#define sl_webProgressTintColor  [UIColor colorWithRed:255/255.0 green:45/255.0 blue:82/255.0 alpha:1]
 
-#define sl_blacktextColors  UIColorHex(#000000)
+// 000000
+#define sl_blacktextColors  [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1]
 
 
-#define sl_2B2BtextColors  UIColorHex(#2B2B2B)
+#define sl_2B2BtextColors  [UIColor colorWithRed:43/255.0 green:43/255.0 blue:43/255.0 alpha:1]
 
-#define sl_FF2DtextColors  UIColorHex(#FF2D52)
+//FF2D52
+#define sl_FF2DtextColors  [UIColor colorWithRed:255/255.0 green:45/255.0 blue:82/255.0 alpha:1]
 
-#define sl_imageBackColors UIColorHex(#F5F9FC)
+//#F5F9FC
+#define sl_imageBackColors [UIColor colorWithRed:245/255.0 green:249/255.0 blue:252/255.0 alpha:1]
 
 //SL字体次颜色（#8c8c8c）
 #define sl_textSubColors               [UIColor colorWithRed:140/255.0 green:140/255.0 blue:140/255.0 alpha:1]

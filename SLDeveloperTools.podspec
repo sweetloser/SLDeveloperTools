@@ -36,44 +36,67 @@ TODO: Add long description of the pod here.
   
 #  s.default_subspecs = 'SLCategory', 'SLUtilities', 'SLWidget'
   
-  s.public_header_files = 'SLDeveloperTools/Classes/SLDeveloperTools.h'
-  s.source_files = 'SLDeveloperTools/Classes/SLDeveloperTools.h'
+  s.public_header_files = 'SLDeveloperTools/SLDeveloperTools.h'
+  s.source_files = 'SLDeveloperTools/SLDeveloperTools.h'
   s.subspec 'SLCategory' do |category|
-      category.source_files = 'SLDeveloperTools/Classes/SLCategory/*.{h,m}'
-      category.public_header_files = 'SLDeveloperTools/Classes/SLCategory/*.h'
+      category.source_files = 'SLDeveloperTools/SLCategory/*.{h,m}'
+      category.public_header_files = 'SLDeveloperTools/SLCategory/*.h'
       category.dependency 'SLDeveloperTools/SLMacro'
       category.dependency 'MJRefresh'
       category.dependency 'MMKV'
       category.frameworks = 'OpenGLES'
   end
-
+  
+  s.subspec 'SLMacro' do |macro|
+    macro.source_files = 'SLDeveloperTools/SLMacro/*.h'
+    macro.public_header_files = 'SLDeveloperTools/SLMacro/*.h'
+  end
+  
   s.subspec 'SLUtilities' do |utils|
       utils.dependency 'KTVHTTPCache', '~> 1.1.7'
       utils.dependency 'YYWebImage', '~> 1.0.5'
       utils.dependency 'SDAutoLayout'
-      utils.source_files = 'SLDeveloperTools/Classes/SLUtilities/*.{h,m}'
-      utils.public_header_files = 'SLDeveloperTools/Classes/SLUtilities/*.h'
+      utils.source_files = 'SLDeveloperTools/SLUtilities/*.{h,m}'
+      utils.public_header_files = 'SLDeveloperTools/SLUtilities/*.h'
   end
 
   s.subspec 'SLWidget' do |widget|
-      widget.source_files = 'SLDeveloperTools/Classes/SLWidget/*/*.{h,m}'
-      widget.public_header_files = 'SLDeveloperTools/Classes/SLWidget/SLWidget.h'
-      widget.dependency 'SLDeveloperTools/SLCategory'
+      widget.source_files = 'SLDeveloperTools/SLWidget/*.{h,m}'
+      widget.public_header_files = 'SLDeveloperTools/SLWidget/SLWidget.h'
       widget.dependency 'SLDeveloperTools/SLMacro'
-      widget.dependency 'SLDeveloperTools/SLNetTools'
       widget.dependency 'Masonry'
-      widget.dependency 'MJRefresh'
-      widget.dependency 'MMKV'
+#      版本更新组件
+      widget.subspec 'SLVersionTool' do |vt|
+          vt.source_files = 'SLDeveloperTools/SLWidget/SLVersionTool/*.{h,m}'
+          vt.public_header_files = 'SLDeveloperTools/SLWidget/SLVersionTool/*.h'
+          vt.dependency 'SLDeveloperTools/SLNetTools'
+          vt.dependency 'SLDeveloperTools/SLNetTools'
+      end
+
+#      刷新组件
+      widget.subspec 'SLRefreshTool' do |rt|
+          rt.source_files = 'SLDeveloperTools/SLWidget/SLRefreshTool/*.{h,m}'
+          rt.dependency 'SLDeveloperTools/SLCategory'
+          rt.dependency 'MJRefresh'
+      end
+##      无网络 & 无数据 页面
+      widget.subspec 'SLBaseEmptyVC' do |et|
+          et.source_files = 'SLDeveloperTools/SLWidget/SLBaseEmptyVC/*.{h,m}'
+          et.dependency 'SLDeveloperTools/SLBaseClass'
+          et.dependency 'SLDeveloperTools/SLNetTools'
+      end
+      
+#      第三方（QQ、微信）分享组件
+      widget.subspec 'SLShareTools' do |st|
+        st.source_files = 'SLDeveloperTools/SLWidget/SLShareTools/*.{h,m}'
+        st.dependency 'SLDeveloperTools/SLBaseClass'
+        st.dependency 'SLDeveloperTools/SLCategory'
+      end
   end
 
-  s.subspec 'SLMacro' do |macro|
-    macro.source_files = 'SLDeveloperTools/Classes/SLMacro/*.h'
-    macro.public_header_files = 'SLDeveloperTools/Classes/SLMacro/*.h'
-  end
-  
   s.subspec 'SLNetTools' do |netTools|
-    netTools.source_files = 'SLDeveloperTools/Classes/SLNetTools/*.{h,m}'
-    netTools.public_header_files = 'SLDeveloperTools/Classes/SLNetTools/*.h'
+    netTools.source_files = 'SLDeveloperTools/SLNetTools/*.{h,m}'
+    netTools.public_header_files = 'SLDeveloperTools/SLNetTools/*.h'
     netTools.dependency 'SLDeveloperTools/SLUtilities'
     netTools.dependency 'SLDeveloperTools/SLCategory'
     netTools.dependency 'AFNetworking'
@@ -81,8 +104,8 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec "SLMaskTools" do |maskTools|
-    maskTools.source_files = 'SLDeveloperTools/Classes/SLMaskTools/*.{h,m}'
-    maskTools.public_header_files = 'SLDeveloperTools/Classes/SLMaskTools/*.h'
+    maskTools.source_files = 'SLDeveloperTools/SLMaskTools/*.{h,m}'
+    maskTools.public_header_files = 'SLDeveloperTools/SLMaskTools/*.h'
     maskTools.dependency 'SLDeveloperTools/SLMacro'
     maskTools.dependency 'SLDeveloperTools/SLCategory'
     maskTools.dependency 'SVProgressHUD'
@@ -92,8 +115,8 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec "SLVideoWaterMaskTools" do |videoWaterMaskTools|
-    videoWaterMaskTools.source_files = 'SLDeveloperTools/Classes/SLVideoWaterMaskTools/*.{h,m}'
-    videoWaterMaskTools.public_header_files = 'SLDeveloperTools/Classes/SLVideoWaterMaskTools/*.h'
+    videoWaterMaskTools.source_files = 'SLDeveloperTools/SLVideoWaterMaskTools/*.{h,m}'
+    videoWaterMaskTools.public_header_files = 'SLDeveloperTools/SLVideoWaterMaskTools/*.h'
     videoWaterMaskTools.dependency 'SLDeveloperTools/SLMaskTools'
     videoWaterMaskTools.dependency 'SLDeveloperTools/SLCategory'
     videoWaterMaskTools.dependency 'SLDeveloperTools/SLMacro'
@@ -105,8 +128,8 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec "SLBaseClass" do |baseClass|
-    baseClass.source_files = 'SLDeveloperTools/Classes/SLBaseClass/*.{h,m}'
-    baseClass.public_header_files = 'SLDeveloperTools/Classes/SLBaseClass/*.h'
+    baseClass.source_files = 'SLDeveloperTools/SLBaseClass/*.{h,m}'
+    baseClass.public_header_files = 'SLDeveloperTools/SLBaseClass/*.h'
     baseClass.dependency "SLDeveloperTools/SLCategory"
     baseClass.dependency "SLDeveloperTools/SLMacro"
     baseClass.dependency 'SDWebImage', '= 5.10.0'
@@ -116,10 +139,12 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec "SLAppInfo" do |appInfo|
-    appInfo.source_files = 'SLDeveloperTools/Classes/SLAppInfo/*.{h,m}'
-    appInfo.public_header_files = 'SLDeveloperTools/Classes/SLAppInfo/*.h'
+    appInfo.source_files = 'SLDeveloperTools/SLAppInfo/*.{h,m}'
+    appInfo.public_header_files = 'SLDeveloperTools/SLAppInfo/*.h'
     appInfo.dependency 'SLDeveloperTools/SLBaseClass'
     appInfo.dependency 'SLDeveloperTools/SLCategory'
+    appInfo.dependency 'SLDeveloperTools/SLWidget/SLBaseEmptyVC'
+    appInfo.dependency 'SLDeveloperTools/SLWidget/SLShareTools'
     appInfo.dependency 'SLDeveloperTools/SLMacro'
     appInfo.dependency 'SLDeveloperTools/SLUtilities'
     appInfo.dependency 'SLDeveloperTools/SLNetTools'
@@ -129,9 +154,13 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'MMKV'
     appInfo.dependency 'UMCPush'
     appInfo.dependency 'UMCCommon'
+    appInfo.dependency 'UMCSecurityPlugins'
     appInfo.dependency 'YYText'
     appInfo.dependency 'RealReachability'
     appInfo.dependency 'Bugly', '~> 2.5.4'
+    appInfo.dependency 'UMCShare/UI'
+    appInfo.dependency 'UMCShare/Social/ReducedWeChat'
+    appInfo.dependency 'UMCShare/Social/ReducedQQ'
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
@@ -142,7 +171,7 @@ TODO: Add long description of the pod here.
   
   s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.public_header_files = 'Pod/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   
 end

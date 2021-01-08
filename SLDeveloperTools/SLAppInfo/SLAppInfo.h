@@ -12,7 +12,12 @@
 #import "BXAppInfo.h"
 #import "BXLiveUser.h"
 #import "BXSavePhotoHelper.h"
+#import "HHHttpAnchorRequest.h"
+#import "HttpMakeFriendRequest.h"
 #import "NewHttpManager.h"
+#import "NewHttpRequestHuang.h"
+#import "NewHttpRequestPort.h"
+#import "SharePopView.h"
 #import "SLAppInfoConst.h"
 #import "SLAppInfoMacro.h"
 
