@@ -8,7 +8,8 @@
 
 #import "SLViewController.h"
 //#import <SLDeveloperTools.h>
-#import <UMPush/UMessage.h>
+#import <SLDeveloperTools.h>
+
 @interface SLViewController ()
 
 @end
@@ -18,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [UMessage addLaunchMessage];
+    SLShareView *s = [[SLShareView alloc] initWithShareObjects:@[]];
 //    self.view.backgroundColor = [UIColor sl_colorWithHex:0x8f8f8f];
 	// Do any additional setup after loading the view, typically from a nib.
 }

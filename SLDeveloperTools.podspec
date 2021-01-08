@@ -36,11 +36,9 @@ TODO: Add long description of the pod here.
   
 #  s.default_subspecs = 'SLCategory', 'SLUtilities', 'SLWidget'
   
-  s.public_header_files = 'SLDeveloperTools/SLDeveloperTools.h'
   s.source_files = 'SLDeveloperTools/SLDeveloperTools.h'
   s.subspec 'SLCategory' do |category|
       category.source_files = 'SLDeveloperTools/SLCategory/*.{h,m}'
-      category.public_header_files = 'SLDeveloperTools/SLCategory/*.h'
       category.dependency 'SLDeveloperTools/SLMacro'
       category.dependency 'MJRefresh'
       category.dependency 'MMKV'
@@ -49,7 +47,6 @@ TODO: Add long description of the pod here.
   
   s.subspec 'SLMacro' do |macro|
     macro.source_files = 'SLDeveloperTools/SLMacro/*.h'
-    macro.public_header_files = 'SLDeveloperTools/SLMacro/*.h'
   end
   
   s.subspec 'SLUtilities' do |utils|
@@ -57,18 +54,15 @@ TODO: Add long description of the pod here.
       utils.dependency 'YYWebImage', '~> 1.0.5'
       utils.dependency 'SDAutoLayout'
       utils.source_files = 'SLDeveloperTools/SLUtilities/*.{h,m}'
-      utils.public_header_files = 'SLDeveloperTools/SLUtilities/*.h'
   end
 
   s.subspec 'SLWidget' do |widget|
       widget.source_files = 'SLDeveloperTools/SLWidget/*.{h,m}'
-      widget.public_header_files = 'SLDeveloperTools/SLWidget/SLWidget.h'
       widget.dependency 'SLDeveloperTools/SLMacro'
       widget.dependency 'Masonry'
 #      版本更新组件
       widget.subspec 'SLVersionTool' do |vt|
           vt.source_files = 'SLDeveloperTools/SLWidget/SLVersionTool/*.{h,m}'
-          vt.public_header_files = 'SLDeveloperTools/SLWidget/SLVersionTool/*.h'
           vt.dependency 'SLDeveloperTools/SLNetTools'
           vt.dependency 'SLDeveloperTools/SLNetTools'
       end
@@ -96,7 +90,6 @@ TODO: Add long description of the pod here.
 
   s.subspec 'SLNetTools' do |netTools|
     netTools.source_files = 'SLDeveloperTools/SLNetTools/*.{h,m}'
-    netTools.public_header_files = 'SLDeveloperTools/SLNetTools/*.h'
     netTools.dependency 'SLDeveloperTools/SLUtilities'
     netTools.dependency 'SLDeveloperTools/SLCategory'
     netTools.dependency 'AFNetworking'
@@ -105,7 +98,6 @@ TODO: Add long description of the pod here.
   
   s.subspec "SLMaskTools" do |maskTools|
     maskTools.source_files = 'SLDeveloperTools/SLMaskTools/*.{h,m}'
-    maskTools.public_header_files = 'SLDeveloperTools/SLMaskTools/*.h'
     maskTools.dependency 'SLDeveloperTools/SLMacro'
     maskTools.dependency 'SLDeveloperTools/SLCategory'
     maskTools.dependency 'SVProgressHUD'
@@ -116,7 +108,6 @@ TODO: Add long description of the pod here.
 
   s.subspec "SLVideoWaterMaskTools" do |videoWaterMaskTools|
     videoWaterMaskTools.source_files = 'SLDeveloperTools/SLVideoWaterMaskTools/*.{h,m}'
-    videoWaterMaskTools.public_header_files = 'SLDeveloperTools/SLVideoWaterMaskTools/*.h'
     videoWaterMaskTools.dependency 'SLDeveloperTools/SLMaskTools'
     videoWaterMaskTools.dependency 'SLDeveloperTools/SLCategory'
     videoWaterMaskTools.dependency 'SLDeveloperTools/SLMacro'

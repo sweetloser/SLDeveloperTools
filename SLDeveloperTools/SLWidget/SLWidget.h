@@ -10,7 +10,6 @@
 #define SLWidget_h
 
 #import "SLEmptyHeader.h"
-#import "SLShareObjs.h"
 #import "SLRefreshTools.h"
 #import "SLShareTools.h"
 #import "SLVersionTools.h"
