@@ -6,7 +6,7 @@
 //  Copyright © 2020 cat. All rights reserved.
 //
 
-#import "../../SLBaseClass/SLBaseClass.h"
+#import "SLBaseClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
