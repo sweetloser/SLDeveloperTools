@@ -40,17 +40,17 @@ PODS:
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
-  - SLDeveloperTools (0.1.9):
-    - SLDeveloperTools/SLAppInfo (= 0.1.9)
-    - SLDeveloperTools/SLBaseClass (= 0.1.9)
-    - SLDeveloperTools/SLCategory (= 0.1.9)
-    - SLDeveloperTools/SLMacro (= 0.1.9)
-    - SLDeveloperTools/SLMaskTools (= 0.1.9)
-    - SLDeveloperTools/SLNetTools (= 0.1.9)
-    - SLDeveloperTools/SLUtilities (= 0.1.9)
-    - SLDeveloperTools/SLVideoWaterMaskTools (= 0.1.9)
-    - SLDeveloperTools/SLWidget (= 0.1.9)
-  - SLDeveloperTools/SLAppInfo (0.1.9):
+  - SLDeveloperTools (0.0.1):
+    - SLDeveloperTools/SLAppInfo (= 0.0.1)
+    - SLDeveloperTools/SLBaseClass (= 0.0.1)
+    - SLDeveloperTools/SLCategory (= 0.0.1)
+    - SLDeveloperTools/SLMacro (= 0.0.1)
+    - SLDeveloperTools/SLMaskTools (= 0.0.1)
+    - SLDeveloperTools/SLNetTools (= 0.0.1)
+    - SLDeveloperTools/SLUtilities (= 0.0.1)
+    - SLDeveloperTools/SLVideoWaterMaskTools (= 0.0.1)
+    - SLDeveloperTools/SLWidget (= 0.0.1)
+  - SLDeveloperTools/SLAppInfo (0.0.1):
     - Bugly (~> 2.5.4)
     - CTMediator
     - MJExtension (~> 3.2.2)
@@ -73,34 +73,34 @@ PODS:
     - UMCShare/Social/ReducedWeChat
     - YYCategories
     - YYText
-  - SLDeveloperTools/SLBaseClass (0.1.9):
+  - SLDeveloperTools/SLBaseClass (0.0.1):
     - AFNetworking
     - SDWebImage (= 5.10.0)
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLCategory (0.1.9):
+  - SLDeveloperTools/SLCategory (0.0.1):
     - MJRefresh
     - MMKV
     - SLDeveloperTools/SLMacro
-  - SLDeveloperTools/SLMacro (0.1.9)
-  - SLDeveloperTools/SLMaskTools (0.1.9):
+  - SLDeveloperTools/SLMacro (0.0.1)
+  - SLDeveloperTools/SLMaskTools (0.0.1):
     - lottie-ios (= 2.5.3)
     - Masonry
     - MBProgressHUD
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - SVProgressHUD
-  - SLDeveloperTools/SLNetTools (0.1.9):
+  - SLDeveloperTools/SLNetTools (0.0.1):
     - AFNetworking
     - SDWebImage (= 5.10.0)
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLUtilities
-  - SLDeveloperTools/SLUtilities (0.1.9):
+  - SLDeveloperTools/SLUtilities (0.0.1):
     - KTVHTTPCache (~> 1.1.7)
     - SDAutoLayout
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLVideoWaterMaskTools (0.1.9):
+  - SLDeveloperTools/SLVideoWaterMaskTools (0.0.1):
     - Aspects
     - GPUImage (~> 0.1.7)
     - SLDeveloperTools/SLCategory
@@ -108,29 +108,29 @@ PODS:
     - SLDeveloperTools/SLMaskTools
     - SLDeveloperTools/SLUtilities
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLWidget (0.1.9):
+  - SLDeveloperTools/SLWidget (0.0.1):
     - Masonry
     - SLDeveloperTools/SLMacro
-    - SLDeveloperTools/SLWidget/SLBaseEmptyVC (= 0.1.9)
-    - SLDeveloperTools/SLWidget/SLRefreshTool (= 0.1.9)
-    - SLDeveloperTools/SLWidget/SLShareTools (= 0.1.9)
-    - SLDeveloperTools/SLWidget/SLVersionTool (= 0.1.9)
-  - SLDeveloperTools/SLWidget/SLBaseEmptyVC (0.1.9):
+    - SLDeveloperTools/SLWidget/SLBaseEmptyVC (= 0.0.1)
+    - SLDeveloperTools/SLWidget/SLRefreshTool (= 0.0.1)
+    - SLDeveloperTools/SLWidget/SLShareTools (= 0.0.1)
+    - SLDeveloperTools/SLWidget/SLVersionTool (= 0.0.1)
+  - SLDeveloperTools/SLWidget/SLBaseEmptyVC (0.0.1):
     - Masonry
     - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLNetTools
-  - SLDeveloperTools/SLWidget/SLRefreshTool (0.1.9):
+  - SLDeveloperTools/SLWidget/SLRefreshTool (0.0.1):
     - Masonry
     - MJRefresh
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
-  - SLDeveloperTools/SLWidget/SLShareTools (0.1.9):
+  - SLDeveloperTools/SLWidget/SLShareTools (0.0.1):
     - Masonry
     - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
-  - SLDeveloperTools/SLWidget/SLVersionTool (0.1.9):
+  - SLDeveloperTools/SLWidget/SLVersionTool (0.0.1):
     - Masonry
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLNetTools
@@ -366,7 +366,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: e9c25ec634da1caeef1fde6796377bd4e3ac272c
+  SLDeveloperTools: 0e2e20b16c12ba3ebeae3fc998486f9b776d32f3
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
