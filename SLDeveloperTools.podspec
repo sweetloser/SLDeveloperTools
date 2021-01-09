@@ -147,11 +147,13 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'UMCCommon'
     appInfo.dependency 'UMCSecurityPlugins'
     appInfo.dependency 'YYText'
+    appInfo.dependency 'YYCategories'
     appInfo.dependency 'RealReachability'
     appInfo.dependency 'Bugly', '~> 2.5.4'
-    appInfo.dependency 'UMCShare/UI'
+    appInfo.dependency 'UMCShare'
     appInfo.dependency 'UMCShare/Social/ReducedWeChat'
     appInfo.dependency 'UMCShare/Social/ReducedQQ'
+    appInfo.dependency 'CTMediator'
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }

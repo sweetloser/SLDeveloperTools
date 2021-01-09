@@ -17,6 +17,7 @@ PODS:
   - Aspects (1.4.1)
   - Bugly (2.5.71)
   - CocoaAsyncSocket (7.6.5)
+  - CTMediator (44)
   - GPUImage (0.1.7)
   - KTVCocoaHTTPServer (1.0.0):
     - CocoaAsyncSocket
@@ -39,18 +40,19 @@ PODS:
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
-  - SLDeveloperTools (0.1.8):
-    - SLDeveloperTools/SLAppInfo (= 0.1.8)
-    - SLDeveloperTools/SLBaseClass (= 0.1.8)
-    - SLDeveloperTools/SLCategory (= 0.1.8)
-    - SLDeveloperTools/SLMacro (= 0.1.8)
-    - SLDeveloperTools/SLMaskTools (= 0.1.8)
-    - SLDeveloperTools/SLNetTools (= 0.1.8)
-    - SLDeveloperTools/SLUtilities (= 0.1.8)
-    - SLDeveloperTools/SLVideoWaterMaskTools (= 0.1.8)
-    - SLDeveloperTools/SLWidget (= 0.1.8)
-  - SLDeveloperTools/SLAppInfo (0.1.8):
+  - SLDeveloperTools (0.1.9):
+    - SLDeveloperTools/SLAppInfo (= 0.1.9)
+    - SLDeveloperTools/SLBaseClass (= 0.1.9)
+    - SLDeveloperTools/SLCategory (= 0.1.9)
+    - SLDeveloperTools/SLMacro (= 0.1.9)
+    - SLDeveloperTools/SLMaskTools (= 0.1.9)
+    - SLDeveloperTools/SLNetTools (= 0.1.9)
+    - SLDeveloperTools/SLUtilities (= 0.1.9)
+    - SLDeveloperTools/SLVideoWaterMaskTools (= 0.1.9)
+    - SLDeveloperTools/SLWidget (= 0.1.9)
+  - SLDeveloperTools/SLAppInfo (0.1.9):
     - Bugly (~> 2.5.4)
+    - CTMediator
     - MJExtension (~> 3.2.2)
     - MMKV
     - RealReachability
@@ -66,38 +68,39 @@ PODS:
     - UMCCommon
     - UMCPush
     - UMCSecurityPlugins
+    - UMCShare
     - UMCShare/Social/ReducedQQ
     - UMCShare/Social/ReducedWeChat
-    - UMCShare/UI
+    - YYCategories
     - YYText
-  - SLDeveloperTools/SLBaseClass (0.1.8):
+  - SLDeveloperTools/SLBaseClass (0.1.9):
     - AFNetworking
     - SDWebImage (= 5.10.0)
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLCategory (0.1.8):
+  - SLDeveloperTools/SLCategory (0.1.9):
     - MJRefresh
     - MMKV
     - SLDeveloperTools/SLMacro
-  - SLDeveloperTools/SLMacro (0.1.8)
-  - SLDeveloperTools/SLMaskTools (0.1.8):
+  - SLDeveloperTools/SLMacro (0.1.9)
+  - SLDeveloperTools/SLMaskTools (0.1.9):
     - lottie-ios (= 2.5.3)
     - Masonry
     - MBProgressHUD
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - SVProgressHUD
-  - SLDeveloperTools/SLNetTools (0.1.8):
+  - SLDeveloperTools/SLNetTools (0.1.9):
     - AFNetworking
     - SDWebImage (= 5.10.0)
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLUtilities
-  - SLDeveloperTools/SLUtilities (0.1.8):
+  - SLDeveloperTools/SLUtilities (0.1.9):
     - KTVHTTPCache (~> 1.1.7)
     - SDAutoLayout
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLVideoWaterMaskTools (0.1.8):
+  - SLDeveloperTools/SLVideoWaterMaskTools (0.1.9):
     - Aspects
     - GPUImage (~> 0.1.7)
     - SLDeveloperTools/SLCategory
@@ -105,29 +108,29 @@ PODS:
     - SLDeveloperTools/SLMaskTools
     - SLDeveloperTools/SLUtilities
     - YYWebImage (~> 1.0.5)
-  - SLDeveloperTools/SLWidget (0.1.8):
+  - SLDeveloperTools/SLWidget (0.1.9):
     - Masonry
     - SLDeveloperTools/SLMacro
-    - SLDeveloperTools/SLWidget/SLBaseEmptyVC (= 0.1.8)
-    - SLDeveloperTools/SLWidget/SLRefreshTool (= 0.1.8)
-    - SLDeveloperTools/SLWidget/SLShareTools (= 0.1.8)
-    - SLDeveloperTools/SLWidget/SLVersionTool (= 0.1.8)
-  - SLDeveloperTools/SLWidget/SLBaseEmptyVC (0.1.8):
+    - SLDeveloperTools/SLWidget/SLBaseEmptyVC (= 0.1.9)
+    - SLDeveloperTools/SLWidget/SLRefreshTool (= 0.1.9)
+    - SLDeveloperTools/SLWidget/SLShareTools (= 0.1.9)
+    - SLDeveloperTools/SLWidget/SLVersionTool (= 0.1.9)
+  - SLDeveloperTools/SLWidget/SLBaseEmptyVC (0.1.9):
     - Masonry
     - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLNetTools
-  - SLDeveloperTools/SLWidget/SLRefreshTool (0.1.8):
+  - SLDeveloperTools/SLWidget/SLRefreshTool (0.1.9):
     - Masonry
     - MJRefresh
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
-  - SLDeveloperTools/SLWidget/SLShareTools (0.1.8):
+  - SLDeveloperTools/SLWidget/SLShareTools (0.1.9):
     - Masonry
     - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
-  - SLDeveloperTools/SLWidget/SLVersionTool (0.1.8):
+  - SLDeveloperTools/SLWidget/SLVersionTool (0.1.9):
     - Masonry
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLNetTools
@@ -139,12 +142,153 @@ PODS:
   - UMCPush (3.3.1):
     - UMCCommon
   - UMCSecurityPlugins (1.0.6)
+  - UMCShare (6.10.1):
+    - UMCCommon
+    - UMCShare/Core (= 6.10.1)
+    - UMCShare/Social (= 6.10.1)
+    - UMCShare/UI (= 6.10.1)
   - UMCShare/Core (6.10.1):
     - UMCCommon
+  - UMCShare/Social (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/AlipayShare (= 6.10.1)
+    - UMCShare/Social/DingDing (= 6.10.1)
+    - UMCShare/Social/Douban (= 6.10.1)
+    - UMCShare/Social/DouYin (= 6.10.1)
+    - UMCShare/Social/DropBox (= 6.10.1)
+    - UMCShare/Social/Email (= 6.10.1)
+    - UMCShare/Social/EverNote (= 6.10.1)
+    - UMCShare/Social/Facebook (= 6.10.1)
+    - UMCShare/Social/FaceBookMessenger (= 6.10.1)
+    - UMCShare/Social/Flickr (= 6.10.1)
+    - UMCShare/Social/GooglePlus (= 6.10.1)
+    - UMCShare/Social/Instagram (= 6.10.1)
+    - UMCShare/Social/Kakao (= 6.10.1)
+    - UMCShare/Social/LaiWang (= 6.10.1)
+    - UMCShare/Social/Line (= 6.10.1)
+    - UMCShare/Social/Linkedin (= 6.10.1)
+    - UMCShare/Social/Pinterest (= 6.10.1)
+    - UMCShare/Social/Pocket (= 6.10.1)
+    - UMCShare/Social/QQ (= 6.10.1)
+    - UMCShare/Social/ReducedQQ (= 6.10.1)
+    - UMCShare/Social/ReducedSina (= 6.10.1)
+    - UMCShare/Social/ReducedWeChat (= 6.10.1)
+    - UMCShare/Social/Renren (= 6.10.1)
+    - UMCShare/Social/Sina (= 6.10.1)
+    - UMCShare/Social/SMS (= 6.10.1)
+    - UMCShare/Social/TencentWeibo (= 6.10.1)
+    - UMCShare/Social/Tumblr (= 6.10.1)
+    - UMCShare/Social/Twitter (= 6.10.1)
+    - UMCShare/Social/VKontakte (= 6.10.1)
+    - UMCShare/Social/WeChat (= 6.10.1)
+    - UMCShare/Social/WeChatWork (= 6.10.1)
+    - UMCShare/Social/WhatsApp (= 6.10.1)
+    - UMCShare/Social/YiXin (= 6.10.1)
+    - UMCShare/Social/YouDao (= 6.10.1)
+  - UMCShare/Social/AlipayShare (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/DingDing (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Douban (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/DouYin (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/DropBox (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Email (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/EverNote (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Facebook (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/FaceBookMessenger (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Flickr (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/GooglePlus (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Instagram (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Kakao (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/LaiWang (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Line (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Linkedin (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Pinterest (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Pocket (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/QQ (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedQQ
   - UMCShare/Social/ReducedQQ (6.10.1):
     - UMCCommon
     - UMCShare/Core
+  - UMCShare/Social/ReducedSina (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
   - UMCShare/Social/ReducedWeChat (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Renren (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Sina (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedSina
+  - UMCShare/Social/SMS (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/TencentWeibo (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Tumblr (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/Twitter (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/VKontakte (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/WeChat (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedWeChat
+  - UMCShare/Social/WeChatWork (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/WhatsApp (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/YiXin (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/YouDao (6.10.1):
     - UMCCommon
     - UMCShare/Core
   - UMCShare/UI (6.10.1):
@@ -152,6 +296,9 @@ PODS:
     - UMCShare/Core
   - UMDevice (1.1.0)
   - YYCache (1.0.4)
+  - YYCategories (1.0.4):
+    - YYCategories/no-arc (= 1.0.4)
+  - YYCategories/no-arc (1.0.4)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
   - YYImage/Core (1.0.4)
@@ -169,6 +316,7 @@ SPEC REPOS:
     - Aspects
     - Bugly
     - CocoaAsyncSocket
+    - CTMediator
     - GPUImage
     - KTVCocoaHTTPServer
     - KTVHTTPCache
@@ -190,6 +338,7 @@ SPEC REPOS:
     - UMCShare
     - UMDevice
     - YYCache
+    - YYCategories
     - YYImage
     - YYText
     - YYWebImage
@@ -203,6 +352,7 @@ SPEC CHECKSUMS:
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   Bugly: fd066c75c4a0eca1440f9b6a84bd37d51bfc85ac
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  CTMediator: 933dba523da87bf875e4a7e8728945fbc512f1d2
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
   KTVHTTPCache: 5c4c0544afe4007f620879d7f6a0455ee1c02d36
@@ -216,7 +366,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: d3310c6def3fb08c39c04c558e67f4130666e8ca
+  SLDeveloperTools: e9c25ec634da1caeef1fde6796377bd4e3ac272c
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
@@ -225,10 +375,11 @@ SPEC CHECKSUMS:
   UMCShare: 0846449c689e8bf6793a941b97f51f9afff927ef
   UMDevice: 28d21a568c8e8322e5a03bbd53b138d0c098d3b3
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+  YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
 PODFILE CHECKSUM: b1b432126c1037d4538373e914a369af81a1a7c7
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
