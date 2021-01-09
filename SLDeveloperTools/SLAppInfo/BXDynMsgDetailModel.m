@@ -53,13 +53,6 @@
         [_liveuserModel updateWithJsonDic:_usermsg];
     }
     
-//    _privatemsg = jsonDic[@"privatemsg"];
-//    if (_privatemsg && [_privatemsg isArray]) {
-//        _friend_user_id = _usermsg[@"user_id"];
-//        _friend_avatar = _usermsg[@"avatar"];
-//        _friend_nickname = _usermsg[@"nickname"];
-//        _friend_gender = _usermsg[@"gender"];
-//    }
     _privateDic = jsonDic[@"privatemsg"];
     if (_privateDic && [_privateDic isDictionary]) {
         _friend_user_id = _privateDic[@"user_id"];
@@ -71,11 +64,6 @@
     NSArray *cirdetail = jsonDic[@"extend_circledetail"];
     if (cirdetail && [cirdetail isArray]) {
         for (NSDictionary *dic in cirdetail) {
-//            _circle_id = dic[@"circle_id"];
-//            _circle_name = dic[@"circle_name"];
-//            _circle_describe = dic[@"circle_describe"];
-//            _circle_cover_img = dic[@"circle_cover_img"];
-//            _circle_background_img = dic[@"circle_background_img"];
             _circle_recModel = [[BXDynCircleModel alloc]init];
             [_circle_recModel updateWithJsonDic:dic];
             [_extend_circledetailArray addObject:_circle_recModel];
@@ -144,7 +132,6 @@
     
     if (!_attatties) {
         UIColor *foregroundColor = [UIColor blackColor];
-// WS(weakSelf);
 
         NSString *string = self.content;
         if (IsNilString(string)) {
@@ -156,11 +143,6 @@
         attrString.yy_color = [UIColor colorWithColor:[UIColor blackColor] alpha:0.6];
         [attrString addAttribute:NSForegroundColorAttributeName value:foregroundColor range:NSMakeRange(0, string.length)];
         
-
-         
-
-
-
         // 匹配 [表情]
         NSArray<NSTextCheckingResult *> *emoticonResults = [[BXDynMsgDetailModel regexEmoticon] matchesInString:attrString.string options:kNilOptions range:attrString.yy_rangeOfAll];
         NSUInteger emoClipLength = 0;
@@ -274,13 +256,10 @@
                                  weakSelf.goToTopic([NSString stringWithFormat:@"%@", [weakSelf.titleArray[i] topic_id]]);
                                  return;
                              }
-//                             [self toPersonHome:atName index:0];
-//                             BXDynSynTopicCategoryVC *vc = [[BXDynSynTopicCategoryVC alloc]init];
-//                             vc.model = self.titleArray[i];
-//                             vc.DidClickTopic = ^(BXDynTopicModel * _Nonnull model) {
-//
-//                             };
-//                             [[[UIApplication sharedApplication] activityViewController].navigationController pushViewController:vc animated:YES];
+                             
+                             void(^didClickTopic)(BXDynTopicModel * _Nonnull bmodel) = ^(BXDynTopicModel * _Nonnull model) {};
+                             
+                             [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2TopicCategory object:nil userInfo:@{@"model":self.titleArray[i],@"DidClickTopic":didClickTopic}];
                          }];
 
                          aiteText.yy_font  = CFont(16);
@@ -292,9 +271,6 @@
 
              }
          }
-        
-
-//        attrString.yy_lineSpacing = 3;
         self.attatties  = attrString;
         self.contentHeight = [self getAttributedTextHeightWithAttributedText:attrString width:SCREEN_WIDTH- 116];
         self.dyncontentHeight = [self getAttributedTextHeightWithAttributedText:attrString width:SCREEN_WIDTH- 24];
@@ -309,8 +285,6 @@
             if ([user_name isEqualToString:[self.privatemsg[i] objectForKey:@"nickname"]]) {
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":[self.privatemsg[i] objectForKey:@"user_id"],@"nav":[[UIApplication sharedApplication] activityViewController].navigationController}];
-                
-//                [BXPersonHomeVC toPersonHomeWithUserId:[self.privatemsg[i] objectForKey:@"user_id"] isShow:nil nav:[[UIApplication sharedApplication] activityViewController].navigationController handle:nil];
                 break;
             }
         }
@@ -327,14 +301,6 @@
                 void(^didClickTopic)(BXDynTopicModel * _Nonnull bmodel) = ^(BXDynTopicModel * _Nonnull model) {};
                 [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2TopicCategory object:nil userInfo:@{@"model":self.titleArray[i],@"DidClickTopic":didClickTopic}];
                 
-                
-                
-//                BXDynSynTopicCategoryVC *vc = [[BXDynSynTopicCategoryVC alloc]init];
-//                vc.model = self.titleArray[i];
-//                vc.DidClickTopic = ^(BXDynTopicModel * _Nonnull model) {
-//
-//                };
-//                [[[UIApplication sharedApplication] activityViewController].navigationController pushViewController:vc animated:YES];
                 break;
             }
         }
