@@ -10,6 +10,8 @@
 
 #import "BGProgressHUD.h"
 #import "BXLoadingView.h"
+#import "SLAlertView.h"
+#import "SLNoticeView.h"
 #import "ZZLActionSheetView.h"
 
 #endif /* SLMaskTools_h */

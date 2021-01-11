@@ -1,0 +1,114 @@
+//
+//  FUManager.h
+//  FULiveDemo
+//
+//  Created by 刘洋 on 2017/8/18.
+//  Copyright © 2017年 刘洋. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "FURenderer.h"
+
+/*
+ items 保存加载到Nama中bundle的操作句柄集
+ 为方便演示阅读，这里将
+ */
+typedef NS_ENUM(NSUInteger, FUNamaHandleType) {
+    FUMNamaHandleTypeBeauty = 0,   /* items[0] ------ 放置 美颜道具句柄 */
+    FUMNamaHandleTypeItem = 1,     /* items[1] ------ 放置 普通道具句柄（包含很多，如：贴纸，aoimoji...若不单一存在，可放句柄集其他位置） */
+    FUNamaHandleTypeGesture = 3,    /* items[3] ------ 手势识别道具句柄 */
+};
+
+@interface FUManager : NSObject
+
+@property (nonatomic, assign) BOOL isLive;
+
+@property (nonatomic, assign)               BOOL enableGesture;         /**设置是否开启手势识别，默认未开启*/
+@property (nonatomic, assign)               BOOL enableMaxFaces;        /**设置人脸识别个数，默认为单人模式*/
+
+@property (nonatomic, assign) BOOL skinDetectEnable;   // 精准美肤
+@property (nonatomic, assign) NSInteger blurShape;      // 美肤类型 (0、1、) 清晰：0，朦胧：1
+@property (nonatomic, assign) double blurLevel;         // 磨皮(0.0 - 6.0)
+@property (nonatomic, assign) double whiteLevel;        // 美白
+@property (nonatomic, assign) double redLevel;          // 红润
+@property (nonatomic, assign) double eyelightingLevel;  // 亮眼
+@property (nonatomic, assign) double beautyToothLevel;  // 美牙
+
+@property (nonatomic, assign) NSInteger faceShape;        //脸型 (0、1、2、3、4)女神：0，网红：1，自然：2，默认：3，自定义：4
+@property (nonatomic, assign) double enlargingLevel;      /**大眼 (0~1)*/
+@property (nonatomic, assign) double thinningLevel;       /**瘦脸 (0~1)*/
+@property (nonatomic, assign) double enlargingLevel_new;  /**大眼 (0~1) --  新版美颜*/
+@property (nonatomic, assign) double thinningLevel_new;   /**瘦脸 (0~1) --  新版美颜*/
+
+@property (nonatomic, assign) double jewLevel;            /**下巴 (0~1)*/
+@property (nonatomic, assign) double foreheadLevel;       /**额头 (0~1)*/
+@property (nonatomic, assign) double noseLevel;           /**鼻子 (0~1)*/
+@property (nonatomic, assign) double mouthLevel;          /**嘴型 (0~1)*/
+
+@property (nonatomic, strong) NSString *selectedFilter; /* 选中的滤镜 */
+@property (nonatomic, assign) double selectedFilterLevel; /* 选中滤镜的 level*/
+
+@property (nonatomic, strong)               NSString *selectedItem;     /**选中的道具名称*/
+
+// 是否性能优先
+@property (nonatomic, assign) BOOL performance ;
+// 当前页面的 model
+@property (nonatomic, assign) BOOL showFaceUnityEffect ;
++ (FUManager *)shareManager;
+- (void)setAsyncTrackFaceEnable:(BOOL)enable;
+
+// 默认美颜参数
+- (void)setBeautyDefaultParameters;
+//内部重置美颜参数
+- (void)resetAllBeautyParams;
+//外部重置美颜参数
+-(void)ckresetALLBeautParams;
+/**初始化Faceunity,加载道具*/
+- (void)loadItems;
+/**加载美颜道具*/
+- (void)loadFilter ;
+/**销毁全部道具*/
+- (void)destoryItems;
+/* 销毁指定道具*/
+- (void)destoryItemAboutType:(FUNamaHandleType)type;
+/**加载普通道具*/
+- (void)loadItem:(NSString *)itemName;
+/**将道具绘制到pixelBuffer*/
+- (CVPixelBufferRef)renderItemsToPixelBuffer:(CVPixelBufferRef)pixelBuffer flip:(BOOL)flip;
+/**音乐*/
+- (void)musicFilterSetMusicTime;
+
+/**获取item的提示语*/
+- (NSString *)hintForItem:(NSString *)item;
+/**3d*/
+- (void)set3DFlipH ;
+/* 普通道具中手势道具，触发位置根据j情况调节 */
+- (void)setLoc_xy_flip;
+/**采集图像的处理*/
+- (int)renderItemWithTexture:(int)texture Width:(int)width Height:(int)height ;
+
+- (int)renderItemWithTexture:(int)texture Width:(int)width Height:(int)height flipx:(BOOL)flip;
+
+/**获取75个人脸特征点*/
+- (void)getLandmarks:(float *)landmarks index:(int)index;
+/**
+ 获取图像中人脸中心点位置
+ @param frameSize 图像的尺寸，该尺寸要与视频处理接口或人脸信息跟踪接口中传入的图像宽高相一致
+ @return 返回一个以图像左上角为原点的中心点
+ */
+- (CGPoint)getFaceCenterInFrameSize:(CGSize)frameSize;
+/**判断是否检测到人脸*/
+- (BOOL)isTracking;
+/**切换摄像头要调用此函数*/
+- (void)onCameraChange;
+/**获取错误信息*/
+- (NSString *)getError;
+/**判断 SDK 是否是 lite 版本**/
+- (BOOL)isLiteSDK ;
+/* 是否正脸 */
+-(BOOL)isGoodFace:(int)index;
+/* 是否夸张 */
+-(BOOL)isExaggeration:(int)index;
+@end

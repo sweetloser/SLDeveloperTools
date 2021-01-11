@@ -7,6 +7,9 @@
 //
 
 #import "SLNoticeView.h"
+#import "../SLMacro/SLMacro.h"
+#import "../SLCategory/SLCategory.h"
+#import <Masonry/Masonry.h>
 
 @interface SLNoticeView ()
 @property(nonatomic,strong)UIView *contentView;
@@ -64,7 +67,8 @@
         msgLabel.textAlignment = NSTextAlignmentCenter;
         self.msgLabel = msgLabel;
         
-        SLDivideLineView *dl1 = [SLDivideLineView DivideLineView:CGRectZero Color:sl_divideLineColor];
+        UIView *dl1 = [[UIView alloc] initWithFrame:frame];
+        [dl1 setBackgroundColor:sl_divideLineColor];
         [self.contentView addSubview:dl1];
         [dl1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.offset(0);
@@ -99,8 +103,8 @@
         
         [btnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:1 leadSpacing:0 tailSpacing:0];
         
-        SLDivideLineView *dl2 = [SLDivideLineView DivideLineView:CGRectZero Color:sl_divideLineColor];
-        [self.contentView addSubview:dl2];
+        UIView *dl2 = [[UIView alloc] initWithFrame:frame];
+        [dl2 setBackgroundColor:sl_divideLineColor];
         [dl2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(dl1.mas_bottom);
             make.bottom.offset(0);

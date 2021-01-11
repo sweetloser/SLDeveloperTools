@@ -434,6 +434,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SLDeveloperTools_Example/Pods-SLDeveloperTools_Example-resources.sh",
+				"${PODS_ROOT}/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/face_beautification.bundle",
+				"${PODS_ROOT}/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/fxaa.bundle",
+				"${PODS_ROOT}/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/tongue.bundle",
+				"${PODS_ROOT}/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/v3.bundle",
 				"${PODS_ROOT}/../../SLDeveloperTools/SLDeveloperTools.bundle",
 				"${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
 				"${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/Twitter/TwitterKitResources.bundle",
@@ -442,6 +446,10 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/face_beautification.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fxaa.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/tongue.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/v3.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SLDeveloperTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",

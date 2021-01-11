@@ -118,6 +118,17 @@ TODO: Add long description of the pod here.
     videoWaterMaskTools.frameworks = 'Photos', 'UIKit'
   end
 
+  s.subspec "SLSelectFilter" do |sf|
+      sf.source_files = 'SLDeveloperTools/SLSelectFilter/**/*.{h,m}','SLDeveloperTools/SLSelectFilter/*.{h,m}'
+      sf.dependency 'Nama-lite', '= 6.4.0'
+      sf.dependency 'SLDeveloperTools/SLMaskTools'
+      sf.dependency 'SLDeveloperTools/SLCategory'
+      sf.dependency 'SLDeveloperTools/SLMacro'
+      sf.dependency 'Masonry'
+      sf.dependency 'SDAutoLayout'
+      
+  end
+  
   s.subspec "SLBaseClass" do |baseClass|
     baseClass.source_files = 'SLDeveloperTools/SLBaseClass/*.{h,m}'
     baseClass.public_header_files = 'SLDeveloperTools/SLBaseClass/*.h'
