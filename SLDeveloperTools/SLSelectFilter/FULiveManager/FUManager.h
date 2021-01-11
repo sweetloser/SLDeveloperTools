@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "FURenderer.h"
-
+#import <libCNamaSDK/FURenderer.h>
 /*
  items 保存加载到Nama中bundle的操作句柄集
  为方便演示阅读，这里将

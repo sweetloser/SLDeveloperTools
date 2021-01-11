@@ -7,7 +7,7 @@
 //
 
 #import "HMItem.h"
-#import "FilePathHelper.h"
+#import "../../SLUtilities/SLUtilities.h"
 
 @implementation HMItem
 

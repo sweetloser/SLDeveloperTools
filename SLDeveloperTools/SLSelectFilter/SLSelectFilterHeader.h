@@ -16,6 +16,8 @@ typedef struct BeautyStatus {
 
 extern BeautyStatus bs;
 
+#import "BXBeautySettingPanel.h"
+#import "BXTextCell.h"
 #import "BXVideoSelectFilterView.h"
 #import "SLSelectFilterConst.h"
 #import "authpack.h"

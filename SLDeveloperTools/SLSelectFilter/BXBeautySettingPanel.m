@@ -9,6 +9,7 @@
 #import "BXBeautySettingPanel.h"
 #import "BXTextCell.h"
 #import "../SLCategory/SLCategory.h"
+#import <AFNetworking/AFNetworking.h>
 
 #define BeautyViewMargin 8
 #define BeautyViewSliderHeight 30

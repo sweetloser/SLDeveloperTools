@@ -6,6 +6,8 @@
 //  Copyright © 2019 cat. All rights reserved.
 //
 
+//#import "BaseObject.h"
+
 #import "BaseObject.h"
 
 @interface HMItem : BaseObject

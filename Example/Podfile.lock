@@ -31,7 +31,7 @@ PODS:
   - MMKV (1.2.7):
     - MMKVCore (~> 1.2.7)
   - MMKVCore (1.2.7)
-  - Nama-lite (6.4.0)
+  - Nama-lite (7.3.0)
   - RealReachability (1.3.0):
     - RealReachability/Connection (= 1.3.0)
     - RealReachability/Ping (= 1.3.0)
@@ -99,12 +99,17 @@ PODS:
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLUtilities
   - SLDeveloperTools/SLSelectFilter (0.0.1):
+    - AFNetworking
     - Masonry
-    - Nama-lite (= 6.4.0)
+    - MMKV
+    - Nama-lite
     - SDAutoLayout
+    - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLMaskTools
+    - SLDeveloperTools/SLUtilities
+    - YYCategories
   - SLDeveloperTools/SLUtilities (0.0.1):
     - KTVHTTPCache (~> 1.1.7)
     - SDAutoLayout
@@ -373,11 +378,11 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   MMKV: 22e5136f7d00197bc0fc9694b7f71519f0d1ca12
   MMKVCore: 607b7b05f2c2140056b5d338e45f2c14bf3f4232
-  Nama-lite: 39e4b2163343c342a60237b681345fda1a4fbc99
+  Nama-lite: 9965bccdb63735e0c0a8c0fad931a3e1a22bcf19
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 1d1632169c098d247daa5248bc38203690101e1a
+  SLDeveloperTools: f7a4015e892cc7e3b7e98addd0865ff6752aa1bf
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788

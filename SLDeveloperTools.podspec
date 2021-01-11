@@ -29,7 +29,7 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
   s.ios.deployment_target = '9.0'
   s.platform     = :ios, "9.0"
-#  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
+#  s.pod_target_xcconfig = { 'VALID_ARCHS[sdk=iphonesimulator*]' => '', "ENABLE_BITCODE" => "NO" }
 #  s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
   s.requires_arc = true
   s.static_framework = true
@@ -55,7 +55,7 @@ TODO: Add long description of the pod here.
       utils.dependency 'SDAutoLayout'
       utils.source_files = 'SLDeveloperTools/SLUtilities/*.{h,m}'
   end
-
+#
   s.subspec 'SLWidget' do |widget|
       widget.source_files = 'SLDeveloperTools/SLWidget/*.{h,m}'
       widget.dependency 'SLDeveloperTools/SLMacro'
@@ -78,7 +78,7 @@ TODO: Add long description of the pod here.
           et.dependency 'SLDeveloperTools/SLBaseClass'
           et.dependency 'SLDeveloperTools/SLNetTools'
       end
-      
+
 #      第三方（QQ、微信）分享组件
       widget.subspec 'SLShareTools' do |st|
         st.source_files = 'SLDeveloperTools/SLWidget/SLShareTools/*.{h,m}'
@@ -118,14 +118,26 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec "SLSelectFilter" do |sf|
-      sf.source_files = 'SLDeveloperTools/SLSelectFilter/**/*.{h,m}','SLDeveloperTools/SLSelectFilter/*.{h,m}'
+      sf.source_files = 'SLDeveloperTools/SLSelectFilter/**/*.{h,m}','SLDeveloperTools/SLSelectFilter/*.{h,m}','SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Headers/*.h'
       sf.dependency 'SLDeveloperTools/SLMaskTools'
       sf.dependency 'SLDeveloperTools/SLCategory'
       sf.dependency 'SLDeveloperTools/SLMacro'
+      sf.dependency 'SLDeveloperTools/SLBaseClass'
+      sf.dependency 'SLDeveloperTools/SLUtilities'
       sf.dependency 'Masonry'
       sf.dependency 'SDAutoLayout'
-      sf.dependency 'Nama-lite', '= 6.4.0'
-      
+      sf.dependency 'YYCategories'
+      sf.dependency 'AFNetworking'
+      sf.dependency 'MMKV'
+      sf.dependency 'Nama-lite'
+      sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
+#      sf.vendored_libraries = 'SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/*.a'
+#      sf.resource_bundles = {
+#          'face_beautification' => ['SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/face_beautification.bundle'],
+#          'fxaa' => ['SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/fxaa.bundle'],
+#          'tongue' => ['SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/tongue.bundle'],
+#          'v3' => ['SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/v3.bundle'],
+#        }
   end
   
   s.subspec "SLBaseClass" do |baseClass|
@@ -138,7 +150,7 @@ TODO: Add long description of the pod here.
     baseClass.dependency 'AFNetworking'
     baseClass.frameworks = 'UIKit', 'Foundation'
   end
-  
+#
   s.subspec "SLAppInfo" do |appInfo|
     appInfo.source_files = 'SLDeveloperTools/SLAppInfo/*.{h,m}'
     appInfo.public_header_files = 'SLDeveloperTools/SLAppInfo/*.h'

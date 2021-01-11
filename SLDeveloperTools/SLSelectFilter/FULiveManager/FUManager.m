@@ -7,7 +7,8 @@
 //
 
 #import "FUManager.h"
-#import "funama.h"
+#import <libCNamaSDK/CNamaSDK.h>
+#import <libCNamaSDK/FURenderer.h>
 #import "authpack.h"
 #import <sys/utsname.h>
 #import <CoreMotion/CoreMotion.h>
@@ -105,9 +106,9 @@ static FUManager *shareManager = NULL;
                [self setupItmeHintData];
 
                // 默认竖屏
-               self.deviceOrientation = 0 ;
-               fuSetDefaultOrientation(self.deviceOrientation) ;
-
+            self.deviceOrientation = 0 ;
+            fuSetDefalutOrientation() ;
+               
                // 性能优先关闭
                self.performance = NO ;
         }
@@ -189,13 +190,13 @@ static FUManager *shareManager = NULL;
 - (void)loadGesture
 {
     dispatch_async(asyncLoadQueue, ^{
-        if (items[FUNamaHandleTypeGesture] != 0) {
+        if (self->items[FUNamaHandleTypeGesture] != 0) {
             NSLog(@"faceunity: destroy gesture");
-            [FURenderer destroyItem:items[FUNamaHandleTypeGesture]];
-            items[FUNamaHandleTypeGesture] = 0;
+            [FURenderer destroyItem:self->items[FUNamaHandleTypeGesture]];
+            self->items[FUNamaHandleTypeGesture] = 0;
         }
         NSString *path = [[NSBundle mainBundle] pathForResource:@"heart_v2.bundle" ofType:nil];
-        items[FUNamaHandleTypeGesture] = [FURenderer itemWithContentsOfFile:path];
+        self->items[FUNamaHandleTypeGesture] = [FURenderer itemWithContentsOfFile:path];
     });
 }
 /*
@@ -456,7 +457,8 @@ static FUManager *shareManager = NULL;
 {
 	// 在未识别到人脸时根据重力方向设置人脸检测方向
     if ([self isDeviceMotionChange]) {
-          fuSetDefaultOrientation(self.deviceOrientation);
+        fuSetDefalutOrientation();
+        
     }
     if (self.isMotionItem) {//针对带重力道具
         [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"rotMode" value:@(self.deviceOrientation)];

@@ -19,7 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    SLShareView *s = [[SLShareView alloc] initWithShareObjects:@[]];
+    BXBeautySettingPanel *s = [[BXBeautySettingPanel alloc] initWithFrame:self.view.bounds];
+//    SLShareView *s = [[SLShareView alloc] initWithShareObjects:@[]];
 //    self.view.backgroundColor = [UIColor sl_colorWithHex:0x8f8f8f];
 	// Do any additional setup after loading the view, typically from a nib.
 }
