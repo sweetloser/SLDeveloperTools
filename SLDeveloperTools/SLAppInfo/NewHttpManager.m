@@ -12,7 +12,7 @@
 #import "../SLVideoWaterMaskTools/SLVideoWaterMaskTools.h"
 #import "../SLNetTools/SLNetTools.h"
 #import "../SLMaskTools/SLMaskTools.h"
-
+#import "../SLMacro/SLMacro.h"
 #import "BXAppInfo.h"
 #import "SLAppInfoMacro.h"
 #import "SLAppInfoConst.h"
