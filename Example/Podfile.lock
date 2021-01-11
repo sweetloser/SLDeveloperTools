@@ -99,7 +99,12 @@ PODS:
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLUtilities
   - SLDeveloperTools/SLSelectFilter (0.0.1):
+    - Masonry
     - Nama-lite (= 6.4.0)
+    - SDAutoLayout
+    - SLDeveloperTools/SLCategory
+    - SLDeveloperTools/SLMacro
+    - SLDeveloperTools/SLMaskTools
   - SLDeveloperTools/SLUtilities (0.0.1):
     - KTVHTTPCache (~> 1.1.7)
     - SDAutoLayout
@@ -372,7 +377,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: e6f203872f7a517b1d6fc9f83ca0839f44ecaed5
+  SLDeveloperTools: 1d1632169c098d247daa5248bc38203690101e1a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788

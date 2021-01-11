@@ -64,7 +64,6 @@ TODO: Add long description of the pod here.
       widget.subspec 'SLVersionTool' do |vt|
           vt.source_files = 'SLDeveloperTools/SLWidget/SLVersionTool/*.{h,m}'
           vt.dependency 'SLDeveloperTools/SLNetTools'
-          vt.dependency 'SLDeveloperTools/SLNetTools'
       end
 
 #      刷新组件
@@ -120,12 +119,12 @@ TODO: Add long description of the pod here.
 
   s.subspec "SLSelectFilter" do |sf|
       sf.source_files = 'SLDeveloperTools/SLSelectFilter/**/*.{h,m}','SLDeveloperTools/SLSelectFilter/*.{h,m}'
-      sf.dependency 'Nama-lite', '= 6.4.0'
       sf.dependency 'SLDeveloperTools/SLMaskTools'
       sf.dependency 'SLDeveloperTools/SLCategory'
       sf.dependency 'SLDeveloperTools/SLMacro'
       sf.dependency 'Masonry'
       sf.dependency 'SDAutoLayout'
+      sf.dependency 'Nama-lite', '= 6.4.0'
       
   end
   

@@ -19,6 +19,7 @@
 #import "UIApplication+ActivityViewController.h"
 #import "UIButton+Kit.h"
 #import "UIColor+Kit.h"
+#import "UIColor+MLPFlatColors.h"
 #import "UIDevice+Kit.h"
 #import "UIImage+Kit.h"
 #import "UILabel+Kit.h"
