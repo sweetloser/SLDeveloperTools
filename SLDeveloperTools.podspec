@@ -85,6 +85,12 @@ TODO: Add long description of the pod here.
         st.dependency 'SLDeveloperTools/SLBaseClass'
         st.dependency 'SLDeveloperTools/SLCategory'
       end
+      
+#      JXCategoryView（二次封装组件）
+      widget.subspec 'SLJXCategoryView'  do |jx|
+        jx.source_files = 'SLDeveloperTools/SLWidget/SLJXCategoryView/**/*.{h,m}','SLDeveloperTools/SLWidget/SLJXCategoryView/**/**/*.{h,m}','SLDeveloperTools/SLWidget/SLJXCategoryView/JXCategoryView.h'
+      end
+
   end
 
   s.subspec 'SLNetTools' do |netTools|

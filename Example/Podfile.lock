@@ -126,6 +126,7 @@ PODS:
     - Masonry
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLWidget/SLBaseEmptyVC (= 0.0.1)
+    - SLDeveloperTools/SLWidget/SLJXCategoryView (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLRefreshTool (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLShareTools (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLVersionTool (= 0.0.1)
@@ -134,6 +135,9 @@ PODS:
     - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLNetTools
+  - SLDeveloperTools/SLWidget/SLJXCategoryView (0.0.1):
+    - Masonry
+    - SLDeveloperTools/SLMacro
   - SLDeveloperTools/SLWidget/SLRefreshTool (0.0.1):
     - Masonry
     - MJRefresh
@@ -382,7 +386,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: f7a4015e892cc7e3b7e98addd0865ff6752aa1bf
+  SLDeveloperTools: 36b8662bbabfbe4eb908649496971f6b26c456db
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
