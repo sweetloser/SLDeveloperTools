@@ -50,6 +50,7 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec 'SLUtilities' do |utils|
+    utils.dependency 'SLDeveloperTools/SLMacro'
       utils.dependency 'KTVHTTPCache', '~> 1.1.7'
       utils.dependency 'YYWebImage', '~> 1.0.5'
       utils.dependency 'SDAutoLayout'

@@ -16,6 +16,7 @@
 #import "getUUID.h"
 #import "KeyChainStore.h"
 #import "PredCheck.h"
+#import "SLSearchingFlowLayout.h"
 #import "TimeHelper.h"
 #import "UIDeviceHardware.h"
 #import "YYReachability.h"
