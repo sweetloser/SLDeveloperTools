@@ -12,6 +12,7 @@
 #import "BXLoadingView.h"
 #import "SLAlertView.h"
 #import "SLNoticeView.h"
+#import "SLProgressHUD.h"
 #import "ZZLActionSheetView.h"
 
 #endif /* SLMaskTools_h */
