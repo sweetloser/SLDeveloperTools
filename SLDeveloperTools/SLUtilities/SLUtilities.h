@@ -15,6 +15,7 @@
 #import "CacheHelper.h"
 #import "FilePathHelper.h"
 #import "getUUID.h"
+#import "JXGradientView.h"
 #import "KeyChainStore.h"
 #import "PredCheck.h"
 #import "SLSearchingFlowLayout.h"
