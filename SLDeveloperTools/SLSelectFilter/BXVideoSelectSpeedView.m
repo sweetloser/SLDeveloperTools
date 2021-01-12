@@ -8,6 +8,8 @@
 
 #import "BXVideoSelectSpeedView.h"
 #import "HMSegmentedControl.h"
+#import "../SLMacro/SLMacro.h"
+#import "../SLCategory/SLCategory.h"
 
 @interface BXVideoSelectSpeedView ()
 
