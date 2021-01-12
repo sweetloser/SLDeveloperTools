@@ -24,6 +24,7 @@
 #import "BXMusicModel.h"
 #import "BXSavePhotoHelper.h"
 #import "BXTopicModel.h"
+#import "BXDynTopicSearchCell.h"
 #import "HHHttpAnchorRequest.h"
 #import "HttpMakeFriendRequest.h"
 #import "NewHttpManager.h"
