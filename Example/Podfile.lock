@@ -19,6 +19,7 @@ PODS:
   - CocoaAsyncSocket (7.6.5)
   - CTMediator (44)
   - GPUImage (0.1.7)
+  - HappyDNS (0.3.17)
   - KTVCocoaHTTPServer (1.0.0):
     - CocoaAsyncSocket
   - KTVHTTPCache (1.1.7):
@@ -32,6 +33,8 @@ PODS:
     - MMKVCore (~> 1.2.7)
   - MMKVCore (1.2.7)
   - Nama-lite (7.3.0)
+  - Qiniu (8.0.5):
+    - HappyDNS (~> 0.3.17)
   - RealReachability (1.3.0):
     - RealReachability/Connection (= 1.3.0)
     - RealReachability/Ping (= 1.3.0)
@@ -58,6 +61,7 @@ PODS:
     - CTMediator
     - MJExtension (~> 3.2.2)
     - MMKV
+    - Qiniu (= 8.0.5)
     - RealReachability
     - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLCategory
@@ -339,6 +343,7 @@ SPEC REPOS:
     - CocoaAsyncSocket
     - CTMediator
     - GPUImage
+    - HappyDNS
     - KTVCocoaHTTPServer
     - KTVHTTPCache
     - lottie-ios
@@ -349,6 +354,7 @@ SPEC REPOS:
     - MMKV
     - MMKVCore
     - Nama-lite
+    - Qiniu
     - RealReachability
     - SDAutoLayout
     - SDWebImage
@@ -376,6 +382,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   CTMediator: 933dba523da87bf875e4a7e8728945fbc512f1d2
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
   KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
   KTVHTTPCache: 5c4c0544afe4007f620879d7f6a0455ee1c02d36
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
@@ -386,10 +393,11 @@ SPEC CHECKSUMS:
   MMKV: 22e5136f7d00197bc0fc9694b7f71519f0d1ca12
   MMKVCore: 607b7b05f2c2140056b5d338e45f2c14bf3f4232
   Nama-lite: 9965bccdb63735e0c0a8c0fad931a3e1a22bcf19
+  Qiniu: 99b85defaf831bc788efdda01dc6f0406ece6964
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 1284ae090c9ede6cc535daf54a97f61a2fceeebc
+  SLDeveloperTools: 55786cbf028594c1b0b90328122f49c3d2f98287
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788

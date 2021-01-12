@@ -180,6 +180,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'UMCShare'
     appInfo.dependency 'UMCShare/Social/ReducedWeChat'
     appInfo.dependency 'UMCShare/Social/ReducedQQ'
+    appInfo.dependency 'Qiniu', '= 8.0.5'
     appInfo.dependency 'CTMediator'
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
