@@ -138,13 +138,6 @@ TODO: Add long description of the pod here.
       sf.dependency 'MMKV'
       sf.dependency 'Nama-lite'
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
-#      sf.vendored_libraries = 'SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/*.a'
-#      sf.resource_bundles = {
-#          'face_beautification' => ['SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/face_beautification.bundle'],
-#          'fxaa' => ['SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/fxaa.bundle'],
-#          'tongue' => ['SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/tongue.bundle'],
-#          'v3' => ['SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Resources/v3.bundle'],
-#        }
   end
   
   s.subspec "SLBaseClass" do |baseClass|
@@ -158,6 +151,11 @@ TODO: Add long description of the pod here.
     baseClass.frameworks = 'UIKit', 'Foundation'
   end
 #
+  s.subspec 'UGC_Upload' do |ugc|
+    ugc.source_files = 'SLDeveloperTools/UGC_Upload/*.{h,m}','SLDeveloperTools/UGC_Upload/include/*.h'
+    ugc.vendored_frameworks = 'SLDeveloperTools/UGC_Upload/COSSDK/QCloudCore.framework', 'SLDeveloperTools/UGC_Upload/COSSDK/QCloudCOSXML.framework'
+  end
+
   s.subspec "SLAppInfo" do |appInfo|
     appInfo.source_files = 'SLDeveloperTools/SLAppInfo/*.{h,m}'
     appInfo.public_header_files = 'SLDeveloperTools/SLAppInfo/*.h'

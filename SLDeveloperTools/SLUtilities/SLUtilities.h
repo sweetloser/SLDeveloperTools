@@ -10,6 +10,7 @@
 
 #import "BXCalculate.h"
 #import "BXKTVHTTPCacheManager.h"
+#import "BXPersonFlowLayout.h"
 #import "BXYYImageCacheManager.h"
 #import "CacheHelper.h"
 #import "FilePathHelper.h"

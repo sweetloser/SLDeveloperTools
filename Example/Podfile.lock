@@ -52,6 +52,7 @@ PODS:
     - SLDeveloperTools/SLUtilities (= 0.0.1)
     - SLDeveloperTools/SLVideoWaterMaskTools (= 0.0.1)
     - SLDeveloperTools/SLWidget (= 0.0.1)
+    - SLDeveloperTools/UGC_Upload (= 0.0.1)
   - SLDeveloperTools/SLAppInfo (0.0.1):
     - Bugly (~> 2.5.4)
     - CTMediator
@@ -153,6 +154,7 @@ PODS:
     - Masonry
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLNetTools
+  - SLDeveloperTools/UGC_Upload (0.0.1)
   - SVProgressHUD (2.2.5)
   - UMAPM (1.1.0)
   - UMCCommon (7.2.5):
@@ -387,7 +389,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 9f7bc2fe12af63c6c2adc586639af7aa93569c09
+  SLDeveloperTools: 1284ae090c9ede6cc535daf54a97f61a2fceeebc
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
