@@ -11,6 +11,11 @@
 #import "HMBeautifySlideView.h"
 #import "HMSlideView.h"
 #import "FUManager.h"
+#import <Masonry/Masonry.h>
+#import "../SLCategory/SLCategory.h"
+#import "../SLMacro/SLMacro.h"
+#import <MMKV/MMKV.h>
+
 @interface BXShortBeautifyView ()<HMBeautifySlideViewDelegate>
 
 @property (strong, nonatomic) UIView *contentView;
@@ -32,7 +37,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
         [maskView addGestureRecognizer:tap];
         
-        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, self.mj_h, self.mj_w, 235 + __kBottomAddHeight)];
+        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, self.height, self.width, 235 + __kBottomAddHeight)];
         [self addSubview:contentView];
         _contentView = contentView;
         
@@ -70,26 +75,26 @@
         self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
         self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
         
-        ZZL(weakSelf);
+        WS(weakSelf);
         [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
-            [weakSelf.scrollView scrollRectToVisible:CGRectMake(self.mj_w * index, 0, weakSelf.mj_w, 195) animated:YES];
+            [weakSelf.scrollView scrollRectToVisible:CGRectMake(self.width * index, 0, weakSelf.width, 195) animated:YES];
         }];
         
         [contentView addSubview:self.segmentedControl];
         
-        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, self.mj_w, 195)];
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, self.width, 195)];
         self.scrollView.pagingEnabled = YES;
         self.scrollView.showsHorizontalScrollIndicator = NO;
-        self.scrollView.contentSize = CGSizeMake(self.mj_w * data.count, 195);
+        self.scrollView.contentSize = CGSizeMake(self.width * data.count, 195);
         self.scrollView.scrollEnabled = NO;
-        [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.mj_w, 195) animated:NO];
+        [self.scrollView scrollRectToVisible:CGRectMake(0, 0, self.width, 195) animated:NO];
         [contentView addSubview:self.scrollView];
         
         
-        UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mj_w , 195)];
+        UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width , 195)];
         [self.scrollView addSubview:view1];
         
-        UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(self.mj_w, 0, self.mj_w , 195)];
+        UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(self.width, 0, self.width , 195)];
         [self.scrollView addSubview:view2];
         
         
@@ -118,7 +123,7 @@
             beaut.dataDict = skinArray[i];
             [view1 addSubview:beaut];
             [beaut mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo(self.mj_w/2);
+                make.width.mas_equalTo(self.width/2);
                 make.height.mas_equalTo(70);
                 if (i%2==0) {
                     make.left.mas_equalTo(0);
@@ -140,7 +145,7 @@
             beaut.tag = i+ 19936789;
             [view2 addSubview:beaut];
             [beaut mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo(self.mj_w/2);
+                make.width.mas_equalTo(self.width/2);
                 make.height.mas_equalTo(70);
                 if (i%2==0) {
                     make.left.mas_equalTo(0);
@@ -175,7 +180,7 @@
 -(void)show{
     self.hidden = NO;
     [UIView animateWithDuration:.5 animations:^{
-        self.contentView.transform = CGAffineTransformMakeTranslation(0, -self.contentView.mj_h);
+        self.contentView.transform = CGAffineTransformMakeTranslation(0, -self.contentView.height);
     }];
 }
 
