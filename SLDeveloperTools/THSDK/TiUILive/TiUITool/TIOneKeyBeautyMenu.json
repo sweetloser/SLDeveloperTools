@@ -1,0 +1,37 @@
+{
+  "menu": [
+      
+     {
+          "name": "标准",
+                   "menuTag": 0,
+                   "selected": true,
+                   "thumb":"biaozhun.png",
+      },
+     {
+         "name": "精致",
+                  "menuTag": 1,
+                  "selected": false,
+                  "thumb":"jingzhi.png",
+     },
+     {
+             "name": "可爱",
+                      "menuTag": 2,
+                      "selected": false,
+                      "thumb":"keai.png",
+         },
+     {
+             "name": "网红",
+                      "menuTag": 3,
+                      "selected": false,
+                      "thumb":"wanghong.png",
+         },
+     {
+             "name": "自然",
+                      "menuTag": 4,
+                      "selected": false,
+                      "thumb":"ziran.png",
+         },
+     
+  ]
+  
+}

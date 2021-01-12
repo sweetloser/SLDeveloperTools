@@ -140,6 +140,14 @@ TODO: Add long description of the pod here.
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
   end
   
+  s.subspec "THSDK" do |th|
+    th.source_files = 'SLDeveloperTools/THSDK/*.{h,m}','SLDeveloperTools/THSDK/TiUILive/*.{h,m}','SLDeveloperTools/THSDK/TiUILive/TiUITool/*.{h,m}','SLDeveloperTools/THSDK/TiUILive/TiUIVIew/*.{h,m}','SLDeveloperTools/THSDK/TiUILive/TiUIVIew/**/*.{h,m}'
+    th.dependency 'Masonry'
+    th.dependency 'YYCategories'
+    th.dependency 'SSZipArchive'
+    th.vendored_frameworks = 'SLDeveloperTools/THSDK/TiSDK.framework'
+  end
+  
   s.subspec "SLBaseClass" do |baseClass|
     baseClass.source_files = 'SLDeveloperTools/SLBaseClass/*.{h,m}'
     baseClass.public_header_files = 'SLDeveloperTools/SLBaseClass/*.h'

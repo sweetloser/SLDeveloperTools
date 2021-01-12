@@ -1,0 +1,42 @@
+{
+  "makeups": [
+   
+    {
+      "name": "biaozhunmei",
+      "thumb": "eb_biaozhunmei_icon.png",
+      "type": "eyebrow",
+      "downloaded": false
+    },
+    {
+      "name": "jianmei",
+      "thumb": "eb_jianmei_icon.png",
+      "type": "eyebrow",
+      "downloaded": false
+    },
+    {
+      "name": "liuxingmei",
+      "thumb": "eb_liuxingmei_icon.png",
+      "type": "eyebrow",
+      "downloaded": false
+    },
+    {
+      "name": "liuyemei",
+      "thumb": "eb_liuyemei_icon.png",
+      "type": "eyebrow",
+      "downloaded": false
+    },
+    {
+        "name": "oushimei",
+        "thumb": "eb_oushimei_icon.png",
+        "type": "eyebrow",
+        "downloaded": false
+    },
+    {
+        "name": "pingzhimei",
+        "thumb": "eb_pingzhimei_icon.png",
+        "type": "eyebrow",
+        "downloaded": false
+    },
+   
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "makeups": [
+ 
+    {
+        "name": "babi",
+        "thumb": "el_babi_icon.png",
+        "type": "eyelash",
+        "downloaded": false
+    },
+    {
+        "name": "meihuo",
+        "thumb": "el_meihuo_icon.png",
+        "type": "eyelash",
+        "downloaded": false
+    },
+    {
+        "name": "nongmi",
+        "thumb": "el_nongmi_icon.png",
+        "type": "eyelash",
+        "downloaded": false
+    },
+    {
+        "name": "rouhe",
+        "thumb": "el_rouhe_icon.png",
+        "type": "eyelash",
+        "downloaded": false
+    },
+    {
+        "name": "wumei",
+        "thumb": "el_wumei_icon.png",
+        "type": "eyelash",
+        "downloaded": false
+    },
+    {
+        "name": "ziran",
+        "thumb": "el_ziran_icon.png",
+        "type": "eyelash",
+        "downloaded": false
+    }
+  ]
+}

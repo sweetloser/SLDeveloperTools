@@ -55,6 +55,7 @@ PODS:
     - SLDeveloperTools/SLUtilities (= 0.0.1)
     - SLDeveloperTools/SLVideoWaterMaskTools (= 0.0.1)
     - SLDeveloperTools/SLWidget (= 0.0.1)
+    - SLDeveloperTools/THSDK (= 0.0.1)
     - SLDeveloperTools/UGC_Upload (= 0.0.1)
   - SLDeveloperTools/SLAppInfo (0.0.1):
     - Bugly (~> 2.5.4)
@@ -158,7 +159,12 @@ PODS:
     - Masonry
     - SLDeveloperTools/SLMacro
     - SLDeveloperTools/SLNetTools
+  - SLDeveloperTools/THSDK (0.0.1):
+    - Masonry
+    - SSZipArchive
+    - YYCategories
   - SLDeveloperTools/UGC_Upload (0.0.1)
+  - SSZipArchive (2.2.3)
   - SVProgressHUD (2.2.5)
   - UMAPM (1.1.0)
   - UMCCommon (7.2.5):
@@ -358,6 +364,7 @@ SPEC REPOS:
     - RealReachability
     - SDAutoLayout
     - SDWebImage
+    - SSZipArchive
     - SVProgressHUD
     - UMAPM
     - UMCCommon
@@ -397,7 +404,8 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 55786cbf028594c1b0b90328122f49c3d2f98287
+  SLDeveloperTools: 32b61fa10d6ba01b33b98323cffbb44596b57154
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788

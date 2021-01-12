@@ -1,0 +1,40 @@
+{
+  "makeups": [
+    {
+      "name": "qingse",
+      "thumb": "b_qingse_icon.png",
+      "type": "blusher",
+      "downloaded": false
+    },
+    {
+      "name": "riza",
+      "thumb": "b_riza_icon.png",
+      "type": "blusher",
+      "downloaded": false
+    },
+    {
+      "name": "tiancheng",
+      "thumb": "b_tiancheng_icon.png",
+      "type": "blusher",
+      "downloaded": false
+    },
+    {
+      "name": "weixun",
+      "thumb": "b_weixun_icon.png",
+      "type": "blusher",
+      "downloaded": false
+    },
+    {
+      "name": "xindong",
+      "thumb": "b_xindong_icon.png",
+      "type": "blusher",
+      "downloaded": false
+    },
+    {
+        "name": "youya",
+        "thumb": "b_youya_icon.png",
+        "type": "blusher",
+        "downloaded": false
+    },
+  ]
+}

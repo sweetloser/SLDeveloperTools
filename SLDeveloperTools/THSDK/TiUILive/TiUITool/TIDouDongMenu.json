@@ -1,0 +1,72 @@
+{
+  "menu": [
+      
+     {
+          "name": "无",
+                   "menuTag": 0,
+                   "selected": true,
+                   "thumb":"ic_ti_rock_0.png",
+      },
+     {
+         "name": "炫彩抖动",
+                  "menuTag": 1,
+                  "selected": false,
+                  "thumb":"ic_ti_rock_1.png",
+     },
+     {
+             "name": "轻彩抖动",
+                      "menuTag": 2,
+                      "selected": false,
+                      "thumb":"ic_ti_rock_2.png",
+         },
+     {
+             "name": "头晕目眩",
+                      "menuTag": 3,
+                      "selected": false,
+                      "thumb":"ic_ti_rock_3.png",
+         },
+     {
+             "name": "灵魂出窍",
+                      "menuTag": 4,
+                      "selected": false,
+                      "thumb":"ic_ti_rock_4.png",
+         },
+     {
+             "name": "暗黑魔法",
+                      "menuTag": 5,
+                      "selected": false,
+                      "thumb":"ic_ti_rock_5.png",
+         },
+     {
+             "name": "虚拟镜像",
+                      "menuTag": 6,
+                      "selected": false,
+                      "thumb":"ic_ti_rock_6.png",
+         },
+     {
+             "name": "动感分屏",
+                      "menuTag": 7,
+                      "selected": false,
+                      "thumb":"ic_ti_rock_7.png",
+         },
+     {
+             "name": "黑白电影",
+                      "menuTag": 8,
+                      "selected": false,
+                      "thumb":"ic_ti_rock_8.png",
+         },
+     {
+         "name": "瞬间石化",
+                  "menuTag": 9,
+                  "selected": false,
+                  "thumb":"ic_ti_rock_9.png",
+     },
+     {
+         "name": "魔法镜面",
+                  "menuTag": 10,
+                  "selected": false,
+                  "thumb":"ic_ti_rock_10.png",
+     },
+     
+  ]
+}

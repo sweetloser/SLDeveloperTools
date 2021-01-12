@@ -1,0 +1,44 @@
+{
+  "menu": [
+      {
+             "name": "无",
+                      "menuTag": 0,
+                      "selected": true,
+                      "normalThumb":"wu_normal.png",
+                      "selectedThumb":"wu_selected.png",
+                      "thumb":"",
+         },
+      {
+          "name": "外星人",
+                   "menuTag": 1,
+                   "selected": false,
+                   "normalThumb":"alien_normal.png",
+                   "selectedThumb":"alien_selected.png",
+                   "thumb":"",
+      },
+      {
+          "name": "梨梨脸",
+                   "menuTag": 2,
+                   "selected": false,
+                   "normalThumb":"pear face_normal.png",
+                   "selectedThumb":"pear face_selected.png",
+                   "thumb":"",
+      },
+      {
+          "name": "瘦瘦脸",
+                   "menuTag": 3,
+                   "selected": false,
+                   "normalThumb":"thin face_normal.png",
+                   "selectedThumb":"thin face_selected.png",
+                   "thumb":"",
+      },
+      {
+          "name": "方方脸",
+                   "menuTag": 4,
+                   "selected": false,
+                   "normalThumb":"square face_normal.png",
+                   "selectedThumb":"square face_selected.png",
+                   "thumb":"",
+      },
+      ]
+}
