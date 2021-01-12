@@ -18,6 +18,7 @@
 #import "BXDynMsgDetailModel.h"
 #import "BXdynSystemplusModel.h"
 #import "BXDynTopicModel.h"
+#import "BXGradientButton.h"
 #import "BXHHEmoji.h"
 #import "BXHMovieModel.h"
 #import "BXLiveUser.h"
