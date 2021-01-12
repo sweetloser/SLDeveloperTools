@@ -11,6 +11,7 @@
 #import "BuglyHelper.h"
 #import "BXActivity.h"
 #import "BXAppInfo.h"
+#import "BXAttentFollowModel.h"
 #import "BXCommentModel.h"
 #import "BXDynamicModel.h"
 #import "BXDynCircleModel.h"
