@@ -8,6 +8,7 @@
 #ifndef SLMacro_h
 #define SLMacro_h
 
+#import "ColorMacro.h"
 #import "SLCommonConst.h"
 #import "SLCommonMacro.h"
 #import "SLSingleton.h"

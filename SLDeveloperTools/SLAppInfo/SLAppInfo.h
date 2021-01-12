@@ -26,6 +26,7 @@
 #import "BXSavePhotoHelper.h"
 #import "BXTopicModel.h"
 #import "BXVideoRangeSlider.h"
+#import "BXVideoRecordProcessView.h"
 #import "CustShareView.h"
 #import "BXDynTopicSearchCell.h"
 #import "HHHttpAnchorRequest.h"
