@@ -34,6 +34,6 @@
 #import "SharePopView.h"
 #import "SLAppInfoConst.h"
 #import "SLAppInfoMacro.h"
-
+#import "SLUpLoadAndDownloadTools.h"
 
 #endif /* SLAppInfo_h */
