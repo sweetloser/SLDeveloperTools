@@ -92,6 +92,7 @@ PODS:
     - MJRefresh
     - MMKV
     - SLDeveloperTools/SLMacro
+    - YYText
   - SLDeveloperTools/SLMacro (0.0.1)
   - SLDeveloperTools/SLMaskTools (0.0.1):
     - lottie-ios (= 2.5.3)
@@ -414,7 +415,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 1e195ab5ba5af88e01611b7e9942b314945e7d8a
+  SLDeveloperTools: 7fc39d70150df6d4c8dffeaac5e6e4ac4f4a604f
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c

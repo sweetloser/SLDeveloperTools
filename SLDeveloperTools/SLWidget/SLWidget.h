@@ -14,6 +14,7 @@
 #import "SLShareTools.h"
 #import "SLVersionTools.h"
 #import "JXCategoryView.h"
+#import "SLBannerTools.h"
 
 #endif /* SLWidget_h */
 
