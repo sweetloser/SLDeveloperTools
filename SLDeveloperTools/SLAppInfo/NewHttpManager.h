@@ -72,6 +72,10 @@ typedef void (^Failure)(NSError *error);        // 失败Blcok
 
 
 
++ (void)collectionAddWithTargetId:(NSString *)targetId
+                             type:(NSString *)type
+                          success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                          failure:(void(^)(NSError *error))failure;
 
 
 @end

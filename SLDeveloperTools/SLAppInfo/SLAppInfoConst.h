@@ -21,4 +21,5 @@ static NSString *const BXDynMsgDetailModel2TopicCategory = @"BXDynMsgDetailModel
 
 static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                   //获取到了定位信息
 
+static NSString *const kDidCollectNotification = @"DidCollectNotification";                           //收藏或取消收藏
 #endif /* SLAppInfoConst_h */

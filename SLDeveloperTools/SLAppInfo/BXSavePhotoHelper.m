@@ -11,7 +11,6 @@
 #import "../SLUtilities/SLUtilities.h"
 #import "../SLMaskTools/SLMaskTools.h"
 
-
 //清除数据, 设置 maxCacheSize 大于 0 即可
 
 

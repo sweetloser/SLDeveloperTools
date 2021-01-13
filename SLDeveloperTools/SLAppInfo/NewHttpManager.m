@@ -343,5 +343,28 @@ code
     return [SLHttpManager sl_sharedNetManager].netStatus;
 }
 
++ (void)collectionAddWithTargetId:(NSString *)targetId
+                             type:(NSString *)type
+                          success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                          failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"target_id":[self stringNoNil:targetId], @"type":[self stringNoNil:type]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Collection.add" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
++ (NSString *)stringNoNil:(NSString *)str {
+    if (str) {
+        return str;
+    } else {
+        return @"";
+    }
+}
 @end
 

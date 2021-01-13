@@ -11,5 +11,6 @@
 #import "BXBannerPageControl.h"
 #import "BXBannerView.h"
 #import "BXSLBannerModel.h"
+#import "BXBannerModel.h"
 
 #endif /* SLBannerTools_h */
