@@ -26,6 +26,7 @@
 #import "BXMusicModel.h"
 #import "BXSavePhotoHelper.h"
 #import "BXSLSearchHistoryCell.h"
+#import "BXSLSearchManager.h"
 #import "BXTopicModel.h"
 #import "BXVideoRangeSlider.h"
 #import "BXVideoRecordProcessView.h"

@@ -42,6 +42,7 @@ TODO: Add long description of the pod here.
       category.dependency 'SLDeveloperTools/SLMacro'
       category.dependency 'MJRefresh'
       category.dependency 'MMKV'
+      category.dependency 'YYText'
       category.frameworks = 'OpenGLES'
   end
   
@@ -96,7 +97,7 @@ TODO: Add long description of the pod here.
         bt.source_files = 'SLDeveloperTools/SLWidget/SLBannerTools/*.{h,m}'
         bt.dependency 'iCarousel'
         bt.dependency 'SLDeveloperTools/SLCategory'
-        bt.dependency 'SDWebImage', , '= 5.10.0'
+        bt.dependency 'SDWebImage', '= 5.10.0'
       end
   end
 
