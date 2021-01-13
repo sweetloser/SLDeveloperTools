@@ -91,7 +91,13 @@ TODO: Add long description of the pod here.
       widget.subspec 'SLJXCategoryView'  do |jx|
         jx.source_files = 'SLDeveloperTools/SLWidget/SLJXCategoryView/**/*.{h,m}','SLDeveloperTools/SLWidget/SLJXCategoryView/**/**/*.{h,m}','SLDeveloperTools/SLWidget/SLJXCategoryView/JXCategoryView.h'
       end
-
+#      bannerView
+      widget.subspec 'SLBannerTools' do |bt|
+        bt.source_files = 'SLDeveloperTools/SLWidget/SLBannerTools/*.{h,m}'
+        bt.dependency 'iCarousel'
+        bt.dependency 'SLDeveloperTools/SLCategory'
+        bt.dependency 'SDWebImage', , '= 5.10.0'
+      end
   end
 
   s.subspec 'SLNetTools' do |netTools|

@@ -20,6 +20,7 @@ PODS:
   - CTMediator (44)
   - GPUImage (0.1.7)
   - HappyDNS (0.3.17)
+  - iCarousel (1.8.3)
   - KTVCocoaHTTPServer (1.0.0):
     - CocoaAsyncSocket
   - KTVHTTPCache (1.1.7):
@@ -132,11 +133,16 @@ PODS:
   - SLDeveloperTools/SLWidget (0.0.1):
     - Masonry
     - SLDeveloperTools/SLMacro
+    - SLDeveloperTools/SLWidget/SLBannerTools (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLBaseEmptyVC (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLJXCategoryView (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLRefreshTool (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLShareTools (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLVersionTool (= 0.0.1)
+  - SLDeveloperTools/SLWidget/SLBannerTools (0.0.1):
+    - iCarousel
+    - Masonry
+    - SLDeveloperTools/SLMacro
   - SLDeveloperTools/SLWidget/SLBaseEmptyVC (0.0.1):
     - Masonry
     - SLDeveloperTools/SLBaseClass
@@ -350,6 +356,7 @@ SPEC REPOS:
     - CTMediator
     - GPUImage
     - HappyDNS
+    - iCarousel
     - KTVCocoaHTTPServer
     - KTVHTTPCache
     - lottie-ios
@@ -390,6 +397,7 @@ SPEC CHECKSUMS:
   CTMediator: 933dba523da87bf875e4a7e8728945fbc512f1d2
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
+  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
   KTVHTTPCache: 5c4c0544afe4007f620879d7f6a0455ee1c02d36
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
@@ -404,7 +412,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 32b61fa10d6ba01b33b98323cffbb44596b57154
+  SLDeveloperTools: b5743e2a4e5aaca36fd2bd07b380f07efbe62942
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
