@@ -14,6 +14,7 @@
 #import "BXAttentFollowModel.h"
 #import "BXCommentModel.h"
 #import "BXDynamicModel.h"
+#import "BXDynCircelOperAlert.h"
 #import "BXDynCircleModel.h"
 #import "BXDynMsgDetailModel.h"
 #import "BXdynSystemplusModel.h"
@@ -31,6 +32,7 @@
 #import "BXVideoRangeSlider.h"
 #import "BXVideoRecordProcessView.h"
 #import "CustShareView.h"
+#import "DetailSendcomCollectionViewCell.h"
 #import "BXDynTopicSearchCell.h"
 #import "HHHttpAnchorRequest.h"
 #import "HttpMakeFriendRequest.h"
@@ -43,5 +45,10 @@
 #import "SLAppInfoConst.h"
 #import "SLAppInfoMacro.h"
 #import "SLUpLoadAndDownloadTools.h"
-
+#import "GHDynCommentFooterView.h"
+#import "BXDynCommentModel.h"
+#import "BXDynAlertRemoveSoundView.h"
+#import "BXHHEmojiView.h"
+#import "BXHHEmojiFlowLayout.h"
+#import "BXHHEmojiCell.h"
 #endif /* SLAppInfo_h */

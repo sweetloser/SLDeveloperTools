@@ -13,5 +13,8 @@
 #import "BXDynAiTeVC.h"
 #import "BXDynAiTeVC.h"
 #import "DynAiTeFriendModel.h"
+#import "BXAiteFriendVC.h"
+#import "BXAiteFriendSearchVC.h"
+#import "BXAiteFriendCell.h"
 
 #endif /* SLAtFriendsTools_h */
