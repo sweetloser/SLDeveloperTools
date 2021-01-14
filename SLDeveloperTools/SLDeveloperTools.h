@@ -16,3 +16,7 @@
 #import "SLBaseClass.h"
 #import "SLMaskTools.h"
 #import "SLVideoWaterMaskTools.h"
+#import "SLAddTopicTools.h"
+#import "SLAtFriendsTools.h"
+#import "SLMosicTools.h"
+#import "HZPhotoBrowserTools.h"

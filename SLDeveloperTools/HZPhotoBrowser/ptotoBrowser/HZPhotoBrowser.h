@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SLDeveloperTools/SLDeveloperTools.h>
 
 @class HZButton, HZPhotoBrowser;
 
