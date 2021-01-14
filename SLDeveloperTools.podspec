@@ -165,12 +165,69 @@ TODO: Add long description of the pod here.
     baseClass.dependency 'AFNetworking'
     baseClass.frameworks = 'UIKit', 'Foundation'
   end
-#
+
   s.subspec 'UGC_Upload' do |ugc|
     ugc.source_files = 'SLDeveloperTools/UGC_Upload/*.{h,m}','SLDeveloperTools/UGC_Upload/include/*.h'
     ugc.vendored_frameworks = 'SLDeveloperTools/UGC_Upload/COSSDK/QCloudCore.framework', 'SLDeveloperTools/UGC_Upload/COSSDK/QCloudCOSXML.framework'
   end
-
+  
+#  图片预览组件
+  s.subspec 'HZPhotoBrowser' do |hz|
+    hz.source_files = 'SLDeveloperTools/HZPhotoBrowser/**/*.{h,m}'
+    hz.dependency 'FLAnimatedImage'
+    hz.dependency 'HXPhotoPicker', '= 3.1.6'
+    hz.dependency 'Masonry'
+    hz.dependency 'SDWebImage', '= 5.10.0'
+    hz.dependency 'FDFullscreenPopGesture', '1.1'
+    hz.dependency 'SDAutoLayout'
+    hz.dependency 'DZNEmptyDataSet'
+  end
+  
+#  添加话题组件
+  s.subspec 'SLAddTopicTools' do |tt|
+    tt.source_files = 'SLDeveloperTools/SLAddTopicTools/*.{h,m}'
+    tt.dependency 'YYCategories'
+    tt.dependency 'Masonry'
+    tt.dependency 'SDWebImage', '= 5.10.0'
+    tt.dependency 'FDFullscreenPopGesture', '1.1'
+    tt.dependency 'SDAutoLayout'
+    tt.dependency 'DZNEmptyDataSet'
+  end
+#  at好友组件
+  s.subspec 'SLAtFriendsTools' do |at|
+    at.source_files = 'SLDeveloperTools/SLAtFriendsTools/*.{h,m}'
+    at.dependency 'ZFPlayer', '3.3.2'
+    at.dependency 'YYCategories'
+    at.dependency 'Masonry'
+    at.dependency 'SDWebImage', '= 5.10.0'
+    at.dependency 'FDFullscreenPopGesture', '1.1'
+    at.dependency 'SDAutoLayout'
+    at.dependency 'DZNEmptyDataSet'
+  end
+#  位置搜索组件
+  s.subspec 'SLLocationSearchTools' do |ls|
+    ls.source_files = 'SLDeveloperTools/SLLocationSearchTools/*.{h,m}'
+    ls.dependency 'AMap2DMap-NO-IDFA'
+    ls.dependency 'AMapSearch-NO-IDFA'
+    ls.dependency 'Masonry'
+    ls.dependency 'SDWebImage', '= 5.10.0'
+    ls.dependency 'FDFullscreenPopGesture', '1.1'
+    ls.dependency 'SDAutoLayout'
+    ls.dependency 'DZNEmptyDataSet'
+  end
+  
+#  选择音乐
+ s.subspec 'SLMusicTools' do |mt|
+   mt.source_files = 'SLDeveloperTools/SLMusicTools/**/*.{h,m}'
+   mt.dependency 'YYWebImage'
+   mt.dependency 'SDAutoLayout'
+   mt.dependency 'lottie-ios', '2.5.3'
+   mt.dependency 'Masonry'
+   mt.dependency 'SDWebImage', '= 5.10.0'
+   mt.dependency 'FDFullscreenPopGesture', '1.1'
+   mt.dependency 'SDAutoLayout'
+   mt.dependency 'DZNEmptyDataSet'
+ end
   s.subspec "SLAppInfo" do |appInfo|
     appInfo.source_files = 'SLDeveloperTools/SLAppInfo/*.{h,m}'
     appInfo.public_header_files = 'SLDeveloperTools/SLAppInfo/*.h'

@@ -40,7 +40,7 @@
         UIPanGestureRecognizer* panGensture = [[UIPanGestureRecognizer alloc] initWithTarget:self action: @selector (handlePanSlide)];
         [self addGestureRecognizer:panGensture];
         
-        _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, self.width, self.width, 98 + __kBottomAddHeight)];
+        _contentView = [[UIView alloc]initWithFrame:CGRectMake(0, self.height, self.width, 98 + __kBottomAddHeight)];
         [self addSubview:_contentView];
         
         UIBlurEffect *beffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];

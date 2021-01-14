@@ -14,12 +14,23 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - AMap2DMap-NO-IDFA (5.6.1):
+    - AMapFoundation-NO-IDFA (~> 1.4)
+  - AMapFoundation-NO-IDFA (1.6.5.1)
+  - AMapSearch-NO-IDFA (7.8.0):
+    - AMapFoundation-NO-IDFA (~> 1.6.4)
   - Aspects (1.4.1)
   - Bugly (2.5.71)
   - CocoaAsyncSocket (7.6.5)
   - CTMediator (44)
+  - DZNEmptyDataSet (1.8.1)
+  - FDFullscreenPopGesture (1.1)
+  - FLAnimatedImage (1.0.12)
   - GPUImage (0.1.7)
   - HappyDNS (0.3.17)
+  - HXPhotoPicker (3.1.6):
+    - HXPhotoPicker/Default (= 3.1.6)
+  - HXPhotoPicker/Default (3.1.6)
   - iCarousel (1.8.3)
   - KTVCocoaHTTPServer (1.0.0):
     - CocoaAsyncSocket
@@ -46,11 +57,16 @@ PODS:
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
   - SLDeveloperTools (0.0.1):
+    - SLDeveloperTools/HZPhotoBrowser (= 0.0.1)
+    - SLDeveloperTools/SLAddTopicTools (= 0.0.1)
     - SLDeveloperTools/SLAppInfo (= 0.0.1)
+    - SLDeveloperTools/SLAtFriendsTools (= 0.0.1)
     - SLDeveloperTools/SLBaseClass (= 0.0.1)
     - SLDeveloperTools/SLCategory (= 0.0.1)
+    - SLDeveloperTools/SLLocationSearchTools (= 0.0.1)
     - SLDeveloperTools/SLMacro (= 0.0.1)
     - SLDeveloperTools/SLMaskTools (= 0.0.1)
+    - SLDeveloperTools/SLMusicTools (= 0.0.1)
     - SLDeveloperTools/SLNetTools (= 0.0.1)
     - SLDeveloperTools/SLSelectFilter (= 0.0.1)
     - SLDeveloperTools/SLUtilities (= 0.0.1)
@@ -58,6 +74,21 @@ PODS:
     - SLDeveloperTools/SLWidget (= 0.0.1)
     - SLDeveloperTools/THSDK (= 0.0.1)
     - SLDeveloperTools/UGC_Upload (= 0.0.1)
+  - SLDeveloperTools/HZPhotoBrowser (0.0.1):
+    - DZNEmptyDataSet
+    - FDFullscreenPopGesture (= 1.1)
+    - FLAnimatedImage
+    - HXPhotoPicker (= 3.1.6)
+    - Masonry
+    - SDAutoLayout
+    - SDWebImage (= 5.10.0)
+  - SLDeveloperTools/SLAddTopicTools (0.0.1):
+    - DZNEmptyDataSet
+    - FDFullscreenPopGesture (= 1.1)
+    - Masonry
+    - SDAutoLayout
+    - SDWebImage (= 5.10.0)
+    - YYCategories
   - SLDeveloperTools/SLAppInfo (0.0.1):
     - Bugly (~> 2.5.4)
     - CTMediator
@@ -82,6 +113,14 @@ PODS:
     - UMCShare/Social/ReducedWeChat
     - YYCategories
     - YYText
+  - SLDeveloperTools/SLAtFriendsTools (0.0.1):
+    - DZNEmptyDataSet
+    - FDFullscreenPopGesture (= 1.1)
+    - Masonry
+    - SDAutoLayout
+    - SDWebImage (= 5.10.0)
+    - YYCategories
+    - ZFPlayer (= 3.3.2)
   - SLDeveloperTools/SLBaseClass (0.0.1):
     - AFNetworking
     - SDWebImage (= 5.10.0)
@@ -93,6 +132,14 @@ PODS:
     - MMKV
     - SLDeveloperTools/SLMacro
     - YYText
+  - SLDeveloperTools/SLLocationSearchTools (0.0.1):
+    - AMap2DMap-NO-IDFA
+    - AMapSearch-NO-IDFA
+    - DZNEmptyDataSet
+    - FDFullscreenPopGesture (= 1.1)
+    - Masonry
+    - SDAutoLayout
+    - SDWebImage (= 5.10.0)
   - SLDeveloperTools/SLMacro (0.0.1)
   - SLDeveloperTools/SLMaskTools (0.0.1):
     - lottie-ios (= 2.5.3)
@@ -101,6 +148,14 @@ PODS:
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
     - SVProgressHUD
+  - SLDeveloperTools/SLMusicTools (0.0.1):
+    - DZNEmptyDataSet
+    - FDFullscreenPopGesture (= 1.1)
+    - lottie-ios (= 2.5.3)
+    - Masonry
+    - SDAutoLayout
+    - SDWebImage (= 5.10.0)
+    - YYWebImage
   - SLDeveloperTools/SLNetTools (0.0.1):
     - AFNetworking
     - SDWebImage (= 5.10.0)
@@ -346,6 +401,9 @@ PODS:
   - YYWebImage (1.0.5):
     - YYCache
     - YYImage
+  - ZFPlayer (3.3.2):
+    - ZFPlayer/Core (= 3.3.2)
+  - ZFPlayer/Core (3.3.2)
 
 DEPENDENCIES:
   - SLDeveloperTools (from `../`)
@@ -353,12 +411,19 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - AMap2DMap-NO-IDFA
+    - AMapFoundation-NO-IDFA
+    - AMapSearch-NO-IDFA
     - Aspects
     - Bugly
     - CocoaAsyncSocket
     - CTMediator
+    - DZNEmptyDataSet
+    - FDFullscreenPopGesture
+    - FLAnimatedImage
     - GPUImage
     - HappyDNS
+    - HXPhotoPicker
     - iCarousel
     - KTVCocoaHTTPServer
     - KTVHTTPCache
@@ -387,6 +452,7 @@ SPEC REPOS:
     - YYImage
     - YYText
     - YYWebImage
+    - ZFPlayer
 
 EXTERNAL SOURCES:
   SLDeveloperTools:
@@ -394,12 +460,19 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AMap2DMap-NO-IDFA: ccecb3e2a044c17e6badb9b91c950e709368be20
+  AMapFoundation-NO-IDFA: 0cf5f6c6de2725bcd868ed5aa756d12bc1a8f463
+  AMapSearch-NO-IDFA: 1ae997ebbd0eef87c7d240ed926eb5de51a2652d
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   Bugly: fd066c75c4a0eca1440f9b6a84bd37d51bfc85ac
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   CTMediator: 933dba523da87bf875e4a7e8728945fbc512f1d2
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
+  HXPhotoPicker: 508ca7af32e9f4a1b155abd2694a3b42b87ae7a5
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
   KTVHTTPCache: 5c4c0544afe4007f620879d7f6a0455ee1c02d36
@@ -415,7 +488,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 7fc39d70150df6d4c8dffeaac5e6e4ac4f4a604f
+  SLDeveloperTools: 3e8be8d98b9afec6a2a87b9208474bff8387978e
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
@@ -429,6 +502,7 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
+  ZFPlayer: 88e8abd393ccbd8684e62cf557d25c8009b9dd70
 
 PODFILE CHECKSUM: b1b432126c1037d4538373e914a369af81a1a7c7
 
