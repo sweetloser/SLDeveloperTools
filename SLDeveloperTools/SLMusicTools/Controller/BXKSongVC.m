@@ -19,6 +19,12 @@
 #import "BXKSongSearchVC.h"
 #import "SLMaskTools.h"
 #import <SDAutoLayout/SDAutoLayout.h>
+#import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
+#import "SLMusicToolsMacro.h"
+#import "../../SLAppInfo/SLAppInfo.h"
+#import "../../SLMacro/SLMacro.h"
+#import "../../SLCategory/SLCategory.h"
+
 
 @interface BXKSongVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,DSKSongSearchVCDelegate>
 
@@ -216,7 +222,7 @@
     NSArray *iconArray = @[@"live_ksong_alreadySong",@"live_ksong_category",@"live_ksong_like"];
     NSArray *titleArray = @[@"已唱歌曲",@"曲目分类",@"喜欢的歌"];
     for (int i=0; i<iconArray.count; i++) {
-        UIButton *headButton = [UIButton buttonWithFrame:CGRectMake(SCREEN_WIDTH/3.0*i, 4, SCREEN_WIDTH/3.0, 88) Title:titleArray[i] Font:CFont(12) Color:UIColorHex(4A4F4F) Image:[UIImage imageNamed:iconArray[i]] Target:self action:@selector(headButtonClick:) forControlEvents:UIControlEventTouchUpInside ImagePosition:2 spacing:14];
+        UIButton *headButton = [UIButton buttonWithFrame:CGRectMake(SCREEN_WIDTH/3.0*i, 4, SCREEN_WIDTH/3.0, 88) Title:titleArray[i] Font:CFont(12) Color:[UIColor sl_colorWithHex:0x4A4F4F] Image:[UIImage imageNamed:iconArray[i]] Target:self action:@selector(headButtonClick:) forControlEvents:UIControlEventTouchUpInside ImagePosition:2 spacing:14];
         headButton.tag = i;
         [tableheadView addSubview:headButton];
     }
@@ -317,7 +323,7 @@
 }
 - (void)cancelSearch {
     [UIView animateWithDuration:.5 animations:^{
-        self.textField.mj_w = SCREEN_WIDTH-32;
+        self.textField.width = SCREEN_WIDTH-32;
     }];
 }
 
@@ -343,7 +349,7 @@
             return ;
         }
         BXMusicModel *model = categoryModel.itemArray[index];
-        [HHHttpRequestManager collectionAddWithTargetId:model.music_id type:@"music" success:^(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models) {
+        [NewHttpManager collectionAddWithTargetId:model.music_id type:@"music" success:^(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models) {
             if (flag) {
                 [BGProgressHUD showInfoWithMessage:jsonDic[@"msg"]];
                 NSDictionary *dataDic = jsonDic[@"data"];
@@ -378,13 +384,13 @@
         UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 52)];
         headView.backgroundColor = [UIColor whiteColor];
         UIView *fengeView = [[UIView alloc]initWithFrame:CGRectMake(16, 10, SCREEN_WIDTH-32, 1)];
-        fengeView.backgroundColor = UIColorHex(DFE9E9);
+        fengeView.backgroundColor = [UIColor sl_colorWithHex:0xDFE9E9];
         [headView addSubview:fengeView];
         BXMusicCategoryModel *categoryModel = self.homeListArray[section];
         UILabel *titleLabel = [UILabel initWithFrame:CGRectMake(16, 26, 80, 20) text:categoryModel.title size:16 color:WhiteBgTitleColor alignment:NSTextAlignmentLeft lines:1 shadowColor:[UIColor clearColor]];
         titleLabel.font = [UIFont boldSystemFontOfSize:16];
         [headView addSubview:titleLabel];
-        UIButton *lookAllBtn = [UIButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-16-50, 22, 50, 30) Title:@"查看全部" Font:CFont(12) Color:UIColorHex(7A8181) Image:nil Target:self action:@selector(lookAllBtn:) forControlEvents:UIControlEventTouchUpInside];
+        UIButton *lookAllBtn = [UIButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-16-50, 22, 50, 30) Title:@"查看全部" Font:CFont(12) Color:[UIColor sl_colorWithHex:0x7A8181] Image:nil Target:self action:@selector(lookAllBtn:) forControlEvents:UIControlEventTouchUpInside];
         lookAllBtn.tag = section;
         [headView addSubview:lookAllBtn];
         return headView;
@@ -395,7 +401,7 @@
         UILabel *titleLabel = [UILabel initWithFrame:CGRectMake(16, 16, 80, 20) text:categoryModel.title size:16 color:WhiteBgTitleColor alignment:NSTextAlignmentLeft lines:1 shadowColor:[UIColor clearColor]];
         titleLabel.font = [UIFont boldSystemFontOfSize:16];
         [headView addSubview:titleLabel];
-        UIButton *lookAllBtn = [UIButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-16-50, 12, 50, 30) Title:@"查看全部" Font:CFont(12) Color:UIColorHex(7A8181) Image:nil Target:self action:@selector(lookAllBtn:) forControlEvents:UIControlEventTouchUpInside];
+        UIButton *lookAllBtn = [UIButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-16-50, 12, 50, 30) Title:@"查看全部" Font:CFont(12) Color:[UIColor sl_colorWithHex:0x7A8181] Image:nil Target:self action:@selector(lookAllBtn:) forControlEvents:UIControlEventTouchUpInside];
         lookAllBtn.tag = section;
         [headView addSubview:lookAllBtn];
         return headView;

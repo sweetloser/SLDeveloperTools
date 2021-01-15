@@ -28,6 +28,8 @@
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import <YYCategories/YYCategories.h>
 #import "SLMusicToolsMacro.h"
+#import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
+
 #define lunboHeight SCREEN_WIDTH*90/343.0
 
 @interface BXSelectMusicVC ()
