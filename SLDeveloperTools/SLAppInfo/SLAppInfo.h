@@ -51,4 +51,6 @@
 #import "BXHHEmojiView.h"
 #import "BXHHEmojiFlowLayout.h"
 #import "BXHHEmojiCell.h"
+#import "BXCommentView.h"
+#import "BXCommentCell.h"
 #endif /* SLAppInfo_h */

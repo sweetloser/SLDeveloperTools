@@ -28,6 +28,7 @@ PODS:
   - FLAnimatedImage (1.0.12)
   - GPUImage (0.1.7)
   - HappyDNS (0.3.17)
+  - HPGrowingTextView (1.1)
   - HXPhotoPicker (3.1.6):
     - HXPhotoPicker/Default (= 3.1.6)
   - HXPhotoPicker/Default (3.1.6)
@@ -92,6 +93,7 @@ PODS:
   - SLDeveloperTools/SLAppInfo (0.0.1):
     - Bugly (~> 2.5.4)
     - CTMediator
+    - HPGrowingTextView
     - MJExtension (~> 3.2.2)
     - MMKV
     - Qiniu (= 8.0.5)
@@ -423,6 +425,7 @@ SPEC REPOS:
     - FLAnimatedImage
     - GPUImage
     - HappyDNS
+    - HPGrowingTextView
     - HXPhotoPicker
     - iCarousel
     - KTVCocoaHTTPServer
@@ -472,6 +475,7 @@ SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
+  HPGrowingTextView: 88a716d97fb853bcb08a4a08e4727da17efc9b19
   HXPhotoPicker: 508ca7af32e9f4a1b155abd2694a3b42b87ae7a5
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
@@ -488,7 +492,7 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 3e8be8d98b9afec6a2a87b9208474bff8387978e
+  SLDeveloperTools: ff5d9f8f11b5cfce7c7be8b1a51fc4d8db425533
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
