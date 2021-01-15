@@ -16,6 +16,7 @@
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <YYCategories/YYCategories.h>
 #import "SLMusicToolsMacro.h"
+#import "SLMaskTools.h"
 
 @interface BXMusicRecommedDeailVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 

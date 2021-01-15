@@ -172,7 +172,7 @@ alpha:1.f]
 //内容高亮（@张三）
 #define ContentHighlightColor      sl_normalColors
 //白色背景字体颜色
-#define WhiteBgTitleColor          [UIColor colorWithHexString:@"#161A1A"]
+#define WhiteBgTitleColor          [UIColor colorWithRed:22/255.0 green:26/255.0 blue:26/255.0 alpha:1]
 //按钮置灰文字(#7A8181)
 #define ButtonGrayTitleColor       [UIColor colorWithRed:122/255.0 green:129/255.0 blue:129/255.0 alpha:1]
 

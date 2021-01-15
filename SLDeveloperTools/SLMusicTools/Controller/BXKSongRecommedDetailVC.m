@@ -1,26 +1,29 @@
 //
-//  BXMusicCategoryDetailVC.m
+//  BXKSongRecommedDetailVC.m
 //  BXlive
 //
-//  Created by bxlive on 2019/4/17.
+//  Created by bxlive on 2019/6/13.
 //  Copyright © 2019 cat. All rights reserved.
 //
 
-#import "BXMusicCategoryDetailVC.h"
+#import "BXKSongRecommedDetailVC.h"
 #import "BXMusicModel.h"
-#import "BXMusicTableViewCell.h"
+#import "BXKSongTableViewCell.h"
 #import "BXMusicManager.h"
-#import <YYWebImage/YYWebImage.h>
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
-#import <SDAutoLayout/SDAutoLayout.h>
-#import <SLDeveloperTools/SLDeveloperTools.h>
-#import <YYCategories/YYCategories.h>
-#import "SLMusicToolsMacro.h"
 #import "SLMaskTools.h"
 #import <SDAutoLayout/SDAutoLayout.h>
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import <YYWebImage/YYWebImage.h>
+#import "../../SLMacro/SLMacro.h"
+#import "../../SLWidget/SLRefreshTool/SLRefreshTools.h"
+#import "../../SLAppInfo/SLAppInfo.h"
+#import "../../SLCategory/SLCategory.h"
+#import <YYCategories/YYCategories.h>
+#import "SLMusicToolsMacro.h"
+#import "../../SLWidget/SLBaseEmptyVC/SLEmptyHeader.h"
 
 
-@interface BXMusicCategoryDetailVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface BXKSongRecommedDetailVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic , strong) UITableView * tableView;
 @property (nonatomic , strong) NSMutableArray * dataArray;
@@ -28,10 +31,10 @@
 @property (nonatomic , strong) BXMusicModel * currentModel;
 @end
 
-@implementation BXMusicCategoryDetailVC
+@implementation BXKSongRecommedDetailVC
 
 - (NSString *)title{
-    return self.titleString;
+    return @"推荐";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -40,6 +43,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:attributes];
     [self.navigationController.navigationBar setShadowImage:[UIImage yy_imageWithColor:CHH_RGBCOLOR(238, 240, 240, 1.0)]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage yy_imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -58,7 +62,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _offSet = 0;
-    self.view.backgroundColor = [UIColor whiteColor];
     [BGProgressHUD showLoadingWithMessage:nil];
     [self initTableView];
     [self addObserver];
@@ -77,6 +80,7 @@
 }
 
 - (void)initTableView{
+    self.view.backgroundColor = [UIColor whiteColor];
     _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -104,14 +108,15 @@
 }
 
 - (void)createData{
-    [[NewHttpRequestHuang sharedNewHttpRequestHuang]MusicMusicsByCategoryListWithCategoryId:self.categoryId Offset:[NSString stringWithFormat:@"%ld",_offSet] length:@"20" Success:^(id responseObject) {
+    [[NewHttpRequestHuang sharedNewHttpRequestHuang]MusicRecommendWithOffset:[NSString stringWithFormat:@"%ld",_offSet] length:@"20" Success:^(id responseObject) {
         [BGProgressHUD hidden];
+        [self.tableView headerEndRefreshing];
         if ([responseObject[@"code"] integerValue]==0) {
             if (!self.offSet) {
                 [self.dataArray removeAllObjects];
                 self.tableView.isNoMoreData = NO;
             }
-            NSArray *recommArray = responseObject[@"data"];
+            NSArray *recommArray = responseObject[@"data"][@"item"];
             if (recommArray.count) {
                 for (NSDictionary *cdict in recommArray) {
                     BXMusicModel *model = [BXMusicModel objectWithDictionary:cdict];
@@ -128,7 +133,6 @@
         [self.tableView reloadData];
     } Failure:^(NSError *error) {
         [BGProgressHUD hidden];
-        [self.tableView.mj_header endRefreshing];
         self.tableView.isRefresh = NO;
         self.tableView.isNoNetwork = !error.isNetWorkConnectionAvailable;
     }];
@@ -149,12 +153,13 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *cellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-    BXMusicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    BXKSongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[BXMusicTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[BXKSongTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     cell.model = self.dataArray[indexPath.row];
     BXMusicModel *model = self.dataArray[indexPath.row];
+    
     @weakify(self);
     [cell setMusicCollectBlock:^() {
         @strongify(self);
@@ -177,7 +182,6 @@
         }];
         
     }];
-    
     [cell setMusicUseBlock:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidUseMusicNotification object:nil userInfo:@{@"model":model}];
     }];
@@ -189,7 +193,7 @@
     if (![NewHttpManager isNetWorkConnectionAvailable]) {
         return ;
     }
-    BXMusicTableViewCell *cell = (BXMusicTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    BXKSongTableViewCell *cell = (BXKSongTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     BXMusicModel *themodel = self.dataArray[indexPath.row];
     self.currentModel = themodel;
     for (BXMusicModel *model in self.dataArray) {
@@ -225,47 +229,47 @@
 
 #pragma mark - app进入后台停止播放
 - (void)applicationEnterBackground{
-    [[BXMusicManager sharedManager] pausePlay];
+    [[BXMusicManager sharedManager]pausePlay];
     if (self.currentModel) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidMusicPlayFinishNotification object:nil userInfo:@{@"model":self.currentModel}];
     }
 }
 
 /*
-#pragma mark - 耳机插入和拔掉
-//耳机插入、拔出事件
-- (void)audioRouteChangeListenerCallback:(NSNotification*)notification {
-    NSDictionary *interuptionDict = notification.userInfo;
-    
-    NSInteger routeChangeReason = [[interuptionDict valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
-    
-    switch (routeChangeReason) {
-            
-        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
-            //耳机插入
-            break;
-            
-        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
-            //耳机拔出
-            if (self.currentModel) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:kDidMusicPlayFinishNotification object:nil userInfo:@{@"model":self.currentModel}];
-            }
-            break;
-            
-        case AVAudioSessionRouteChangeReasonCategoryChange:
-            // called at start - also when other audio wants to play
-            
-            break;
-    }
-}
-
-#pragma mark - 来电中断
-- (void)handleInterruption:(NSNotification*)notification {
-    if (self.currentModel) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidMusicPlayFinishNotification object:nil userInfo:@{@"model":self.currentModel}];
-    }
-}
-*/
+ #pragma mark - 耳机插入和拔掉
+ //耳机插入、拔出事件
+ - (void)audioRouteChangeListenerCallback:(NSNotification*)notification {
+ NSDictionary *interuptionDict = notification.userInfo;
+ 
+ NSInteger routeChangeReason = [[interuptionDict valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
+ 
+ switch (routeChangeReason) {
+ 
+ case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+ //耳机插入
+ break;
+ 
+ case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+ //耳机拔出
+ if (self.currentModel) {
+ [[NSNotificationCenter defaultCenter] postNotificationName:kDidMusicPlayFinishNotification object:nil userInfo:@{@"model":self.currentModel}];
+ }
+ break;
+ 
+ case AVAudioSessionRouteChangeReasonCategoryChange:
+ // called at start - also when other audio wants to play
+ 
+ break;
+ }
+ }
+ 
+ #pragma mark - 来电中断
+ - (void)handleInterruption:(NSNotification*)notification {
+ if (self.currentModel) {
+ [[NSNotificationCenter defaultCenter] postNotificationName:kDidMusicPlayFinishNotification object:nil userInfo:@{@"model":self.currentModel}];
+ }
+ }
+ */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGPoint point =  [scrollView.panGestureRecognizer translationInView:self.view];
     if (point.y > 0 ) {

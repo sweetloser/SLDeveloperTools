@@ -1,58 +1,37 @@
 //
-//  BXMusicCategoryVC.m
+//  BXKSongCategoryVC.m
 //  BXlive
 //
-//  Created by bxlive on 2019/4/17.
+//  Created by bxlive on 2019/6/13.
 //  Copyright © 2019 cat. All rights reserved.
 //
 
-#import "BXMusicCategoryVC.h"
+#import "BXKSongCategoryVC.h"
 #import "BXMusicCategoryModel.h"
 #import "BXMusicCategoryTableViewCell.h"
-#import "BXMusicCategoryDetailVC.h"
-#import <YYWebImage/YYWebImage.h>
-#import <SDAutoLayout/SDAutoLayout.h>
+#import "BXKSongCategoryDetailVC.h"
 #import "SLMaskTools.h"
 #import <SDAutoLayout/SDAutoLayout.h>
 #import "../../SLMacro/SLMacro.h"
+#import <YYWebImage/YYWebImage.h>
 #import "../../SLAppInfo/SLAppInfo.h"
 #import "../../SLCategory/SLCategory.h"
 
-@interface BXMusicCategoryVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface BXKSongCategoryVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView * tableView;
 @property (nonatomic , strong) NSMutableArray * dataArray;
 
 @end
 
-@implementation BXMusicCategoryVC
+@implementation BXKSongCategoryVC
 
 - (NSString *)title{
-    return @"歌单分类";
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    NSDictionary *attributes = @{NSForegroundColorAttributeName:WhiteBgTitleColor, NSFontAttributeName:CBFont(20)};
-    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
-    [self.navigationController.navigationBar setShadowImage:[UIImage yy_imageWithColor:CHH_RGBCOLOR(238, 240, 240, 1.0)]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage yy_imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
-    
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    NSDictionary *attributes = @{NSForegroundColorAttributeName:MainTitleColor, NSFontAttributeName:CBFont(20)};
-    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
-    [self.navigationController.navigationBar setShadowImage:[UIImage yy_imageWithColor:PageBackgroundColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage yy_imageWithColor:PageBackgroundColor] forBarMetrics:UIBarMetricsDefault];
-}
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleDefault;
+    return @"曲目分类";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     [BGProgressHUD showLoadingWithMessage:nil];
     [self initTableView];
     [self loadTableViewData];
@@ -66,6 +45,7 @@
 }
 
 - (void)initTableView{
+    self.view.backgroundColor = [UIColor whiteColor];
     _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -75,6 +55,25 @@
     _tableView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSDictionary *attributes = @{NSForegroundColorAttributeName:WhiteBgTitleColor, NSFontAttributeName:CBFont(20)};
+    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
+    [self.navigationController.navigationBar setShadowImage:[UIImage yy_imageWithColor:CHH_RGBCOLOR(238, 240, 240, 1.0)]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage yy_imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSDictionary *attributes = @{NSForegroundColorAttributeName:MainTitleColor, NSFontAttributeName:CBFont(20)};
+    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
+    [self.navigationController.navigationBar setShadowImage:[UIImage yy_imageWithColor:PageBackgroundColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage yy_imageWithColor:PageBackgroundColor] forBarMetrics:UIBarMetricsDefault];
+}
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
+}
+
+
 
 - (void)loadTableViewData{
     [[NewHttpRequestHuang sharedNewHttpRequestHuang]MusicCategoryListWithSuccess:^(id responseObject) {
@@ -121,10 +120,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BXMusicCategoryModel *model = self.dataArray[indexPath.row];
-    BXMusicCategoryDetailVC *mcdvc = [[BXMusicCategoryDetailVC alloc]init];
-    mcdvc.titleString = [NSString stringWithFormat:@"%@",model.title];
-    mcdvc.categoryId = [NSString stringWithFormat:@"%@",model.category_id];
-    [self.navigationController pushViewController:mcdvc animated:YES];
+    BXKSongCategoryDetailVC *kscdvc = [[BXKSongCategoryDetailVC alloc]init];
+    kscdvc.titleString = [NSString stringWithFormat:@"%@",model.title];
+    kscdvc.categoryId = [NSString stringWithFormat:@"%@",model.category_id];
+    [self.navigationController pushViewController:kscdvc animated:YES];
 }
 
 @end
