@@ -53,4 +53,6 @@
 #import "BXHHEmojiCell.h"
 #import "BXCommentView.h"
 #import "BXCommentCell.h"
+#import "TMShopHTTPRequest.h"
+#import "BXDynTipOffVC.h"
 #endif /* SLAppInfo_h */

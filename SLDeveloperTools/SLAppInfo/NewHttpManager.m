@@ -18,7 +18,7 @@
 #import "SLAppInfoConst.h"
 #import "BXKTVHTTPCacheManager.h"
 #import "BXSavePhotoHelper.h"
-
+#import "BXHMovieModel.h"
 #import <Bugly/Bugly.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
@@ -366,5 +366,49 @@ code
         return @"";
     }
 }
+
+//位置详情
++ (void)locationDetailWithLocationId:(NSString *)locationId
+                                 lat:(NSString *)lat
+                                 lng:(NSString *)lng
+                             success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                             failure:(void(^)(NSError *error))failure; {
+    NSDictionary *params = @{@"location_id":[self stringNoNil:locationId], @"lat":[self stringNoNil:lat], @"lng":[self stringNoNil:lng]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Video.locationDetail" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//位置下视频
++ (void)videosByLocationWithLocationId:(NSString *)locationId
+                                offset:(NSString *)offset
+                               success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                               failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"location_id":[self stringNoNil:locationId],@"offset":[self stringNoNil:offset]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Video.videosByLocation" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject[@"data"]) {
+            BXHMovieModel *model = [[BXHMovieModel alloc] init];
+            [model updateWithJsonDic:dic];
+            [models addObject:model];
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
 @end
 

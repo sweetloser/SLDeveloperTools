@@ -24,4 +24,11 @@ static NSString *const kDidGetLocationNotification = @"DidGetLocationNotificatio
 static NSString *const kDidCollectNotification = @"DidCollectNotification";                           //收藏或取消收藏
 
 static NSString *const kDidCommentNotification = @"DidCommentNotification";                           //评论或删除评论
+
+static NSString *const kSendChangeStatusNotification = @"SendChangeStatusNotification";               //更改看板关注状态
+
+static NSString *const kDidZanNotification = @"DidZanNotification";                                   //赞或取消赞
+
+static NSString *const kDidSeeNotification = @"DidSeeNotification";                                   //观看或不观看
+
 #endif /* SLAppInfoConst_h */

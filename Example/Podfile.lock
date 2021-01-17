@@ -59,6 +59,7 @@ PODS:
   - SDWebImage/Core (5.10.0)
   - SLDeveloperTools (0.0.1):
     - SLDeveloperTools/HZPhotoBrowser (= 0.0.1)
+    - SLDeveloperTools/SDPhotoBrowser (= 0.0.1)
     - SLDeveloperTools/SLAddTopicTools (= 0.0.1)
     - SLDeveloperTools/SLAppInfo (= 0.0.1)
     - SLDeveloperTools/SLAtFriendsTools (= 0.0.1)
@@ -83,6 +84,7 @@ PODS:
     - Masonry
     - SDAutoLayout
     - SDWebImage (= 5.10.0)
+  - SLDeveloperTools/SDPhotoBrowser (0.0.1)
   - SLDeveloperTools/SLAddTopicTools (0.0.1):
     - DZNEmptyDataSet
     - FDFullscreenPopGesture (= 1.1)
@@ -107,6 +109,8 @@ PODS:
     - SLDeveloperTools/SLVideoWaterMaskTools
     - SLDeveloperTools/SLWidget/SLBaseEmptyVC
     - SLDeveloperTools/SLWidget/SLShareTools
+    - SobotKit (= 2.8.8)
+    - STPopup
     - UMCCommon
     - UMCPush
     - UMCSecurityPlugins
@@ -115,6 +119,9 @@ PODS:
     - UMCShare/Social/ReducedWeChat
     - YYCategories
     - YYText
+    - ZFPlayer (= 3.3.2)
+    - ZFPlayer/AVPlayer (~> 3.3.2)
+    - ZFPlayer/ControlView (~> 3.3.2)
   - SLDeveloperTools/SLAtFriendsTools (0.0.1):
     - DZNEmptyDataSet
     - FDFullscreenPopGesture (= 1.1)
@@ -123,6 +130,8 @@ PODS:
     - SDWebImage (= 5.10.0)
     - YYCategories
     - ZFPlayer (= 3.3.2)
+    - ZFPlayer/AVPlayer (~> 3.3.2)
+    - ZFPlayer/ControlView (~> 3.3.2)
   - SLDeveloperTools/SLBaseClass (0.0.1):
     - AFNetworking
     - SDWebImage (= 5.10.0)
@@ -230,7 +239,9 @@ PODS:
     - SSZipArchive
     - YYCategories
   - SLDeveloperTools/UGC_Upload (0.0.1)
+  - SobotKit (2.8.8)
   - SSZipArchive (2.2.3)
+  - STPopup (1.8.7)
   - SVProgressHUD (2.2.5)
   - UMAPM (1.1.0)
   - UMCCommon (7.2.5):
@@ -405,6 +416,10 @@ PODS:
     - YYImage
   - ZFPlayer (3.3.2):
     - ZFPlayer/Core (= 3.3.2)
+  - ZFPlayer/AVPlayer (3.3.2):
+    - ZFPlayer/Core
+  - ZFPlayer/ControlView (3.3.2):
+    - ZFPlayer/Core
   - ZFPlayer/Core (3.3.2)
 
 DEPENDENCIES:
@@ -442,7 +457,9 @@ SPEC REPOS:
     - RealReachability
     - SDAutoLayout
     - SDWebImage
+    - SobotKit
     - SSZipArchive
+    - STPopup
     - SVProgressHUD
     - UMAPM
     - UMCCommon
@@ -492,8 +509,10 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: ff5d9f8f11b5cfce7c7be8b1a51fc4d8db425533
+  SLDeveloperTools: 9e8ef7b848f31e2d86135e1d822cdf1aa4998324
+  SobotKit: cab9f7d9e8603c688c095b464e8ef261999e872a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  STPopup: a9045557bc48a0df51fbb7bf0544447c5fe84d34
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788

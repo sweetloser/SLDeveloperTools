@@ -77,7 +77,18 @@ typedef void (^Failure)(NSError *error);        // 失败Blcok
                           success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
                           failure:(void(^)(NSError *error))failure;
 
+//位置详情
++ (void)locationDetailWithLocationId:(NSString *)locationId
+                                 lat:(NSString *)lat
+                                 lng:(NSString *)lng
+                                  success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                                  failure:(void(^)(NSError *error))failure;
 
+//位置下视频
++ (void)videosByLocationWithLocationId:(NSString *)locationId
+                                offset:(NSString *)offset
+                               success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                               failure:(void(^)(NSError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

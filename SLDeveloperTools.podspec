@@ -183,6 +183,10 @@ TODO: Add long description of the pod here.
     hz.dependency 'DZNEmptyDataSet'
   end
   
+  s.subspec 'SDPhotoBrowser' do |pb|
+    pb.source_files = 'SLDeveloperTools/SDPhotoBrowser/*.{h,m}'
+  end
+  
 #  添加话题组件
   s.subspec 'SLAddTopicTools' do |tt|
     tt.source_files = 'SLDeveloperTools/SLAddTopicTools/*.{h,m}'
@@ -197,6 +201,8 @@ TODO: Add long description of the pod here.
   s.subspec 'SLAtFriendsTools' do |at|
     at.source_files = 'SLDeveloperTools/SLAtFriendsTools/*.{h,m}'
     at.dependency 'ZFPlayer', '3.3.2'
+    at.dependency 'ZFPlayer/ControlView', '~> 3.3.2'
+    at.dependency 'ZFPlayer/AVPlayer', '~> 3.3.2'
     at.dependency 'YYCategories'
     at.dependency 'Masonry'
     at.dependency 'SDWebImage', '= 5.10.0'
@@ -255,6 +261,11 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'Qiniu', '= 8.0.5'
     appInfo.dependency 'CTMediator'
     appInfo.dependency 'HPGrowingTextView'
+    appInfo.dependency 'STPopup'
+    appInfo.dependency 'SobotKit', '= 2.8.8'
+    appInfo.dependency 'ZFPlayer', '3.3.2'
+    appInfo.dependency 'ZFPlayer/ControlView', '~> 3.3.2'
+    appInfo.dependency 'ZFPlayer/AVPlayer', '~> 3.3.2'
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }

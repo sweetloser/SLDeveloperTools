@@ -25,7 +25,6 @@
 #import <YYWebImage/YYWebImage.h>
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <SLDeveloperTools/SLDeveloperTools.h>
-#import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import <YYCategories/YYCategories.h>
 #import "SLMusicToolsMacro.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
