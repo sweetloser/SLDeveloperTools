@@ -11,7 +11,7 @@
 #import "../SLMacro/SLMacro.h"
 #import "../SLCategory/SLCategory.h"
 #import <Masonry/Masonry.h>
-
+#import <YYCategories/YYCategories.h>
 
 @interface BXDynTipOffTextView()<HPGrowingTextViewDelegate,UITextViewDelegate>
 @property (nonatomic,strong) HPGrowingTextView *growingTextView;;//文字

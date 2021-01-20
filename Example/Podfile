@@ -1,4 +1,4 @@
-use_frameworks!
+#use_frameworks!
 
 platform :ios, '9.0'
 
@@ -6,6 +6,7 @@ target 'SLDeveloperTools_Example' do
   pod 'SLDeveloperTools', :path => '../'
 #  pod 'UMCPush'
 #  pod 'UMCCommon'
+  pod "NIMKit", :git => 'https://github.com/sweetloser/NIM_iOS_UIKit.git', :commit => 'b56aefd48e01dc10ccd2e253067e0e52bbcea8aa'
 
   target 'SLDeveloperTools_Tests' do
     inherit! :search_paths

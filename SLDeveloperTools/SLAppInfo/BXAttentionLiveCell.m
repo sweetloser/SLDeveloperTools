@@ -18,6 +18,7 @@
 #import "SLAppInfoMacro.h"
 #import <YYWebImage/YYWebImage.h>
 #import <SDWebImage/SDWebImage.h>
+#import <YYCategories/YYCategories.h>
 
 @interface BXAttentionLiveCell()
 @property (nonatomic ,strong) UIImageView *headImageView;//头像
@@ -196,7 +197,7 @@
 
 
 -(void)iconImageClick{
-    [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":_model.user_id,@"isShow":@"",@"nav":[[UIApplication sharedApplication] activityViewController].navigationController}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":_model.user_id,@"isShow":@"",@"nav":self.viewController.navigationController}];
     
 //    [BXPersonHomeVC toPersonHomeWithUserId:_model.user_id isShow:nil nav:self.viewController.navigationController handle:nil];
 }

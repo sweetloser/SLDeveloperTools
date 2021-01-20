@@ -26,6 +26,9 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
   - FLAnimatedImage (1.0.12)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - GPUImage (0.1.7)
   - HappyDNS (0.3.17)
   - HPGrowingTextView (1.1)
@@ -33,11 +36,13 @@ PODS:
     - HXPhotoPicker/Default (= 3.1.6)
   - HXPhotoPicker/Default (3.1.6)
   - iCarousel (1.8.3)
+  - JXPagingView/Pager (2.0.13)
   - KTVCocoaHTTPServer (1.0.0):
     - CocoaAsyncSocket
   - KTVHTTPCache (1.1.7):
     - KTVCocoaHTTPServer
   - lottie-ios (2.5.3)
+  - M80AttributedLabel (1.9.9)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
@@ -46,6 +51,20 @@ PODS:
     - MMKVCore (~> 1.2.7)
   - MMKVCore (1.2.7)
   - Nama-lite (7.3.0)
+  - NIMKit (3.1.4):
+    - NIMKit/Lite (= 3.1.4)
+  - NIMKit/Core (3.1.4):
+    - FLAnimatedImage (~> 1.0.12)
+    - M80AttributedLabel (~> 1.9.9)
+    - SDWebImage (~> 5.10.0)
+    - Toast (~> 3.0)
+    - TZImagePickerController (~> 3.2.1)
+    - YYImage (~> 1.0.4)
+    - YYImage/WebP (~> 1.0.4)
+  - NIMKit/Lite (3.1.4):
+    - NIMKit/Core
+    - NIMSDK_LITE (~> 8.1.3)
+  - NIMSDK_LITE (8.1.5)
   - Qiniu (8.0.5):
     - HappyDNS (~> 0.3.17)
   - RealReachability (1.3.0):
@@ -95,11 +114,16 @@ PODS:
   - SLDeveloperTools/SLAppInfo (0.0.1):
     - Bugly (~> 2.5.4)
     - CTMediator
+    - FLAnimatedImage
+    - FMDB
     - HPGrowingTextView
+    - JXPagingView/Pager
     - MJExtension (~> 3.2.2)
     - MMKV
+    - NIMKit
     - Qiniu (= 8.0.5)
     - RealReachability
+    - SDWebImage (= 5.10.0)
     - SLDeveloperTools/SLBaseClass
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
@@ -111,6 +135,7 @@ PODS:
     - SLDeveloperTools/SLWidget/SLShareTools
     - SobotKit (= 2.8.8)
     - STPopup
+    - TXLiteAVSDK_Professional (~> 8.0.9642)
     - UMCCommon
     - UMCPush
     - UMCSecurityPlugins
@@ -204,6 +229,7 @@ PODS:
     - SLDeveloperTools/SLWidget/SLBaseEmptyVC (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLJXCategoryView (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLRefreshTool (= 0.0.1)
+    - SLDeveloperTools/SLWidget/SLSDCycleScrollView (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLShareTools (= 0.0.1)
     - SLDeveloperTools/SLWidget/SLVersionTool (= 0.0.1)
   - SLDeveloperTools/SLWidget/SLBannerTools (0.0.1):
@@ -225,6 +251,9 @@ PODS:
     - MJRefresh
     - SLDeveloperTools/SLCategory
     - SLDeveloperTools/SLMacro
+  - SLDeveloperTools/SLWidget/SLSDCycleScrollView (0.0.1):
+    - Masonry
+    - SLDeveloperTools/SLMacro
   - SLDeveloperTools/SLWidget/SLShareTools (0.0.1):
     - Masonry
     - SLDeveloperTools/SLBaseClass
@@ -243,6 +272,9 @@ PODS:
   - SSZipArchive (2.2.3)
   - STPopup (1.8.7)
   - SVProgressHUD (2.2.5)
+  - Toast (3.1.0)
+  - TXLiteAVSDK_Professional (8.0.9644)
+  - TZImagePickerController (3.2.9)
   - UMAPM (1.1.0)
   - UMCCommon (7.2.5):
     - UMAPM
@@ -410,6 +442,8 @@ PODS:
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
   - YYImage/Core (1.0.4)
+  - YYImage/WebP (1.0.4):
+    - YYImage/Core
   - YYText (1.0.7)
   - YYWebImage (1.0.5):
     - YYCache
@@ -423,6 +457,7 @@ PODS:
   - ZFPlayer/Core (3.3.2)
 
 DEPENDENCIES:
+  - NIMKit (from `https://github.com/sweetloser/NIM_iOS_UIKit.git`, commit `b56aefd48e01dc10ccd2e253067e0e52bbcea8aa`)
   - SLDeveloperTools (from `../`)
 
 SPEC REPOS:
@@ -438,14 +473,17 @@ SPEC REPOS:
     - DZNEmptyDataSet
     - FDFullscreenPopGesture
     - FLAnimatedImage
+    - FMDB
     - GPUImage
     - HappyDNS
     - HPGrowingTextView
     - HXPhotoPicker
     - iCarousel
+    - JXPagingView
     - KTVCocoaHTTPServer
     - KTVHTTPCache
     - lottie-ios
+    - M80AttributedLabel
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -453,6 +491,7 @@ SPEC REPOS:
     - MMKV
     - MMKVCore
     - Nama-lite
+    - NIMSDK_LITE
     - Qiniu
     - RealReachability
     - SDAutoLayout
@@ -461,6 +500,9 @@ SPEC REPOS:
     - SSZipArchive
     - STPopup
     - SVProgressHUD
+    - Toast
+    - TXLiteAVSDK_Professional
+    - TZImagePickerController
     - UMAPM
     - UMCCommon
     - UMCPush
@@ -475,8 +517,16 @@ SPEC REPOS:
     - ZFPlayer
 
 EXTERNAL SOURCES:
+  NIMKit:
+    :commit: b56aefd48e01dc10ccd2e253067e0e52bbcea8aa
+    :git: https://github.com/sweetloser/NIM_iOS_UIKit.git
   SLDeveloperTools:
     :path: "../"
+
+CHECKOUT OPTIONS:
+  NIMKit:
+    :commit: b56aefd48e01dc10ccd2e253067e0e52bbcea8aa
+    :git: https://github.com/sweetloser/NIM_iOS_UIKit.git
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -490,14 +540,17 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
   HPGrowingTextView: 88a716d97fb853bcb08a4a08e4727da17efc9b19
   HXPhotoPicker: 508ca7af32e9f4a1b155abd2694a3b42b87ae7a5
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
+  JXPagingView: 821ed274f09eaf2843a96c3a74e9d138e27d9730
   KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
   KTVHTTPCache: 5c4c0544afe4007f620879d7f6a0455ee1c02d36
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
+  M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
@@ -505,15 +558,20 @@ SPEC CHECKSUMS:
   MMKV: 22e5136f7d00197bc0fc9694b7f71519f0d1ca12
   MMKVCore: 607b7b05f2c2140056b5d338e45f2c14bf3f4232
   Nama-lite: 9965bccdb63735e0c0a8c0fad931a3e1a22bcf19
+  NIMKit: 575a37c4fb89105c074878af3a4368580bb6c6da
+  NIMSDK_LITE: 05a7c1102a7040db1769f99d25109087652f2872
   Qiniu: 99b85defaf831bc788efdda01dc6f0406ece6964
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 9e8ef7b848f31e2d86135e1d822cdf1aa4998324
+  SLDeveloperTools: 4a5fe64a44eafb2bcb4ad52426a1b9fe717524c3
   SobotKit: cab9f7d9e8603c688c095b464e8ef261999e872a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   STPopup: a9045557bc48a0df51fbb7bf0544447c5fe84d34
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
+  TXLiteAVSDK_Professional: a6c4150c76f695ff5b62d64112eb0193bee5c39b
+  TZImagePickerController: 1f92968aa0e98a06b9e2eccca8560acc19254257
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
   UMCPush: af977ec99bbf34558825e907c58f6b76f6c7f897
@@ -527,6 +585,6 @@ SPEC CHECKSUMS:
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
   ZFPlayer: 88e8abd393ccbd8684e62cf557d25c8009b9dd70
 
-PODFILE CHECKSUM: b1b432126c1037d4538373e914a369af81a1a7c7
+PODFILE CHECKSUM: d3c98f8a8ca878e3a244b1a5a055b52bec4deb7b
 
 COCOAPODS: 1.10.1

@@ -9,7 +9,7 @@
 #import "BXAddLocaionCell.h"
 #import <SLDeveloperTools/SLDeveloperTools.h>
 #import <SDAutoLayout/SDAutoLayout.h>
-
+#import <YYCategories/YYCategories.h>
 @interface BXAddLocaionCell()
 
 @property (nonatomic , strong) UILabel *nameLabel;

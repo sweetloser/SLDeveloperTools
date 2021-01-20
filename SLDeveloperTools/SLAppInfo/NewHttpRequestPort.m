@@ -8,7 +8,7 @@
 
 #import "NewHttpRequestPort.h"
 #import "NewHttpManager.h"
-
+#import "../SLMacro/SLMacro.h"
 @implementation NewHttpRequestPort
 DEFINE_SINGLETON_FOR_CLASS(NewHttpRequestPort)
 

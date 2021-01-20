@@ -410,5 +410,192 @@ code
     }];
 }
 
++ (void)followWithUserId:(NSString *)userId
+                 success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                 failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"user_id":[self stringNoNil:userId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Follow.follow" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+#pragma - mark 视频
+//发布视频
++ (void)publishFilmWithLng:(NSString *)lng
+                       lat:(NSString *)lat
+                       uid:(NSString *)uid
+                  goods_id:(NSString *)goods_id
+                is_synchro:(NSString *)is_synchro
+              locationName:(NSString *)locationName
+                   musicId:(NSString *)musicId
+               regionLevel:(NSString *)regionLevel
+                   visible:(NSString *)visible
+                  describe:(NSString *)describe
+                   videoId:(NSString *)videoId
+                  videoUrl:(NSString *)videoUrl
+                  coverUrl:(NSString *)coverUrl
+                     topic:(NSString *)topic
+                   friends:(NSString *)friends
+                  duration:(NSString *)duration
+                  filmSize:(NSString *)filmSize
+                   success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure; {
+    
+    NSDictionary *params = @{@"location_name":[self stringNoNil:locationName],@"music_id":[self stringNoNil:musicId],@"region_level":[self stringNoNil:regionLevel],@"lng":[self stringNoNil:lng],@"lat":[self stringNoNil:lat],@"poi_id":[self stringNoNil:uid],@"visible":[self stringNoNil:visible],@"describe":[self stringNoNil:describe],@"video_id":[self stringNoNil:videoId],@"video_url":[self stringNoNil:videoUrl],@"cover_url":[self stringNoNil:coverUrl],@"topic":[self stringNoNil:topic],@"friends":[self stringNoNil:friends],@"duration":[self stringNoNil:duration],@"film_size":[self stringNoNil:filmSize],@"goods_id":[self stringNoNil:goods_id],@"is_synchro":is_synchro};
+    
+    [[NewHttpManager sharedNetManager] POST:@"s=Video.publish" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//发布动态视频
++ (void)publishFilmWithLng:(NSString *)lng
+                       lat:(NSString *)lat
+                       uid:(NSString *)uid
+                  goods_id:(NSString *)goods_id
+              locationName:(NSString *)locationName
+                   musicId:(NSString *)musicId
+               regionLevel:(NSString *)regionLevel
+                   visible:(NSString *)visible
+                  describe:(NSString *)describe
+                   videoId:(NSString *)videoId
+                  videoUrl:(NSString *)videoUrl
+                  coverUrl:(NSString *)coverUrl
+                     topic:(NSString *)topic
+                   friends:(NSString *)friends
+                  duration:(NSString *)duration
+                  filmSize:(NSString *)filmSize
+                   success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure {
+    
+    NSDictionary *params = @{@"location_name":[self stringNoNil:locationName],@"music_id":[self stringNoNil:musicId],@"region_level":[self stringNoNil:regionLevel],@"lng":[self stringNoNil:lng],@"lat":[self stringNoNil:lat],@"poi_id":[self stringNoNil:uid],@"visible":[self stringNoNil:visible],@"describe":[self stringNoNil:describe],@"video_id":[self stringNoNil:videoId],@"video_url":[self stringNoNil:videoUrl],@"cover_url":[self stringNoNil:coverUrl],@"topic":[self stringNoNil:topic],@"friends":[self stringNoNil:friends],@"duration":[self stringNoNil:duration],@"film_size":[self stringNoNil:filmSize],@"goods_id":[self stringNoNil:goods_id]};
+    
+    [[NewHttpManager sharedNetManager] POST:@"s=Video.publish" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//搜索  type: all(综合),film(视频),live(直播),user(用户)
++ (void)globalSearchWithType:(NSString *)type
+                     keyword:(NSString *)keyword
+                      offset:(NSString *)offset
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"type":[self stringNoNil:type], @"keyword":[self stringNoNil:keyword], @"offset":[self stringNoNil:offset]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Search.complex" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+#pragma - mark 搜索
+//热搜、发现
++ (void)searchIndexSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=Search.index" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//验证宝箱
++ (void)inspectionTreasureChestWithVideoId:(NSString *)videoId
+                                   success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                                   failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"video_id":[self stringNoNil:videoId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Video.preOpenReward" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//开启宝箱
++ (void)openRewardWithVideoId:(NSString *)videoId
+                      diggNum:(NSString *)diggNum
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"video_id":[self stringNoNil:videoId],@"digg_num":[self stringNoNil:diggNum]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Video.openReward" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+#pragma - mark 记录
+//播放记录
++ (void)behaviorWatchWithData:(NSString *)data
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"data":[self stringNoNil:data]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Behavior.watch" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
++(void)videoGetRewardRank:(NSString *)videoId offset:(NSString *)offset success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                  failure:(void(^)(NSError *error))failure{
+    NSDictionary *paramsDic = @{@"video_id":[self stringNoNil:videoId],@"offset":[self stringNoNil:offset]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Video.getRewardRank" parameters:paramsDic success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
 @end
 

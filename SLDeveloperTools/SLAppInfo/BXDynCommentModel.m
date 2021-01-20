@@ -11,7 +11,7 @@
 #import "../SLCategory/SLCategory.h"
 #import <YYText/YYText.h>
 #import "../SLMacro/SLMacro.h"
-
+#import <YYCategories/YYCategories.h>
 //#import "BXPersonHomeVC.h"
 #import "NSAttributedString+DSText.h"
 @implementation BXDynCommentModel

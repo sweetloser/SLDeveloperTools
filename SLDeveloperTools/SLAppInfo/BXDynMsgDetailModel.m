@@ -15,7 +15,7 @@
 #import "SLAppInfoMacro.h"
 #import <CTMediator/CTMediator.h>
 #import "SLAppInfoConst.h"
-
+#import <YYCategories/YYCategories.h>
 @implementation BXDynMsgDetailModel
 +(NSDictionary *)replacedKeyFromPropertyName{
     return @{@"dynID":@"id",@"issueType":@"type"};

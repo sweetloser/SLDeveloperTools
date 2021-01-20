@@ -36,6 +36,7 @@
 + (UIColor *)colorWithHex:(unsigned int)hex;
 
 + (UIColor *)sl_colorWithHex:(unsigned int)hex alpha:(float)alpha;
+
 /**
  *  从HEX数值和Alpha数值得到一个UIColor对象
  */

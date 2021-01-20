@@ -99,6 +99,11 @@ TODO: Add long description of the pod here.
         bt.dependency 'SLDeveloperTools/SLCategory'
         bt.dependency 'SDWebImage', '= 5.10.0'
       end
+      
+      widget.subspec 'SLSDCycleScrollView' do |sd|
+        sd.source_files = 'SLDeveloperTools/SLWidget/SLSDCycleScrollView/*.{h,m}'
+      end
+      
   end
 
   s.subspec 'SLNetTools' do |netTools|
@@ -235,7 +240,7 @@ TODO: Add long description of the pod here.
    mt.dependency 'DZNEmptyDataSet'
  end
   s.subspec "SLAppInfo" do |appInfo|
-    appInfo.source_files = 'SLDeveloperTools/SLAppInfo/*.{h,m}'
+    appInfo.source_files = 'SLDeveloperTools/SLAppInfo/*.{h,m,mm,hpp,cpp}'
     appInfo.public_header_files = 'SLDeveloperTools/SLAppInfo/*.h'
     appInfo.dependency 'SLDeveloperTools/SLBaseClass'
     appInfo.dependency 'SLDeveloperTools/SLCategory'
@@ -262,12 +267,19 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'CTMediator'
     appInfo.dependency 'HPGrowingTextView'
     appInfo.dependency 'STPopup'
+    appInfo.dependency 'FLAnimatedImage'
     appInfo.dependency 'SobotKit', '= 2.8.8'
     appInfo.dependency 'ZFPlayer', '3.3.2'
+    appInfo.dependency 'JXPagingView/Pager'
+    appInfo.dependency 'SDWebImage', '= 5.10.0'
     appInfo.dependency 'ZFPlayer/ControlView', '~> 3.3.2'
     appInfo.dependency 'ZFPlayer/AVPlayer', '~> 3.3.2'
+    appInfo.dependency 'TXLiteAVSDK_Professional','~> 8.0.9642'
+    appInfo.dependency 'NIMKit'
+    appInfo.dependency 'FMDB'
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
+    appInfo.vendored_libraries = 'SLDeveloperTools/SLAppInfo/libmp3lame.a'
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
     appInfo.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   end

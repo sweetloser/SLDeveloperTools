@@ -89,6 +89,87 @@ typedef void (^Failure)(NSError *error);        // 失败Blcok
                                 offset:(NSString *)offset
                                success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
                                failure:(void(^)(NSError *error))failure;
+
++ (void)followWithUserId:(NSString *)userId
+                 success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                 failure:(void(^)(NSError *error))failure;
+
+#pragma - mark 视频
+//发布视频
++ (void)publishFilmWithLng:(NSString *)lng
+                       lat:(NSString *)lat
+                       uid:(NSString *)uid
+                  goods_id:(NSString *)goods_id
+                is_synchro:(NSString *)is_synchro
+              locationName:(NSString *)locationName
+                   musicId:(NSString *)musicId
+               regionLevel:(NSString *)regionLevel
+                   visible:(NSString *)visible
+                  describe:(NSString *)describe
+                   videoId:(NSString *)videoId
+                  videoUrl:(NSString *)videoUrl
+                  coverUrl:(NSString *)coverUrl
+                     topic:(NSString *)topic
+                   friends:(NSString *)friends
+                  duration:(NSString *)duration
+                  filmSize:(NSString *)filmSize
+                   success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure; 
+
+
+//发布动态视频
++ (void)publishFilmWithLng:(NSString *)lng
+                       lat:(NSString *)lat
+                       uid:(NSString *)uid
+                  goods_id:(NSString *)goods_id
+              locationName:(NSString *)locationName
+                   musicId:(NSString *)musicId
+               regionLevel:(NSString *)regionLevel
+                   visible:(NSString *)visible
+                  describe:(NSString *)describe
+                   videoId:(NSString *)videoId
+                  videoUrl:(NSString *)videoUrl
+                  coverUrl:(NSString *)coverUrl
+                     topic:(NSString *)topic
+                   friends:(NSString *)friends
+                  duration:(NSString *)duration
+                  filmSize:(NSString *)filmSize
+                   success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure;
+
+
+//搜索  type: all(综合),film(视频),live(直播),user(用户)
++ (void)globalSearchWithType:(NSString *)type
+                     keyword:(NSString *)keyword
+                      offset:(NSString *)offset
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure;
+
+#pragma - mark 搜索
+//热搜、发现
++ (void)searchIndexSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure;
+
+//验证宝箱
++ (void)inspectionTreasureChestWithVideoId:(NSString *)videoId
+                                   success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                                   failure:(void(^)(NSError *error))failure;
+
+//开启宝箱
++ (void)openRewardWithVideoId:(NSString *)videoId
+                      diggNum:(NSString *)diggNum
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure ;
+
+
+#pragma - mark 记录
+//播放记录
++ (void)behaviorWatchWithData:(NSString *)data
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure;
+
++(void)videoGetRewardRank:(NSString *)videoId offset:(NSString *)offset success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                  failure:(void(^)(NSError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

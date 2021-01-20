@@ -20,7 +20,7 @@
 #import "BXLikeView.h"
 #import "BXTwistingMachineView.h"
 #import "BXActivityView.h"
-#import "BaseWebVC.h"
+//#import "BaseWebVC.h"
 #import "BXSLTwistingMachineVC.h"
 #import "BXLocationDetailVC.h"
 #import "BXMuisicAlbumView.h"
