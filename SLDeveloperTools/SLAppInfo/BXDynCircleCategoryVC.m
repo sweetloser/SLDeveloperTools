@@ -14,7 +14,7 @@
 #import "BXDynGlobleVC.h"
 #import "BXDynTopicHomeVC.h"
 #import "BXDynTopicVideoVC.h"
-//#import "DynSharePopViewManager.h"
+#import "DynSharePopViewManager.h"
 #import "BXLiveUser.h"
 #import "BXOPenIssueDyn.h"
 #import "BaseNavVC.h"
@@ -31,6 +31,7 @@
 #import <YYCategories/YYCategories.h>
 #import "../SLMacro/SLMacro.h"
 #import "SLAppInfoMacro.h"
+#import "SLAppInfoConst.h"
 
 @interface BXDynCircleCategoryVC ()<JXCategoryViewDelegate,UIGestureRecognizerDelegate>
 
@@ -393,9 +394,10 @@
 
 -(void)AddClick{
     if ([BXLiveUser isLogin]) {
-//        [DynSharePopViewManager shareWithVideoId:@"" user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:self type:1 share_type:@"dynamic"];
+        [DynSharePopViewManager shareWithVideoId:@"" user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:self type:1 share_type:@"dynamic"];
     }else{
 //        [BXCodeLoginVC toLoginViewControllerWithNav:self.navigationController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.navigationController}];
     }
 }
 -(void)reportClick:(UIButton *)btn{

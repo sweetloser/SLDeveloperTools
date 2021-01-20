@@ -9,7 +9,7 @@
 #import "BXDynBaseTableviewCell.h"
 #import <Masonry/Masonry.h>
 #import "BXLiveUser.h"
-//#import "DynSharePopViewManager.h"
+#import "DynSharePopViewManager.h"
 //#import "BXCodeLoginVC.h"
 #import "HttpMakeFriendRequest.h"
 //#import "BXPersonHomeVC.h"
@@ -503,7 +503,7 @@
 }
 -(void)shareAct:(id)sender{
     if ([BXLiveUser isLogin]) {
-//        [DynSharePopViewManager shareWithVideoId:self.model.fcmid user_Id:self.model.msgdetailmodel.user_id likeNum:[NSString stringWithFormat:@"%@", self.model.msgdetailmodel.like_num] is_zan:[NSString stringWithFormat:@"%@", self.model.msgdetailmodel.extend_already_live] is_collect:@"" is_follow:self.model.msgdetailmodel.extend_followed vc:self.viewController type:1 share_type:@"dynamic"];
+        [DynSharePopViewManager shareWithVideoId:self.model.fcmid user_Id:self.model.msgdetailmodel.user_id likeNum:[NSString stringWithFormat:@"%@", self.model.msgdetailmodel.like_num] is_zan:[NSString stringWithFormat:@"%@", self.model.msgdetailmodel.extend_already_live] is_collect:@"" is_follow:self.model.msgdetailmodel.extend_followed vc:self.viewController type:1 share_type:@"dynamic"];
     } else {
         [self pushToLoginVC];
     }
@@ -634,6 +634,7 @@
 }
 - (void)pushToLoginVC {
 //    [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.viewController.navigationController}];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

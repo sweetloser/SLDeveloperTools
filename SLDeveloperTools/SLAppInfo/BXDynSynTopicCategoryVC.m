@@ -13,7 +13,7 @@
 #import "BXDynGlobleVC.h"
 #import "BXDynTopicHomeVC.h"
 #import "BXDynTopicVideoVC.h"
-//#import "DynSharePopViewManager.h"
+#import "DynSharePopViewManager.h"
 #import "BXLiveUser.h"
 #import "BXOPenIssueDyn.h"
 #import "BaseNavVC.h"
@@ -24,6 +24,7 @@
 #import "../SLMacro/SLMacro.h"
 #import "../SLCategory/SLCategory.h"
 #import "SLAppInfoMacro.h"
+#import "SLAppInfoConst.h"
 
 @interface BXDynSynTopicCategoryVC ()<JXCategoryViewDelegate>
 
@@ -378,9 +379,10 @@
 
 -(void)AddClick{
     if ([BXLiveUser isLogin]) {
-//        [DynSharePopViewManager shareWithVideoId:self.model.topic_id user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:self type:1 share_type:@"dynamic"];
+        [DynSharePopViewManager shareWithVideoId:self.model.topic_id user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:self type:1 share_type:@"dynamic"];
     }else{
 //        [BXCodeLoginVC toLoginViewControllerWithNav:self.navigationController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.navigationController}];
     }
 }
 -(void)backClick{

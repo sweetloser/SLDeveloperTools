@@ -12,6 +12,8 @@
 #import <Masonry/Masonry.h>
 #import <SLDeveloperTools/SLDeveloperTools.h>
 #import <SDwebImage/SDWebImage.h>
+#import <YYCategories/YYCategories.h>
+#import "SLAppInfoConst.h"
 @interface BXMuiscReusableView ()
 
 @property (nonatomic, strong) UIImageView *effectView;
@@ -167,6 +169,7 @@
         }
     } else {
 //        [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.viewController.navigationController}];
     }
 }
 
@@ -210,6 +213,7 @@
         }];
     } else {
 //        [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.viewController.navigationController}];
     }
 }
 

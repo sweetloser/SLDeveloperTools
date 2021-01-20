@@ -457,6 +457,7 @@
 //        [self.viewController.navigationController pushViewController:vc animated:YES];
     } else {
 //        [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.viewController.navigationController}];
     }
 }
 

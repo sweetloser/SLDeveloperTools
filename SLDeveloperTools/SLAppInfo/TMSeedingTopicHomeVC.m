@@ -21,7 +21,8 @@
 #import "../SLMacro/SLMacro.h"
 #import "../SLCategory/SLCategory.h"
 #import "../SLMaskTools/SLMaskTools.h"
-//#import "DynSharePopViewManager.h"
+#import "SLAppInfoConst.h"
+#import "DynSharePopViewManager.h"
 #import "NewHttpManager.h"
 #import "BXLiveUser.h"
 #import "BXOPenIssueDyn.h"
@@ -387,9 +388,10 @@
 
 -(void)AddClick{
     if ([BXLiveUser isLogin]) {
-//        [DynSharePopViewManager shareWithVideoId:self.topic_id user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:self type:1 share_type:@"PlantingGrass"];
+        [DynSharePopViewManager shareWithVideoId:self.topic_id user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:self type:1 share_type:@"PlantingGrass"];
     }else{
 //        [BXCodeLoginVC toLoginViewControllerWithNav:self.navigationController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.navigationController}];
     }
 }
 -(void)backClick{

@@ -16,7 +16,8 @@
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <Masonry/Masonry.h>
 #import <SDWebImage/SDWebImage.h>
-
+#import "DynSharePopViewManager.h"
+#import <YYCategories/YYCategories.h>
 #define ImageTag 111
 @interface TMSEEDFourPicCell()<UICollectionViewDelegate,UICollectionViewDataSource,HZPhotoBrowserDelegate>
 
@@ -168,7 +169,7 @@
         [weakSelf likeAct];
     };
     _browser.ShareClick = ^{
-//        [DynSharePopViewManager shareWithVideoId:[weakSelf.model fcmid] user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:weakSelf.viewController type:1 share_type:@"PlantingGrass"];
+        [DynSharePopViewManager shareWithVideoId:[weakSelf.model fcmid] user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:weakSelf.viewController type:1 share_type:@"PlantingGrass"];
     };
 }
 -(UIImage *)photoBrowser:(HZPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index{

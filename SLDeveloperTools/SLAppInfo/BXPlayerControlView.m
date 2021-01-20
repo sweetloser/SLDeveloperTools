@@ -273,6 +273,7 @@
 - (void)treasureChestAction {
     if (![BXLiveUser isLogin]) {
 //        [BXCodeLoginVC toLoginViewControllerWithNav:[[UIApplication sharedApplication] activityViewController].navigationController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":[UIApplication sharedApplication].activityViewController.navigationController}];
         return;
     }
     

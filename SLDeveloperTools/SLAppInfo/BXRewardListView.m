@@ -263,6 +263,7 @@
 //        [BXPersonHomeVC toPersonHomeWithUserId:liveUser.user_id isShow:nil nav:[[UIApplication sharedApplication] activityViewController].navigationController handle:nil];
     } else {
 //        [BXCodeLoginVC toLoginViewControllerWithNav:[[UIApplication sharedApplication] activityViewController].navigationController];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":[UIApplication sharedApplication].activityViewController.navigationController}];
     }
     [self closeAction];
 }

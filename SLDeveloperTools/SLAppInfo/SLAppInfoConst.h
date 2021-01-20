@@ -19,6 +19,8 @@ static NSString *const kDidShareNotification = @"DidShareNotification";         
 static NSString *const BXDynMsgDetailModel2PersonHome = @"BXDynMsgDetailModel2PersonHome";             //点击昵称跳转个人主页
 static NSString *const BXDynMsgDetailModel2TopicCategory = @"BXDynMsgDetailModel2TopicCategory";             //点击话题跳转话题页面
 
+static NSString *const BXGo2Login = @"BXGo2Login";                                                    //登录
+
 static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                   //获取到了定位信息
 
 static NSString *const kDidCollectNotification = @"DidCollectNotification";                           //收藏或取消收藏
