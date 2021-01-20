@@ -13,6 +13,8 @@
 #import "BXSLLiveRoom.h"
 #import "../SLMacro/SLMacro.h"
 #import <SDWebImage/SDWebImage.h>
+#import "SLAppInfoConst.h"
+#import <YYCategories/YYCategories.h>
 
 @interface BXDynLivingCell()
 @property(nonatomic, strong)UIView *backView;
@@ -117,7 +119,7 @@
     config.loadUrl = nil;
     config.hasMore = NO;
 //    [BXLocalAgreement loadUrl:liveRoom.jump fromVc:nil];
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self.viewController,@"url":liveRoom.jump}];
 }
 
 - (void)awakeFromNib {

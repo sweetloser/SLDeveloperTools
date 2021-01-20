@@ -129,6 +129,9 @@
     
     BXSLLiveRoom *liveRoom = _liveRooms[indexPath.row];
 //    [BXLocalAgreement loadUrl:liveRoom.jump fromVc:self];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":liveRoom.jump}];
+    
     SLMoviePlayVCCoonfig *config = [SLMoviePlayVCCoonfig shareMovePlayConfig];
     config.loadUrl = nil;
     config.hasMore = NO;

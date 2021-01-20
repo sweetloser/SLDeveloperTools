@@ -12,6 +12,7 @@
 #import "../SLMacro/SLMacro.h"
 #import "BXLiveUser.h"
 #import "BXAppInfo.h"
+#import "SLAppInfoConst.h"
 #import <YYWebImage/YYWebImage.h>
 #import "../SLWidget/SLRefreshTool/SLRefreshTools.h"
 #import <Aspects/Aspects.h>
@@ -265,6 +266,7 @@ static NSString * const kWXAppID = @"";
 
 - (void)goToWithUrl:(NSString *)url {
 //    [BXLocalAgreement loadUrl:url fromVc:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":url}];
 }
 
 //- (void)uploadFile:(id)data responseCallback:(WVJBResponseCallback)responseCallback {

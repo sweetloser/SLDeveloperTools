@@ -92,6 +92,7 @@
         BXSLLiveRoom *liveRoom = nil;
         liveRoom = self.is_live_dataArr[indexPath.row];
 //        [BXLocalAgreement GHenterLiveRoomWithAllRoomData:self.is_live_dataArr currentSelectedIndex:indexPath.row fromVc:self.viewController];
+        
     }else{
             
         BXAttentFollowModel *model = self.dataArr[indexPath.item];

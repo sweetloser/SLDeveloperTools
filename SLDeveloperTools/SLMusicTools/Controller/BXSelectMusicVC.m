@@ -307,6 +307,7 @@
     _bannerView.selectedBanner = ^(NSInteger index) {
         BXBannerModel *model = ws.bannerArray[index];
 //        [BXLocalAgreement loadUrl:model.url fromVc:ws];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":ws,@"url":model.url}];
     };
     [tableheadView addSubview:_bannerView];
     //发现音乐/我的收藏

@@ -564,6 +564,7 @@
     } else if (indexPath.section == 2) {
         BXSLLiveRoom *liveRoom = _liveRooms[indexPath.row];
 //        [BXLocalAgreement loadUrl:liveRoom.jump fromVc:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":liveRoom.jump}];
     } else if (indexPath.section == 0) {
         BXHMovieModel *video = _videos[indexPath.row];
         

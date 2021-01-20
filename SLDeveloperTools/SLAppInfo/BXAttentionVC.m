@@ -532,6 +532,7 @@
 //            [self.navigationController pushViewController:vc animated:YES];
         } else {
 //            [BXLocalAgreement loadUrl:mediaModel.liveRoom.jump fromVc:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":mediaModel.liveRoom.jump}];
         }
     }
 }
