@@ -23,11 +23,11 @@ typedef void (^AdClickBack)(void);
 
 @end
 
-@protocol BXVideoShowCellDelegate <NSObject>
-
-- (void)videoLikeWithCell:(BXDynPlayVideoCell *)cell;
-- (void)videolLookWithCell:(BXDynPlayVideoCell *)cell;
-- (void)videoRewardWithVideo:(BXHMovieModel *)video;
-@end
+//@protocol BXVideoShowCellDelegate <NSObject>
+//
+//- (void)videoLikeWithCell:(BXDynPlayVideoCell *)cell;
+//- (void)videolLookWithCell:(BXDynPlayVideoCell *)cell;
+//- (void)videoRewardWithVideo:(BXHMovieModel *)video;
+//@end
 
 NS_ASSUME_NONNULL_END
