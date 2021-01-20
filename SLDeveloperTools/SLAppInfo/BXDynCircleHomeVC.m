@@ -856,12 +856,12 @@
     }
     if ([model.msgdetailmodel.render_type intValue] == 20) {
 //        BXVideoPlayVC *vc = [[BXVideoPlayVC alloc]init];
-//        BXHMovieModel *moviemodel = [BXHMovieModel new];
-//        moviemodel = model.msgdetailmodel.MovieModel;
-//        NSMutableArray *movieArray = [NSMutableArray arrayWithObject:moviemodel];
+        BXHMovieModel *moviemodel = model.msgdetailmodel.MovieModel;
+        NSMutableArray *movieArray = [NSMutableArray arrayWithObject:moviemodel];
 //        vc.videos = movieArray;
 //        vc.index = 0;
 //        [self pushVc:vc];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2BXVideoPlayVC object:nil userInfo:@{@"vc":self,@"movie_models":movieArray,@"index":@(0)}];
         return;
     }
     BXDynClickPlayVC *vc = [[BXDynClickPlayVC alloc] initWithVideoModel:model];

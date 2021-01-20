@@ -13,6 +13,7 @@
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <YYCategories/YYCategories.h>
 #import "BXDynClickPlayVC.h"
+#import "SLAppInfoConst.h"
 //#import "BXVideoPlayVC.h"
 #import "BXHMovieModel.h"
 #import "BXDynTopicCircleVideoVC.h"
@@ -151,13 +152,15 @@
 //    [self.viewController presentViewController:vc animated:YES completion:nil];
     if ([self.model.msgdetailmodel.render_type intValue] == 20) {
 //        BXVideoPlayVC *vc = [[BXVideoPlayVC alloc]init];
-//        BXHMovieModel *moviemodel = [BXHMovieModel new];
-//        moviemodel = self.model.msgdetailmodel.MovieModel;
-//        NSMutableArray *movieArray = [NSMutableArray arrayWithObject:moviemodel];
+        BXHMovieModel *moviemodel = self.model.msgdetailmodel.MovieModel;
+        NSMutableArray *movieArray = [NSMutableArray arrayWithObject:moviemodel];
 //        vc.videos = movieArray;
 //        vc.index = 0;
 //        [self.viewController.navigationController pushViewController:vc animated:YES];
-//        return;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2BXVideoPlayVC object:nil userInfo:@{@"vc":self.viewController,@"movie_models":movieArray,@"index":@(0)}];
+        
+        return;
     }
     
     BXDynTopicCircleVideoVC *bxvc = [[BXDynTopicCircleVideoVC alloc]init];

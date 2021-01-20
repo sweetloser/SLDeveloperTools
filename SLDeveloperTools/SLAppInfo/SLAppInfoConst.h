@@ -23,6 +23,10 @@ static NSString *const BXGo2Login = @"BXGo2Login";                              
 
 static NSString *const BXLoadURL = @"BXLoadURL";                                                    //
 
+static NSString *const BXEnterRoomWithRooms = @"BXEnterRoomWithRooms";                            //进入直播间
+
+static NSString *const BXGo2BXVideoPlayVC = @"BXGo2BXVideoPlayVC";                            //进入视频播放页面
+
 static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                   //获取到了定位信息
 
 static NSString *const kDidCollectNotification = @"DidCollectNotification";                           //收藏或取消收藏

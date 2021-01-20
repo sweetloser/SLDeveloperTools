@@ -1074,10 +1074,13 @@
             return;
         }
 //        BXVideoPlayVC *vc = [[BXVideoPlayVC alloc]init];
-//        NSMutableArray *movieArray = [NSMutableArray arrayWithObject:moviemodel];
+        NSMutableArray *movieArray = [NSMutableArray arrayWithObject:moviemodel];
 //        vc.videos = movieArray;
 //        vc.index = 0;
 //        [self pushVc:vc];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2BXVideoPlayVC object:nil userInfo:@{@"vc":self,@"movie_models":movieArray,@"index":@(0)}];
+        
         return;
     }
     BXDynClickPlayVC *vc = [[BXDynClickPlayVC alloc] initWithVideoModel:model];

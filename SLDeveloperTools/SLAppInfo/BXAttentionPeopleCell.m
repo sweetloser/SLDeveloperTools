@@ -15,12 +15,13 @@
 #import "BXSLCircleRippleView.h"
 #import "SLMoviePlayVCCoonfig.h"
 #import <SDAutoLayout/SDAutoLayout.h>
+#import <YYCategories/YYCategories.h>
 #import <SDWebImage/SDWebImage.h>
 #import "BXSLLiveRoom.h"
 #import <Masonry/Masonry.h>
 #import "../SLCategory/SLCategory.h"
 #import "../SLMacro/SLMacro.h"
-
+#import "SLAppInfoConst.h"
 @interface BXAttentionPeopleCell()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,assign) NSInteger allNum;
@@ -92,6 +93,8 @@
         BXSLLiveRoom *liveRoom = nil;
         liveRoom = self.is_live_dataArr[indexPath.row];
 //        [BXLocalAgreement GHenterLiveRoomWithAllRoomData:self.is_live_dataArr currentSelectedIndex:indexPath.row fromVc:self.viewController];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXEnterRoomWithRooms object:nil userInfo:@{@"rooms":self.is_live_dataArr,@"index":@(indexPath.row),@"vc":self.viewController}];
         
     }else{
             

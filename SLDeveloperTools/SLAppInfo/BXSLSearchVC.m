@@ -19,6 +19,7 @@
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import "../SLCategory/SLCategory.h"
 #import "../SLMacro/SLMacro.h"
+#import "SLAppInfoConst.h"
 
 @interface BXSLSearchVC () <UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YHSearchingVCDelegate>
 
@@ -180,6 +181,8 @@
 //    BXVideoPlayVC *vc = [[BXVideoPlayVC alloc]init];
 //    vc.videos = @[video];
 //    [self.navigationController pushViewController:vc animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2BXVideoPlayVC object:nil userInfo:@{@"vc":self,@"movie_models":@[video],@"index":@(0)}];
 }
 
 #pragma - mark UICollectionViewDelegateFlowLayout

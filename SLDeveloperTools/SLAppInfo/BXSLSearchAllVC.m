@@ -571,6 +571,8 @@
 //        BXVideoPlayVC *vc = [[BXVideoPlayVC alloc]init];
 //        vc.videos = @[video];
 //        [self.navigationController pushViewController:vc animated:YES];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2BXVideoPlayVC object:nil userInfo:@{@"vc":self,@"movie_models":@[video],@"index":@(0)}];
     }
 }
 

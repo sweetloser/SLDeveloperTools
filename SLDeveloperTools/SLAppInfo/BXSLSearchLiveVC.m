@@ -19,6 +19,7 @@
 #import "SLAppInfoConst.h"
 #import <Masonry/Masonry.h>
 #import "../SLWidget/SLBaseEmptyVC/SLEmptyHeader.h"
+#import "SLAppInfoConst.h"
 
 @interface BXSLSearchLiveVC () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -135,6 +136,9 @@
     SLMoviePlayVCCoonfig *config = [SLMoviePlayVCCoonfig shareMovePlayConfig];
     config.loadUrl = nil;
     config.hasMore = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXEnterRoomWithRooms object:nil userInfo:@{@"rooms":@[liveRoom],@"index":@0,@"vc":self}];
+    
 //    [BXLocalAgreement enterLiveRoomWithAllRoomData:@[liveRoom] currentSelectedIndex:0 fromVc:self];
 }
 

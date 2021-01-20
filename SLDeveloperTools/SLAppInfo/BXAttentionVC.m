@@ -530,6 +530,7 @@
 //            BXVideoPlayVC *vc = [[BXVideoPlayVC alloc]init];
 //            vc.videos = @[mediaModel.video];
 //            [self.navigationController pushViewController:vc animated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2BXVideoPlayVC object:nil userInfo:@{@"vc":self,@"movie_models":@[mediaModel.video],@"index":@(0)}];
         } else {
 //            [BXLocalAgreement loadUrl:mediaModel.liveRoom.jump fromVc:self];
             [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":mediaModel.liveRoom.jump}];

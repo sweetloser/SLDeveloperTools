@@ -383,6 +383,9 @@
 //    BXVideoPlayVC *vc = [[BXVideoPlayVC alloc]init];
 //    vc.videos = @[video];
 //    [self.vc.navigationController pushViewController:vc animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2BXVideoPlayVC object:nil userInfo:@{@"vc":self.vc,@"movie_models":@[video],@"index":@(0)}];
+    
 }
 
 #pragma - mark UIScrollViewDelegate
