@@ -17,9 +17,9 @@
 
 #define New_Http_Base_make_friend @"http://v1.live.libx.com.cn/api/"
 
-#define SL_HTTP_BASE_AMWAY_URL @"https://shop.libx.com.cn/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.libx.com.cn/"
 
-#define SL_HTTP_BASE_API_URL @"https://shop.libx.com.cn/"
+#define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
 
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
 //比例

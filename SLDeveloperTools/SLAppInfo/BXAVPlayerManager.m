@@ -9,7 +9,8 @@
 #import "BXAVPlayerManager.h"
 //#import "BXHomepageCategoryVC.h"
 //#import "BXHomeDynamic.h"
-
+#import "../SLCategory/SLCategory.h"
+#import "../SLWidget/SLJXCategoryView/JXCategoryView.h"
 @interface BXAVPlayerManager ()
 
 @property (assign, nonatomic) BOOL isFailedPause;
@@ -35,89 +36,97 @@
 
 - (void)play {
     
-//    switch (self.managerType) {
-//        case BXAVPlayerManagerVideoPlayRecommended:
-//            {
-////                推荐
-//                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
-//                if (![cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")] || [(BXHomepageCategoryVC *)cvc categoryView].selectedIndex != 0) {
-//                    return;
-//                }
-//            }
-//            break;
-//        case BXAVPlayerManagerVideoPlayDynamicNew:
-//            {
-//    //                动态-最新
-//                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
-//                if ([cvc isKindOfClass:NSClassFromString(@"BXDynClickPlayVC")]) {
-//                    break;
-//                }
-//                if ([cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")]){
-//                    if ([(BXHomepageCategoryVC *)cvc categoryView].selectedIndex == 2) {
+    switch (self.managerType) {
+        case BXAVPlayerManagerVideoPlayRecommended:
+            {
+//                推荐
+                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
+                if (![cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")] || [(JXCategoryTitleView *)[cvc valueForKeyPath:@"categoryView"] selectedIndex] != 0) {
+                    return;
+                }
+            }
+            break;
+        case BXAVPlayerManagerVideoPlayDynamicNew:
+            {
+    //                动态-最新
+                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
+                if ([cvc isKindOfClass:NSClassFromString(@"BXDynClickPlayVC")]) {
+                    break;
+                }
+                if ([cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")]){
+                    if ([[cvc valueForKeyPath:@"categoryView"] selectedIndex] == 2) {
 //                        BXHomepageCategoryVC *hp = (BXHomepageCategoryVC *)cvc;
-//                        BXHomeDynamic *selected2 = hp.childVCs[2];
-//                        if (selected2.categoryView.selectedIndex != 0) {
-//                            return;
-//                        }
-//                    }else if([(BXHomepageCategoryVC *)cvc categoryView].selectedIndex == 3) {
-//                        break;
-//                    }else{
-//                        return;
-//                    }
-//                }
-//            }
-//            break;
-//        case BXAVPlayerManagerVideoPlayDynamicNearBy:
-//            {
-////                动态-附近
-//                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
-//                if ([cvc isKindOfClass:NSClassFromString(@"BXDynClickPlayVC")]) {
-//                    break;
-//                }
-//                if (![cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")] || [(BXHomepageCategoryVC *)cvc categoryView].selectedIndex != 2) {
-//                    return;
-//                }
+                        NSArray *childVCs = [cvc valueForKeyPath:@"childVCs"];
+                        id selected2 = childVCs[2];
+                        if ([(JXCategoryTitleView *)[selected2 valueForKeyPath:@"categoryView"] selectedIndex] != 0) {
+                            return;
+                        }
+                    }else if([(JXCategoryTitleView *)[cvc valueForKeyPath:@"categoryView"] selectedIndex] == 3) {
+                        break;
+                    }else{
+                        return;
+                    }
+                }
+            }
+            break;
+        case BXAVPlayerManagerVideoPlayDynamicNearBy:
+            {
+//                动态-附近
+                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
+                if ([cvc isKindOfClass:NSClassFromString(@"BXDynClickPlayVC")]) {
+                    break;
+                }
+                if (![cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")] || [(JXCategoryTitleView *)[cvc valueForKeyPath:@"categoryView"] selectedIndex] != 2) {
+                    return;
+                }
+//                BXHomepageCategoryVC *hp = (BXHomepageCategoryVC *)cvc;
+                NSArray *childViewControllers = [cvc valueForKeyPath:@"childViewControllers"];
+                JXCategoryTitleView *categoryView = [cvc valueForKeyPath:@"categoryView"];
+                id selected2 = childViewControllers[categoryView.selectedIndex];
+//                BXHomeDynamic *selected2 = hp.childViewControllers[hp.categoryView.selectedIndex];
+                if (((JXCategoryTitleView *)[selected2 valueForKeyPath:@"categoryView"]).selectedIndex != 1) {
+                    return;
+                }
+            }
+            break;
+        case BXAVPlayerManagerVideoPlayDynamicCircle:
+            {
+//                动态-圈子
+                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
+                if ([cvc isKindOfClass:NSClassFromString(@"BXDynClickPlayVC")]) {
+                    break;
+                }
+                if (![cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")] || [(JXCategoryTitleView *)[cvc valueForKeyPath:@"categoryView"] selectedIndex] != 2) {
+                    return;
+                }
 //                BXHomepageCategoryVC *hp = (BXHomepageCategoryVC *)cvc;
 //                BXHomeDynamic *selected2 = hp.childViewControllers[hp.categoryView.selectedIndex];
-//                if (selected2.categoryView.selectedIndex != 1) {
-//                    return;
-//                }
-//            }
-//            break;
-//        case BXAVPlayerManagerVideoPlayDynamicCircle:
-//            {
-////                动态-圈子
-//                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
-//                if ([cvc isKindOfClass:NSClassFromString(@"BXDynClickPlayVC")]) {
-//                    break;
-//                }
-//                if (![cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")] || [(BXHomepageCategoryVC *)cvc categoryView].selectedIndex != 2) {
-//                    return;
-//                }
-//                BXHomepageCategoryVC *hp = (BXHomepageCategoryVC *)cvc;
-//                BXHomeDynamic *selected2 = hp.childViewControllers[hp.categoryView.selectedIndex];
-//                if (selected2.categoryView.selectedIndex != 2) {
-//                    return;
-//                }
-//            }
-//            break;
-//        case BXAVPlayerManagerVideoPlayFocusOn:
-//            {
-////                关注
-//                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
-//                if (![cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")] || [(BXHomepageCategoryVC *)cvc categoryView].selectedIndex != 1) {
-//                    return;
-//                }
-//            }
-//            break;
-//        case BXAVPlayerManagerVideoPlayOthers:
-//            {
-//
-//            }
-//            break;
-//        default:
-//            break;
-//    }
+                NSArray *childViewControllers = [cvc valueForKeyPath:@"childViewControllers"];
+                JXCategoryTitleView *categoryView = [cvc valueForKeyPath:@"categoryView"];
+                id selected2 = childViewControllers[categoryView.selectedIndex];
+                
+                if (((JXCategoryTitleView *)[selected2 valueForKeyPath:@"categoryView"]).selectedIndex != 2) {
+                    return;
+                }
+            }
+            break;
+        case BXAVPlayerManagerVideoPlayFocusOn:
+            {
+//                关注
+                UIViewController *cvc = [[UIApplication sharedApplication] activityViewController];
+                if (![cvc isKindOfClass:NSClassFromString(@"BXHomepageCategoryVC")] || [(JXCategoryTitleView *)[cvc valueForKeyPath:@"categoryView"] selectedIndex] != 1) {
+                    return;
+                }
+            }
+            break;
+        case BXAVPlayerManagerVideoPlayOthers:
+            {
+
+            }
+            break;
+        default:
+            break;
+    }
     
     NSLog(@"a");
     if (_isFailedPause) {
