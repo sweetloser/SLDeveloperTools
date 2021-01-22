@@ -12,12 +12,10 @@
 #import "BXDynTopicSearchCell.h"
 #import "HttpMakeFriendRequest.h"
 #import "BXDynTopicModel.h"
-#import <YYCategories/YYCategories.h>
+#import <SLDeveloperTools/SLDeveloperTools.h>
 #import <Masonry/Masonry.h>
-#import "../SLMaskTools/SLMaskTools.h"
-#import "../SLMacro/SLMacro.h"
 #import <SDAutoLayout/SDAutoLayout.h>
-#import "SLAppInfoMacro.h"
+#import <YYCategories/YYCategories.h>
 
 @interface AddHuaTiFooterView()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong)UITableView *tableview;
@@ -347,7 +345,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
 //    if (section == 0 && _HotDataArray.count) {
-//        
+//
 //        return CGSizeMake(SCREEN_WIDTH, 30);
 //    }
 //    if (section == 1 && _NewDataArray.count) {

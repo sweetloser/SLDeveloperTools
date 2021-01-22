@@ -13,7 +13,6 @@
 #import "../SLMacro/SLMacro.h"
 #import <YYText/YYText.h>
 #import "SLAppInfoMacro.h"
-#import <CTMediator/CTMediator.h>
 #import "SLAppInfoConst.h"
 #import <YYCategories/YYCategories.h>
 @implementation BXDynMsgDetailModel

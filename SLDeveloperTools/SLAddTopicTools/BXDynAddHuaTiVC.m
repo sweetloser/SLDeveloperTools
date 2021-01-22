@@ -8,7 +8,6 @@
 
 #import "BXDynAddHuaTiVC.h"
 #import "AddHuaTiCell.h"
-#import "AddHuaTiFooterView.h"
 #import "BXDynTopicDelItemCell.h"
 #import "HttpMakeFriendRequest.h"
 #import "BXDynTopicModel.h"
@@ -16,6 +15,7 @@
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import <Masonry/Masonry.h>
 #import <SLDeveloperTools/SLDeveloperTools.h>
+#import "AddHuaTiFooterView.h"
 #import <YYCategories/YYCategories.h>
 
 @interface BXDynAddHuaTiVC ()<UISearchBarDelegate, UICollectionViewDelegate,UICollectionViewDataSource>

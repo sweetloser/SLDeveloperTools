@@ -22,7 +22,6 @@ PODS:
   - Aspects (1.4.1)
   - Bugly (2.5.71)
   - CocoaAsyncSocket (7.6.5)
-  - CTMediator (44)
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
   - FLAnimatedImage (1.0.12)
@@ -113,7 +112,6 @@ PODS:
     - YYCategories
   - SLDeveloperTools/SLAppInfo (0.0.1):
     - Bugly (~> 2.5.4)
-    - CTMediator
     - FLAnimatedImage
     - FMDB
     - HPGrowingTextView
@@ -135,13 +133,13 @@ PODS:
     - SLDeveloperTools/SLWidget/SLShareTools
     - SobotKit (= 2.8.8)
     - STPopup
-    - TXLiteAVSDK_Professional (~> 8.0.9642)
-    - UMCCommon
+    - TXLiteAVSDK_Professional (~> 8.3)
+    - UMCCommon (= 7.2.5)
     - UMCPush
     - UMCSecurityPlugins
-    - UMCShare
     - UMCShare/Social/ReducedQQ
     - UMCShare/Social/ReducedWeChat
+    - UMCShare/UI
     - YYCategories
     - YYText
     - ZFPlayer (= 3.3.2)
@@ -273,7 +271,7 @@ PODS:
   - STPopup (1.8.7)
   - SVProgressHUD (2.2.5)
   - Toast (3.1.0)
-  - TXLiteAVSDK_Professional (8.0.9644)
+  - TXLiteAVSDK_Professional (8.3.9878)
   - TZImagePickerController (3.2.9)
   - UMAPM (1.1.0)
   - UMCCommon (7.2.5):
@@ -282,156 +280,15 @@ PODS:
   - UMCPush (3.3.1):
     - UMCCommon
   - UMCSecurityPlugins (1.0.6)
-  - UMCShare (6.10.1):
+  - UMCShare/Core (6.10.2):
     - UMCCommon
-    - UMCShare/Core (= 6.10.1)
-    - UMCShare/Social (= 6.10.1)
-    - UMCShare/UI (= 6.10.1)
-  - UMCShare/Core (6.10.1):
-    - UMCCommon
-  - UMCShare/Social (6.10.1):
+  - UMCShare/Social/ReducedQQ (6.10.2):
     - UMCCommon
     - UMCShare/Core
-    - UMCShare/Social/AlipayShare (= 6.10.1)
-    - UMCShare/Social/DingDing (= 6.10.1)
-    - UMCShare/Social/Douban (= 6.10.1)
-    - UMCShare/Social/DouYin (= 6.10.1)
-    - UMCShare/Social/DropBox (= 6.10.1)
-    - UMCShare/Social/Email (= 6.10.1)
-    - UMCShare/Social/EverNote (= 6.10.1)
-    - UMCShare/Social/Facebook (= 6.10.1)
-    - UMCShare/Social/FaceBookMessenger (= 6.10.1)
-    - UMCShare/Social/Flickr (= 6.10.1)
-    - UMCShare/Social/GooglePlus (= 6.10.1)
-    - UMCShare/Social/Instagram (= 6.10.1)
-    - UMCShare/Social/Kakao (= 6.10.1)
-    - UMCShare/Social/LaiWang (= 6.10.1)
-    - UMCShare/Social/Line (= 6.10.1)
-    - UMCShare/Social/Linkedin (= 6.10.1)
-    - UMCShare/Social/Pinterest (= 6.10.1)
-    - UMCShare/Social/Pocket (= 6.10.1)
-    - UMCShare/Social/QQ (= 6.10.1)
-    - UMCShare/Social/ReducedQQ (= 6.10.1)
-    - UMCShare/Social/ReducedSina (= 6.10.1)
-    - UMCShare/Social/ReducedWeChat (= 6.10.1)
-    - UMCShare/Social/Renren (= 6.10.1)
-    - UMCShare/Social/Sina (= 6.10.1)
-    - UMCShare/Social/SMS (= 6.10.1)
-    - UMCShare/Social/TencentWeibo (= 6.10.1)
-    - UMCShare/Social/Tumblr (= 6.10.1)
-    - UMCShare/Social/Twitter (= 6.10.1)
-    - UMCShare/Social/VKontakte (= 6.10.1)
-    - UMCShare/Social/WeChat (= 6.10.1)
-    - UMCShare/Social/WeChatWork (= 6.10.1)
-    - UMCShare/Social/WhatsApp (= 6.10.1)
-    - UMCShare/Social/YiXin (= 6.10.1)
-    - UMCShare/Social/YouDao (= 6.10.1)
-  - UMCShare/Social/AlipayShare (6.10.1):
+  - UMCShare/Social/ReducedWeChat (6.10.2):
     - UMCCommon
     - UMCShare/Core
-  - UMCShare/Social/DingDing (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Douban (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/DouYin (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/DropBox (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Email (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/EverNote (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Facebook (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/FaceBookMessenger (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Flickr (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/GooglePlus (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Instagram (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Kakao (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/LaiWang (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Line (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Linkedin (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Pinterest (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Pocket (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/QQ (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-    - UMCShare/Social/ReducedQQ
-  - UMCShare/Social/ReducedQQ (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/ReducedSina (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/ReducedWeChat (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Renren (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Sina (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-    - UMCShare/Social/ReducedSina
-  - UMCShare/Social/SMS (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/TencentWeibo (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Tumblr (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/Twitter (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/VKontakte (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/WeChat (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-    - UMCShare/Social/ReducedWeChat
-  - UMCShare/Social/WeChatWork (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/WhatsApp (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/YiXin (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/YouDao (6.10.1):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/UI (6.10.1):
+  - UMCShare/UI (6.10.2):
     - UMCCommon
     - UMCShare/Core
   - UMDevice (1.1.0)
@@ -469,7 +326,6 @@ SPEC REPOS:
     - Aspects
     - Bugly
     - CocoaAsyncSocket
-    - CTMediator
     - DZNEmptyDataSet
     - FDFullscreenPopGesture
     - FLAnimatedImage
@@ -536,7 +392,6 @@ SPEC CHECKSUMS:
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   Bugly: fd066c75c4a0eca1440f9b6a84bd37d51bfc85ac
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  CTMediator: 933dba523da87bf875e4a7e8728945fbc512f1d2
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
@@ -564,19 +419,19 @@ SPEC CHECKSUMS:
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SLDeveloperTools: 4a5fe64a44eafb2bcb4ad52426a1b9fe717524c3
+  SLDeveloperTools: ff77c31fd4a37d2ec582fd58c7d785101abd48ec
   SobotKit: cab9f7d9e8603c688c095b464e8ef261999e872a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   STPopup: a9045557bc48a0df51fbb7bf0544447c5fe84d34
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
-  TXLiteAVSDK_Professional: a6c4150c76f695ff5b62d64112eb0193bee5c39b
+  TXLiteAVSDK_Professional: 484ff42f2fa29fbbfeddda10e638a3c1376f357b
   TZImagePickerController: 1f92968aa0e98a06b9e2eccca8560acc19254257
   UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
   UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
   UMCPush: af977ec99bbf34558825e907c58f6b76f6c7f897
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
-  UMCShare: 0846449c689e8bf6793a941b97f51f9afff927ef
+  UMCShare: e14e1399673fa361cddbde3a05b3743e10f673f7
   UMDevice: 28d21a568c8e8322e5a03bbd53b138d0c098d3b3
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
