@@ -12,10 +12,12 @@
 #import "BXDynTopicSearchCell.h"
 #import "HttpMakeFriendRequest.h"
 #import "BXDynTopicModel.h"
-#import <SLDeveloperTools/SLDeveloperTools.h>
-#import <Masonry/Masonry.h>
-#import <SDAutoLayout/SDAutoLayout.h>
 #import <YYCategories/YYCategories.h>
+#import <Masonry/Masonry.h>
+#import "../SLMaskTools/SLMaskTools.h"
+#import "../SLMacro/SLMacro.h"
+#import <SDAutoLayout/SDAutoLayout.h>
+#import "SLAppInfoMacro.h"
 
 @interface AddHuaTiFooterView()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong)UITableView *tableview;
@@ -29,7 +31,7 @@
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property (nonatomic,strong)NSMutableArray *HotDataArray;
 @property (nonatomic,strong)NSMutableArray *NewDataArray;
-@property (nonatomic,strong)NSMutableDictionary *topicDic;
+@property (nonatomic,strong)NSMutableArray *topicArray;
 @property (nonatomic,strong)NSMutableArray *searchDataArray;
 
 
@@ -53,7 +55,7 @@
 -(void)createData{
     [HttpMakeFriendRequest GetTopicWithpage_index:@"1" page_size:@"6" Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
         if (flag) {
-            self.topicDic = jsonDic[@"data"];
+            self.topicArray = jsonDic[@"data"];
             [self.collectionView reloadData];
         }else{
             [BGProgressHUD showInfoWithMessage:[jsonDic valueForKey:@"msg"]];
@@ -67,7 +69,7 @@
 
     _HotDataArray = [[NSMutableArray alloc]init];
     _NewDataArray = [[NSMutableArray alloc]init];
-    _topicDic = [[NSMutableDictionary alloc]init];
+    _topicArray = [[NSMutableArray alloc]init];
     _AddDataArray = [[NSMutableArray alloc]init];
     _searchDataArray = [[NSMutableArray alloc]init];
     _tableview = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -175,96 +177,37 @@
 
 #pragma mark - UICollectionViewDelegate/Datasource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.topicDic.count;
+    return self.topicArray.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return _HotDataArray.count;
-//    }
-//    if (section == 1) {
-//        return _NewDataArray.count;
-//    }
-//  return [[self.topicDic[section] objectForKey:@"data"] count];
-    
-    NSArray *arr = [self.topicDic allKeys];
-    return [_topicDic[arr[section]] count];
+
+    return [_topicArray[section][@"data"] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     BXDynTopicSearchCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BXDynTopciCell" forIndexPath:indexPath];
-//    cell.model = [[BXDynNewModel alloc]init];
-//    if (indexPath.section == 0) {
-//        cell.topicStr = [_HotDataArray[indexPath.row] topic_name];
-//    }
-//    if (indexPath.section == 1) {
-//        cell.topicStr = [_NewDataArray[indexPath.row] topic_name];
-//    }
-    NSArray *arr = [self.topicDic allKeys];
-    cell.topicStr = [_topicDic[arr[indexPath.section]][indexPath.row] objectForKey:@"topic_name"];
+ 
+    cell.topicStr = [_topicArray[indexPath.section][@"data"][indexPath.row] objectForKey:@"topic_name"];
     return cell;
 
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    [self.topicDataArray[indexPath.section] objectForKey:@"data"][indexPath.row];
-//    if (indexPath.section == 0) {
-//        if (self.DidItemIndex) {
-//            if (self.AddDataArray.count > 3 || self.itemNum >= 3) {
-//                [BGProgressHUD showInfoWithMessage:@"最多只能添加三个话题哦"];
-//                return;
-//            }
-//            self.DidItemIndex([self.HotDataArray[indexPath.row] topic_name], [self.HotDataArray[indexPath.row] topic_id]);
-//            [self.AddDataArray addObject:[self.HotDataArray[indexPath.row] topic_name]];
-//            self.itemNum++;
-//        }
-//    }
-//    if (indexPath.section == 1) {
-        if (self.DidItemIndex) {
-//            if (self.AddDataArray.count > 3 || self.itemNum >= 3) {
-//                [BGProgressHUD showInfoWithMessage:@"最多只能添加三个话题哦"];
-//                return;
-//            }
-            NSArray *arr = [self.topicDic allKeys];
-            self.DidItemIndex([_topicDic[arr[indexPath.section]][indexPath.row] objectForKey:@"topic_name"], [_topicDic[arr[indexPath.section]][indexPath.row] objectForKey:@"topic_id"]);
-            
-//            [self.AddDataArray addObject:[[self.topicDataArray[indexPath.section] objectForKey:@"data"][indexPath.row] objectForKey:@"topic_name"]];
-//            self.itemNum++;
-        }
-//    }
+
+    if (self.DidItemIndex) {
+        self.DidItemIndex([_topicArray[indexPath.section][@"data"][indexPath.row] objectForKey:@"topic_name"], [_topicArray[indexPath.section][@"data"][indexPath.row] objectForKey:@"topic_id"]);
+        
+    }
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {
-//
-//        NSString *str = [_HotDataArray[indexPath.row] topic_name];
-//        CGFloat width = [str widthForFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:12]];
-//        CGFloat height = 0;
-//        if (width > 300) {
-//            width = 300;
-//            height = [str heightForFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:12] width:300];
-//            return CGSizeMake(width + 30, height + 15);
-//        }
-//        return CGSizeMake(width + 30, 30);
-//    }
-//    if (indexPath.section == 1) {
-//
-//        NSString *str = [_NewDataArray[indexPath.row] topic_name];
-//        CGFloat width = [str widthForFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:12]];
-//        CGFloat height = 0;
-//        if (width > 300) {
-//            width = 300;
-//            height = [str heightForFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:12] width:300];
-//            return CGSizeMake(width + 30, height + 15);
-//        }
-//        return CGSizeMake(width + 30, 30);
-//    }
-//    return CGSizeMake(0, 0);
+
+
     
-    NSArray *arr = [self.topicDic allKeys];
-    
-    NSString *str = [_topicDic[arr[indexPath.section]][indexPath.row] objectForKey:@"topic_name"];
+    NSString *str = [_topicArray[indexPath.section][@"data"][indexPath.row] objectForKey:@"topic_name"];
     CGFloat width = [str widthForFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:12]];
     CGFloat height = 0;
     if (width > 300) {
@@ -295,42 +238,19 @@
 {
     if([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-//        if (indexPath.section == 0) {
-//            _HotView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HotView" forIndexPath:indexPath];
-//
-//            UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(12, 5, 60, 20)];
-//            titlelabel.text = @"热门话题";
-//            titlelabel.textAlignment = 0;
-//            titlelabel.textColor = UIColorHex(#8C8C8C);
-//            titlelabel.font = [UIFont systemFontOfSize:14];
-//            [_HotView addSubview:titlelabel];
-//
-//
-//            return _HotView;
-//        }
-//        else if (indexPath.section == 1) {
-//
-//            _NewView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"NewView" forIndexPath:indexPath];
-//            UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(12, 5, 60, 20)];
-//            titlelabel.text = @"最新话题";
-//            titlelabel.textAlignment = 0;
-//            titlelabel.textColor = UIColorHex(#8C8C8C);
-//            titlelabel.font = [UIFont systemFontOfSize:14];
-//            [_NewView addSubview:titlelabel];
-//            return _NewView;
-//        }
+
         UICollectionReusableView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"NewView" forIndexPath:indexPath];
         UILabel *titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(12, 5, 60, 20)];
-        if (indexPath.section == 0) {
-            titlelabel.text = @"热门话题";
-        }
-        if (indexPath.section == 1) {
-            titlelabel.text = @"最新话题";
-        }
-        if (indexPath.section == 2) {
-            titlelabel.text = @"推荐话题";
-        }
-        
+//        if (indexPath.section == 0) {
+//            titlelabel.text = @"热门话题";
+//        }
+//        if (indexPath.section == 1) {
+//            titlelabel.text = @"最新话题";
+//        }
+//        if (indexPath.section == 2) {
+//            titlelabel.text = @"推荐话题";
+//        }
+        titlelabel.text = _topicArray[indexPath.section][@"name"];
         titlelabel.textAlignment = 0;
         titlelabel.textColor = UIColorHex(#8C8C8C);
         titlelabel.font = [UIFont systemFontOfSize:14];
@@ -345,7 +265,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
 //    if (section == 0 && _HotDataArray.count) {
-//
+//        
 //        return CGSizeMake(SCREEN_WIDTH, 30);
 //    }
 //    if (section == 1 && _NewDataArray.count) {
