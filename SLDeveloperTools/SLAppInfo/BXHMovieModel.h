@@ -37,8 +37,8 @@
 @property (nonatomic, copy) NSString *jump;
 @property (copy, nonatomic) NSString *is_ad;         //0不是广告 1app下载广告 2网页广告
 @property (copy, nonatomic) NSString *ad_url;        //广告链接
-@property (copy, nonatomic) NSString *goods_id;        //是否展示商品 0表示不展示
-@property (copy, nonatomic) NSString *goods_type;        //是否展示商品 0表示不展示
+@property (copy, nonatomic) NSString *goods_id;
+@property (copy, nonatomic) NSString *goods_type;
 @property (copy, nonatomic) NSString *shop_type;        //购买商铺类型
 @property (copy, nonatomic) NSString *short_title;  //商品标题
 

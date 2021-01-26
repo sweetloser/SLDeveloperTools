@@ -21,7 +21,8 @@
 #import <YYCategories/YYCategories.h>
 #import "SLAppInfoConst.h"
 #import "SLAppInfoMacro.h"
-@interface BXDynAddCircleVC ()<UISearchBarDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+@interface BXDynAddCircleVC ()<UISearchBarDelegate,UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property(nonatomic, strong)UISearchBar *searchBar;
 @property (nonatomic , strong) UIView * navView;
 @property (strong, nonatomic) UIButton *backBtn;
@@ -110,34 +111,33 @@
 }
 -(void)createData{
     [HttpMakeFriendRequest GetCircleWithCircle_type:@"2" page_index:[NSString stringWithFormat:@"%ld",(long)_page+1] page_size:@"20" Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
-         [BGProgressHUD hidden];
-               NSLog(@"%@", jsonDic);
-               if (flag) {
-                   if (!self.page) {
-                       [self.dataArray removeAllObjects];
-                       self.dataArray.ds_Tag = 0;
-                       self.collectionView.hh_footerView.ignoredScrollViewContentInsetBottom = 0;
-                       self.collectionView.isNoMoreData = NO;
-                   }
-                   NSArray *dataArray1 = jsonDic[@"data"][@"data"];
-                   if (dataArray1 && dataArray1.count) {
-                       for (NSDictionary *dic in dataArray1) {
-                           BXDynCircleModel *model = [[BXDynCircleModel alloc]init];
-                           [model updateWithJsonDic:dic];
-                           [self.dataArray addObject:model];
-                           
-                       }
-                        self.dataArray.ds_Tag++;
-                   }
-               }else{
-                   [BGProgressHUD showInfoWithMessage:[jsonDic valueForKey:@"msg"]];
+       NSLog(@"%@", jsonDic);
+       if (flag) {
+           if (!self.page) {
+               [self.dataArray removeAllObjects];
+               self.dataArray.ds_Tag = 0;
+               self.collectionView.hh_footerView.ignoredScrollViewContentInsetBottom = 0;
+               self.collectionView.isNoMoreData = NO;
+           }
+           NSArray *dataArray1 = jsonDic[@"data"][@"data"];
+           if (dataArray1 && dataArray1.count) {
+               for (NSDictionary *dic in dataArray1) {
+                   BXDynCircleModel *model = [[BXDynCircleModel alloc]init];
+                   [model updateWithJsonDic:dic];
+                   [self.dataArray addObject:model];
+                   
                }
-              
-               [self.collectionView headerEndRefreshing];
-               self.collectionView.isRefresh = NO;
-               self.collectionView.isNoNetwork = NO;
+                self.dataArray.ds_Tag++;
+           }
+       }else{
+           [BGProgressHUD showInfoWithMessage:[jsonDic valueForKey:@"msg"]];
+       }
+      
+       [self.collectionView headerEndRefreshing];
+       self.collectionView.isRefresh = NO;
+       self.collectionView.isNoNetwork = NO;
 
-               [self.collectionView reloadData];
+       [self.collectionView reloadData];
     } Failure:^(NSError * _Nonnull error) {
         [BGProgressHUD hidden];
         [self.collectionView headerEndRefreshing];
@@ -155,6 +155,8 @@
     [self.collectionView registerClass:[AddCirCleCell class] forCellWithReuseIdentifier:@"cell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.collectionView.emptyDataSetSource = self;
+    self.collectionView.emptyDataSetDelegate = self;
 //    self.collectionView.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -325,7 +327,6 @@
     
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    [BGProgressHUD showLoadingAnimation];
     [HttpMakeFriendRequest SearceCircleWithCircle_type:@"2" page_index:@"1" page_size:@"50" key_words:searchBar.text Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
         
         NSLog(@"%@", jsonDic);
@@ -345,7 +346,6 @@
         }else{
             [BGProgressHUD showInfoWithMessage:[jsonDic valueForKey:@"msg"]];
         }
-        [BGProgressHUD hidden];
         self.isSearch = YES;
         [self.collectionView headerEndRefreshing];
         self.collectionView.isRefresh = NO;
@@ -382,6 +382,22 @@
 }
 -(void)backClick{
     [self pop];
+}
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"空页面状态"];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"还没有圈子哦";
+    NSMutableDictionary *attributes = [NSMutableDictionary new];
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    [attributes setObject:[UIFont systemFontOfSize:17] forKey:NSFontAttributeName];
+    [attributes setObject:MinorColor forKey:NSForegroundColorAttributeName];
+    [attributes setValue:paragraph forKey:NSParagraphStyleAttributeName];
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
+    return attributeString;
 }
 /*
 #pragma mark - Navigation
