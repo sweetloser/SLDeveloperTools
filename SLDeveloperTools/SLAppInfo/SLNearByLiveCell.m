@@ -29,6 +29,9 @@
 
 @property (nonatomic, strong) LOTAnimationView *statusAnimation;//直播状态(直播中,json动画)
 @property (nonatomic , strong) UIImageView * stautsImageView;//直播状态(休息中)
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
 @end
 
 @implementation SLNearByLiveCell
@@ -110,12 +113,23 @@
         make.width.mas_equalTo((16));
         make.height.mas_equalTo((15));
     }];
-//    [self.lookNumberImgV setBackgroundColor:[UIColor randomColor]];
     
+    
+    self.titleLabel = [UILabel createLabelWithFrame:CGRectZero BackgroundColor:SLClearColor Text:@"" Font:SLPFFont(__ScaleWidth(14)) TextColor:sl_textColors];
+    [self.contentView addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(__ScaleWidth(8));
+        make.height.mas_equalTo(__ScaleWidth(20));
+        make.width.mas_lessThanOrEqualTo(__ScaleWidth(56));
+        make.bottom.mas_equalTo(__ScaleWidth(-5));
+    }];
+    
+    
+//    性别
     self.genderImgV = [UIImageView new];
     [self.contentView addSubview:self.genderImgV];
     [self.genderImgV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(__ScaleWidth(10));
+        make.left.equalTo(self.titleLabel.mas_right).offset(__ScaleWidth(5));
         make.width.height.mas_equalTo(__ScaleWidth(16));
         make.bottom.mas_equalTo(__ScaleWidth(-6));
     }];
@@ -177,7 +191,7 @@
     }else if([liveRoom.gender intValue] == 0){
         self.genderImgV.hidden = YES;
     }
-    
+    self.titleLabel.text = liveRoom.title;
     if ([liveRoom.distance intValue] < 0) {
         self.locationLabel.text = @"未知";
     }else if ([liveRoom.distance intValue] < 1000) {

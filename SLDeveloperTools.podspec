@@ -148,7 +148,7 @@ TODO: Add long description of the pod here.
       sf.dependency 'YYCategories'
       sf.dependency 'AFNetworking'
       sf.dependency 'MMKV'
-      sf.dependency 'Nama-lite'
+      sf.dependency 'Nama-lite', '7.3.2'
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
   end
   
