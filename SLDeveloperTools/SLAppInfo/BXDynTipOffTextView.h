@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 //#import "GHPlaceholderTextView.h"
 NS_ASSUME_NONNULL_BEGIN
-@protocol ReturnContentTextDelegate <NSObject>
+@protocol ReturnContentTextDelegate;
 
--(void)GetTipOffText:(NSString *)string;
-
-@end
 @interface BXDynTipOffTextView : UIView
 @property(nonatomic, weak)id<ReturnContentTextDelegate>delegate;
 //@property(nonatomic, strong)GHPlaceholderTextView *textView;

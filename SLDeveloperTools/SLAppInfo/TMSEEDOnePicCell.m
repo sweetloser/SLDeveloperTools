@@ -8,7 +8,7 @@
 
 #import "TMSEEDOnePicCell.h"
 #import "HZPhotoBrowser.h"
-#import <FLAnimatedImage.h>
+#import <FLAnimatedImage/FLAnimatedImage.h>
 #import "NewHttpManager.h"
 #import "../SLCategory/SLCategory.h"
 #import <YYCategories/YYCategories.h>

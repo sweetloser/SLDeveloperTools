@@ -12,6 +12,7 @@
 #import "../SLCategory/SLCategory.h"
 #import <Masonry/Masonry.h>
 #import <YYCategories/YYCategories.h>
+#import "BXDynTipOffPeopleFooterView.h"
 
 @interface BXDynTipOffTextView()<HPGrowingTextViewDelegate,UITextViewDelegate>
 @property (nonatomic,strong) HPGrowingTextView *growingTextView;;//文字

@@ -15,7 +15,7 @@
 #import "BXDynAddCircleVC.h"
 #import "AddPictureCell.h"
 #import "BXHHEmojiView.h"
-#import <HXPhotoPicker.h>
+#import <HXPhotoPicker/HXPhotoPicker.h>
 #import "FilePathHelper.h"
 #import <ZFPlayer/ZFPlayer.h>
 #import <ZFPlayer/ZFAVPlayerManager.h>

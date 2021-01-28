@@ -20,6 +20,7 @@
 #import "NewHttpManager.h"
 #import <MJExtension/MJExtension.h>
 #import <Masonry/Masonry.h>
+#import "BXDynTipOffPeopleFooterView.h"
 
 @interface SLReportToolVC ()<UITableViewDelegate,UITableViewDataSource, ReturnContentTextDelegate>
 

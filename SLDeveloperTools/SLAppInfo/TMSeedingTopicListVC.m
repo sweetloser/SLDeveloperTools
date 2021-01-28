@@ -40,7 +40,7 @@
 #import "BXDynClickPlayVC.h"
 //#import "BXVideoPlayVC.h"
 #import "BXDynAlertRemoveSoundView.h"
-#import <Aspects.h>
+#import <Aspects/Aspects.h>
 #import "BXAVPlayerManager.h"
 
 //#import "TMSeedingPictureDetailVC.h"

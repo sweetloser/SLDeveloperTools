@@ -10,7 +10,7 @@
 #import "SLHomePageVedioPlayProgressView.h"
 #import "BXProgressView.h"
 #import "BXVideoLoadingView.h"
-#import <KTVHCHTTPHeader.h>
+#import <KTVHTTPCache/KTVHTTPCache.h>
 #import "BXReportVideoManager.h"
 #import "TimeHelper.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -18,7 +18,8 @@
 #import <Lottie/Lottie.h>
 #import "UIApplication+ActivityViewController.h"
 #import "BXRewardTopThreeView.h"
-#import <UIImage+YYAdd.h>
+//#import <UIImage+YYAdd.h>
+#import <YYCategories/YYCategories.h>
 #import "NSObject+Tag.h"
 #import "../SLMacro/SLMacro.h"
 #import <Masonry/Masonry.h>

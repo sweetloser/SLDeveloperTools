@@ -17,6 +17,7 @@
 #import "../SLCategory/SLCategory.h"
 #import <Masonry/Masonry.h>
 #import "SLAppInfoMacro.h"
+#import "BXDynTipOffPeopleFooterView.h"
 
 @interface BXDynTipOffVC ()<UITableViewDelegate,UITableViewDataSource, ReturnContentTextDelegate>
 @property (nonatomic , strong) UIView * navView;

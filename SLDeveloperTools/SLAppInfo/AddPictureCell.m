@@ -9,7 +9,7 @@
 #import "AddPictureCell.h"
 #import "AddPicturePhotoShow.h"
 #import "HZPhotoBrowser.h"
-#import <FLAnimatedImage.h>
+#import <FLAnimatedImage/FLAnimatedImage.h>
 #import <YYCategories/YYCategories.h>
 #import <Masonry/Masonry.h>
 @interface AddPictureCell()
