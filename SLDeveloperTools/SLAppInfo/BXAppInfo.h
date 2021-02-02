@@ -56,6 +56,7 @@
 @property (nonatomic, copy) NSString *app_millet_unit;
 @property (nonatomic, copy) NSString *app_name;
 @property (nonatomic, copy) NSString *app_prefix_name;
+@property (nonatomic, copy) NSString *live_room_name;
 @property (nonatomic, copy) NSString *app_recharge_unit;
 @property (nonatomic, copy) NSString *app_settlement_unit;
 @property (nonatomic, copy) NSString *contact_tel;

@@ -101,6 +101,7 @@ MJCodingImplementation
     self.app_millet_unit = app_base_info[@"app_millet_unit"];
     self.app_account_name = app_base_info[@"app_account_name"];
     self.app_prefix_name = app_base_info[@"app_prefix_name"];
+    self.live_room_name = app_base_info[@"live_room_name"];
     self.app_recharge_unit = app_base_info[@"app_recharge_unit"];
     self.app_settlement_unit = app_base_info[@"app_settlement_unit"];
     self.app_balance_unit = app_base_info[@"app_balance_unit"];

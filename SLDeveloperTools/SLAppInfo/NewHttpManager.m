@@ -83,6 +83,7 @@ code
 1003 需要用户登录
 1004 需要引导用户绑定手机号
 1005 引导用户充值
+10002   账号不存在
 */
 
 - (void)POST:(NSString *)URLString parameters:(NSDictionary * __nullable)parameters success:(Success)success failure:(Failure)failure
