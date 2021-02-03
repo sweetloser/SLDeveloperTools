@@ -7,16 +7,13 @@
 //
 
 #import "BXShortVideoLocationSearchVC.h"
-#import <AMapSearchKit/AMapSearchKit.h>
 #import "BXLocation.h"
 #import "BXAddLocaionCell.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import <SLDeveloperTools/SLDeveloperTools.h>
 #import <Masonry/Masonry.h>
 #import <SDAutoLayout/SDAutoLayout.h>
-@interface BXShortVideoLocationSearchVC ()< AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
-
-@property (nonatomic, strong) AMapSearchAPI *search;
+@interface BXShortVideoLocationSearchVC ()<UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -51,22 +48,20 @@
     self.fd_prefersNavigationBarHidden = YES;
    self.view.backgroundColor = sl_BGColors;
     self.offset = 1;
-    self.search = [[AMapSearchAPI alloc] init];
-    self.search.delegate = self;
     [self loadData];
     [self initNavigationView];
     [self initTableView];
 }
 -(void)loadData {
     BXLocation *location = (BXLocation *)[CacheHelper objectForKey:@"NowLocation"];
-    AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
-    //当前位置
-    request.location = [AMapGeoPoint locationWithLatitude:[location.lat floatValue] longitude:[location.lng floatValue]];
-    //关键字
-    request.page = self.offset;
-    request.requireExtension = YES;
-    //发起周边搜索
-    [self.search AMapPOIAroundSearch:request];
+//    AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
+//    //当前位置
+//    request.location = [AMapGeoPoint locationWithLatitude:[location.lat floatValue] longitude:[location.lng floatValue]];
+//    //关键字
+//    request.page = self.offset;
+//    request.requireExtension = YES;
+//    //发起周边搜索
+//    [self.search AMapPOIAroundSearch:request];
 }
 - (void)initNavigationView {
     
@@ -233,73 +228,73 @@
 }
 
 /* 输入提示回调. */
-- (void)onInputTipsSearchDone:(AMapInputTipsSearchRequest *)request response:(AMapInputTipsSearchResponse *)response
-{
-    if (self.offset==1) {
-        [self.dataArray removeAllObjects];
-    }
-    [response.tips enumerateObjectsUsingBlock:^(AMapTip *obj, NSUInteger idx, BOOL *stop) {
-        
-        BXLocation *location = [[BXLocation alloc] init];
-        location.region_level = @"4";
-        location.uid = obj.uid;
-        location.name = obj.name;
-        location.typecode = obj.typecode;
-        location.lat = [NSString stringWithFormat:@"%f", obj.location.latitude];
-        location.lng = [NSString stringWithFormat:@"%f", obj.location.longitude];
-        location.address = obj.address;
-        location.region_level = @"4";
-        if (!IsNilString(obj.address)) {
-            [self.dataArray addObject:location];
-        }
-    
-    }];
-    [self.tableView reloadData];
-    [self.tableView.mj_footer endRefreshing];
-}
+//- (void)onInputTipsSearchDone:(AMapInputTipsSearchRequest *)request response:(AMapInputTipsSearchResponse *)response
+//{
+//    if (self.offset==1) {
+//        [self.dataArray removeAllObjects];
+//    }
+//    [response.tips enumerateObjectsUsingBlock:^(AMapTip *obj, NSUInteger idx, BOOL *stop) {
+//
+//        BXLocation *location = [[BXLocation alloc] init];
+//        location.region_level = @"4";
+//        location.uid = obj.uid;
+//        location.name = obj.name;
+//        location.typecode = obj.typecode;
+//        location.lat = [NSString stringWithFormat:@"%f", obj.location.latitude];
+//        location.lng = [NSString stringWithFormat:@"%f", obj.location.longitude];
+//        location.address = obj.address;
+//        location.region_level = @"4";
+//        if (!IsNilString(obj.address)) {
+//            [self.dataArray addObject:location];
+//        }
+//
+//    }];
+//    [self.tableView reloadData];
+//    [self.tableView.mj_footer endRefreshing];
+//}
 
 /* POI 搜索回调. */
-- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
-{
-    
-    if (self.offset==1) {
-        [self.dataArray removeAllObjects];
-        if (self.searchField.text.length<=0) {
-            BXLocation *location = (BXLocation *)[CacheHelper objectForKey:@"NowLocation"];
-            location.name = location.city;
-            location.uid = @"";
-            location.region_level = @"2";
-            if (location != nil) {
-                [self.dataArray addObject:location];
-            }
-        }
-    }
-    
-    [response.pois enumerateObjectsUsingBlock:^(AMapPOI *obj, NSUInteger idx, BOOL *stop) {
-        BXLocation *location = [[BXLocation alloc] init];
-        location.region_level = @"4";
-        location.uid = obj.uid;
-        location.name = obj.name;
-        location.typecode = obj.typecode;
-        location.lat = [NSString stringWithFormat:@"%f", obj.location.latitude];
-        location.lng = [NSString stringWithFormat:@"%f", obj.location.longitude];
-        location.address = obj.address;
-        location.tel = obj.tel;
-        location.distance = obj.distance;
-        location.postcode = obj.postcode;
-        if (!IsNilString(obj.address)) {
-            [self.dataArray addObject:location];
-        }
-       
-    }];
-    [self.tableView reloadData];
-    [self.tableView.mj_footer endRefreshing];
-    if (response.pois.count) {
-//        [SLProgressHUD slShowInfoWithMessage:@"搜索完成"];
-    }else{
-        [SLProgressHUD slShowInfoWithMessage:@"对不起，没有找到相关的位置，请修改关键字后再试试"];
-    }
-}
+//- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
+//{
+//
+//    if (self.offset==1) {
+//        [self.dataArray removeAllObjects];
+//        if (self.searchField.text.length<=0) {
+//            BXLocation *location = (BXLocation *)[CacheHelper objectForKey:@"NowLocation"];
+//            location.name = location.city;
+//            location.uid = @"";
+//            location.region_level = @"2";
+//            if (location != nil) {
+//                [self.dataArray addObject:location];
+//            }
+//        }
+//    }
+//
+//    [response.pois enumerateObjectsUsingBlock:^(AMapPOI *obj, NSUInteger idx, BOOL *stop) {
+//        BXLocation *location = [[BXLocation alloc] init];
+//        location.region_level = @"4";
+//        location.uid = obj.uid;
+//        location.name = obj.name;
+//        location.typecode = obj.typecode;
+//        location.lat = [NSString stringWithFormat:@"%f", obj.location.latitude];
+//        location.lng = [NSString stringWithFormat:@"%f", obj.location.longitude];
+//        location.address = obj.address;
+//        location.tel = obj.tel;
+//        location.distance = obj.distance;
+//        location.postcode = obj.postcode;
+//        if (!IsNilString(obj.address)) {
+//            [self.dataArray addObject:location];
+//        }
+//
+//    }];
+//    [self.tableView reloadData];
+//    [self.tableView.mj_footer endRefreshing];
+//    if (response.pois.count) {
+////        [SLProgressHUD slShowInfoWithMessage:@"搜索完成"];
+//    }else{
+//        [SLProgressHUD slShowInfoWithMessage:@"对不起，没有找到相关的位置，请修改关键字后再试试"];
+//    }
+//}
 
 
 #pragma mark - UITableViewDataSource
@@ -364,13 +359,13 @@
 }
 
 -(void)getSearchText{
-    AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc] init];
-    //关键字
-    request.keywords = self.searchField.text;
-    request.page = self.offset;
-    request.requireExtension = YES;
-    //发起周边搜索
-    [self.search AMapPOIKeywordsSearch:request];
+//    AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc] init];
+//    //关键字
+//    request.keywords = self.searchField.text;
+//    request.page = self.offset;
+//    request.requireExtension = YES;
+//    //发起周边搜索
+//    [self.search AMapPOIKeywordsSearch:request];
     [self.searchField resignFirstResponder];
 }
 - (void)editTextField:(UITextField *)textField

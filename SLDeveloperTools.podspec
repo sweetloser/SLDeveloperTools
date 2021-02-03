@@ -207,8 +207,8 @@ TODO: Add long description of the pod here.
 #  位置搜索组件
   s.subspec 'SLLocationSearchTools' do |ls|
     ls.source_files = 'SLDeveloperTools/SLLocationSearchTools/*.{h,m}'
-    ls.dependency 'AMap2DMap-NO-IDFA'
-    ls.dependency 'AMapSearch-NO-IDFA'
+#    ls.dependency 'AMap2DMap-NO-IDFA'
+#    ls.dependency 'AMapSearch-NO-IDFA'
     ls.dependency 'Masonry'
     ls.dependency 'SDWebImage', '= 5.10.0'
     ls.dependency 'FDFullscreenPopGesture', '1.1'
@@ -249,11 +249,9 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'YYCategories'
     appInfo.dependency 'RealReachability'
     appInfo.dependency 'Bugly', '~> 2.5.4'
-    appInfo.dependency 'UMCShare'
     appInfo.dependency 'UMCShare/Social/ReducedWeChat'
     appInfo.dependency 'UMCShare/Social/ReducedQQ'
     appInfo.dependency 'Qiniu', '= 8.0.5'
-    appInfo.dependency 'CTMediator'
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
