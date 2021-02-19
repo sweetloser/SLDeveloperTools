@@ -53,6 +53,38 @@ static SLHttpManager *manager = nil;
 }
 
 #pragma mark - post请求
+
+-(void)sl_get:(NSString *)url success:(SL_NetSuccess)success failure:(SL_NetFailure)failure;{
+    if (![NSThread isMainThread]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            显示网络请求时状态栏的小菊花
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        });
+    }
+    
+    if (self.netStatus > 0) {
+        
+        [self.sessionManager GET:url parameters:nil headers:@{} progress:^(NSProgress * _Nonnull uploadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            success(responseObject);
+//            取消 状态栏 小菊花
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            if (failure) {
+                error.isNetWorkConnectionAvailable = YES;
+                failure(error);
+            }
+        }];
+    } else {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSError *error = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:-1 userInfo:@{NSURLErrorKey:@"netStatus error"}];
+        error.isNetWorkConnectionAvailable = YES;
+        failure(error);
+    }
+}
+
 - (void)sl_post:(NSString *)url parameters:(NSDictionary * __nullable)parameters success:(SL_NetSuccess)success failure:(SL_NetFailure)failure;
 {
     if (![NSThread isMainThread]) {

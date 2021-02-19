@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) AFNetworkReachabilityStatus netStatus;
 
 + (instancetype)sl_sharedNetManager;
-
+-(void)sl_get:(NSString *)url success:(SL_NetSuccess)success failure:(SL_NetFailure)failure;
 - (void)sl_post:(NSString *)url parameters:(NSDictionary * __nullable)parameters success:(SL_NetSuccess)success failure:(SL_NetFailure)failure;
 
 - (void)sl_uploadImageWithOperations:(NSDictionary *)operations withImageArray:(NSArray *)imageArray withUrlString:(NSString *)urlString withProgress:(SL_NetProgress)progress withSuccessBlock:(SL_NetSuccess)successBlock withFailurBlock:(SL_NetFailure)failureBlock;
