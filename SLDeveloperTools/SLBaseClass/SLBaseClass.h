@@ -11,5 +11,6 @@
 #import "BaseVC.h"
 #import "BaseObject.h"
 #import "BaseNavVC.h"
+#import "SLBaseAlertView.h"
 
 #endif /* SLBaseClass_h */

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BXDynTopicHeaderView : UIView
 @property (nonatomic,copy)void(^DidClickTopic)(BXDynTopicModel *model);
 
-@property (nonatomic,copy)void(^AttentClickTopic)();
+@property (nonatomic,copy)void(^AttentClickTopic)(void);
 - (void)scrollViewDidScroll:(CGFloat)offsetY;
 @property(nonatomic, strong)BXDynTopicModel *model;
 @property(nonatomic, strong)UIImageView *attImageView;

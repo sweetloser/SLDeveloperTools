@@ -17,6 +17,7 @@
 #import <YYCategories/YYCategories.h>
 #import "HttpMakeFriendRequest.h"
 #import <FLAnimatedImage/FLAnimatedImage.h>
+#import <Masonry/Masonry.h>
 //#import "DynSharePopViewManager.h"
 @interface HZPhotoBrowser()
 @property (nonatomic,strong) UITapGestureRecognizer *singleTap;

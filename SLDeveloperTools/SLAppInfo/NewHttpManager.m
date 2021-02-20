@@ -26,7 +26,9 @@
 #import <Photos/Photos.h>
 //#import "BXKTVHTTPCacheManager.h"
 #import <UIKit/UIKit.h>
-
+#import "BXGift.h"
+#import "BXLiveUser.h"
+#import "BXLiveChannel.h"
 
 @interface NewHttpManager()
 
@@ -588,6 +590,281 @@ code
                   failure:(void(^)(NSError *error))failure{
     NSDictionary *paramsDic = @{@"video_id":[self stringNoNil:videoId],@"offset":[self stringNoNil:offset]};
     [[NewHttpManager sharedNetManager] POST:@"s=Video.getRewardRank" parameters:paramsDic success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//获取守护礼物列表
++ (void)getGuardGiftSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=Gift.guardGiftList&api_v=v2" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        if (flag) {
+            for (NSDictionary *dic in responseObject[@"data"][@"guardGift"]) {
+                BXGift *gift = [[BXGift alloc]init];
+                gift.giftType = @"1";
+                [gift updateWithJsonDic:dic];
+                [models addObject:gift];
+            }
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//我的贡献榜
++ (void)getContrRankWithInterval:(NSString *)interval
+                          userID:(NSString *)user_id
+                          offset:(NSString *)offset
+                         success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                         failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"interval":[self stringNoNil:interval],@"user_id":[self stringNoNil:user_id],  @"offset":[self stringNoNil:offset]};
+    [[NewHttpManager sharedNetManager] POST:@"s=User.getContrRank" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSDictionary *dataDic = responseObject[@"data"];
+        NSDictionary *listDic = dataDic[@"list"];
+        NSMutableArray *models = [NSMutableArray array];
+        for (NSDictionary *dic in listDic) {
+            BXLiveUser *liveUser = [[BXLiveUser alloc]init];
+            [liveUser updateWithJsonDic:dic];
+            [models addObject:liveUser];
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//用户英雄榜
++ (void)getHeroesRankWithInterval:(NSString *)interval
+                           offset:(NSString *)offset
+                          success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                          failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"interval":[self stringNoNil:interval],  @"offset":[self stringNoNil:offset]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Millet.getHeroesRank" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSDictionary *dataDic = responseObject[@"data"];
+        NSDictionary *listDic = dataDic[@"list"];
+        NSMutableArray *models = [NSMutableArray array];
+        for (NSDictionary *dic in listDic) {
+            BXLiveUser *liveUser = [[BXLiveUser alloc]init];
+            [liveUser updateWithJsonDic:dic];
+            [models addObject:liveUser];
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//主播魅力榜
++ (void)getCharmRankWithInterval:(NSString *)interval
+                         offset:(NSString *)offset
+                         success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                         failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"interval":[self stringNoNil:interval], @"offset":[self stringNoNil:offset]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Millet.getCharmRank" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSDictionary *dataDic = responseObject[@"data"];
+        NSDictionary *listDic = dataDic[@"list"];
+        NSMutableArray *models = [NSMutableArray array];
+        for (NSDictionary *dic in listDic) {
+            BXLiveUser *liveUser = [[BXLiveUser alloc]init];
+            [liveUser updateWithJsonDic:dic];
+            [models addObject:liveUser];
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//守护列表
++ (void)guardListWithUserId:(NSString *)userId
+                 success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                 failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"user_id":[self stringNoNil:userId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.guardList" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//背包
++ (void)getPropsGetUserPropsByPackSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                                  failure:(void(^)(NSError *error))failure{
+    [[NewHttpManager sharedNetManager] POST:@"s=Props.getUserPackage" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        if (flag) {
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                BXGift *gift = [[BXGift alloc]init];
+                gift.giftType = @"2";
+                [gift updateWithJsonDic:dic];
+                [models addObject:gift];
+            }
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//礼物列表
++ (void)getLiveGiftSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=Gift.getLiveGift&api_v=v2" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        if (flag) {
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                BXGift *gift = [[BXGift alloc]init];
+                gift.giftType = @"1";
+                [gift updateWithJsonDic:dic];
+                [models addObject:gift];
+            }
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//礼物资源列表
++ (void)onlineGiftsWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                       failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=Gift.getGiftResources" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+
+
+//获取直播频道
++ (void)liveChannelWithParentId:(NSString *)parentId
+                        success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                        failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"parent_id":[self stringNoNil:parentId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.liveChannel" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject[@"data"]) {
+            BXLiveChannel *liveChannel = [[BXLiveChannel alloc]init];
+            [liveChannel updateWithJsonDic:dic];
+            [models addObject:liveChannel];
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//歌词报错
++ (void)musicLrcReportWithMusicId:(NSString *)musicId
+                          success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                          failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"music_id":[self stringNoNil:musicId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Music.lrcReport" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//云信-获取用户信息
++ (void)yunXinGetUser:(NSString *)userId Success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                 failure:(void(^)(NSError *error))failure{
+    NSDictionary *paramsDic = @{@"user_id":[self stringNoNil:userId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Yunxin.getUser" parameters:paramsDic success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//移出黑名单
++ (void)blacklistDeleteWithUserId:(NSString *)userId
+                          success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                          failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"user_id":[self stringNoNil:userId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Blacklist.delete" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//加入黑名单
++ (void)blacklistAddWithUserId:(NSString *)userId
+                       success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                       failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"user_id":[self stringNoNil:userId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Blacklist.add" parameters:params success:^(id  _Nonnull responseObject) {
         NSString *code = responseObject[@"code"];
         BOOL flag = NO;
         if (![code integerValue]) {

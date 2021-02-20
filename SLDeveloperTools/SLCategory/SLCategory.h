@@ -51,4 +51,6 @@
 #import "UIViewController+SLExtension.h"
 #import "UIView+ghuiview.h"
 #import "UINavigationController+NavPushViewController.h"
+#import "UIView+HJViewStyle.h"
+
 #endif /* SLCategory_h */

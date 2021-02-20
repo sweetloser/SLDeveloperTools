@@ -170,6 +170,66 @@ typedef void (^Failure)(NSError *error);        // 失败Blcok
 
 +(void)videoGetRewardRank:(NSString *)videoId offset:(NSString *)offset success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
                   failure:(void(^)(NSError *error))failure;
+
+//守护礼物列表
++ (void)getGuardGiftSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
+//我的贡献榜
++ (void)getContrRankWithInterval:(NSString *)interval
+                          userID:(NSString *)user_id
+                         offset:(NSString *)offset
+                        success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                        failure:(void(^)(NSError *error))failure;
+
+//用户英雄榜
++ (void)getHeroesRankWithInterval:(NSString *)interval
+                           offset:(NSString *)offset
+                          success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                          failure:(void(^)(NSError *error))failure;
+
+//主播魅力榜
++ (void)getCharmRankWithInterval:(NSString *)interval
+                          offset:(NSString *)offset
+                         success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                         failure:(void(^)(NSError *error))failure;
+
+//守护列表
++ (void)guardListWithUserId:(NSString *)userId
+                 success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                 failure:(void(^)(NSError *error))failure;
+
+//背包
++ (void)getPropsGetUserPropsByPackSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
+//礼物列表
++ (void)getLiveGiftSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
+//礼物资源列表
++ (void)onlineGiftsWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                       failure:(void(^)(NSError *error))failure;
+
+//获取直播频道
++ (void)liveChannelWithParentId:(NSString *)parentId
+                    success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                    failure:(void(^)(NSError *error))failure;
+
+//歌词报错
++ (void)musicLrcReportWithMusicId:(NSString *)musicId
+                          success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                          failure:(void(^)(NSError *error))failure;
+
+//云信-获取用户信息
++ (void)yunXinGetUser:(NSString *)userId Success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
+//移出黑名单
++ (void)blacklistDeleteWithUserId:(NSString *)userId
+                       success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                       failure:(void(^)(NSError *error))failure;
+
+//加入黑名单
++ (void)blacklistAddWithUserId:(NSString *)userId
+                       success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                       failure:(void(^)(NSError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END
