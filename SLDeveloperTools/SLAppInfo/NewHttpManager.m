@@ -29,6 +29,7 @@
 #import "BXGift.h"
 #import "BXLiveUser.h"
 #import "BXLiveChannel.h"
+#import "BXSLLiveRoom.h"
 
 @interface NewHttpManager()
 
@@ -875,5 +876,220 @@ code
         failure(error);
     }];
 }
+
+//粉丝列表
++ (void)fansListWithUserId:(NSString *)userId
+                      offset:(NSString *)offset
+                   success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                   failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"user_id":[self stringNoNil:userId],@"offset":[self stringNoNil:offset]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Follow.fansList&api_v=v2" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject[@"data"]) {
+            BXLiveUser *liveUser = [[BXLiveUser alloc]init];
+            [liveUser updateWithJsonDic:dic];
+            [models addObject:liveUser];
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//关注列表
++ (void)followListWithUserId:(NSString *)userId
+                      offset:(NSString *)offset
+                      length:(NSString *)length
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"user_id":[self stringNoNil:userId],@"offset":[self stringNoNil:offset],@"length":[self stringNoNil:length]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Follow.followList" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject[@"data"]) {
+            BXLiveUser *liveUser = [[BXLiveUser alloc]init];
+            [liveUser updateWithJsonDic:dic];
+            [models addObject:liveUser];
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//附近列表
++ (void)nearByLiveListWithOffset:(NSString *)offset
+                          length:(NSString *)length
+                          gender:(NSString *)gender age:(NSString *)age city_lng:(NSString *)city_lng city_lat:(NSString *)city_lat
+                            city:(NSString *)city
+                         success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                         failure:(void(^)(NSError *error))failure {
+    
+//    MMKV *mkv = [MMKV defaultMMKV];
+////
+//    NSString *gender = [mkv getStringForKey:@"nearby_gender"];
+//    if (!gender) {
+//        gender = @"0";
+//    }
+//    NSString *age = [mkv getStringForKey:@"nearby_age"];
+//    if (!age) {
+//        age = @"0";
+//    }
+////    经度
+//    NSString *city_lng = [mkv getStringForKey:@"nearby_city_lng"];
+//    if (!city_lng) {
+//        city_lng = @"0";
+//    }
+////    纬度
+//    NSString *city_lat = [mkv getStringForKey:@"nearby_city_lat"];
+//    if (!city_lat) {
+//        city_lat = @"0";
+//    }
+////    城市
+//    NSString *city = [mkv getStringForKey:@"nearby_city"];
+//    if (!city) {
+//        city = @"0";
+//    }
+    
+    NSDictionary *params = @{@"offset":[self stringNoNil:offset],@"length":[self stringNoNil:length],@"api_v":@"v2"};
+    NSMutableDictionary *allParams = [[NSMutableDictionary alloc] initWithDictionary:params];
+    [allParams setObject:gender forKey:@"sex"];
+    [allParams setObject:age forKey:@"age"];
+    [allParams setObject:city_lng forKey:@"lng"];
+    [allParams setObject:city_lat forKey:@"lat"];
+    [allParams setObject:city forKey:@"city"];
+    
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.nearbyLiveList&api_v=v2" parameters:allParams success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        if (flag) {
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                BXSLLiveRoom *liveRoom = [[BXSLLiveRoom alloc]init];
+                [liveRoom updateWithJsonDic:dic];
+                [models addObject:liveRoom];
+            }
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//直播分类列表
++ (void)liveclassificationListWithOffset:(NSString *)offset
+                                  length:(NSString *)length
+                               navType:(NSString *)navType
+                               success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                               failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"offset":[self stringNoNil:offset],@"length":[self stringNoNil:length], @"nav_type":[self stringNoNil:navType],@"api_v":@"v2"};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.liveList&api_v=v2" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        if (flag) {
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                BXSLLiveRoom *liveRoom = [[BXSLLiveRoom alloc]init];
+                [liveRoom updateWithJsonDic:dic];
+                [models addObject:liveRoom];
+            }
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//热门列表
++ (void)hotLiveListWithOffset:(NSString *)offset
+                       length:(NSString *)length
+                    success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                    failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"offset":[self stringNoNil:offset],@"length":[self stringNoNil:length],@"api_v":@"v2"};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.getHotLiveList&api_v=v2" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//直播头条
++ (void)getArticleListWithOffset:(NSString *)offset
+                         success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                         failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"offset":[self stringNoNil:offset]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Article.getArticleList" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//消息主菜单
++ (void)indexNewWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                    failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=Message.index&api_v=v3" parameters:@{@"api_v":@"v3", @"have_shopMall": @"1"} success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//最新列表
++ (void)newLiveListWithOffset:(NSString *)offset
+                       length:(NSString *)length
+                    success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                    failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"offset":[self stringNoNil:offset],@"length":[self stringNoNil:length],@"api_v":@"v2"};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.newLiveList&api_v=v2" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        NSMutableArray *models = [NSMutableArray array];
+        if (flag) {
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                BXSLLiveRoom *liveRoom = [[BXSLLiveRoom alloc]init];
+                [liveRoom updateWithJsonDic:dic];
+                [models addObject:liveRoom];
+            }
+        }
+        success(responseObject,flag,models);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
 @end
 

@@ -230,6 +230,62 @@ typedef void (^Failure)(NSError *error);        // 失败Blcok
 + (void)blacklistAddWithUserId:(NSString *)userId
                        success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
                        failure:(void(^)(NSError *error))failure;
+
+//粉丝列表
++ (void)fansListWithUserId:(NSString *)userId
+                      offset:(NSString *)offset
+                 success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                 failure:(void(^)(NSError *error))failure;
+
+//关注列表
++ (void)followListWithUserId:(NSString *)userId
+                      offset:(NSString *)offset
+                      length:(NSString *)length
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure;
+
+//附近列表
++ (void)nearByLiveListWithOffset:(NSString *)offset
+                          length:(NSString *)length
+                          gender:(NSString *)gender
+                             age:(NSString *)age
+                        city_lng:(NSString *)city_lng
+                        city_lat:(NSString *)city_lat
+                            city:(NSString *)city
+                         success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                         failure:(void(^)(NSError *error))failure;
+
+//直播分类列表
++ (void)liveclassificationListWithOffset:(NSString *)offset
+                                  length:(NSString *)length
+                               navType:(NSString *)navType
+                               success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                               failure:(void(^)(NSError *error))failure;
+
+//热门列表
++ (void)hotLiveListWithOffset:(NSString *)offset
+                       length:(NSString *)length
+                    success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                    failure:(void(^)(NSError *error))failure;
+
+//直播头条
++ (void)getArticleListWithOffset:(NSString *)offset
+                         success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                         failure:(void(^)(NSError *error))failure;
+
+//消息主菜单
++ (void)indexNewWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                    failure:(void(^)(NSError *error))failure;
+
+//最新列表
++ (void)newLiveListWithOffset:(NSString *)offset
+                       length:(NSString *)length
+                    success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                    failure:(void(^)(NSError *error))failure;
+
+#pragma mark - tool
++(NSString *)stringNoNil:(NSString *)str;
+
 @end
 
 NS_ASSUME_NONNULL_END
