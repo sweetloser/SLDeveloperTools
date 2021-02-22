@@ -251,7 +251,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'SLDeveloperTools/SLNetTools'
     appInfo.dependency 'SLDeveloperTools/SLMaskTools'
     appInfo.dependency 'SLDeveloperTools/SLVideoWaterMaskTools'
-    appInfo.dependency 'MJExtension', '~> 3.2.2'
+    appInfo.dependency 'MJExtension'
     appInfo.dependency 'MMKV'
     appInfo.dependency 'UMCPush'
     appInfo.dependency 'UMCCommon', '7.2.5'

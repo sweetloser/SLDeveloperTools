@@ -70,7 +70,10 @@ static NSString *const kDidLogoutNotification = @"DidLogoutNotification";       
 //static NSString *const sl_UploadFileResponseCodeError = @"sl_UploadFileResponseCodeError";                        //上传文件请求 code 不为 0
 
 static NSString *const kDidGetAccessTokenNotification = @"DidGetAccessTokenNotification";             //获取到AccessToken
-//static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                   //获取到了定位信息
+
+static NSString *const kAppShowAllData = @"AppShowAllData";                                            //app不隐藏部分数据
+
+//static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                 //获取到了定位信息
 static NSString *const kDidGetGameChannelNotification = @"DidGetGameChannelNotification";             //获取到游戏频道
 static NSString *const kDisplayIncomeNotification = @"DisplayIncomeNotification";                     //显示收益
 static NSString *const kQueryGuardCoverNotification = @"QueryGuardCoverNotification";                 //查询守护着头像

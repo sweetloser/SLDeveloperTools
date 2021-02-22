@@ -77,6 +77,12 @@ typedef enum : NSUInteger {
     SLLiveAddGoodsTypeLiveBefore,
 } SLLiveAddGoodsType;
 
-
+typedef NS_ENUM(NSInteger,DSSpeedMode) {
+    SpeedMode_VerySlow,
+    SpeedMode_Slow,
+    SpeedMode_Standard,
+    SpeedMode_Quick,
+    SpeedMode_VeryQuick,
+};
 
 #endif /* SLAppInfo_h */
