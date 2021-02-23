@@ -119,16 +119,6 @@ static NSString * const kWXAppID = @"";
 
 #pragma mark - ***** UI创建
 - (void)createData {
-//    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-//    config.preferences = [[WKPreferences alloc] init];
-//    config.preferences.javaScriptEnabled = YES;
-//    config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
-//
-//    _userContentController = [[WKUserContentController alloc] init];
-//    /*! 需要先注册一下这个JS的方法名称。 否则无法响应，  同时实现WKScriptMessageHandler代理*/
-//    [_userContentController addScriptMessageHandler:self name:@"OOXX"];
-//    config.userContentController = _userContentController;
-    
     self.wkWebView = [[WKWebView alloc] initWithFrame:self.view.bounds];
     if (@available(iOS 11.0, *)) {
         self.wkWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
