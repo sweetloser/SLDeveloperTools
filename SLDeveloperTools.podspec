@@ -279,14 +279,16 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'TXLiteAVSDK_Professional','~> 8.4.9944'
     appInfo.dependency 'NIMKit', '3.1.4'
     appInfo.dependency 'FMDB'
-    #阿里百川
-    appInfo.dependency 'AlibcTradeSDK','4.0.1.6'
-    appInfo.dependency 'AliAuthSDK','1.1.0.41-bc'
-    appInfo.dependency 'mtopSDK','3.0.0.3-BC'
-    appInfo.dependency 'securityGuard','5.4.191'
-    appInfo.dependency 'AliLinkPartnerSDK','4.0.0.24'
-    appInfo.dependency 'BCUserTrack','5.2.0.16-appkeys'
-    appInfo.dependency 'WindVane','8.5.0.46-bc11'
+    appInfo.dependency 'WebViewJavascriptBridge', '~> 6.0'
+    appInfo.dependency 'AlibcTradeSDK', '4.0.1.6'
+    appInfo.dependency 'AliAuthSDK', '1.1.0.41-bc'
+    appInfo.dependency 'mtopSDK', '3.0.0.3-BC'
+    appInfo.dependency 'securityGuard' ,'5.4.191'
+    appInfo.dependency 'AliLinkPartnerSDK', '4.0.0.24'
+    appInfo.dependency 'BCUserTrack', '5.2.0.16-appkeys'
+    appInfo.dependency 'WindVane', '8.5.0.46-bc11'
+    
+    
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.vendored_libraries = 'SLDeveloperTools/SLAppInfo/libmp3lame.a'

@@ -9,9 +9,8 @@
 #import "BaseVC.h"
 #import <WebKit/WebKit.h>
 
-@interface BaseWebVC : BaseVC
+@interface OldBaseWebVC : BaseVC
 @property (strong, nonatomic) WKWebView *wkWebView;
-@property (strong, nonatomic) WKUserContentController *userContentController;
 @property (strong, nonatomic) UIProgressView *progressView;
 @property (nonatomic,copy) NSString *loadUrl;
 

@@ -6,7 +6,7 @@
 //  Copyright © 2017年 cat. All rights reserved.
 //
 
-#import "BaseWebVC.h"
+#import "OldBaseWebVC.h"
 #import <CoreServices/UTType.h>
 #import "../SLCategory/SLCategory.h"
 #import "../SLMacro/SLMacro.h"
@@ -24,12 +24,13 @@
 //#import "BXImagePickerManager.h"
 //#import <Aspects.h>
 //#import "ShareManager.h"
+#import <WKWebViewJavascriptBridge.h>
 
 static NSString * const kWXAppID = @"";
 
-@interface BaseWebVC ()<WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
+@interface OldBaseWebVC ()<WKNavigationDelegate,WKScriptMessageHandler>
 
-//@property (strong, nonatomic) WKWebViewJavascriptBridge *bridge;
+@property (strong, nonatomic) WKWebViewJavascriptBridge *bridge;
 
 
 
@@ -39,7 +40,7 @@ static NSString * const kWXAppID = @"";
 
 @end
 
-@implementation BaseWebVC
+@implementation OldBaseWebVC
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleDefault;
@@ -66,7 +67,7 @@ static NSString * const kWXAppID = @"";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if ([self isMemberOfClass:[BaseWebVC class]]) {
+    if ([self isMemberOfClass:[OldBaseWebVC class]]) {
         [self createData];
     }
     [self createNav];
@@ -97,7 +98,7 @@ static NSString * const kWXAppID = @"";
 }
 
 - (void)backToPreviousVC:(NSString *)type {
-    [self.wkWebView.configuration.userContentController removeScriptMessageHandlerForName:@"OOXX"];
+//    [self.wkWebView.configuration.userContentController removeScriptMessageHandlerForName:@"OOXX"];
     [self removeJSFunction];
     if ([type isEqualToString:@"pop"]) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -118,17 +119,17 @@ static NSString * const kWXAppID = @"";
 
 #pragma mark - ***** UI创建
 - (void)createData {
-    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-    config.preferences = [[WKPreferences alloc] init];
-    config.preferences.javaScriptEnabled = YES;
-    config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+//    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+//    config.preferences = [[WKPreferences alloc] init];
+//    config.preferences.javaScriptEnabled = YES;
+//    config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
+//
+//    _userContentController = [[WKUserContentController alloc] init];
+//    /*! 需要先注册一下这个JS的方法名称。 否则无法响应，  同时实现WKScriptMessageHandler代理*/
+//    [_userContentController addScriptMessageHandler:self name:@"OOXX"];
+//    config.userContentController = _userContentController;
     
-    _userContentController = [[WKUserContentController alloc] init];
-    /*! 需要先注册一下这个JS的方法名称。 否则无法响应，  同时实现WKScriptMessageHandler代理*/
-    [_userContentController addScriptMessageHandler:self name:@"OOXX"];
-    config.userContentController = _userContentController;
-    
-    self.wkWebView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
+    self.wkWebView = [[WKWebView alloc] initWithFrame:self.view.bounds];
     if (@available(iOS 11.0, *)) {
         self.wkWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -137,16 +138,16 @@ static NSString * const kWXAppID = @"";
     self.wkWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.wkWebView.backgroundColor = [UIColor whiteColor];
     self.wkWebView.navigationDelegate = self;
-    self.wkWebView.UIDelegate = self;
     [self.wkWebView setCustomUserAgent:@"dsbrowser_ios"];
     [self.view addSubview:self.wkWebView];
+    
+    _bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.wkWebView];
+    [_bridge setWebViewDelegate:self];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]];
     [self.wkWebView loadRequest:request];
     
     [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
-    
-//    [self.wkWebView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='createGuildPullImage';"completionHandler:nil];
-//    [self.wkWebView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='createGuildPullImage';"completionHandler:nil];
 
     __weak WKWebView *wkwebView = self.wkWebView;
     // 添加下拉刷新控件
@@ -155,92 +156,102 @@ static NSString * const kWXAppID = @"";
     }];
     self.wkWebView.scrollView.mj_header = header;
     
-//    [WKWebViewJavascriptBridge enableLogging];
-//    self.bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.wkWebView];
-//    [self.bridge setWebViewDelegate:self];
-    
     [self registJSFunction];
+    
 }
 
 //注册js方法，js调用oc
 - (void)registJSFunction {
     
     //商品详情
-    [self.userContentController addScriptMessageHandler:self name:@"goGoodsDetail"];
-    
+    [self.bridge registerHandler:@"goGoodsDetail" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self goGoodsDetail:[NSString stringWithFormat:@"%@", [data description]]];
+    }];
     //秒杀商品详情
-    [self.userContentController addScriptMessageHandler:self name:@"goSeckillGoodsDetail"];
+    [self.bridge registerHandler:@"goSeckillGoodsDetail" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self goSeckillGoodsDetail:[NSString stringWithFormat:@"%@", [data description]]];
+    }];
     
     //返回
-    [self.userContentController addScriptMessageHandler:self name:@"getfinish"];
+    [self.bridge registerHandler:@"getfinish" handler:^(id data, WVJBResponseCallback responseCallback) {
+            
+    }];
     
     //进入店铺
-    [self.userContentController addScriptMessageHandler:self name:@"goToShop"];
+    [self.bridge registerHandler:@"goToShop" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self goToShop:data];
+    }];
     
     //绑定账号
-    [self.userContentController addScriptMessageHandler:self name:@"openAccount"];
+    [self.bridge registerHandler:@"openAccount" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self openAccount];
+    }];
     
     //充值
-    [self.userContentController addScriptMessageHandler:self name:@"openRecharge"];
-    
+    [self.bridge registerHandler:@"openRecharge" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self openRecharge];
+    }];
     //提现
-    [self.userContentController addScriptMessageHandler:self name:@"goToWithdraw"];
+    [self.bridge registerHandler:@"goToWithdraw" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self goToWithdraw:data];
+    }];
     
     //联系客服
-    [self.userContentController addScriptMessageHandler:self name:@"customerKefu"];
+    [self.bridge registerHandler:@"customerKefu" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self goToKefu:data];
+    }];
     
     //进入优惠券
-    [self.userContentController addScriptMessageHandler:self name:@"goMyCoupon"];
+    [self.bridge registerHandler:@"goMyCoupon" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self goToCouponList];
+    }];
     
     
+    //相
+    [self.bridge registerHandler:@"createGuildPullImage" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self uploadWithType:data];
+    }];
     
-    //相册
-    [self.userContentController addScriptMessageHandler:self name:@"createGuildPullImage"];
-    [self.userContentController addScriptMessageHandler:self name:@"getPayWxDetail"];
+    
+    [self.bridge registerHandler:@"getPayWxDetail" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self smallShopPay:data];
+    }];
     
     //导航栏返回
-    [self.userContentController addScriptMessageHandler:self name:@"navigateBack"];
-    [self.userContentController addScriptMessageHandler:self name:@"share"];
-//    [self.bridge registerHandler:@"share" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        if ([data isDictionary]) {
-//            [self shareWithTitle:data[@"title"] descr:data[@"descr"] thumb:data[@"thumb"] url:data[@"url"] share_key:data[@"share_key"] responseCallback:responseCallback];
-//        }
-//    }];
-    [self.userContentController addScriptMessageHandler:self name:@"getVersion"];
-//    [self.bridge registerHandler:@"getVersion" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        if (responseCallback) {
-//            // 反馈给JS
-//            NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
-//            responseCallback(@{@"vcode":Version, @"version":currentVersion});
-//        }
-//    }];
+    [self.bridge registerHandler:@"navigateBack" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self backToPreviousVC:@"pop"];
+    }];
     
-    [self.userContentController addScriptMessageHandler:self name:@"getUser"];
+    [self.bridge registerHandler:@"share" handler:^(id data, WVJBResponseCallback responseCallback) {
+        if ([data isDictionary]) {
+            [self shareWithTitle:data[@"title"] descr:data[@"descr"] thumb:data[@"thumb"] url:data[@"url"] share_key:data[@"share_key"]];
+        }
+    }];
+    [self.bridge registerHandler:@"getVersion" handler:^(id data, WVJBResponseCallback responseCallback) {
+        if (responseCallback) {
+            // 反馈给JS
+            NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
+            responseCallback(@{@"vcode":@"", @"version":currentVersion});
+        }
+    }];
+    
+//    [self.userContentController addScriptMessageHandler:self name:@"getUser"];
 
     
-    [self.userContentController addScriptMessageHandler:self name:@"uploadFile"];
-//    [self.bridge registerHandler:@"uploadFile" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        [self uploadFile:data responseCallback:responseCallback];
-//    }];
-    
-    [self.userContentController addScriptMessageHandler:self name:@"recharge"];
-//    [self.bridge registerHandler:@"recharge" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        [self toRecharge];
-//    }];
-    
-    [self.userContentController addScriptMessageHandler:self name:@"goTo"];
-//    [self.bridge registerHandler:@"goTo" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        if ([data isDictionary]) {
-//            NSString *url = data[@"url"];
-//            [self goToWithUrl:url];
-//        }
-//    }];
-    [self.userContentController addScriptMessageHandler:self name:@"openWxAPP"];
-//    [self.bridge registerHandler:@"openWxAPP" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        if ([data isDictionary]) {
-//            [self openWxAPP:data[@"userName"] path:data[@"path"] miniProgramType:[data[@"miniProgramType"] integerValue]];
-//        }
-//    }];
+//    [self.userContentController addScriptMessageHandler:self name:@"uploadFile"];
+//    [self.userContentController addScriptMessageHandler:self name:@"recharge"];
+    [self.bridge registerHandler:@"goTo" handler:^(id data, WVJBResponseCallback responseCallback) {
+        if ([data isDictionary]) {
+            NSString *url = data[@"url"];
+            [self goToWithUrl:url];
+        }
+    }];
+
+    [self.bridge registerHandler:@"openWxAPP" handler:^(id data, WVJBResponseCallback responseCallback) {
+        if ([data isDictionary]) {
+            [self openWxAPP:data[@"userName"] path:data[@"path"] miniProgramType:[data[@"miniProgramType"] integerValue]];
+        }
+    }];
 }
 - (void)shareWithTitle:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key{
 //    [ShareManager shareWithShareType:nil targetId:nil title:title descr:descr thumb:thumb url:url share_key:share_key currentVC:self shareCompletion:^(NSString *share_channel, NSError *error) {
@@ -269,72 +280,54 @@ static NSString * const kWXAppID = @"";
     [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":url}];
 }
 
-//- (void)uploadFile:(id)data responseCallback:(WVJBResponseCallback)responseCallback {
-//    if ([data isDictionary]) {
-//        NSString *source = data[@"source"];
-//        NSString *type = data[@"type"];
-//        NSString *ticket_type = data[@"ticket_type"];
-//        BOOL isImage = [type containsString:@"image"];
-//        BOOL isCamera = IsEquallString(source, @"camera");
-//        _manager = [[BXImagePickerManager alloc]initWithIsImage:isImage isCamera:isCamera vc:self];
-//        _manager.didSelectedData = ^(BOOL isImage, NSString *fileName, NSData *data) {
-//            [BGProgressHUD showLoadingWithMessage:@"正在上传"];
-//            [HHHttpRequestManager uploadFileWithType:ticket_type fileName:fileName data:data success:^(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models) {
-//                [BGProgressHUD showInfoWithMessage:@"上传成功"];
-//                if (flag) {
-//                    NSString *filePath = jsonDic[@"filePath"];
-//                    responseCallback(@{@"fileUrl":filePath});
-//                }
-//            } failure:^(NSError *error) {
-//                [BGProgressHUD showInfoWithMessage:@"上传失败"];
-//            }];
-//        };
-//        [_manager startPicker];
-//    }
-//}
-
 //移除js方法
 - (void)removeJSFunction {
     
+    
+    
     {
-        [self.userContentController removeScriptMessageHandlerForName:@"goGoodsDetail"];
+        [self.bridge removeHandler:@"goGoodsDetail"];
         
-        [self.userContentController removeScriptMessageHandlerForName:@"goSeckillGoodsDetail"];
+        [self.bridge removeHandler:@"goSeckillGoodsDetail"];
         
-        [self.userContentController removeScriptMessageHandlerForName:@"getfinish"];
+        [self.bridge removeHandler:@"getfinish"];
         
-        [self.userContentController removeScriptMessageHandlerForName:@"goToShop"];
+        [self.bridge removeHandler:@"goToShop"];
         
-        [self.userContentController removeScriptMessageHandlerForName:@"openAccount"];
+        [self.bridge removeHandler:@"openAccount"];
         
-        [self.userContentController removeScriptMessageHandlerForName:@"openRecharge"];
+        [self.bridge removeHandler:@"openRecharge"];
         
-        [self.userContentController removeScriptMessageHandlerForName:@"goToWithdraw"];
+        [self.bridge removeHandler:@"goToWithdraw"];
         
-        [self.userContentController removeScriptMessageHandlerForName:@"customerKefu"];
+        [self.bridge removeHandler:@"customerKefu"];
         
-        [self.userContentController removeScriptMessageHandlerForName:@"goMyCoupon"];
-        
-        
+        [self.bridge removeHandler:@"goMyCoupon"];
     }
+    [self.bridge removeHandler:@"navigateBack"];
     
+    [self.bridge removeHandler:@"openAccount"];
     
-    [self.userContentController removeScriptMessageHandlerForName:@"navigateBack"];
-    [self.userContentController removeScriptMessageHandlerForName:@"openAccount"];
-    [self.userContentController removeScriptMessageHandlerForName:@"share"];
-    [self.userContentController removeScriptMessageHandlerForName:@"getVersion"];
-    [self.userContentController removeScriptMessageHandlerForName:@"getUser"];
-    [self.userContentController removeScriptMessageHandlerForName:@"uploadFile"];
-    [self.userContentController removeScriptMessageHandlerForName:@"recharge"];
-    [self.userContentController removeScriptMessageHandlerForName:@"goTo"];
-    [self.userContentController removeScriptMessageHandlerForName:@"openWxAPP"];
+    [self.bridge removeHandler:@"share"];
     
-    [self.userContentController removeScriptMessageHandlerForName:@"createGuildPullImage"];
+    [self.bridge removeHandler:@"getVersion"];
+    
+    [self.bridge removeHandler:@"getUser"];
+    
+    [self.bridge removeHandler:@"uploadFile"];
+    
+    [self.bridge removeHandler:@"recharge"];
+    
+    [self.bridge removeHandler:@"goTo"];
+    
+    [self.bridge removeHandler:@"openWxAPP"];
+    
+    [self.bridge removeHandler:@"createGuildPullImage"];
     
 
     
 //    开启小店调用支付
-    [self.userContentController removeScriptMessageHandlerForName:@"getPayWxDetail"];
+    [self.bridge removeHandler:@"getPayWxDetail"];
     
     
     
@@ -392,7 +385,7 @@ static NSString * const kWXAppID = @"";
         [self smallShopPay:message.body];
         
     }else if([message.name isEqualToString:@"goGoodsDetail"]) {
-        [self goGoodsDetail:[NSString stringWithFormat:@"%@", [message.body description]]];
+        
     }
     else if([message.name isEqualToString:@"openAccount"]) {
         [self openAccount];
@@ -462,22 +455,6 @@ static NSString * const kWXAppID = @"";
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *))completionHandler {
-    
-//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:nil preferredStyle:UIAlertControllerStyleAlert];
-//    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-//        textField.text = defaultText;
-//    }];
-//    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"确定",@"Sure", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//        NSString *input = ((UITextField *)alertController.textFields.firstObject).text;
-//        completionHandler(input);
-//    }]];
-//    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"取消",@"Sure", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//        completionHandler(nil);
-//    }]];
-
-    
-    
-//    [self presentViewController:alertController animated:YES completion:^{}];
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
@@ -582,3 +559,4 @@ static NSString * const kWXAppID = @"";
 }
 
 @end
+
