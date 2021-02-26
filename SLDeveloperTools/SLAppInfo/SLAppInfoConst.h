@@ -27,6 +27,8 @@ static NSString *const BXEnterRoomWithRooms = @"BXEnterRoomWithRooms";          
 
 static NSString *const BXGo2BXVideoPlayVC = @"BXGo2BXVideoPlayVC";                            //进入视频播放页面
 
+static NSString *const kStartLocationNotification = @"StartLocationNotification";                   //开始定位
+
 static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                   //获取到了定位信息
 
 static NSString *const kDidCollectNotification = @"DidCollectNotification";                           //收藏或取消收藏

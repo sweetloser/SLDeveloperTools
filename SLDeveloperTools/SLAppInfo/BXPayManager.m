@@ -52,8 +52,9 @@
         req.timeStamp = (UInt32)timeStamp.integerValue;
         req.sign = sign;
 //        [WXApi sendReq:req];
+        
         [WXApi sendReq:req completion:^(BOOL success) {
-
+            self.wechatRespBlock(0, @"支付成功");
         }];
     }
     else
