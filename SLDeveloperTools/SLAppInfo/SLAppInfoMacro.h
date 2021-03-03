@@ -8,20 +8,33 @@
 #ifndef SLAppInfoMacro_h
 #define SLAppInfoMacro_h
 
+#define SiShiLiveURL
+
+//#define BXLiveURL
+
+#ifdef SiShiLiveURL
+
+#define New_Http_Base_Url @"http://api.40zhibopingtai.com/api.php?"
+#define New_Http_Base_Url_Without @"http://api.40zhibopingtai.com/api.php"
+#define New_Http_Base_domain @"http://api.40zhibopingtai.com/"
+#define New_Http_Base_make_friend @"http://api.40zhibopingtai.com/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.40zhibopingtai.com/"
+#define SL_HTTP_BASE_API_URL @"http://shop.40zhibopingtai.com/"
+#define SL_HTTP_H5_URL @"http://shop.40zhibopingtai.com/"
+
+#endif
+
 //秉信 测试 服务器
+#ifdef BXLiveURL
+
 #define New_Http_Base_Url @"http://v1.live.libx.com.cn/api.php?"
-
 #define New_Http_Base_Url_Without @"http://v1.live.libx.com.cn/api.php"
-
 #define New_Http_Base_domain @"http://v1.live.libx.com.cn/"
-
 #define New_Http_Base_make_friend @"http://v1.live.libx.com.cn/api/"
-
 #define SL_HTTP_BASE_AMWAY_URL @"http://shop.libx.com.cn/"
-
 #define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
-
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
+#endif
 //比例
 #define SCALE SCREEN_WIDTH / 375.0
 

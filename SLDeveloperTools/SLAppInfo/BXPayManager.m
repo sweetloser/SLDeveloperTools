@@ -31,7 +31,10 @@
 + (BOOL)wechatRegisterAppWithAppId:(NSString *)appId
 {
 //    return [WXApi registerApp:appId];
-    return [WXApi registerApp:appId universalLink:@"https://6s9n03.xinstall.top/tolink/"];
+
+    BOOL isOk = [WXApi registerApp:appId universalLink:@"https://yq5km7.xinstall.top/tolink/"];
+    
+    return isOk;
 }
 + (BOOL)wechatHandCKpenURL:(NSURL *)url
 {

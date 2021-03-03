@@ -29,6 +29,8 @@ static NSString *const BXGo2BXVideoPlayVC = @"BXGo2BXVideoPlayVC";              
 
 static NSString *const kStartLocationNotification = @"StartLocationNotification";                   //开始定位
 
+static NSString *const BXGoToGoodsDetail = @"BXGoToGoodsDetail";                   //跳转商品详情页
+
 static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                   //获取到了定位信息
 
 static NSString *const kDidCollectNotification = @"DidCollectNotification";                           //收藏或取消收藏
@@ -206,6 +208,8 @@ static NSString *const SLCollectedGoodsNotification = @"SLCollectedGoodsNotifica
 static NSString *const SLUnCollectedGoodsNotification = @"SLUnCollectedGoodsNotification";
 static NSString *const SLAddGoodsToWindowNotification = @"SLAddGoodsToWindowNotification";
 static NSString *const SLDeleteGoodsAtWindowNotification = @"SLDeleteGoodsAtWindowNotification";
+
+static NSString *const SLUpdateGoodsAtWindowNotification = @"SLUpdateGoodsAtWindowNotification";
 
 #pragma mark - 种草
 //static NSString *const SLAmwayUploadVideoSuccessNotification = @"SLAmwayUploadVideoSuccessNotification";           //上传视频成功
