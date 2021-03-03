@@ -112,6 +112,7 @@
 -(void)createData{
     [HttpMakeFriendRequest GetCircleWithCircle_type:@"2" page_index:[NSString stringWithFormat:@"%ld",(long)_page+1] page_size:@"20" Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
        NSLog(@"%@", jsonDic);
+        [BGProgressHUD hidden];
        if (flag) {
            if (!self.page) {
                [self.dataArray removeAllObjects];
@@ -330,6 +331,7 @@
     [HttpMakeFriendRequest SearceCircleWithCircle_type:@"2" page_index:@"1" page_size:@"50" key_words:searchBar.text Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
         
         NSLog(@"%@", jsonDic);
+        [BGProgressHUD hidden];
         if (flag) {
             [self.searchArray removeAllObjects];
             NSArray *dataArray1 = jsonDic[@"data"][@"data"];
