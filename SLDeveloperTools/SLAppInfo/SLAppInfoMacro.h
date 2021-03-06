@@ -8,9 +8,9 @@
 #ifndef SLAppInfoMacro_h
 #define SLAppInfoMacro_h
 
-#define SiShiLiveURL
+//#define SiShiLiveURL
 
-//#define BXLiveURL
+#define BXLiveURL
 
 #ifdef SiShiLiveURL
 

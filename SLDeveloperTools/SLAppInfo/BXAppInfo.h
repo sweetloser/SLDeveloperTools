@@ -85,6 +85,11 @@
 @property(nonatomic,copy)NSString *ios_app_hidden;
 @property(nonatomic,copy)NSString *ios_app_hidden_version;
 
+#pragma mark - 活动
+@property(nonatomic,copy)NSString *lottery_status;  //转盘是否开启 0 关闭 1 开启
+@property(nonatomic,copy)NSString *red_packet_status;  //红包
+@property(nonatomic,copy)NSString *voice_setting;  //
+
 @property(nonatomic,copy)NSString *one_key_login;   //1 开启本机号码一键登录
 @property(nonatomic,copy)NSString *invite_code; //邀请码 2 必填
 @property(nonatomic,copy)NSString *register_type;

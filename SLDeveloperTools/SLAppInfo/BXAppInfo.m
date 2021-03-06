@@ -144,6 +144,14 @@ MJCodingImplementation
         self.distribute_status = [NSString stringWithFormat:@"%@", yongjinDic[@"distribute_status"]];
         self.distribute_name = yongjinDic[@"distribute_name"];
     }
+    
+    NSDictionary *activityDict = jsonDic[@"activity"];
+    if (activityDict && activityDict.isDictionary) {
+        self.lottery_status = activityDict[@"lottery_status"];
+        self.voice_setting = activityDict[@"voice_setting"];
+        self.red_packet_status = activityDict[@"red_packet_status"];
+    }
+    
 }
 + (NSString *)getPhoneArea {
     MMKV *mmkv = [MMKV defaultMMKV];

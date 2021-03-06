@@ -54,16 +54,12 @@
         req.nonceStr = nonceStr;
         req.timeStamp = (UInt32)timeStamp.integerValue;
         req.sign = sign;
-//        [WXApi sendReq:req];
         
         [WXApi sendReq:req completion:^(BOOL success) {
-            self.wechatRespBlock(0, @"支付成功");
+            NSLog(@"吊起支付成功");
         }];
-    }
-    else
-    {
-        if(self.wechatRespBlock)
-        {
+    }else {
+        if(self.wechatRespBlock) {
             self.wechatRespBlock(-3, @"未安装微信");
         }
     }
@@ -117,6 +113,9 @@
                 break;
         }
     }
+    
+    self.wechatRespBlock = nil;
+    
 }
 //微信
 

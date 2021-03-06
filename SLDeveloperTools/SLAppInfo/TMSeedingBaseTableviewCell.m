@@ -14,12 +14,12 @@
 
 //#import "BXPersonHomeVC.h"
 #import <SDWebImage/SDWebImage.h>
-//#import "TMSeedingPictureDetailVC.h"
 #import "BXDynDidDisbandAlert.h"
 #import "SLAppInfoConst.h"
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <YYCategories/YYCategories.h>
 #import "SLAmwayListModel.h"
+#import <CTMediatorSLAmway/CTMediator+SLAmway.h>
 
 #import "TMSeedingTopicHomeVC.h"
 @interface TMSeedingBaseTableviewCell()
@@ -313,15 +313,14 @@
 -(void)comAct:(id)sender{
     if ([_model.msgdetailmodel.render_type intValue] != 7) {
     
-    //    TMSeedingPictureDetailVC *vc = [[TMSeedingPictureDetailVC alloc]init];
-    //    SLAmwayListModel *model = [[SLAmwayListModel alloc]init];
-    //    model.list_id = [NSNumber numberWithString:[NSString stringWithFormat:@"%@", _model.fcmid]];
-    //    model.user.avatar = _model.msgdetailmodel.avatar;
-    //    model.address = _model.msgdetailmodel.address;
-    //    model.user.nickname = _model.msgdetailmodel.nickname;
-    //    vc.model = model;
-    //    vc.dynmodel =_model;
-    //    [self.viewController.navigationController pushViewController:vc animated:YES];
+        SLAmwayListModel *model = [[SLAmwayListModel alloc]init];
+        model.list_id = [NSNumber numberWithString:[NSString stringWithFormat:@"%@", _model.fcmid]];
+        model.user.avatar = _model.msgdetailmodel.avatar;
+        model.address = _model.msgdetailmodel.address;
+        model.user.nickname = _model.msgdetailmodel.nickname;
+        
+        UIViewController *vc = [[CTMediator sharedInstance] TMSeedingPictureDetailVC_ViewControllerWithListModel:model DynModel:_model];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
     }
 }
 -(void)likeAct:(id)sender{

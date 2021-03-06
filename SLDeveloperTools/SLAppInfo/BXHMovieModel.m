@@ -13,6 +13,8 @@
 #import "BXLiveUser.h"
 #import "../SLCategory/SLCategory.h"
 #import "../SLMacro/SLMacro.h"
+#import "SLAppInfoConst.h"
+
 //#import "BXPersonHomeVC.h"
 @interface BXHMovieModel ()
 
@@ -145,6 +147,7 @@
 -(void)toPersonHomeWithUserId:(NSString *)userId{
     
 //    [BXPersonHomeVC toPersonHomeWithUserId:userId isShow:nil nav:[[UIApplication sharedApplication] activityViewController].navigationController handle:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":userId,@"isShow":@"",@"nav":[[UIApplication sharedApplication] activityViewController].navigationController}];
 }
 
 @end

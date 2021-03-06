@@ -99,9 +99,17 @@
     }else{
             
         BXAttentFollowModel *model = self.dataArr[indexPath.item];
+        
 //        [BXLocalAgreement loadUrl:model.jump fromVc:self.viewController completion:^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:kDidSeeNotification object:nil userInfo:@{@"user_id":model.user_id}];
 //        }];
+        
+        void(^block)(void) = ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDidSeeNotification object:nil userInfo:@{@"user_id":model.user_id}];
+        };
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self.viewController,@"url":model.jump,@"block":block}];
+        
             
     }
 }
