@@ -146,11 +146,14 @@
 
 -(void)processAttributedStringWithAttaties{
     WS(ws);
-        UIColor *foregroundColor = SubTitleColor;
+        UIColor *foregroundColor = sl_textSubColors;
+    if ([self.nickname isKindOfClass:[NSNull class]]) {
+         return;
+     }
         NSMutableAttributedString *replyAttri = [[NSMutableAttributedString alloc] initWithString:self.nickname];
         replyAttri.yy_font  = CBFont(15);
         [replyAttri addAttribute:NSForegroundColorAttributeName value:foregroundColor range:NSMakeRange(0, replyAttri.length)];
-        [replyAttri yy_setTextHighlightRange:[[replyAttri string] rangeOfString:self.nickname] color:MainTitleColor backgroundColor:nil tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+    [replyAttri yy_setTextHighlightRange:[[replyAttri string] rangeOfString:self.nickname] color:_isAttention ?sl_blacktextColors : MainTitleColor backgroundColor:nil tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
             [ws userDetail:ws.user_id];
         }];
 
@@ -167,7 +170,7 @@
             NSMutableAttributedString *attachAttri =[[NSMutableAttributedString alloc] initWithString:string];
             attachAttri.yy_font  = CBFont(15);
             [attachAttri addAttribute:NSForegroundColorAttributeName value:foregroundColor range:NSMakeRange(0, string.length)];
-            [replyAttri yy_setTextHighlightRange:[[replyAttri string] rangeOfString:self.reply_nickname] color:MainTitleColor backgroundColor:nil tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            [replyAttri yy_setTextHighlightRange:[[replyAttri string] rangeOfString:self.reply_nickname] color:_isAttention ?sl_blacktextColors : MainTitleColor backgroundColor:nil tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
                 [ws userDetail:ws.reply_uid];
             }];
             [replyAttri appendAttributedString:attachAttri];

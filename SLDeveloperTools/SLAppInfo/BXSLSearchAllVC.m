@@ -156,11 +156,7 @@
     }];
 }
 -(void)getDynamicData{
-    [HttpMakeFriendRequest SearchComplexNewDynWithpage_index:@"1" page_size:@"20" keyword:_searchResultVC.searchText Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
-        
-    } Failure:^(NSError * _Nonnull error) {
-        
-    }];
+
 }
 - (UIView *)listView {
     return self.view;
@@ -231,7 +227,6 @@
     WS(ws);
     BXRefreshHeader *header = [BXRefreshHeader headerWithRefreshingBlock:^{
         [ws getAllData];
-        [ws getDynamicData];
     }];
     _tableView.mj_header = header;
     [_tableView.mj_header beginRefreshing];
@@ -585,7 +580,6 @@
         BXNoNetworkView *noNetworkView = [[BXNoNetworkView alloc]initWithHeight:290];
         noNetworkView.needRefresh = ^{
             [ws getAllData];
-            [ws getDynamicData];
         };
         return noNetworkView;
     }

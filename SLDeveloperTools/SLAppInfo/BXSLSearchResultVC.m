@@ -23,6 +23,7 @@
 #import "../SLMacro/SLMacro.h"
 #import "../SLCategory/SLCategory.h"
 #import "SLAppInfoConst.h"
+#import "BXAppInfo.h"
 
 @interface BXSLSearchResultVC () <UITextFieldDelegate, YHSearchingVCDelegate, JXCategoryViewDelegate,JXCategoryListContainerViewDelegate,JXCategoryTitleViewDataSource>
 
@@ -34,7 +35,7 @@
 
 @property (nonatomic, strong) NSArray<NSString *> *titles;
 
-@property (nonatomic, strong) NSArray *childVcs;
+@property (nonatomic, strong) NSMutableArray *childVcs;
 
 @property (nonatomic, assign) NSInteger index;
 
@@ -47,7 +48,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.fd_prefersNavigationBarHidden = YES;
-    
+    _childVcs = [NSMutableArray array];
     [self addSearchBar];
     [self initChildVcs];
     [self initViews];
@@ -97,8 +98,12 @@
 }
 
 - (void)initViews {
-   
-    self.titles = @[@"综合",@"视频",@"用户",@"直播",@"动态"];
+    if ([[BXAppInfo appInfo].is_dynamic_open intValue] == 0) {
+        self.titles = @[@"综合",@"视频",@"用户",@"直播"];
+    }else{
+        self.titles = @[@"综合",@"视频",@"用户",@"直播",@"动态"];
+    }
+    
     self.categoryView = [[JXCategoryTitleView alloc] init];
     self.categoryView.titleSelectedColor = sl_normalColors;
     self.categoryView.titleColor = sl_textSubColors;
@@ -180,39 +185,57 @@
 //    allVc.moreDetail = ^(NSInteger index) {
 //       [ws.categoryView selectItemAtIndex:index];
 //    };
-//    allVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
-    
-    BXDynGlobleVC *allVc = [[BXDynGlobleVC alloc] init];
-    allVc.dyntype = @"6";//类型6 综合
-    allVc.searchResultVC = self;
+    //    allVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
+    if ([[BXAppInfo appInfo].is_dynamic_open intValue] == 0) {
+        WS(ws);
+        BXSLSearchAllVC *allVc = [[BXSLSearchAllVC alloc] init];
+        allVc.searchResultVC = self;
+        allVc.moreDetail = ^(NSInteger index) {
+            [ws.categoryView selectItemAtIndex:index];
+        };
+        allVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
+        [_childVcs addObject:allVc];
+    }else{
+        BXDynGlobleVC *allVc = [[BXDynGlobleVC alloc] init];
+        allVc.dyntype = @"6";//类型6 综合
+        allVc.searchResultVC = self;
+        [_childVcs addObject:allVc];
+    }
+
     
 //    视频
     BXSLSearchVideoVC *videoVc = [[BXSLSearchVideoVC alloc]init];
     videoVc.searchResultVC = self;
     videoVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
-    
+    [_childVcs addObject:videoVc];
 //    用户
     BXSLSearchUserVC *userVc = [[BXSLSearchUserVC alloc]init];
     userVc.searchResultVC = self;
     userVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
+    [_childVcs addObject:userVc];
     
 //    直播
     BXSLSearchLiveVC *liveVc = [[BXSLSearchLiveVC alloc]init];
     liveVc.searchResultVC = self;
     liveVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
+    [_childVcs addObject:liveVc];
      
 //    动态
 //    SLSearchDynamicVC *dynamicVc = [[SLSearchDynamicVC alloc] init];
 //    dynamicVc.searchResultVC = self;
 //    dynamicVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
     
-    BXDynGlobleVC *dynamicVc = [[BXDynGlobleVC alloc] init];
-    dynamicVc.dyntype = @"5";//类型5 搜索
-    dynamicVc.searchResultVC = self;
-    dynamicVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
+    if ([[BXAppInfo appInfo].is_dynamic_open intValue] == 0) {
+        
+    }else{
+        BXDynGlobleVC *dynamicVc = [[BXDynGlobleVC alloc] init];
+        dynamicVc.dyntype = @"5";//类型5 搜索
+        dynamicVc.searchResultVC = self;
+        dynamicVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
+        [_childVcs addObject:dynamicVc];
+    }
     
-    
-    _childVcs = @[allVc, videoVc, userVc, liveVc,dynamicVc];
+
 }
 
 

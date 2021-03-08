@@ -28,7 +28,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = PageSubBackgroundColor;
+        self.backgroundColor = sl_BGColors;
         [self setupViews];
     }
     return self;
@@ -38,11 +38,11 @@
     _likeLabel = [UILabel new];
     _likeLabel.font = [UIFont systemFontOfSize:12];
     _likeLabel.isAttributedContent = YES;
-    _likeLabel.textColor = SubTitleColor;
+    _likeLabel.textColor = sl_textSubColors;
     [self addSubview:_likeLabel];
     
     _likeLableBottomLine = [UIView new];
-    _likeLableBottomLine.backgroundColor = LineDeeplColor;
+    _likeLableBottomLine.backgroundColor = sl_subBGColors;
     [self addSubview:_likeLableBottomLine];
     
     
@@ -60,14 +60,14 @@
     
     
     
-    self.commentBtn = [UIButton buttonWithFrame:CGRectZero Title:@"添加评论…" Font:CFont(14) Color:MinorColor Image:CImage(@"xiaoshipin_icon_quxiaoguanzhu") Target:self action:@selector(commentBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.commentBtn = [UIButton buttonWithFrame:CGRectZero Title:@"添加评论…" Font:CFont(14) Color:sl_textSubColors Image:CImage(@"xiaoshipin_icon_quxiaoguanzhu") Target:self action:@selector(commentBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.commentBtn];
     
     self.commentBtn.sd_layout.leftSpaceToView(self, 12).bottomSpaceToView(self, 0).heightIs(34).rightSpaceToView(self, 12);
     self.commentBtn.imageView.sd_layout.leftSpaceToView(self.commentBtn, 0).widthIs(15).heightIs(14).centerYEqualToView(self.commentBtn); self.commentBtn.titleLabel.sd_layout.leftSpaceToView(self.commentBtn.imageView, 5).centerYEqualToView(self.commentBtn).heightIs(19).rightSpaceToView(self.commentBtn, 0);
     
     
-    self.moreBtn = [UIButton buttonWithFrame:CGRectZero Title:@"查看全部0条评论" Font:CBFont(14) Color:SubTitleColor Image:nil Target:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.moreBtn = [UIButton buttonWithFrame:CGRectZero Title:@"查看全部0条评论" Font:CBFont(14) Color:sl_textSubColors Image:nil Target:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.moreBtn];
     
     self.moreBtn.sd_layout.leftSpaceToView(self, 12).bottomSpaceToView(self.commentBtn, 0).heightIs(24).rightSpaceToView(self, 12);
@@ -112,6 +112,8 @@
     for (int i = 0; i < commentItemsArray.count; i++) {
         if (i<2) {
             BXCommentModel *model = commentItemsArray[i];
+            model.isAttention = YES;
+            [model processAttributedStringWithAttaties];
             YYLabel *label = self.commentLabelsArray[i];
             label.attributedText = model.attentionAttatties;
         }
@@ -144,6 +146,8 @@
     for (int i = 0; i < self.commentItemsArray.count; i++) {
         if (i<2) {
             BXCommentModel *model = self.commentItemsArray[i];
+            model.isAttention = YES;
+            [model processAttributedStringWithAttaties];
             YYLabel *label = (YYLabel *)self.commentLabelsArray[i];
             label.hidden = NO;
             label.sd_layout

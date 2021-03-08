@@ -55,10 +55,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 
+
 -(void)processAttributedStringWithIsChild:(BOOL)isChild;
 
 
-
+@property (nonatomic, assign) BOOL isAttention;
 //关注界面使用的参数
 @property (nonatomic, assign) CGFloat attentionHight;
 @property (nonatomic , strong) NSMutableAttributedString * attentionAttatties;

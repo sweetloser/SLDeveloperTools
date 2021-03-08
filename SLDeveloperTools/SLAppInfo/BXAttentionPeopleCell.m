@@ -56,7 +56,7 @@
         self.collectionView.delegate = self;
         self.collectionView.showsVerticalScrollIndicator = NO;
         self.collectionView.showsHorizontalScrollIndicator = NO;
-        self.collectionView.backgroundColor = [UIColor clearColor];
+        self.collectionView.backgroundColor = sl_BGColors;
         self.collectionView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 8, 0, 0));
         [self.collectionView registerClass:[DSAttentionScrollViewCell class] forCellWithReuseIdentifier:@"DSAttentionScrollViewCell"];
         
@@ -124,6 +124,7 @@
 }
 -(void)setIs_live_dataArr:(NSMutableArray *)is_live_dataArr{
     _is_live_dataArr = is_live_dataArr;
+    [self reloadData];
 }
 @end
 

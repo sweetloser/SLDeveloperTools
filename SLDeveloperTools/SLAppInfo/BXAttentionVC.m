@@ -53,6 +53,7 @@
 @property(nonatomic,strong)NSMutableArray *followArray;
 @property(nonatomic,strong)NSMutableArray *recommArray;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic,strong)NSMutableArray *isLiveArray;
 @property (strong, nonatomic) UIButton *searchBtn;
 @property (nonatomic, assign) NSInteger offset;
 @property (nonatomic, assign) NSInteger poffset;
@@ -90,7 +91,7 @@
     [super viewDidLoad];
 
     [self initView];
-
+    _isLiveArray = [NSMutableArray array];
     [BGProgressHUD showLoadingAnimation:nil inView:self.view];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didZan:) name:kDidZanNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendChangeStatus:) name:kSendChangeStatusNotification object:nil];
@@ -100,8 +101,9 @@
     
 }
 - (void)initView {
+    self.view.backgroundColor = sl_BGColors;
     UIView *bottomView = [[UIView alloc]init];
-    bottomView.backgroundColor = TabBarColor;
+    bottomView.backgroundColor = sl_BGColors;
     [self.view addSubview:bottomView];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
@@ -112,7 +114,7 @@
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.backgroundColor = PageBackgroundColor;
+    self.tableView.backgroundColor = sl_BGColors;
     self.tableView.estimatedRowHeight = 0;
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
@@ -270,6 +272,7 @@
     [[NewHttpRequestPort sharedNewHttpRequestPort] FollowCurrentFollow:@{@"user_id":[BXLiveUser currentBXLiveUser].user_id} Success:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==0) {
             [self.followArray removeAllObjects];
+            [self.isLiveArray removeAllObjects];
             NSDictionary *dataDic = responseObject[@"data"];
             if (dataDic && [dataDic isDictionary]) {
                 NSArray *followArray = dataDic[@"list"];
@@ -277,6 +280,10 @@
                     for (NSDictionary *cdict in followArray) {
                         BXAttentFollowModel *model = [BXAttentFollowModel objectWithDictionary:cdict];
                         [self.followArray addObject:model];
+                        
+                        BXSLLiveRoom *liveRoom = [[BXSLLiveRoom alloc]init];
+                        [liveRoom updateWithJsonDic:cdict];
+                        [self.isLiveArray addObject:liveRoom];
                     }
                 }
             }
@@ -462,6 +469,7 @@
             BXAttentionPeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BXAttentionPeopleCell"];
             cell.backgroundColor = [UIColor clearColor];
             cell.dataArr = self.followArray;
+            cell.is_live_dataArr = self.isLiveArray;
             return cell;
         }
         BXAttentionNoDataCell *cell = [BXAttentionNoDataCell cellWithTableView:tableView];

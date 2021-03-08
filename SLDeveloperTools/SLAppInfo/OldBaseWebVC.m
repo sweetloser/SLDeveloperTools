@@ -225,11 +225,15 @@ static NSString * const kWXAppID = @"";
         }
     }];
     
-//    [self.userContentController addScriptMessageHandler:self name:@"getUser"];
-
+    [self.bridge registerHandler:@"getUser" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"aagetUser");
+        responseCallback(BXLiveUser.currentBXLiveUser.user_id);
+    }];
     
-//    [self.userContentController addScriptMessageHandler:self name:@"uploadFile"];
-//    [self.userContentController addScriptMessageHandler:self name:@"recharge"];
+    [self.bridge registerHandler:@"getDeviceInfo" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"adasdasda");
+    }];
+    
     [self.bridge registerHandler:@"goTo" handler:^(id data, WVJBResponseCallback responseCallback) {
         if ([data isDictionary]) {
             NSString *url = data[@"url"];

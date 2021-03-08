@@ -135,7 +135,7 @@
 -(void)createView{
     
     self.backView = [UIImageView new];
-    self.backView.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1.00];
+    self.backView.backgroundColor = sl_BGColors;
     self.backView.layer.masksToBounds = YES;
     self.backView.layer.cornerRadius = 4;
 //    self.backView.layer.borderWidth = 1;
