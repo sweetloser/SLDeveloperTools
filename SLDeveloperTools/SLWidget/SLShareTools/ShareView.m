@@ -72,6 +72,8 @@
         
         NSMutableArray *btnArray = [NSMutableArray new];
         
+        CGFloat fixSpace = __ScaleWidth(375-24-24 - 60 * 4) / 3;
+        
         for (NSInteger i = 0; i < shareObjects.count; i++) {
             ShareObject * shareObject = shareObjects[i];
             
@@ -86,6 +88,7 @@
                 make.top.equalTo(titleLb.mas_bottom).offset(__ScaleWidth(20));
                 make.height.mas_equalTo(__ScaleWidth(66));
                 make.width.mas_equalTo(__ScaleWidth(60));
+                make.left.mas_equalTo(__ScaleWidth(60 * i) + __ScaleWidth(24) + fixSpace * i);
             }];
             
             UILabel *textLb = [[UILabel alloc]init];
@@ -102,7 +105,7 @@
             [btnArray addObject:shareBtn];
         }
         
-        [btnArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:__ScaleWidth(60) leadSpacing:__ScaleWidth(24) tailSpacing:__ScaleWidth(24)];
+//        [btnArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:__ScaleWidth(60) leadSpacing:__ScaleWidth(24) tailSpacing:__ScaleWidth(24)];
         
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];

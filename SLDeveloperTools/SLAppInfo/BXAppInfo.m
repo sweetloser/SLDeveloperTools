@@ -145,11 +145,14 @@ MJCodingImplementation
         self.distribute_name = yongjinDic[@"distribute_name"];
     }
     
+    //活动
     NSDictionary *activityDict = jsonDic[@"activity"];
     if (activityDict && activityDict.isDictionary) {
         self.lottery_status = activityDict[@"lottery_status"];
         self.voice_setting = activityDict[@"voice_setting"];
         self.red_packet_status = activityDict[@"red_packet_status"];
+        self.is_user_task_open = activityDict[@"is_user_task_open"];
+        self.is_dynamic_open = activityDict[@"is_dynamic_open"];
     }
     
 }
