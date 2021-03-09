@@ -21,6 +21,8 @@ static NSString *const BXDynMsgDetailModel2TopicCategory = @"BXDynMsgDetailModel
 
 static NSString *const BXGo2Login = @"BXGo2Login";                                                    //登录
 
+static NSString *const BXAttenShareVideo2 = @"BXAttenShareVideo2";
+
 static NSString *const BXLoadURL = @"BXLoadURL";                                                    //
 
 static NSString *const BXEnterRoomWithRooms = @"BXEnterRoomWithRooms";                            //进入直播间
@@ -225,6 +227,5 @@ static NSString *const SLAmwayDidDeleteNotification = @"SLAmwayDidDeleteNotifica
 
 //商城首页数据缓存
 static NSString *const SLMallDataCacheKey = @"SLMallDataCacheKey";
-
 
 #endif /* SLAppInfoConst_h */

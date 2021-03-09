@@ -5,7 +5,7 @@
 //  Created by bxlive on 2019/2/20.
 //  Copyright © 2019 cat. All rights reserved.
 //
-
+#import "SLAppInfoMacro.h"
 #import "BXPayManager.h"
 @implementation BXPayManager
 
@@ -32,7 +32,7 @@
 {
 //    return [WXApi registerApp:appId];
 
-    BOOL isOk = [WXApi registerApp:appId universalLink:@"https://yq5km7.xinstall.top/tolink/"];
+    BOOL isOk = [WXApi registerApp:appId universalLink:SL_UNIVERSAL_LINK];
     
     return isOk;
 }

@@ -10,7 +10,9 @@
 
 //#define SiShiLiveURL
 
-#define BXLiveURL
+//#define BXLiveURL
+
+#define DaBaiLiveURL
 
 #ifdef SiShiLiveURL
 
@@ -21,7 +23,7 @@
 #define SL_HTTP_BASE_AMWAY_URL @"http://shop.40zhibopingtai.com/"
 #define SL_HTTP_BASE_API_URL @"http://shop.40zhibopingtai.com/"
 #define SL_HTTP_H5_URL @"http://shop.40zhibopingtai.com/"
-
+#define SL_UNIVERSAL_LINK @"https://yq5km7.xinstall.top/tolink/"
 #endif
 
 //秉信 测试 服务器
@@ -34,7 +36,23 @@
 #define SL_HTTP_BASE_AMWAY_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
+#define SL_UNIVERSAL_LINK @"https://6s9n03.xinstall.top/tolink/"
 #endif
+
+//大白直播
+#ifdef DaBaiLiveURL
+
+#define New_Http_Base_Url @"http://api.dabaiyule.com/api.php?"
+#define New_Http_Base_Url_Without @"http://api.dabaiyule.com/api.php"
+#define New_Http_Base_domain @"http://api.dabaiyule.com/"
+#define New_Http_Base_make_friend @"http://api.dabaiyule.com/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.libx.com.cn/"
+#define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
+#define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
+#define SL_UNIVERSAL_LINK @"https://7hlbqw.xinstall.top/tolink/"
+
+#endif
+
 //比例
 #define SCALE SCREEN_WIDTH / 375.0
 
