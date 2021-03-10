@@ -176,21 +176,22 @@
     [self addItemView];
     [self updataView];
 //    _location = (BXLocation *)[CacheHelper objectForKey:@"NowLocation"];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetLocation:) name:kDidGetLocationNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetLocation:) name:kDidGetLocationNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kStartLocationNotification object:nil];
     
-        WS(weakSelf);
-        _IssueSelDownView = [[BXDynIssueSelView alloc]initWithFrame:CGRectMake(0, __kHeight - 46 - __kBottomAddHeight, __kWidth, 270 + __kBottomAddHeight)];
-        _IssueSelDownView.delegate = self;
-        _IssueSelDownView.ReturnPath = ^(NSString * _Nonnull mp3Path) {
-            [weakSelf.playSound StartPlayWithplaypath:mp3Path];
-            weakSelf.mp3Path = mp3Path;
-            weakSelf.VoiceImageView.hidden = NO;
-        };
-        _IssueSelDownView.delegate = self;
-        [self.view addSubview:_IssueSelDownView];
-         _playSound = [[DynPlayMp3Voice alloc]init];
-        _playSound.delegate =self;
-    
+    WS(weakSelf);
+    _IssueSelDownView = [[BXDynIssueSelView alloc]initWithFrame:CGRectMake(0, __kHeight - 46 - __kBottomAddHeight, __kWidth, 270 + __kBottomAddHeight)];
+    _IssueSelDownView.delegate = self;
+    _IssueSelDownView.ReturnPath = ^(NSString * _Nonnull mp3Path) {
+        [weakSelf.playSound StartPlayWithplaypath:mp3Path];
+        weakSelf.mp3Path = mp3Path;
+        weakSelf.VoiceImageView.hidden = NO;
+    };
+    _IssueSelDownView.delegate = self;
+    [self.view addSubview:_IssueSelDownView];
+     _playSound = [[DynPlayMp3Voice alloc]init];
+    _playSound.delegate =self;
+
     
     self.playerManager = [[ZFAVPlayerManager alloc] init];
     self.player = [ZFPlayerController playerWithPlayerManager:self.playerManager containerView:_containtView];

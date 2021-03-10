@@ -518,13 +518,13 @@
     if (section==0) {
         if (self.followArray.count) {
             UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
-            backView.backgroundColor = LineNormalColor;
+            backView.backgroundColor = sl_BGColors;
             return backView;
         }
         return nil;
     }else if(section==1){
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
-        backView.backgroundColor = LineNormalColor;
+        backView.backgroundColor = sl_BGColors;
         return backView;
     }
     return nil;
