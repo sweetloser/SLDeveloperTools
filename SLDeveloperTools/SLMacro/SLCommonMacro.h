@@ -247,4 +247,61 @@ alpha:1.f]
 #define sl_divideLineColor [UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1]
 
 
+#define iPhone6sW 375.0
+#define iPhone6sH 667.0
+
+// X坐标
+#define kLineX(x) x*kScaleX
+// Y坐标
+#define kLineY(y) y*kScaleY
+
+#define kFont(x)     [UIFont systemFontOfSize:x*kScaleX]
+#define kBoldFont(x) [UIFont boldSystemFontOfSize:x*kScaleX]
+#define kDinFont(x)  [UIFont systemFontOfSize:x*kScaleX]
+
+#define kWeakSelf(A) __weak typeof(self)A = self;
+#define kStrongSelf(A,B) __strong typeof(self)A = B;
+
+#define RGBA(r, g, b, a)      [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define GENERAL_COLOR         [UIColor colorWithHexString:@"#E1082D"]
+#define LIGHT_GENERAL_COLOR   [UIColor colorWithHexString:@"#FCE6EA"]
+#define VIEW_BACKGROUND_COLOR [UIColor colorWithHexString:@"#F5F5F5"]
+#define RED_COLOR             [UIColor colorWithHexString:@"#FF2D52"]
+#define LIGHT_RED_COLOR       [UIColor colorWithHexString:@"#FC7157"]
+#define BLACK_COLOR           [UIColor colorWithHexString:@"#212122"]
+#define DARK_GRAY_COLOR       [UIColor colorWithHexString:@"#555555"]
+#define GRAY_COLOR            [UIColor colorWithHexString:@"#999999"]
+#define LIGHT_GRAY_COLOR      [UIColor colorWithHexString:@"#CCCCCC"]
+#define LINE_COLOR            [UIColor colorWithRed:224.0f/255.0f green:224.0f/255.0f blue:224.0f/255.0f alpha:1.0]
+
+
+#define isiPhoneX \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+
+#define statusHeight \
+({CGFloat height = 20.0;\
+if (isiPhoneX) {\
+height = 44.0;\
+}\
+(height);})
+
+#define navBarHeight 44.0
+
+#define bottomSafeAreaHeight  \
+({CGFloat height = 0.0;\
+if (isiPhoneX) {\
+height = 34.0;\
+}\
+(height);})
+
+#define B2B2C_THE_COLOR  [UIColor colorWithHexString:@"#F5F9FC"]
+
+
+/// 首页左右滑动的通知
+#define HOME_SCROLL_NOT @"HOME_SCROLL_NOT"
+
 #endif /* SLCommonMacro_h */

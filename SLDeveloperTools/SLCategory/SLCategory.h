@@ -54,5 +54,5 @@
 #import "UIView+HJViewStyle.h"
 #import "UILabel+LCExtension.h"
 #import "UIImage+Extension.h"
-
+#import "UIView+Extension.h"
 #endif /* SLCategory_h */

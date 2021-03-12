@@ -10,6 +10,7 @@
 #import <CoreServices/UTType.h>
 #import "../SLCategory/SLCategory.h"
 #import "../SLMacro/SLMacro.h"
+#import "SLAppInfoMacro.h"
 #import "BXLiveUser.h"
 #import "BXAppInfo.h"
 #import "SLAppInfoConst.h"
@@ -506,7 +507,7 @@ static NSString * const kWXAppID = @"";
         // 启动
         ZCLibInitInfo *initInfo = [ZCLibInitInfo new];
         // 企业编号 必填
-        initInfo.app_key = @"";
+        initInfo.app_key = ZC_KEY;
         // 用户id，用于标识用户，建议填写 (注意：userId不要写死，否则获取的历史记录相同)
 //        initInfo.isEnableAutoTips = YES;
         initInfo.title_type = @"1";

@@ -37,6 +37,8 @@ TODO: Add long description of the pod here.
 #  s.default_subspecs = 'SLCategory', 'SLUtilities', 'SLWidget'
   
   s.source_files = 'SLDeveloperTools/SLDeveloperTools.h'
+  s.dependency 'CTMediatorSLAmway'
+  
   s.subspec 'SLCategory' do |category|
       category.source_files = 'SLDeveloperTools/SLCategory/*.{h,m}'
       category.dependency 'SLDeveloperTools/SLMacro'
@@ -264,13 +266,12 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'RealReachability'
     appInfo.dependency 'Bugly', '~> 2.5.4'
     appInfo.dependency 'Qiniu', '= 8.0.5'
-    # appInfo.dependency 'CTMediator'
     appInfo.dependency 'AlipaySDK_No_UTDID-Mirror', '~> 15.8.00'
     appInfo.dependency 'WechatOpenSDK'
     appInfo.dependency 'HPGrowingTextView'
     appInfo.dependency 'STPopup'
     appInfo.dependency 'FLAnimatedImage'
-    appInfo.dependency 'SobotKit', '= 2.8.8'
+    appInfo.dependency 'SobotKit', '= 2.8.5'
     appInfo.dependency 'ZFPlayer', '3.3.3'
     appInfo.dependency 'JXPagingView/Pager'
     appInfo.dependency 'SDWebImage', '5.10.0'

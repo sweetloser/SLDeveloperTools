@@ -56,6 +56,10 @@
 #import "TMShopHTTPRequest.h"
 #import "BXDynTipOffVC.h"
 #import "SLDivideLineView.h"
+#import "YYLabel+HCExtension.h"
+#import "YYLabel+Extension.h"
+#import "LPButton.h"
+
 //定义英雄榜、魅力榜类型
 typedef enum : NSUInteger {
     SLLiveRankListTypeCharmRank=0,

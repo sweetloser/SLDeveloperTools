@@ -24,6 +24,10 @@
 #define SL_HTTP_BASE_API_URL @"http://shop.40zhibopingtai.com/"
 #define SL_HTTP_H5_URL @"http://shop.40zhibopingtai.com/"
 #define SL_UNIVERSAL_LINK @"https://yq5km7.xinstall.top/tolink/"
+
+//智齿key
+#define ZC_KEY @""
+
 #endif
 
 //秉信 测试 服务器
@@ -37,6 +41,10 @@
 #define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
 #define SL_UNIVERSAL_LINK @"https://6s9n03.xinstall.top/tolink/"
+
+//智齿key
+#define ZC_KEY @""
+
 #endif
 
 //大白直播
@@ -51,6 +59,8 @@
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
 #define SL_UNIVERSAL_LINK @"https://7hlbqw.xinstall.top/tolink/"
 
+//智齿key
+#define ZC_KEY @"30287f0183124391a17849ac4eed7867"
 #endif
 
 //比例
@@ -74,6 +84,5 @@
 //定义拍摄短视频的最长&最短时间
 #define MAX_RECORD_TIME             15.f
 #define MIN_RECORD_TIME             5.f
-
 
 #endif /* SLAppInfoMacro_h */
