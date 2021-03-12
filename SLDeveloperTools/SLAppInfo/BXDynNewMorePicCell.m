@@ -10,7 +10,7 @@
 #import "GongGeView.h"
 
 #import "BXInsetsLable.h"
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 #import "MorePicCollectionViewCell.h"
 #import "HZPhotoBrowser.h"
 #import "BXDynamicDetailsVC.h"

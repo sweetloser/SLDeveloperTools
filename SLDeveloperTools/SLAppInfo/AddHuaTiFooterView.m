@@ -18,6 +18,7 @@
 #import "../SLMacro/SLMacro.h"
 #import <SDAutoLayout/SDAutoLayout.h>
 #import "SLAppInfoMacro.h"
+#import "../SLCategory/SLCategory.h"
 
 @interface AddHuaTiFooterView()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong)UITableView *tableview;
@@ -280,7 +281,11 @@
     [HttpMakeFriendRequest AddTopicWithtopic_name:topic_name Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
             if (flag) {
                 if (self.DidItemIndex) {
-                    self.DidItemIndex(topic_name, [NSString stringWithFormat:@"%@", jsonDic[@"data"][@"topic_id"]]);
+                    NSDictionary *data = jsonDic[@"data"];
+                    if (data && data.isDictionary) {
+                        
+                        self.DidItemIndex(topic_name, [NSString stringWithFormat:@"%@", jsonDic[@"data"][@"topic_id"]]);
+                    }
 //                    [self.AddDataArray addObject:topic_name];
 //                    self.itemNum++;
                 }

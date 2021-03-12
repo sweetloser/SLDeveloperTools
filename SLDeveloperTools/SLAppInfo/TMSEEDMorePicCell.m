@@ -12,13 +12,15 @@
 #import "MorePicCollectionViewCell.h"
 #import "HZPhotoBrowser.h"
 #import "SDPhotoBrowser.h"
-//#import "TMSeedingPictureDetailVC.h"
 #import "SLAmwayListModel.h"
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <Masonry/Masonry.h>
 #import <SDWebImage/SDWebImage.h>
 #import "DynSharePopViewManager.h"
 #import <YYCategories/YYCategories.h>
+#import <CTMediatorSLAmway/CTMediator+SLAmway.h>
+
+
 #define ImageTag 111
 @interface TMSEEDMorePicCell()<UICollectionViewDelegate,UICollectionViewDataSource, HZPhotoBrowserDelegate>
 @property(nonatomic, strong)UIImageView *backImageView;
@@ -146,16 +148,15 @@
     _browser.delegate = self;
     WS(weakSelf);
     _browser.DidClick = ^(NSInteger type) {
-//        TMSeedingPictureDetailVC *vc = [[TMSeedingPictureDetailVC alloc]init];
-//        SLAmwayListModel *model = [[SLAmwayListModel alloc]init];
-//        model.user = [[SLAmwayPublicUser alloc]init];
-//        model.list_id = [NSNumber numberWithString:[NSString stringWithFormat:@"%@", weakSelf.model.fcmid]];
-//        model.user.avatar = weakSelf.model.msgdetailmodel.avatar;
-//        model.address = weakSelf.model.msgdetailmodel.address;
-//        model.user.nickname = weakSelf.model.msgdetailmodel.nickname;
-//        vc.model = model;
-//        vc.dynmodel = weakSelf.model;
-//        [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
+        SLAmwayListModel *model = [[SLAmwayListModel alloc]init];
+        model.user = [[SLAmwayPublicUser alloc]init];
+        model.list_id = [NSNumber numberWithString:[NSString stringWithFormat:@"%@", weakSelf.model.fcmid]];
+        model.user.avatar = weakSelf.model.msgdetailmodel.avatar;
+        model.address = weakSelf.model.msgdetailmodel.address;
+        model.user.nickname = weakSelf.model.msgdetailmodel.nickname;
+        UIViewController *vc = [[CTMediator sharedInstance] TMSeedingPictureDetailVC_ViewControllerWithListModel:model DynModel:weakSelf.model];
+        [weakSelf.viewController.navigationController pushViewController:vc animated:YES];
+        
     };
     _browser.fcmid = self.model.msgdetailmodel.fcmid;
 //    _browser.model = self.model;

@@ -57,7 +57,7 @@
         
         
         //昵称
-        self.nickNameLabel = [UILabel initWithFrame:CGRectZero size:16 color:MainTitleColor alignment:0 lines:1];
+        self.nickNameLabel = [UILabel initWithFrame:CGRectZero size:16 color:sl_textColors alignment:0 lines:1];
         self.nickNameLabel.font = CBFont(16);
         [self.contentView addSubview:self.nickNameLabel];
          self.nickNameLabel.sd_layout.leftSpaceToView(self.headImageView, 8).centerYEqualToView(self.headImageView).heightIs(20);
@@ -65,7 +65,7 @@
         
         
         //正在直播中
-        self.liveLabel = [UILabel initWithFrame:CGRectZero size:16 color:MinorColor alignment:0 lines:1];
+        self.liveLabel = [UILabel initWithFrame:CGRectZero size:16 color:sl_textSubColors alignment:0 lines:1];
         [self.contentView addSubview:self.liveLabel];
         self.liveLabel.sd_layout.leftSpaceToView(self.nickNameLabel, 8).centerYEqualToView(self.headImageView).heightIs(20).rightSpaceToView(self.contentView, 15);
         self.liveLabel.text = @"· 正在直播中";
@@ -124,7 +124,7 @@
         }];
 
         //底部线
-        self.lineLabel = [UILabel creatLabelLine:CGRectZero backgroundColor:LineNormalColor];
+        self.lineLabel = [UILabel creatLabelLine:CGRectZero backgroundColor:sl_textSubColors];
         [self.contentView addSubview:self.lineLabel];
         self.lineLabel.sd_layout.leftSpaceToView(self.contentView, 0).rightSpaceToView(self.contentView, 0).heightIs(1).topSpaceToView(self.coveImageView ,20);
         
@@ -182,7 +182,7 @@
 - (NSDictionary *)vodioDescribeAttri:(BXSLLiveRoom *)video {
     NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:video.title];
     attri.yy_font = CFont(16);
-    attri.yy_color = MainTitleColor;
+    attri.yy_color = sl_textSubColors;
     attri.yy_lineSpacing = 5;
     return @{@"attri":attri,@"height":@([self getAttributedTextHeightWithAttributedText:attri width:__kWidth-32])};
     

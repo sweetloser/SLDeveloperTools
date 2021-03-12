@@ -87,12 +87,12 @@
         self.focusButton.clipsToBounds = YES;
         [self.focusButton setImage:[UIImage imageNamed:@"icon_add_little"] forState:UIControlStateNormal];
         [self.focusButton setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 0)];
-        self.focusButton.layer.backgroundColor = normalColors.CGColor;
+        self.focusButton.layer.backgroundColor = sl_FF2DtextColors.CGColor;
         self.focusButton.layer.cornerRadius = 4;
         [self.focusButton addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onTapAction)]];
         
         //昵称
-        self.nickNameLabel = [UILabel initWithFrame:CGRectZero size:16 color:MainTitleColor alignment:0 lines:1];
+        self.nickNameLabel = [UILabel initWithFrame:CGRectZero size:16 color:sl_textColors alignment:0 lines:1];
         self.nickNameLabel.font = CBFont(16);
         
         //内容
@@ -136,22 +136,22 @@
         [self.likeBtn setBackgroundColor:[UIColor clearColor]];
         [self.likeBtn setImage:[UIImage imageNamed:@"icon_dianzan_default"] forState:BtnNormal];
         [self.likeBtn setImage:[UIImage imageNamed:@"icon_dianzan_selected"] forState:BtnSelected];
-        [self.likeBtn setTitleColor:MainTitleColor forState:UIControlStateNormal];
+        [self.likeBtn setTitleColor:sl_textSubColors forState:UIControlStateNormal];
         self.likeBtn.titleLabel.font = CFont(12);
         self.likeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [self.likeBtn addTarget:self action:@selector(clickZanBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         //评论
-        self.commentBtn = [UIButton buttonWithFrame:CGRectZero Title:@"评论" Font:CFont(12) Color:MainTitleColor Image:CImage(@"icon_attention_comment") Target:self action:@selector(commentBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        self.commentBtn = [UIButton buttonWithFrame:CGRectZero Title:@"评论" Font:CFont(12) Color:sl_textSubColors Image:CImage(@"dyn_comment_gray") Target:self action:@selector(commentBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
        
         //更多
-        self.moreBtn = [UIButton buttonWithFrame:CGRectZero Title:@"更多" Font:CFont(12) Color:MainTitleColor Image:CImage(@"icon_attention_more") Target:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        self.moreBtn = [UIButton buttonWithFrame:CGRectZero Title:@"更多" Font:CFont(12) Color:sl_textSubColors Image:CImage(@"dyn_share_gray") Target:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
         self.commentView = [BXAttentionCellCommentView new];
         self.commentView.delegate = self;
         self.commentView.sd_cornerRadius = @(4);
-        self.lineLabel = [UILabel creatLabelLine:CGRectZero backgroundColor:LineNormalColor];
+        self.lineLabel = [UILabel creatLabelLine:CGRectZero backgroundColor:sl_subBGColors];
        
         [self.contentView sd_addSubviews:@[self.headImageView,self.focusButton,self.nickNameLabel,self.titleLb,self.backView,self.likeBtn,self.commentBtn,self.moreBtn,self.timeLabel,self.commentView,self.lineLabel]];
         self.headImageView.sd_layout.leftSpaceToView(self.contentView, 16).topSpaceToView(self.contentView, 16).widthIs(40).heightEqualToWidth();
@@ -300,6 +300,7 @@
 }
 #pragma 更多
 -(void)moreBtnClick{
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXAttenShareVideo2 object:nil userInfo:@{@"movieId":_model.movieID,@"user_Id":_model.user_id,@"likeNum":_model.zan_sum,@"is_zan":_model.is_zan,@"is_collect":_model.is_collect,@"is_follow":_model.is_follow,@"vc":self.viewController,@"type":@1}];
 //    [SharePopViewManager shareWithVideoId:_model.movieID user_Id:_model.user_id likeNum:_model.zan_sum is_zan:_model.is_zan is_collect:_model.is_collect is_follow:_model.is_follow vc:self.viewController type:1];
 }
 
@@ -417,7 +418,7 @@
     if (!video.describeAttri) {
         NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:video.describe];
         attri.yy_font = CFont(16);
-        attri.yy_color = MainTitleColor;
+        attri.yy_color = sl_textColors;
         attri.yy_lineSpacing = 5;
         
         WS(ws);
@@ -456,13 +457,16 @@
 //        vc.topicId = topicId;
 //        [self.viewController.navigationController pushViewController:vc animated:YES];
     } else {
+        UINavigationController *nav = [UIApplication currentTabbarSelectedNavigationController];
 //        [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.viewController.navigationController}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":nav}];
     }
 }
 
 - (void)userDetail:(NSString *)userId {
-    [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":userId,@"isShow":@"",@"nav":self.viewController.navigationController}];
+    UINavigationController *nav = [UIApplication currentTabbarSelectedNavigationController];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":userId,@"isShow":@"",@"nav":nav}];
 //    [BXPersonHomeVC toPersonHomeWithUserId:userId isShow:nil nav:self.viewController.navigationController handle:nil];
 }
 -(void)iconImageClick{

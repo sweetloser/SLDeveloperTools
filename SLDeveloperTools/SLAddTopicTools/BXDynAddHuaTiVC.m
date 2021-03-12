@@ -17,6 +17,7 @@
 #import <SLDeveloperTools/SLDeveloperTools.h>
 #import "AddHuaTiFooterView.h"
 #import <YYCategories/YYCategories.h>
+#import <Masonry/Masonry.h>
 
 @interface BXDynAddHuaTiVC ()<UISearchBarDelegate, UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong)NSMutableArray *dataArray;

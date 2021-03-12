@@ -134,7 +134,7 @@
         return;
     }
     
-    [[NewHttpRequestPort sharedNewHttpRequestPort] shareGetParams:@{@"type":type,@"anchor":anchor,@"target_id":targetId,@"room_id":roomId,@"user_id":userId} Success:^(id responseObject) {
+    [[NewHttpRequestPort sharedNewHttpRequestPort] shareGetParams:@{@"type":type,@"anchor":[NSString SLNONullorNil:anchor],@"target_id":targetId,@"room_id":[NSString SLNONullorNil:roomId],@"user_id":userId} Success:^(id responseObject) {
         if([responseObject[@"code"] integerValue] == 0) {
             NSDictionary *dataDic = responseObject[@"data"];
             if (dataDic && [dataDic isDictionary]) {

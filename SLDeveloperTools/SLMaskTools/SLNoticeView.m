@@ -105,6 +105,7 @@
         
         UIView *dl2 = [[UIView alloc] initWithFrame:frame];
         [dl2 setBackgroundColor:sl_divideLineColor];
+        [self.contentView addSubview:dl2];
         [dl2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(dl1.mas_bottom);
             make.bottom.offset(0);

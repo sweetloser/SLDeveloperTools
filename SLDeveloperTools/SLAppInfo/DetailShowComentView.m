@@ -7,7 +7,7 @@
 //
 
 #import "DetailShowComentView.h"
-#import <Aspects.h>
+#import <Aspects/Aspects.h>
 #import "../SLMacro/SLMacro.h"
 #import "../SLCategory/SLCategory.h"
 #import <Masonry/Masonry.h>

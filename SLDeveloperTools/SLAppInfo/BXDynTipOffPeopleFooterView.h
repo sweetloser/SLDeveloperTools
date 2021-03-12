@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ReturnContentTextDelegate <NSObject>
 
 -(void)GetTipOffText:(NSString *)string picArray:(NSArray *)array;
-
+-(void)GetTipOffText:(NSString *)string;
 @end
 @interface BXDynTipOffPeopleFooterView : UIView
 @property(nonatomic, weak)id<ReturnContentTextDelegate>delegate;

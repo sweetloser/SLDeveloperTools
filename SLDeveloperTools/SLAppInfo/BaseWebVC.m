@@ -197,6 +197,7 @@ static NSString * const kWXAppID = @"";
     //相册
     [self.userContentController addScriptMessageHandler:self name:@"createGuildPullImage"];
     [self.userContentController addScriptMessageHandler:self name:@"getPayWxDetail"];
+    [self.userContentController addScriptMessageHandler:self name:@"getPayAliDetail"];
     
     //导航栏返回
     [self.userContentController addScriptMessageHandler:self name:@"navigateBack"];
@@ -269,29 +270,7 @@ static NSString * const kWXAppID = @"";
     [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":url}];
 }
 
-//- (void)uploadFile:(id)data responseCallback:(WVJBResponseCallback)responseCallback {
-//    if ([data isDictionary]) {
-//        NSString *source = data[@"source"];
-//        NSString *type = data[@"type"];
-//        NSString *ticket_type = data[@"ticket_type"];
-//        BOOL isImage = [type containsString:@"image"];
-//        BOOL isCamera = IsEquallString(source, @"camera");
-//        _manager = [[BXImagePickerManager alloc]initWithIsImage:isImage isCamera:isCamera vc:self];
-//        _manager.didSelectedData = ^(BOOL isImage, NSString *fileName, NSData *data) {
-//            [BGProgressHUD showLoadingWithMessage:@"正在上传"];
-//            [HHHttpRequestManager uploadFileWithType:ticket_type fileName:fileName data:data success:^(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models) {
-//                [BGProgressHUD showInfoWithMessage:@"上传成功"];
-//                if (flag) {
-//                    NSString *filePath = jsonDic[@"filePath"];
-//                    responseCallback(@{@"fileUrl":filePath});
-//                }
-//            } failure:^(NSError *error) {
-//                [BGProgressHUD showInfoWithMessage:@"上传失败"];
-//            }];
-//        };
-//        [_manager startPicker];
-//    }
-//}
+
 
 //移除js方法
 - (void)removeJSFunction {
@@ -335,7 +314,7 @@ static NSString * const kWXAppID = @"";
     
 //    开启小店调用支付
     [self.userContentController removeScriptMessageHandlerForName:@"getPayWxDetail"];
-    
+    [self.userContentController removeScriptMessageHandlerForName:@"getPayAliDetail"];
     
     
     
@@ -390,7 +369,8 @@ static NSString * const kWXAppID = @"";
         
     }else if([message.name isEqualToString:@"getPayWxDetail"]) {
         [self smallShopPay:message.body];
-        
+    }else if ([message.name isEqualToString:@"getPayAliDetail"]) {
+        [self smallShopAliPay:message.body];
     }else if([message.name isEqualToString:@"goGoodsDetail"]) {
         [self goGoodsDetail:[NSString stringWithFormat:@"%@", [message.body description]]];
     }
@@ -419,6 +399,11 @@ static NSString * const kWXAppID = @"";
 -(void)smallShopPay:(id)params{
     
 }
+
+-(void)smallShopAliPay:(id)params{
+    
+}
+
 -(void)goToCouponList{
     
 }
@@ -582,4 +567,3 @@ static NSString * const kWXAppID = @"";
 }
 
 @end
-

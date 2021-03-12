@@ -133,7 +133,9 @@
         [self didGetLocationDetail];
     } else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetLocation:) name:kDidGetLocationNotification object:nil];
-//        [[AppDelegate shareAppDelegate] startLocation];
+        
+        //开始定位
+        [[NSNotificationCenter defaultCenter] postNotificationName:kStartLocationNotification object:nil];
         
         [self performSelector:@selector(getLocationDetailWhenOutTime) withObject:nil afterDelay:3.0];
     }

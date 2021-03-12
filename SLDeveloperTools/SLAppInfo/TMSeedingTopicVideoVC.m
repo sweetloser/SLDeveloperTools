@@ -18,6 +18,7 @@
 #import <Masonry/Masonry.h>
 //#import "SLAmwayVideoShowVC.h"
 #import "SLAmwayListModel.h"
+#import <CTMediatorSLAmway/CTMediator+SLAmway.h>
 
 @interface TMSeedingTopicVideoVC ()<UICollectionViewDataSource, UICollectionViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
@@ -191,16 +192,20 @@
     SLAmwayListModel *m = self.SLDataArray[indexPath.row];
     if ([model.msgdetailmodel.render_type intValue] == 7) {
         //        视频
-//        SLAmwayVideoShowVC *svc = [[SLAmwayVideoShowVC alloc] init];
-//        for (SLAmwayListModel *model in self.SLDataArray) {
-//            if ([model.render_type integerValue] == 7) {
-//                [svc.videoData addObject:model];
-//                if ([m isEqual:model]) {
-//                    svc.currentVideoIndex = svc.videoData.count - 1;
-//                }
-//            }
-//        }
-//        [self.navigationController pushViewController:svc animated:YES];
+        NSNumber *currentIndex = @0;
+        NSMutableArray *modelList = [NSMutableArray new];
+        for (SLAmwayListModel *model in self.SLDataArray) {
+            if ([model.render_type integerValue] == 7) {
+                [modelList addObject:model];
+                if ([m isEqual:model]) {
+                    currentIndex = @(modelList.count -1);
+                }
+            }
+        }
+        UIViewController *svc = [[CTMediator sharedInstance] SLAmwayVideoShowVC_ViewControllerWithModelList:modelList CurrentIndex:currentIndex];
+        
+        
+        [self.navigationController pushViewController:svc animated:YES];
         return;
     }
 }

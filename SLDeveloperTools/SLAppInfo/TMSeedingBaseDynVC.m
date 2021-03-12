@@ -47,9 +47,10 @@
 #import <MJExtension/MJExtension.h>
 #import <YYCategories/YYCategories.h>
 #import "../SLCategory/SLCategory.h"
-//#import "TMSeedingPictureDetailVC.h"
 #import "SLAmwayListModel.h"
 #import "SLAmwayDetailModel.h"
+#import <CTMediatorSLAmway/CTMediator+SLAmway.h>
+
 
 @interface TMSeedingBaseDynVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate, TMSEEDBaseCellDelegate>
 
@@ -380,16 +381,16 @@
         return;
     }
     
-//    TMSeedingPictureDetailVC *vc = [[TMSeedingPictureDetailVC alloc]init];
-//    SLAmwayListModel *model = [[SLAmwayListModel alloc]init];
-//    model.user = [[SLAmwayPublicUser alloc]init];
-//    model.list_id = [NSNumber numberWithString:[NSString stringWithFormat:@"%@", [_dataArray[indexPath.row] fcmid]]];
-//    model.user.avatar = [[_dataArray[indexPath.row] msgdetailmodel] avatar];
-//    model.address = [[_dataArray[indexPath.row] msgdetailmodel]address];
-//    model.user.nickname = [[_dataArray[indexPath.row] msgdetailmodel]nickname];
-//    vc.model = model;
-//    vc.dynmodel = _dataArray[indexPath.row];
-//    [self pushVc:vc];
+    SLAmwayListModel *model = [[SLAmwayListModel alloc]init];
+    model.user = [[SLAmwayPublicUser alloc]init];
+    model.list_id = [NSNumber numberWithString:[NSString stringWithFormat:@"%@", [_dataArray[indexPath.row] fcmid]]];
+    model.user.avatar = [[_dataArray[indexPath.row] msgdetailmodel] avatar];
+    model.address = [[_dataArray[indexPath.row] msgdetailmodel]address];
+    model.user.nickname = [[_dataArray[indexPath.row] msgdetailmodel]nickname];
+    
+    UIViewController *vc = [[CTMediator sharedInstance] TMSeedingPictureDetailVC_ViewControllerWithListModel:model DynModel:self.dataArray[indexPath.row]];
+    [self.navigationController pushViewController:vc animated:YES];
+    
     if (self.player.playingIndexPath != indexPath) {
         [self.player stopCurrentPlayingCell];
     }
@@ -722,16 +723,20 @@
     }
     if ([model.msgdetailmodel.render_type intValue] == 7) {
         //        视频
-//        SLAmwayVideoShowVC *svc = [[SLAmwayVideoShowVC alloc] init];
-//        for (SLAmwayListModel *model in self.SLDataArray) {
-//            if ([model.render_type integerValue] == 7) {
-//                [svc.videoData addObject:model];
-//                if ([m isEqual:model]) {
-//                    svc.currentVideoIndex = svc.videoData.count - 1;
-//                }
-//            }
-//        }
-//        [self.navigationController pushViewController:svc animated:YES];
+        NSNumber *currentIndex = @0;
+        NSMutableArray *modelList = [NSMutableArray new];
+        for (SLAmwayListModel *model in self.SLDataArray) {
+            if ([model.render_type integerValue] == 7) {
+                [modelList addObject:model];
+                if ([m isEqual:model]) {
+                    currentIndex = @(modelList.count -1);
+                }
+            }
+        }
+        UIViewController *svc = [[CTMediator sharedInstance] SLAmwayVideoShowVC_ViewControllerWithModelList:modelList CurrentIndex:currentIndex];
+        
+        
+        [self.navigationController pushViewController:svc animated:YES];
         return;
     }
     BXDynClickPlayVC *vc = [[BXDynClickPlayVC alloc] initWithVideoModel:model];

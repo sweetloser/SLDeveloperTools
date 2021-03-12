@@ -18,8 +18,8 @@
 #import "../SLCategory/SLCategory.h"
 #import <ZFPlayer/ZFPlayer.h>
 #import <Masonry/Masonry.h>
-
-@interface BXDynFindCircleMyVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+@interface BXDynFindCircleMyVC ()<UICollectionViewDelegate,UICollectionViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property(nonatomic, strong)NSMutableArray *dataArray;
 @property (nonatomic , assign) NSInteger page;
@@ -119,6 +119,8 @@
     [self.collectionView registerClass:[AddCirCleCell class] forCellWithReuseIdentifier:@"cell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.collectionView.emptyDataSetSource = self;
+    self.collectionView.emptyDataSetDelegate = self;
 //    self.collectionView.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.collectionView];
     [self.collectionView addHeaderWithTarget:self action:@selector(TableDragWithDown)];
@@ -184,7 +186,22 @@
     return UIEdgeInsetsMake(12, 12, 12, 12);
     
 }
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"空页面状态"];
+}
 
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"还没有圈子哦";
+    NSMutableDictionary *attributes = [NSMutableDictionary new];
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    [attributes setObject:[UIFont systemFontOfSize:17] forKey:NSFontAttributeName];
+    [attributes setObject:MinorColor forKey:NSForegroundColorAttributeName];
+    [attributes setValue:paragraph forKey:NSParagraphStyleAttributeName];
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
+    return attributeString;
+}
 /*
 #pragma mark - Navigation
 

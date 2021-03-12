@@ -13,7 +13,7 @@
 
 @interface BXAttentRecommView()
 
-@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UIButton *nameBtn;
 @property (nonatomic, strong) UIButton *changeBtn;
 @end
 
@@ -24,24 +24,31 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = PageBackgroundColor;
-        self.nameLabel = [UILabel initWithFrame:CGRectZero size:16 color:[UIColor blackColor] alignment:0 lines:1];
-        self.nameLabel.font = [UIFont boldSystemFontOfSize:16];
+        self.backgroundColor = sl_BGColors;
+//        self.nameLabel = [UILabel initWithFrame:CGRectZero size:16 color:[UIColor blackColor] alignment:0 lines:1];
+//        self.nameLabel.font = [UIFont boldSystemFontOfSize:16];
+        self.nameBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        [self.nameBtn setTitle:@"推荐关注" forState:UIControlStateNormal];
+        self.nameBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+        [self.nameBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.nameBtn setImage:[UIImage imageNamed:@"icon_hot_recommend_att"] forState:UIControlStateNormal];
+        [self.nameBtn setImagePosition:0 spacing:5];
+
         self.changeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.changeBtn addTarget:self action:@selector(changeBtnBtnClick) forControlEvents:UIControlEventTouchUpInside];
         
         [self.changeBtn setTitle:@"换一换" forState:UIControlStateNormal];
         [self.changeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.changeBtn setImage:[UIImage imageNamed:@"follow_icon_huanyihuan"] forState:UIControlStateNormal];
-        [self sd_addSubviews:@[self.nameLabel,self.changeBtn]];
+        [self sd_addSubviews:@[self.nameBtn,self.changeBtn]];
     
         self.changeBtn.sd_layout.rightSpaceToView(self, 0).centerYEqualToView(self).widthIs(75).heightIs(40);
-        self.nameLabel.sd_layout.leftSpaceToView(self, 16).heightIs(20).centerYEqualToView(self).rightSpaceToView(self.changeBtn, 10);
-        self.nameLabel.text = @"推荐关注";
+        self.nameBtn.sd_layout.leftSpaceToView(self, 16).heightIs(20).centerYEqualToView(self).widthIs(100);
         self.changeBtn.titleLabel.font = CFont(11);
         [self.changeBtn setImagePosition:0 spacing:5];
         
-        
+//
         
         
         

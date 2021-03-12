@@ -8,7 +8,7 @@
 
 #import "AddPicturePhotoShow.h"
 #import "HZPhotoBrowser.h"
-#import <FLAnimatedImage.h>
+#import <FLAnimatedImage/FLAnimatedImage.h>
 @interface AddPicturePhotoShow()<HZPhotoBrowserDelegate>
 @end
 @implementation AddPicturePhotoShow

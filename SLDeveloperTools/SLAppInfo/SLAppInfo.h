@@ -55,4 +55,34 @@
 #import "BXCommentCell.h"
 #import "TMShopHTTPRequest.h"
 #import "BXDynTipOffVC.h"
+#import "SLDivideLineView.h"
+//定义英雄榜、魅力榜类型
+typedef enum : NSUInteger {
+    SLLiveRankListTypeCharmRank=0,
+    SLLiveRankListTypeAllHourRank,
+    SLLiveRankListTypeHostContributionRank,
+} SLLiveRankListType;
+
+//定义刷新类型
+typedef enum : NSUInteger {
+    SLRefreshTypeNone,
+    SLRefreshTypeHeader,
+    SLRefreshTypeFooter,
+} SLRefrshType;
+
+//定义添加商品类型   SLLiveAddGoodsTypeLiving 直播中添加商品
+//定义添加商品类型   SLLiveAddGoodsTypeLiveBefore 开播前添加商品
+typedef enum : NSUInteger {
+    SLLiveAddGoodsTypeLiving,
+    SLLiveAddGoodsTypeLiveBefore,
+} SLLiveAddGoodsType;
+
+typedef NS_ENUM(NSInteger,DSSpeedMode) {
+    SpeedMode_VerySlow,
+    SpeedMode_Slow,
+    SpeedMode_Standard,
+    SpeedMode_Quick,
+    SpeedMode_VeryQuick,
+};
+
 #endif /* SLAppInfo_h */

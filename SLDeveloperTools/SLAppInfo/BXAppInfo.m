@@ -58,6 +58,8 @@ MJCodingImplementation
     self.unread_total = [jsonDic[@"unread_total"] integerValue];
     self.open_anchor_type = [NSString stringWithFormat:@"%@", jsonDic[@"open_anchor_type"]];
     NSDictionary *h5_urlsDic = jsonDic[@"h5_urls"];
+    NSDictionary *customer_serviceDict = jsonDic[@"customer_service"];
+    self.customer_service = customer_serviceDict;
     NSDictionary *regist_dic = jsonDic[@"register"];
     self.level = h5_urlsDic[@"level"];
     self.about = h5_urlsDic[@"about"];
@@ -101,6 +103,7 @@ MJCodingImplementation
     self.app_millet_unit = app_base_info[@"app_millet_unit"];
     self.app_account_name = app_base_info[@"app_account_name"];
     self.app_prefix_name = app_base_info[@"app_prefix_name"];
+    self.live_room_name = app_base_info[@"live_room_name"];
     self.app_recharge_unit = app_base_info[@"app_recharge_unit"];
     self.app_settlement_unit = app_base_info[@"app_settlement_unit"];
     self.app_balance_unit = app_base_info[@"app_balance_unit"];
@@ -141,6 +144,17 @@ MJCodingImplementation
         self.distribute_status = [NSString stringWithFormat:@"%@", yongjinDic[@"distribute_status"]];
         self.distribute_name = yongjinDic[@"distribute_name"];
     }
+    
+    //活动
+    NSDictionary *activityDict = jsonDic[@"activity"];
+    if (activityDict && activityDict.isDictionary) {
+        self.lottery_status = activityDict[@"lottery_status"];
+        self.voice_setting = activityDict[@"voice_setting"];
+        self.red_packet_status = activityDict[@"red_packet_status"];
+        self.is_user_task_open = activityDict[@"is_user_task_open"];
+        self.is_dynamic_open = activityDict[@"is_dynamic_open"];
+    }
+    
 }
 + (NSString *)getPhoneArea {
     MMKV *mmkv = [MMKV defaultMMKV];

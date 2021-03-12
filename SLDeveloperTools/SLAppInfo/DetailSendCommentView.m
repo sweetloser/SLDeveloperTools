@@ -11,11 +11,11 @@
 #import "HPGrowingTextView.h"
 #import "BXAiteFriendVC.h"
 #import "BXGradientButton.h"
-#import <HXPhotoPicker.h>
+#import <HXPhotoPicker/HXPhotoPicker.h>
 #import "FilePathHelper.h"
 #import "DetailSendcomCollectionViewCell.h"
 #import "HttpMakeFriendRequest.h"
-#import <UIView+HXExtension.h>
+//#import <UIView+HXExtension.h>
 #import <YYCategories/YYCategories.h>
 #import <Masonry/Masonry.h>
 #import "../SLMacro/SLMacro.h"

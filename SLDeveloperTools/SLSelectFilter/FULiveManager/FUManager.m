@@ -67,30 +67,10 @@ static FUManager *shareManager = NULL;
         /**这里新增了一个参数shouldCreateContext，设为YES的话，不用在外部设置context操作，我们会在内部创建并持有一个context。
          还有设置为YES,则需要调用FURenderer.h中的接口，不能再调用funama.h中的接口。*/
         if (bs.code == 2) {
-//            6.4.1_beta4_tf-4494a3c7-165b1e1-085c8add
             NSData *data = [NSData dataWithBase64EncodedString:bs.key];
             char *auth_byte = (char *)data.bytes;
-            NSLog(@"%lu",(unsigned long)data.length);
-            NSLog(@"%lu",sizeof(auth_keykey));
-            BOOL all_right = YES;
-            for (int i=0; i<data.length; i++) {
-                if (*(auth_byte + i) == auth_keykey[i]) {
-                    NSLog(@"%d ========== %d",*(auth_byte + i), auth_keykey[i]);
-                }else{
-                    NSLog(@"不相等");
-                    NSLog(@"%d <<<<<>>>>> %d",*(auth_byte + i), auth_keykey[i]);
-                    all_right = NO;
-                    break;
-                }
-//                auth_byte++;
-            }
-
-            NSLog(@"aaa");
-            if (all_right) {
-                [[FURenderer shareRenderer] setupWithDataPath:path authPackage:auth_byte authSize:(int)(data.length) shouldCreateContext:YES];
-            }else{
-                [[FURenderer shareRenderer] setupWithDataPath:path authPackage:&auth_keykey authSize:(int)(data.length) shouldCreateContext:YES];
-            }
+            [[FURenderer shareRenderer] setupWithDataPath:path authPackage:auth_byte authSize:(int)(data.length) shouldCreateContext:YES];
+            
             dispatch_async(asyncLoadQueue, ^{
 
                    NSData *tongueData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tongue.bundle" ofType:nil]];

@@ -21,11 +21,17 @@ static NSString *const BXDynMsgDetailModel2TopicCategory = @"BXDynMsgDetailModel
 
 static NSString *const BXGo2Login = @"BXGo2Login";                                                    //登录
 
+static NSString *const BXAttenShareVideo2 = @"BXAttenShareVideo2";
+
 static NSString *const BXLoadURL = @"BXLoadURL";                                                    //
 
 static NSString *const BXEnterRoomWithRooms = @"BXEnterRoomWithRooms";                            //进入直播间
 
 static NSString *const BXGo2BXVideoPlayVC = @"BXGo2BXVideoPlayVC";                            //进入视频播放页面
+
+static NSString *const kStartLocationNotification = @"StartLocationNotification";                   //开始定位
+
+static NSString *const BXGoToGoodsDetail = @"BXGoToGoodsDetail";                   //跳转商品详情页
 
 static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                   //获取到了定位信息
 
@@ -70,7 +76,10 @@ static NSString *const kDidLogoutNotification = @"DidLogoutNotification";       
 //static NSString *const sl_UploadFileResponseCodeError = @"sl_UploadFileResponseCodeError";                        //上传文件请求 code 不为 0
 
 static NSString *const kDidGetAccessTokenNotification = @"DidGetAccessTokenNotification";             //获取到AccessToken
-//static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                   //获取到了定位信息
+
+static NSString *const kAppShowAllData = @"AppShowAllData";                                            //app不隐藏部分数据
+
+//static NSString *const kDidGetLocationNotification = @"DidGetLocationNotification";                 //获取到了定位信息
 static NSString *const kDidGetGameChannelNotification = @"DidGetGameChannelNotification";             //获取到游戏频道
 static NSString *const kDisplayIncomeNotification = @"DisplayIncomeNotification";                     //显示收益
 static NSString *const kQueryGuardCoverNotification = @"QueryGuardCoverNotification";                 //查询守护着头像
@@ -202,6 +211,8 @@ static NSString *const SLUnCollectedGoodsNotification = @"SLUnCollectedGoodsNoti
 static NSString *const SLAddGoodsToWindowNotification = @"SLAddGoodsToWindowNotification";
 static NSString *const SLDeleteGoodsAtWindowNotification = @"SLDeleteGoodsAtWindowNotification";
 
+static NSString *const SLUpdateGoodsAtWindowNotification = @"SLUpdateGoodsAtWindowNotification";
+
 #pragma mark - 种草
 //static NSString *const SLAmwayUploadVideoSuccessNotification = @"SLAmwayUploadVideoSuccessNotification";           //上传视频成功
 
@@ -216,6 +227,5 @@ static NSString *const SLAmwayDidDeleteNotification = @"SLAmwayDidDeleteNotifica
 
 //商城首页数据缓存
 static NSString *const SLMallDataCacheKey = @"SLMallDataCacheKey";
-
 
 #endif /* SLAppInfoConst_h */

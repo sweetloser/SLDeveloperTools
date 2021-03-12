@@ -56,23 +56,12 @@
 @property (nonatomic, copy) NSString *app_millet_unit;
 @property (nonatomic, copy) NSString *app_name;
 @property (nonatomic, copy) NSString *app_prefix_name;
+@property (nonatomic, copy) NSString *live_room_name;
 @property (nonatomic, copy) NSString *app_recharge_unit;
 @property (nonatomic, copy) NSString *app_settlement_unit;
 @property (nonatomic, copy) NSString *contact_tel;
 
-
-/*
- {
-     "app_account_name" = ID;
-     "app_balance_unit" = "";
-     "app_millet_unit" = "\U91d1\U5e01";
-     "app_name" = "\U79c9\U4fe1\U76f4\U64ad+\U6f14\U793a\U7cfb\U7edf";
-     "app_prefix_name" = "\U79c9\U4fe1";
-     "app_recharge_unit" = "\U94bb\U77f3";
-     "app_settlement_unit" = "\U7ed3\U7b97";
-     "contact_tel" = "400-027-0519";
- }
- */
+@property (nonatomic, copy) NSDictionary *customer_service;
 
 @property (copy, nonatomic) NSString *code;        
 @property (copy, nonatomic) NSString *area;
@@ -94,6 +83,14 @@
 @property(nonatomic,copy)NSString *login_private_url;
 @property(nonatomic,copy)NSString *login_service_url;
 @property(nonatomic,copy)NSString *ios_app_hidden;
+@property(nonatomic,copy)NSString *ios_app_hidden_version;
+
+#pragma mark - 活动
+@property(nonatomic,copy)NSString *lottery_status;  //转盘是否开启 0 关闭 1 开启
+@property(nonatomic,copy)NSString *red_packet_status;  //红包
+@property(nonatomic,copy)NSString *voice_setting;  //
+@property(nonatomic,copy)NSString *is_dynamic_open; //动态是非开启
+@property(nonatomic,copy)NSString *is_user_task_open;   //个人任务中心是否开启
 
 @property(nonatomic,copy)NSString *one_key_login;   //1 开启本机号码一键登录
 @property(nonatomic,copy)NSString *invite_code; //邀请码 2 必填

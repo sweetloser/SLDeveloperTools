@@ -56,7 +56,7 @@
         self.collectionView.delegate = self;
         self.collectionView.showsVerticalScrollIndicator = NO;
         self.collectionView.showsHorizontalScrollIndicator = NO;
-        self.collectionView.backgroundColor = [UIColor clearColor];
+        self.collectionView.backgroundColor = sl_BGColors;
         self.collectionView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 8, 0, 0));
         [self.collectionView registerClass:[DSAttentionScrollViewCell class] forCellWithReuseIdentifier:@"DSAttentionScrollViewCell"];
         
@@ -99,9 +99,17 @@
     }else{
             
         BXAttentFollowModel *model = self.dataArr[indexPath.item];
+        
 //        [BXLocalAgreement loadUrl:model.jump fromVc:self.viewController completion:^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:kDidSeeNotification object:nil userInfo:@{@"user_id":model.user_id}];
 //        }];
+        
+        void(^block)(void) = ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDidSeeNotification object:nil userInfo:@{@"user_id":model.user_id}];
+        };
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self.viewController,@"url":model.jump,@"block":block}];
+        
             
     }
 }
@@ -116,6 +124,7 @@
 }
 -(void)setIs_live_dataArr:(NSMutableArray *)is_live_dataArr{
     _is_live_dataArr = is_live_dataArr;
+    [self reloadData];
 }
 @end
 

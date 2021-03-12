@@ -69,7 +69,7 @@
     [_tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.navView.mas_bottom).offset(100);
         make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(- 64.0 - __kTopAddHeight - 49 - __kBottomAddHeight);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset( - __kBottomAddHeight);
     }];
     self.dataArray = [NSMutableArray array];
     self.selArray = [NSMutableArray array];
@@ -413,12 +413,13 @@
     }
     if (self.selectFriendArray) {
         NSMutableArray *array = [NSMutableArray array];
-        [array addObject:@{@"user_id":user_id, @"user_name":user_name}];
+        [array addObject:@{@"user_id":user_id, @"user_name":[NSString stringWithFormat:@"@%@ ",user_name]}];
         self.selectFriendArray(array);
         [self pop];
     }
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    
     [BGProgressHUD showLoadingAnimation];
     [HttpMakeFriendRequest SearchFriendWithKey_words:searchBar.text Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
         [BGProgressHUD hidden];
@@ -440,6 +441,13 @@
         else{
             [BGProgressHUD showInfoWithMessage:[jsonDic valueForKey:@"msg"]];
         }
+        
+        if (self.dataArray.count) {
+            self.tableview.hidden = NO;
+        }else{
+            self.tableview.hidden = YES;
+        }
+        
         [self.tableview reloadData];
     } Failure:^(NSError * _Nonnull error) {
         [BGProgressHUD hidden];
@@ -448,17 +456,24 @@
 }
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
 
-        self.tableview.hidden = YES;
-
-    [self.dataArray removeAllObjects];
+//        self.tableview.hidden = YES;
+//
+//    [self.dataArray removeAllObjects];
     [self.tableview reloadData];
 }
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    self.tableview.hidden = NO;
+//    self.tableview.hidden = NO;
+    
+
 }
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     _searchString = searchText;
-//    [self.tableview reloadData];
+    
+    if (searchText.length == 0) {
+        self.tableview.hidden = YES;
+        [self.dataArray removeAllObjects];
+    }
+
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.searchBar resignFirstResponder];
