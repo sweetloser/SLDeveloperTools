@@ -154,6 +154,10 @@ MJCodingImplementation
         self.is_user_task_open = activityDict[@"is_user_task_open"];
         self.is_dynamic_open = activityDict[@"is_dynamic_open"];
     }
+    NSDictionary *shop = jsonDic[@"shop"];
+    if (shop && [shop isDictionary]) {
+        self.user_shop = shop[@"user_shop"];
+    }
     
 }
 + (NSString *)getPhoneArea {

@@ -90,6 +90,7 @@
 @property(nonatomic,copy)NSString *red_packet_status;  //红包
 @property(nonatomic,copy)NSString *voice_setting;  //
 @property(nonatomic,copy)NSString *is_dynamic_open; //动态是非开启
+@property(nonatomic,copy)NSString *user_shop; //商品橱窗是否开启
 @property(nonatomic,copy)NSString *is_user_task_open;   //个人任务中心是否开启
 
 @property(nonatomic,copy)NSString *one_key_login;   //1 开启本机号码一键登录
