@@ -10,9 +10,9 @@
 
 //#define SiShiLiveURL
 
-//#define BXLiveURL
+#define BXLiveURL
 
-#define DaBaiLiveURL
+//#define DaBaiLiveURL
 
 #ifdef SiShiLiveURL
 
