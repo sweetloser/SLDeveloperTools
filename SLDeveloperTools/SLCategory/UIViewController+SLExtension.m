@@ -18,7 +18,6 @@
 }
 
 -(void)sl_presentViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void(^)(void))complate{
-    vc.modalPresentationStyle = 0;
     [self sl_presentViewController:vc animated:animated completion:complate];
 }
 

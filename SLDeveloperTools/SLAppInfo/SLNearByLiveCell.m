@@ -115,7 +115,7 @@
     }];
     
     
-    self.titleLabel = [UILabel createLabelWithFrame:CGRectZero BackgroundColor:SLClearColor Text:@"" Font:SLPFFont(__ScaleWidth(14)) TextColor:sl_textColors];
+    self.titleLabel = [UILabel createLabelWithFrame:CGRectZero BackgroundColor:SLClearColor Text:@"" Font:SLPFFont(__ScaleWidth(14)) TextColor:sl_whiteTextColors];
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(__ScaleWidth(8));
