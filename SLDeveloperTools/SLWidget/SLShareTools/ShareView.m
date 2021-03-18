@@ -9,6 +9,7 @@
 #import "ShareView.h"
 #import "../../SLMacro/SLMacro.h"
 #import "../../SLCategory/SLCategory.h"
+#import "BXAppInfo.h"
 #import <Masonry/Masonry.h>
 
 @interface ShareView ()
@@ -31,6 +32,9 @@
         [self addSubview:maskView];
         
         UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, __kHeight, __kWidth, __ScaleWidth(303-34) + __kBottomAddHeight)];
+        if ([[BXAppInfo appInfo].is_dynamic_open integerValue] == 0) {
+            contentView.frame = CGRectMake(0, __kHeight, __kWidth, __ScaleWidth(200) + __kBottomAddHeight);
+        }
         contentView.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
         [self addSubview:contentView];
         _contentView = contentView;
@@ -111,7 +115,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
         [maskView addGestureRecognizer:tap];
         
-        
+        if ([[BXAppInfo appInfo].is_dynamic_open integerValue] == 1) {
 //        分割线
         UIView *lineV = [UIView new];
         [_contentView  addSubview:lineV];
@@ -148,13 +152,14 @@
             make.left.right.bottom.mas_equalTo(0);
             make.height.mas_equalTo(__ScaleWidth(17));
         }];
+        }
         
         
 //        取消
         UIButton *cancelBtn = [UIButton  buttonWithType:UIButtonTypeCustom];
         [_contentView addSubview:cancelBtn];
         [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(share_dynamicBtn.mas_bottom).offset(__ScaleWidth(15));
+            make.bottom.equalTo(contentView.mas_bottom).offset(__ScaleWidth(-15) - __kBottomAddHeight);
             make.width.mas_equalTo(__ScaleWidth(100));
             make.height.mas_equalTo(__ScaleWidth(25));
             make.centerX.mas_equalTo(0);
