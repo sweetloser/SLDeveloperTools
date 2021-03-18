@@ -1001,7 +1001,7 @@
     }
         
     [BGProgressHUD showLoadingAnimation];
-    [HttpMakeFriendRequest UploadDynamicWithcontent:self.growingTextView.text picture:picstr video:video voice:voice voice_time:_voice_time location:[NSString stringWithFormat:@"%@, %@", self.location.lat, self.location.lng] type:issue_type msg_type:self.quanXianType title:topictitle extend_type:extend_type privateid:[self jsonString:self.AtArray] systemtype:@"" systemplus:@"" extend_talk:@"" extend_circle:self.selCircle_id render_type:render_type cover_url:coverurl dynamic_title:@"" address:self.location.name Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
+    [HttpMakeFriendRequest UploadDynamicWithcontent:self.growingTextView.text picture:picstr video:video voice:voice voice_time:_voice_time location:[NSString stringWithFormat:@"%@, %@", self.location.lng, self.location.lat] type:issue_type msg_type:self.quanXianType title:topictitle extend_type:extend_type privateid:[self jsonString:self.AtArray] systemtype:@"" systemplus:@"" extend_talk:@"" extend_circle:self.selCircle_id render_type:render_type cover_url:coverurl dynamic_title:@"" address:self.location.name Success:^(NSDictionary * _Nonnull jsonDic, BOOL flag, NSMutableArray * _Nonnull models) {
         [BGProgressHUD hidden];
         NSLog(@"上传：%@", jsonDic);
         if (flag) {
