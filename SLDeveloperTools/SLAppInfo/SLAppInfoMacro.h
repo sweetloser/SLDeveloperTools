@@ -10,9 +10,9 @@
 
 //#define SiShiLiveURL
 
-#define BXLiveURL
+//#define BXLiveURL
 
-//#define DaBaiLiveURL
+#define DaBaiLiveURL
 
 #ifdef SiShiLiveURL
 
@@ -43,7 +43,7 @@
 #define SL_UNIVERSAL_LINK @"https://6s9n03.xinstall.top/tolink/"
 
 //智齿key
-#define ZC_KEY @""
+#define ZC_KEY @"0937ca53a36741d081f01297039d1060"
 
 #endif
 
