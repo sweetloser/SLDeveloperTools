@@ -23,7 +23,8 @@
 @implementation BXTwistingMachineView
 
 - (instancetype)initWithUrl:(NSString *)url roomId:(NSString *)roomId vc:(UINavigationController *)nav {
-    if ([super init]) {
+    self = [super init];
+    if (self) {
         _url = url;
         _roomId = roomId;
         _nav = nav;
@@ -84,6 +85,12 @@
 
 - (NSString *)getloadUrlWithUrl:(NSString *)url roomId:(NSString *)roomId {
     NSString *loadUrl = url;
+    
+    //已经拼接了参数。
+    if ([loadUrl containsString:@"&"]) {
+        return loadUrl;
+    }
+    
     if ([loadUrl containsString:@"?"]) {
         loadUrl = [NSString stringWithFormat:@"%@&room_id=%@&user_id=%@",loadUrl,roomId,[BXLiveUser currentBXLiveUser].user_id];
     } else {

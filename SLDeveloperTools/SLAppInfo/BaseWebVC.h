@@ -40,5 +40,7 @@
 - (void)goToWithUrl:(NSString *)url;
 
 
+-(void)wishGift:(NSDictionary *)giftDict;
+
 
 @end

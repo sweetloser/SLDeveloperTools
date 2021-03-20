@@ -79,6 +79,15 @@
     
 }
 
+#pragma mark - 心愿单 - 帮ta实现
+-(void)wishGift:(NSDictionary *)giftDict{
+    [self.popupController dismiss];
+    if (self.wishGiftBlock) {
+        self.wishGiftBlock(giftDict);
+    }
+}
+
+
 -(void)backBtnClick{
     [self removeJS];
     [self.popupController popToRootViewControllerAnimated:YES];

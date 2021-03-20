@@ -87,6 +87,11 @@
 @property (copy, nonatomic) NSString *position;
 @property (copy, nonatomic) NSString *activity_url;
 
+//心愿单
+@property (copy, nonatomic) NSString *wish_position;
+@property (copy, nonatomic) NSString *wish_url;
+@property (copy, nonatomic) NSString *wish_status;
+
 @property (nonatomic, assign) NSInteger initialTime;
 @property (nonatomic, assign) NSInteger addTime;
 

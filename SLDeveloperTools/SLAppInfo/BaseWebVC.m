@@ -30,14 +30,6 @@ static NSString * const kWXAppID = @"";
 
 @interface BaseWebVC ()<WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
 
-//@property (strong, nonatomic) WKWebViewJavascriptBridge *bridge;
-
-
-
-//@property (strong, nonatomic) BXImagePickerManager *manager;
-
-
-
 @end
 
 @implementation BaseWebVC
@@ -73,8 +65,6 @@ static NSString * const kWXAppID = @"";
     [self createNav];
 }
 -(void)createNav{
-    
-
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
@@ -203,46 +193,21 @@ static NSString * const kWXAppID = @"";
     //导航栏返回
     [self.userContentController addScriptMessageHandler:self name:@"navigateBack"];
     [self.userContentController addScriptMessageHandler:self name:@"share"];
-//    [self.bridge registerHandler:@"share" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        if ([data isDictionary]) {
-//            [self shareWithTitle:data[@"title"] descr:data[@"descr"] thumb:data[@"thumb"] url:data[@"url"] share_key:data[@"share_key"] responseCallback:responseCallback];
-//        }
-//    }];
+
     [self.userContentController addScriptMessageHandler:self name:@"getVersion"];
-//    [self.bridge registerHandler:@"getVersion" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        if (responseCallback) {
-//            // 反馈给JS
-//            NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
-//            responseCallback(@{@"vcode":Version, @"version":currentVersion});
-//        }
-//    }];
     
     [self.userContentController addScriptMessageHandler:self name:@"getUser"];
 
     
     [self.userContentController addScriptMessageHandler:self name:@"uploadFile"];
-//    [self.bridge registerHandler:@"uploadFile" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        [self uploadFile:data responseCallback:responseCallback];
-//    }];
     
     [self.userContentController addScriptMessageHandler:self name:@"recharge"];
-//    [self.bridge registerHandler:@"recharge" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        [self toRecharge];
-//    }];
-    
     [self.userContentController addScriptMessageHandler:self name:@"goTo"];
-//    [self.bridge registerHandler:@"goTo" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        if ([data isDictionary]) {
-//            NSString *url = data[@"url"];
-//            [self goToWithUrl:url];
-//        }
-//    }];
     [self.userContentController addScriptMessageHandler:self name:@"openWxAPP"];
-//    [self.bridge registerHandler:@"openWxAPP" handler:^(id data, WVJBResponseCallback responseCallback) {
-//        if ([data isDictionary]) {
-//            [self openWxAPP:data[@"userName"] path:data[@"path"] miniProgramType:[data[@"miniProgramType"] integerValue]];
-//        }
-//    }];
+    
+    //心愿单弹出礼物视图
+    [self.userContentController addScriptMessageHandler:self name:@"giftClickDialog"];
+
 }
 - (void)shareWithTitle:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key{
 //    [ShareManager shareWithShareType:nil targetId:nil title:title descr:descr thumb:thumb url:url share_key:share_key currentVC:self shareCompletion:^(NSString *share_channel, NSError *error) {
@@ -317,7 +282,7 @@ static NSString * const kWXAppID = @"";
     [self.userContentController removeScriptMessageHandlerForName:@"getPayWxDetail"];
     [self.userContentController removeScriptMessageHandlerForName:@"getPayAliDetail"];
     
-    
+    [self.userContentController removeScriptMessageHandlerForName:@"giftClickDialog"];
     
 }
 
@@ -393,42 +358,42 @@ static NSString * const kWXAppID = @"";
         [self goSeckillGoodsDetail:[NSString stringWithFormat:@"%@", [message.body description]]];
     }else if([message.name isEqualToString:@"goMyCoupon"]) {
         [self goToCouponList];
+    }else if([message.name isEqualToString:@"giftClickDialog"]) {
+        NSLog(@"%@",message.body);
+        if ([message.body isKindOfClass:[NSString class]]) {
+//            [self goToWithUrl:message.body];
+//            这里应该直接解析url，弹出礼物框
+            
+            NSURL *url = [NSURL URLWithString:message.body];
+            NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+            //url中参数的key value
+            NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+            for (NSURLQueryItem *item in urlComponents.queryItems) {
+                [parameter setValue:item.value forKey:item.name];
+            }
+            
+            if ([[url scheme] isEqual:@"bx"]) {
+                NSString *relativePath = [url relativePath];
+                if ([relativePath isEqualToString:@"/gift"]) {
+                    [self wishGift:parameter];
+                }
+            }
+        }
     }
-    
-    
 }
--(void)smallShopPay:(id)params{
-    
-}
+-(void)smallShopPay:(id)params{}
+-(void)smallShopAliPay:(id)params{}
+-(void)goToCouponList{}
+-(void)uploadWithType:(NSString *)type{}
+-(void)goSeckillGoodsDetail:(NSString *)kill_id{}
+-(void)goGoodsDetail:(NSString *)sku_id{}
+-(void)goToShop:(NSString *)shop_id{}
+-(void)openAccount{}
+-(void)openRecharge{}
+-(void)goToWithdraw:(NSString *)draw_type{}
+-(void)wishGift:(NSDictionary *)giftDict;{}
 
--(void)smallShopAliPay:(id)params{
-    
-}
 
--(void)goToCouponList{
-    
-}
--(void)uploadWithType:(NSString *)type{
-    
-}
--(void)goSeckillGoodsDetail:(NSString *)kill_id{
-    
-}
--(void)goGoodsDetail:(NSString *)sku_id{
-    
-}
--(void)goToShop:(NSString *)shop_id{
-    
-}
--(void)openAccount{
-    
-}
--(void)openRecharge{
-    
-}
--(void)goToWithdraw:(NSString *)draw_type{
-    
-}
 -(void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler{
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
          
@@ -448,22 +413,6 @@ static NSString * const kWXAppID = @"";
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *))completionHandler {
-    
-//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:nil preferredStyle:UIAlertControllerStyleAlert];
-//    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-//        textField.text = defaultText;
-//    }];
-//    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"确定",@"Sure", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//        NSString *input = ((UITextField *)alertController.textFields.firstObject).text;
-//        completionHandler(input);
-//    }]];
-//    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"取消",@"Sure", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//        completionHandler(nil);
-//    }]];
-
-    
-    
-//    [self presentViewController:alertController animated:YES completion:^{}];
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {

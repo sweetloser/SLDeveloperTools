@@ -52,7 +52,7 @@
     [self addSearchBar];
     [self initChildVcs];
     [self initViews];
-    
+    [self.categoryView reloadData];
     if (_searchText) {
         [BXSLSearchManager addSearchHistoryWithSearchText:_searchText];
     }

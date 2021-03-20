@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic) CGFloat heightRate;
 
+@property(nonatomic, copy)void (^wishGiftBlock)(NSDictionary *param);
+
 @end
 
 NS_ASSUME_NONNULL_END

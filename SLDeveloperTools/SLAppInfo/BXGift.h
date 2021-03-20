@@ -11,18 +11,20 @@
 @interface BXGift : BaseObject
 
 
-
-@property (copy, nonatomic) NSString  *giftType;
-@property (copy, nonatomic) NSString  *giftId;
-@property (copy, nonatomic) NSString  *picture_url;
-@property (copy, nonatomic) NSString  *name;
-@property (copy, nonatomic) NSString  *price;
-@property (copy, nonatomic) NSString  *type;
-@property (copy, nonatomic) NSString  *num;
 @property (copy, nonatomic) NSString  *badge;
+@property (copy, nonatomic) NSString  *giftId;
+@property (copy, nonatomic) NSString  *giftType;
+@property (copy, nonatomic) NSNumber  *is_vip;
+@property (copy, nonatomic) NSString  *music_url;
+@property (copy, nonatomic) NSString  *name;
+@property (copy, nonatomic) NSString  *picture_url;
+@property (copy, nonatomic) NSString  *price;
 @property (copy, nonatomic) NSString  *layout;
 @property (copy, nonatomic) NSString  *duration;
 @property (copy, nonatomic) NSString  *tips;
+@property (copy, nonatomic) NSString  *type;
+@property (copy, nonatomic) NSString  *num;
+
 @property (copy, nonatomic) NSString  *file;
 @property (copy, nonatomic) NSString  *size;
 

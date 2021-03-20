@@ -8,11 +8,13 @@
 #ifndef SLAppInfoMacro_h
 #define SLAppInfoMacro_h
 
-//#define SiShiLiveURL
+//#define SiShiLiveURL  //肆拾直播
 
-//#define BXLiveURL
+//#define BXLiveURL     //秉信互娱
 
-#define DaBaiLiveURL
+//#define DaBaiLiveURL  //大白互娱
+
+#define DuoLaLiveURL    //朵拉互娱
 
 #ifdef SiShiLiveURL
 
@@ -24,9 +26,7 @@
 #define SL_HTTP_BASE_API_URL @"http://shop.40zhibopingtai.com/"
 #define SL_HTTP_H5_URL @"http://shop.40zhibopingtai.com/"
 #define SL_UNIVERSAL_LINK @"https://yq5km7.xinstall.top/tolink/"
-
-//智齿key
-#define ZC_KEY @""
+#define ZC_KEY @""                  //智齿key
 
 #endif
 
@@ -41,9 +41,7 @@
 #define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
 #define SL_UNIVERSAL_LINK @"https://6s9n03.xinstall.top/tolink/"
-
-//智齿key
-#define ZC_KEY @"0937ca53a36741d081f01297039d1060"
+#define ZC_KEY @"0937ca53a36741d081f01297039d1060"                      //智齿key
 
 #endif
 
@@ -58,10 +56,23 @@
 #define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
 #define SL_UNIVERSAL_LINK @"https://7hlbqw.xinstall.top/tolink/"
-
-//智齿key
-#define ZC_KEY @"30287f0183124391a17849ac4eed7867"
+#define ZC_KEY @"30287f0183124391a17849ac4eed7867"                      //智齿key
 #endif
+
+//朵拉互娱
+#ifdef DuoLaLiveURL
+
+#define New_Http_Base_Url @"http://api.hfseyscm.com/api.php?"
+#define New_Http_Base_Url_Without @"http://api.hfseyscm.com/api.php"
+#define New_Http_Base_domain @"http://api.hfseyscm.com/"
+#define New_Http_Base_make_friend @"http://api.hfseyscm.com/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.libx.com.cn/"
+#define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
+#define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
+#define SL_UNIVERSAL_LINK @"https://7hlbqw.xinstall.top/tolink/"
+#define ZC_KEY @"e85ba28f99df4e14957406b63e438653"                      //智齿key
+#endif
+
 
 //比例
 #define SCALE SCREEN_WIDTH / 375.0
