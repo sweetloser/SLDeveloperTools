@@ -12,9 +12,9 @@
 
 //#define BXLiveURL     //秉信互娱
 
-//#define DaBaiLiveURL  //大白互娱
+//#define DuoLaLiveURL    //朵拉互娱
 
-#define DuoLaLiveURL    //朵拉互娱
+#define DaBaiLiveURL    //大白直播
 
 #ifdef SiShiLiveURL
 

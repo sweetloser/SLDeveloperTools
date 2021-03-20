@@ -47,7 +47,7 @@
 -(void)initview{
     UIView *backview = [[UIView alloc]initWithFrame:self.frame];
     [self addSubview:backview];
-    
+    WS(weakSelf);
     //背景
     _backImage = [[UIImageView alloc]init];
     _backImage.layer.cornerRadius = 10;
@@ -64,14 +64,16 @@
     
     //女头像
     _friendImage = [[UIImageView alloc]init];
-    _friendImage.backgroundColor = [UIColor greenColor];
+    _friendImage.backgroundColor = sl_subBGColors;
     _friendImage.layer.borderWidth = 2;
     _friendImage.layer.borderColor = UIColorHex(#505258).CGColor;
     _friendImage.layer.cornerRadius = 30;
     _friendImage.layer.masksToBounds = YES;
     UITapGestureRecognizer *friendtap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":self->_model.msgdetailmodel.friend_user_id,@"isShow":@"",@"nav":self.viewController.navigationController}];
+        NSString *uid = [NSString stringWithFormat:@"%@",weakSelf.model.msgdetailmodel.friend_user_id];
+        if (!IsNilString(uid)) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":self->_model.msgdetailmodel.friend_user_id,@"isShow":@"",@"nav":self.viewController.navigationController}];
+        }
         
 //        [BXPersonHomeVC toPersonHomeWithUserId:self->_model.msgdetailmodel.friend_user_id isShow:nil nav:self.viewController.navigationController handle:nil];
     }];
@@ -87,14 +89,16 @@
     
     //男头像
     _userImage = [[UIImageView alloc]init];
-    _userImage.backgroundColor = [UIColor greenColor];
+    _userImage.backgroundColor = sl_subBGColors;
     _userImage.layer.borderWidth = 2;
     _userImage.layer.borderColor = UIColorHex(#505258).CGColor;
     _userImage.layer.cornerRadius = 30;
     _userImage.layer.masksToBounds = YES;
     UITapGestureRecognizer *usertap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        
+        NSString *uid = [NSString stringWithFormat:@"%@",weakSelf.model.msgdetailmodel.user_id];
+        if (!IsNilString(uid)) {
         [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":self->_model.msgdetailmodel.user_id,@"isShow":@"",@"nav":self.viewController.navigationController}];
+        }
         
 //        [BXPersonHomeVC toPersonHomeWithUserId:self->_model.msgdetailmodel.user_id isShow:nil nav:self.viewController.navigationController handle:nil];
     }];
@@ -296,7 +300,7 @@
     _model = model;
     _dian_zanlable.text = [NSString stringWithFormat:@"%@", model.alreadysend];
     _usernamelable.text = model.msgdetailmodel.nickname;
-        [self.userImage sd_setImageWithURL:[NSURL URLWithString:model.msgdetailmodel.avatar] placeholderImage:CImage( @"placeplaceholder")];
+        [self.userImage sd_setImageWithURL:[NSURL URLWithString:model.msgdetailmodel.avatar]];
     if ([[NSString stringWithFormat:@"%@", model.msgdetailmodel.gender] isEqualToString:@"2"]) {
             _user_genderImage.image = [UIImage imageNamed:@"dyn_issue_gender_girl"];
         }else{
@@ -318,7 +322,7 @@
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(4, model.msgdetailmodel.friend_nickname.length)];
     self.friendnamelable.attributedText = str;
     _friendnamelable.font = SLPFFont(12);
-        [self.friendImage sd_setImageWithURL:[NSURL URLWithString:model.msgdetailmodel.friend_avatar] placeholderImage:CImage( @"placeplaceholder")];
+        [self.friendImage sd_setImageWithURL:[NSURL URLWithString:model.msgdetailmodel.friend_avatar]];
     
     if ([[NSString stringWithFormat:@"%@", model.msgdetailmodel.friend_gender] isEqualToString:@"2"]) {
         _friend_genderImage.image = [UIImage imageNamed:@"dyn_issue_gender_girl"];
