@@ -227,6 +227,8 @@ static NSString *const SLAmwayDidUnLikeNotification = @"SLAmwayDidUnLikeNotifica
 
 static NSString *const SLAmwayDidDeleteNotification = @"SLAmwayDidDeleteNotification";  //删除种草
 
+static NSString *const SLAmwayAttenShareVideo = @"SLAmwayAttenShareVideo";
+
 
 //商城首页数据缓存
 static NSString *const SLMallDataCacheKey = @"SLMallDataCacheKey";
