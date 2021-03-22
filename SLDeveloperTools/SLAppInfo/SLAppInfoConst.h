@@ -106,9 +106,6 @@ static NSString *const kLinkMicStatusNotification = @"LinkMicStatusNotification"
 
 static NSString *const kChangePersonCenterNotification = @"kChangePersonCenterNotification";                                   //更改个人中心数据
 
-//static NSString *const kSelectMusicPlayPauseNotification = @"kSelectMusicPlayPauseNotification";  //选择音乐播放/暂停
-//static NSString *const kDidUseMusicNotification = @"DidUseMusicNotification";         //使用音乐
-//static NSString *const kDidMusicPlayFinishNotification = @"DidMusicPlayFinishNotification";  //音乐播放完成
 
 static NSString *const kDidReplyDeleteCommentNotification = @"DidReplyDeleteCommentNotification";  //回复/删除评论
 
@@ -134,6 +131,8 @@ static NSString *const slPlaySalePointLiveGoodsListNotification = @"SalePointLiv
 static NSString *const slPlaySayLiveGoodsShowSmallWindowNotification = @"PlaySayLiveGoodsShowSmallWindowNotification";  //讲解显示浮窗
 static NSString *const slPlayUnSayLiveGoodsHiddenSmallWindowNotification = @"PlayUnSayLiveGoodsHiddenSmallWindowNotification";  //取消讲解隐藏浮窗
 
+static NSString *const sl_GoodsDetailDealloc = @"sl_GoodsDetailDealloc";    //商品详情页面销毁了
+static NSString *const sl_showSmallPlayWindow = @"sl_showSmallPlayWindow";
 static NSString *const kDidOpenTeenNotification = @"DidOpenTeenNotification";                               //开启青少年
 static NSString *const kDidCloseTeenNotification = @"DidCloseTeenNotification";                               //开启青少年
 
