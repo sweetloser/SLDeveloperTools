@@ -12,9 +12,9 @@
 #import "BXLiveUser.h"
 @implementation BuglyHelper
 
-+(void)buglyHelper{
++(void)buglyHelperWhitAppid:(NSString *)appid{
     //设置buglyID
-    [Bugly startWithAppId:@"d4e9e78963"];
+    [Bugly startWithAppId:appid];
     //BuglyConfig
     BuglyConfig *ci = [[BuglyConfig alloc] init];
     //卡顿统计打开
