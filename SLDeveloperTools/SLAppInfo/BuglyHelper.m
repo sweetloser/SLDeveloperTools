@@ -14,7 +14,7 @@
 
 +(void)buglyHelper{
     //设置buglyID
-    [Bugly startWithAppId:@"5bd42cf456"];
+    [Bugly startWithAppId:@"d4e9e78963"];
     //BuglyConfig
     BuglyConfig *ci = [[BuglyConfig alloc] init];
     //卡顿统计打开
