@@ -153,6 +153,8 @@ MJCodingImplementation
         self.red_packet_status = activityDict[@"red_packet_status"];
         self.is_user_task_open = activityDict[@"is_user_task_open"];
         self.is_dynamic_open = activityDict[@"is_dynamic_open"];
+        self.agent_front_status = activityDict[@"agent_front_status"];
+        self.team_status = activityDict[@"team_status"];
     }
     NSDictionary *shop = jsonDic[@"shop"];
     if (shop && [shop isDictionary]) {
