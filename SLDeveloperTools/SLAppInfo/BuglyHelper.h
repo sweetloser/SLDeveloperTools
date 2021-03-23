@@ -10,6 +10,6 @@
 
 @interface BuglyHelper : NSObject
 
-+(void)buglyHelper;
++(void)buglyHelperWhitAppid:(NSString *)appid;
 
 @end
