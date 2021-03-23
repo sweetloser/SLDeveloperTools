@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)NSString *volume;
 @property(nonatomic, strong)NSString *comfrom;
 @property(nonatomic, strong)NSString *full_reduction;
+@property(nonatomic, strong)NSString *roomid;
+@property(nonatomic, strong)NSString *jump;
 
 @end
 

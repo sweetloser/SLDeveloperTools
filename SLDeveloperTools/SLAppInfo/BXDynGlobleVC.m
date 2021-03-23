@@ -668,16 +668,32 @@
         [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         return cell;
     }
-    if (render_type == 16){
+    else if (render_type == 16){
         static NSString *roomcell = @"roomcell";
         BXSLLiveRoomtCell *cell = [tableView dequeueReusableCellWithIdentifier:roomcell];
         if (!cell) {
             cell = [[BXSLLiveRoomtCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:roomcell];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-//        BXSLLiveRoom *r = [[BXSLLiveRoom alloc]init];
+        BXDynamicModel *dynmodel = _dataArray[indexPath.row];
+        BXSLLiveRoom *roommodel = [[BXSLLiveRoom alloc]init];
+        roommodel.nickname = dynmodel.msgdetailmodel.nickname;
+        roommodel.create_time = dynmodel.msgdetailmodel.difftime;
+        roommodel.audience = [NSNumber numberWithInt:[dynmodel.msgdetailmodel.like_num intValue]];
+        roommodel.avatar = dynmodel.msgdetailmodel.avatar;
+        roommodel.cover_url = dynmodel.msgdetailmodel.cover_url;
+        roommodel.city = dynmodel.msgdetailmodel.address;
+        roommodel.title  = dynmodel.msgdetailmodel.content;
+        roommodel.user_id = dynmodel.msgdetailmodel.user_id;
         cell.backgroundColor = [UIColor clearColor];
-//        cell.liveRoom = _liveRooms[indexPath.row];
+        cell.liveRoom = roommodel;
+        return cell;
+    }else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell11"];
+        if (!cell) {
+            cell = [[BXSLLiveRoomtCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell11"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
         return cell;
     }
     
@@ -713,6 +729,12 @@
         BXDynamicDetailsVC *vc = [[BXDynamicDetailsVC alloc]initWithType:[self.dataArray[indexPath.row] msgdetailmodel].render_type model:self.dataArray[indexPath.row]];
         vc.model = self.dataArray[indexPath.row];
         [self pushVc:vc];
+    }
+    if (render_type == 16) {
+        BXDynamicModel *dynmodel = _dataArray[indexPath.row];
+        BXSLLiveRoom *roommodel = [[BXSLLiveRoom alloc]init];
+        roommodel.jump = dynmodel.msgdetailmodel.sysModel.jump;
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":roommodel.jump}];
     }
     if (self.player.playingIndexPath != indexPath) {
         [self.player stopCurrentPlayingCell];
