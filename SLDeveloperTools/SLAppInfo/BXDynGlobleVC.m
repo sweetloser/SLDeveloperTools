@@ -668,8 +668,17 @@
         [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         return cell;
     }
-    else{
-        return nil;
+    if (render_type == 16){
+        static NSString *roomcell = @"roomcell";
+        BXSLLiveRoomtCell *cell = [tableView dequeueReusableCellWithIdentifier:roomcell];
+        if (!cell) {
+            cell = [[BXSLLiveRoomtCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:roomcell];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+//        BXSLLiveRoom *r = [[BXSLLiveRoom alloc]init];
+        cell.backgroundColor = [UIColor clearColor];
+//        cell.liveRoom = _liveRooms[indexPath.row];
+        return cell;
     }
     
 }
