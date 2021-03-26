@@ -127,10 +127,14 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BXLiveUser *liveUser = _liveUsers[indexPath.row];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":liveUser.user_id,@"isShow":@"",@"nav":self.navigationController}];
-    
-//    [BXPersonHomeVC toPersonHomeWithUserId:liveUser.user_id isShow:nil nav:self.navigationController handle:nil];
+    if (liveUser.is_live.integerValue == 1) {
+        //NSArray *rooms = userInfo[@"rooms"];
+//        UIViewController *vc = userInfo[@"vc"];
+//        NSNumber *index = userInfo[@"index"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":liveUser.jump}];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":liveUser.user_id,@"isShow":@"",@"nav":self.navigationController}];
+    }
 }
 
 
