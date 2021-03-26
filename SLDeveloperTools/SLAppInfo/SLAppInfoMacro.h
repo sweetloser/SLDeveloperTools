@@ -71,7 +71,7 @@
 #define SL_HTTP_BASE_AMWAY_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
-#define SL_UNIVERSAL_LINK @"https://7hlbqw.xinstall.top/tolink/"
+#define SL_UNIVERSAL_LINK @"https://y5hmz8.xinstall.top/tolink/"
 #define ZC_KEY @"e85ba28f99df4e14957406b63e438653"                      //智齿key
 
 #endif
