@@ -26,15 +26,10 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'sweetloser' => '18272160172@163.com' }
   s.source           = { :git => 'https://github.com/sweetloser/SLDeveloperTools.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
   s.ios.deployment_target = '9.0'
   s.platform     = :ios, "9.0"
-#  s.pod_target_xcconfig = { 'VALID_ARCHS[sdk=iphonesimulator*]' => '', "ENABLE_BITCODE" => "NO" }
-#  s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
   s.requires_arc = true
   s.static_framework = true
-  
-#  s.default_subspecs = 'SLCategory', 'SLUtilities', 'SLWidget'
   
   s.source_files = 'SLDeveloperTools/SLDeveloperTools.h'
   s.dependency 'CTMediatorSLAmway'
