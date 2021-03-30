@@ -12,7 +12,6 @@
 #import "authpack.h"
 #import <sys/utsname.h>
 #import <CoreMotion/CoreMotion.h>
-#import "FUMusicPlayer.h"
 #import "HMItem.h"
 #import "../SLSelectFilterHeader.h"
 #import <MMKV/MMKV.h>
@@ -197,11 +196,6 @@ static FUManager *shareManager = NULL;
 {
     [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"loc_x_flip" value:@(1)];
     [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"loc_y_flip" value:@(1)];
-}
-
-- (void)musicFilterSetMusicTime
-{
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"music_time" value:@([FUMusicPlayer sharePlayer].currentTime * 1000 + 50)];//需要加50ms的延迟
 }
 
 /**加载美颜道具*/
@@ -442,7 +436,7 @@ static FUManager *shareManager = NULL;
     }
     if (self.isMotionItem) {//针对带重力道具
         [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"rotMode" value:@(self.deviceOrientation)];
-    }    
+    }
     /**设置美颜参数*/
     [self resetAllBeautyParams];
     
@@ -732,7 +726,7 @@ static int enabled[10];
     }
 }
 
-#pragma mark -  设备类型 
+#pragma mark -  设备类型
 -(BOOL)isDeviceMotionChange{
     if (![FURenderer isTracking]) {
         CMAcceleration acceleration = self.motionManager.accelerometerData.acceleration ;
