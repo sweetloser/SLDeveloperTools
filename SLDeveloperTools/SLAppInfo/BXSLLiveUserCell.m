@@ -164,28 +164,6 @@
         [attribute appendAttributedString:string];
         [attribute appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
     }
-//    UIImage *sexImage = nil;
-//    if ([liver.gender integerValue]==0) {
-////        未知
-//        sexImage = [UIImage imageNamed:@"gender_icon_weishezhi"];
-//
-//    }else if ([liver.gender integerValue]==1){
-////        男
-//        sexImage = [UIImage imageNamed:@"gender_icon_male"];
-//    }else{
-////        女
-//         sexImage = [UIImage imageNamed:@"gender_icon_female"];
-//    }
-//    NSTextAttachment *attch = [[NSTextAttachment alloc] init];
-//    // 表情图片
-//    attch.image = sexImage;
-//    // 设置图片大小
-//    attch.bounds = CGRectMake(0,-2,16,16);
-//    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
-//    [attribute appendAttributedString:string];
-//    [attribute appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-    
-    
     if ([liver.level integerValue]>0) {
         NSTextAttachment *attch = [[NSTextAttachment alloc] init];
         // 表情图片
@@ -241,7 +219,6 @@
 
 - (void)avatarAction {
     [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":_liveUser.user_id,@"isShow":@"",@"nav":self.viewController.navigationController}];
-//    [BXPersonHomeVC toPersonHomeWithUserId:_liveUser.user_id isShow:nil nav:self.viewController.navigationController handle:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

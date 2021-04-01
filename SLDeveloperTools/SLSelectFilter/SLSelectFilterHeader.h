@@ -23,7 +23,6 @@ extern BeautyStatus bs;
 #import "SLSelectFilterConst.h"
 #import "authpack.h"
 #import "FUManager.h"
-#import "FUMusicPlayer.h"
 #import "HMBeautifySlideView.h"
 #import "HMBeautifyView.h"
 #import "HMFilterView.h"

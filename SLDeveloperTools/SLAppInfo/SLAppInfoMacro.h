@@ -16,6 +16,8 @@
 
 //#define DaBaiLiveURL    //大白直播
 
+//#define MeiWoYouPinURL  //每窝优品
+
 #ifdef SiShiLiveURL
 
 #define New_Http_Base_Url @"http://api.40zhibopingtai.com/api.php?"
@@ -69,8 +71,24 @@
 #define SL_HTTP_BASE_AMWAY_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_BASE_API_URL @"http://shop.libx.com.cn/"
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
-#define SL_UNIVERSAL_LINK @"https://7hlbqw.xinstall.top/tolink/"
+#define SL_UNIVERSAL_LINK @"https://y5hmz8.xinstall.top/tolink/"
 #define ZC_KEY @"e85ba28f99df4e14957406b63e438653"                      //智齿key
+
+#endif
+
+#ifdef MeiWoYouPinURL
+
+//每窝优品
+#define New_Http_Base_Url @"http://api.live.meiwoyoupin.com/api.php?"
+#define New_Http_Base_Url_Without @"http://api.live.meiwoyoupin.com/api.php"
+#define New_Http_Base_domain @"http://api.live.meiwoyoupin.com/"
+#define New_Http_Base_make_friend @"http://api.live.meiwoyoupin.com/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.meiwoyoupin.com/"
+#define SL_HTTP_BASE_API_URL @"http://shop.meiwoyoupin.com/"
+#define SL_HTTP_H5_URL @"http://shop.meiwoyoupin.com/"
+#define SL_UNIVERSAL_LINK @"https://ylzgr6.xinstall.top/tolink/"
+#define ZC_KEY @"e85ba28f99df4e14957406b63e438653"                      //智齿key
+
 #endif
 
 

@@ -200,13 +200,13 @@
             
         case HMFilterSliderTypeEyeLarge:
             key = @"DSEnlargingLevelShort";
-            [FUManager shareManager].enlargingLevel = value;
+//            [FUManager shareManager].enlargingLevel = value;
             [FUManager shareManager].enlargingLevel_new = value;
             break;
             
         case HMFilterSliderTypeThinFace:
             key = @"DSThinningLevelShort";
-            [FUManager shareManager].thinningLevel = value;
+//            [FUManager shareManager].thinningLevel = value;
             [FUManager shareManager].thinningLevel_new = value;
             break;
             
@@ -233,6 +233,7 @@
     MMKV *mmkv = [MMKV defaultMMKV];
     [mmkv setFloat:value forKey:key];
     [mmkv sync];
+    [[FUManager shareManager] resetAllBeautyParams];
 }
 
 
