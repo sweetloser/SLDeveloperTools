@@ -17,7 +17,7 @@
 /// 从keychain中获取UUID
 +(NSString *)getUUID
 {
-    NSString * strUUID = (NSString *)[KeyChainStore load:@"com.company.app.usernamepassword"];
+    NSString * strUUID = (NSString *)[KeyChainStore load:KEY_USERNAME_PASSWORD];
     
     //首次执行该方法时，uuid为空
     if ([strUUID isEqualToString:@""] || !strUUID)

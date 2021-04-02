@@ -24,6 +24,8 @@ static NSString *const BXGo2Login = @"BXGo2Login";                              
 
 static NSString *const BXAttenShareVideo2 = @"BXAttenShareVideo2";
 
+static NSString *const SHOP_LIVE_KEFU = @"SHOP_LIVE_KEFU";
+
 static NSString *const BXLoadURL = @"BXLoadURL";                                                    //
 
 static NSString *const TM_BXLoadURL = @"TM_BXLoadURL";                                                    //
