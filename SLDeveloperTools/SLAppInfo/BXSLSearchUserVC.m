@@ -8,7 +8,7 @@
 
 #import "BXSLSearchUserVC.h"
 #import "BXSLLiveUserCell.h"
-//#import "BXPersonHomeVC.h"
+#import "BXSLLiveRoom.h"
 #import "SLAppInfoConst.h"
 #import <Masonry/Masonry.h>
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
@@ -128,10 +128,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BXLiveUser *liveUser = _liveUsers[indexPath.row];
     if (liveUser.is_live.integerValue == 1) {
-        //NSArray *rooms = userInfo[@"rooms"];
-//        UIViewController *vc = userInfo[@"vc"];
-//        NSNumber *index = userInfo[@"index"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":liveUser.jump}];
+        
+        if (liveUser.jump != nil || liveUser.room_id.integerValue != 0) {
+            NSString *jump = liveUser.jump;
+            if (jump == nil) {
+                jump = [NSString stringWithFormat:@"bx://router.bxtv.com/enter_room?room_id=%@&from=search",liveUser.room_id];
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":jump}];
+        }
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":liveUser.user_id,@"isShow":@"",@"nav":self.navigationController}];
     }

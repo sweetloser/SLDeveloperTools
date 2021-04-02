@@ -18,7 +18,7 @@
 #import "../SLCategory/SLCategory.h"
 #import "NewHttpManager.h"
 #import "../SLMaskTools/SLMaskTools.h"
-
+#import <SDAutoLayout/SDAutoLayout.h>
 
 @interface BXSLLiveUserCell ()
 
@@ -27,7 +27,7 @@
 @property (nonatomic, strong) UILabel *nameLb;
 @property (nonatomic, strong) UILabel *idLb;
 @property (nonatomic, strong) UILabel *infoLb;
-
+@property (nonatomic, strong) UIImageView *livingImageView;
 
 @end
 
@@ -53,6 +53,11 @@
             make.left.mas_equalTo(__ScaleWidth(12));
             make.centerY.mas_equalTo(0);
         }];
+        
+        _livingImageView = [UIImageView new];
+        _livingImageView.image = CImage(@"video_isLive");
+        [_avatarBtn addSubview:_livingImageView];
+        _livingImageView.sd_layout.widthIs(__ScaleWidth(34)).heightIs(__ScaleWidth(13)).centerXEqualToView(_avatarBtn).topEqualToView(_avatarBtn);
         
         _followBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_followBtn setTitle:@"关注" forState:BtnNormal];
@@ -116,6 +121,12 @@
     _nameLb.attributedText = [self getAttributedStringName:liveUser];
     _idLb.text = [NSString stringWithFormat:@"%@：%@",[BXAppInfo appInfo].app_account_name,liveUser.user_id];
     _infoLb.text = liveUser.sign;
+    
+    if ([liveUser.is_live integerValue] == 1) {
+        _livingImageView.hidden = NO;
+    }else{
+        _livingImageView.hidden = YES;
+    }
 }
 - (void)setLiveUser:(BXLiveUser *)liveUser {
     _liveUser = liveUser;
@@ -125,6 +136,12 @@
     _nameLb.attributedText = [self getAttributedStringName:liveUser];
     _idLb.text = [NSString stringWithFormat:@"%@：%@",[BXAppInfo appInfo].app_account_name,liveUser.user_id];
     _infoLb.text = liveUser.sign;
+    
+    if ([liveUser.is_live integerValue] == 1) {
+        _livingImageView.hidden = NO;
+    }else{
+        _livingImageView.hidden = YES;
+    }
 }
 
 - (void)followAction:(UIButton *)sender {

@@ -552,10 +552,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         BXLiveUser *liveUser = _liveUsers[indexPath.row];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":liveUser.user_id,@"isShow":@"",@"nav":self.navigationController}];
-        
-//        [BXPersonHomeVC toPersonHomeWithUserId:liveUser.user_id isShow:nil nav:self.navigationController handle:nil];
+        if (liveUser.is_live.integerValue == 1) {
+            
+            if (liveUser.jump != nil || liveUser.room_id.integerValue != 0) {
+                NSString *jump = liveUser.jump;
+                if (jump == nil) {
+                    jump = [NSString stringWithFormat:@"bx://router.bxtv.com/enter_room?room_id=%@&from=search",liveUser.room_id];
+                }
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":jump}];
+            }
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":liveUser.user_id,@"isShow":@"",@"nav":self.navigationController}];
+        }
     } else if (indexPath.section == 2) {
         BXSLLiveRoom *liveRoom = _liveRooms[indexPath.row];
 //        [BXLocalAgreement loadUrl:liveRoom.jump fromVc:self];
