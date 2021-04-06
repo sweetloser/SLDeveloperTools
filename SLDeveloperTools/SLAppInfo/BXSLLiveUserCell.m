@@ -22,7 +22,7 @@
 
 @interface BXSLLiveUserCell ()
 
-@property (nonatomic, strong) UIButton *avatarBtn;
+@property (nonatomic, strong) UIImageView *avatarBtn;
 @property (nonatomic, strong) UIButton *followBtn;
 @property (nonatomic, strong) UILabel *nameLb;
 @property (nonatomic, strong) UILabel *idLb;
@@ -41,12 +41,12 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _avatarBtn = [[UIButton alloc]init];
+        _avatarBtn = [[UIImageView alloc]init];
         _avatarBtn.layer.borderColor = [UIColor whiteColor].CGColor;
         _avatarBtn.layer.borderWidth = 1;
         _avatarBtn.layer.cornerRadius = __ScaleWidth(32);
         _avatarBtn.layer.masksToBounds = YES;
-        [_avatarBtn addTarget:self action:@selector(avatarAction) forControlEvents:BtnTouchUpInside];
+//        [_avatarBtn addTarget:self action:@selector(avatarAction) forControlEvents:BtnTouchUpInside];
         [self.contentView addSubview:_avatarBtn];
         [_avatarBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.mas_equalTo(__ScaleWidth(64));
@@ -115,8 +115,8 @@
 -(void)setDynmodel:(BXDynamicModel *)dynmodel{
     BXLiveUser *liveUser = dynmodel.msgdetailmodel.liveuserModel;
     _liveUser = liveUser;
-    
-    [_avatarBtn sd_setImageWithURL:[NSURL URLWithString:liveUser.avatar] forState:BtnNormal placeholderImage:CImage(@"placeholder_avatar")];
+    [_avatarBtn sd_setImageWithURL:[NSURL URLWithString:liveUser.avatar] placeholderImage:CImage(@"placeholder_avatar")];
+//    [_avatarBtn sd_setImageWithURL:[NSURL URLWithString:liveUser.avatar] forState:BtnNormal placeholderImage:CImage(@"placeholder_avatar")];
     _followBtn.selected = [liveUser.is_follow integerValue];
     _nameLb.attributedText = [self getAttributedStringName:liveUser];
     _idLb.text = [NSString stringWithFormat:@"%@：%@",[BXAppInfo appInfo].app_account_name,liveUser.user_id];
@@ -131,7 +131,7 @@
 - (void)setLiveUser:(BXLiveUser *)liveUser {
     _liveUser = liveUser;
     
-    [_avatarBtn sd_setImageWithURL:[NSURL URLWithString:liveUser.avatar] forState:BtnNormal placeholderImage:CImage(@"placeholder_avatar")];
+    [_avatarBtn sd_setImageWithURL:[NSURL URLWithString:liveUser.avatar] placeholderImage:CImage(@"placeholder_avatar")];
     _followBtn.selected = [liveUser.is_follow integerValue];
     _nameLb.attributedText = [self getAttributedStringName:liveUser];
     _idLb.text = [NSString stringWithFormat:@"%@：%@",[BXAppInfo appInfo].app_account_name,liveUser.user_id];
