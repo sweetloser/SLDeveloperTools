@@ -244,6 +244,8 @@ DEFINE_SINGLETON_FOR_HEADER(NewHttpRequestHuang)
  */
 -(void)RechargeIndexWithSuccess:(void(^)(id responseObject))success Failure:(void(^)(NSError *error))failure;
 
+-(void)RechargeSignIndexWithSuccess:(void(^)(id responseObject))success Failure:(void(^)(NSError *error))failure;
+
 /**
  * 邀请好友
  * anchor : id

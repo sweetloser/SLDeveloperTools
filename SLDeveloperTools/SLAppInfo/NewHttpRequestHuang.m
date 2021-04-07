@@ -441,6 +441,16 @@ DEFINE_SINGLETON_FOR_CLASS(NewHttpRequestHuang)
         failure(error);
     }];
 }
+//签名版
+-(void)RechargeSignIndexWithSuccess:(void(^)(id responseObject))success Failure:(void(^)(NSError *error))failure
+{
+    //
+    [[NewHttpManager sharedNetManager] POST:@"s=Recharge.index_sign" parameters:nil success:^(id  _Nonnull responseObject) {
+        success(responseObject);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
 
 /**
  * 邀请好友

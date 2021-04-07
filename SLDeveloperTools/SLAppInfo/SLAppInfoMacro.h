@@ -12,13 +12,13 @@
 
 //#define BXLiveURL     //秉信互娱
 
-#define DuoLaLiveURL    //朵拉互娱
+//#define DuoLaLiveURL    //朵拉互娱
 
 //#define DaBaiLiveURL    //大白直播
 
 //#define MeiWoYouPinURL  //每窝优品
 
-//#define MaiKeXiuURL  //麦客秀
+#define MaiKeXiuURL  //麦客秀
 
 #ifdef MaiKeXiuURL
 
@@ -29,8 +29,8 @@
 #define SL_HTTP_BASE_AMWAY_URL @"http://shop.wuyalangzi.com/"
 #define SL_HTTP_BASE_API_URL @"http://shop.wuyalangzi.com/"
 #define SL_HTTP_H5_URL @"http://shop.wuyalangzi.com/"
-#define SL_UNIVERSAL_LINK @"https://yq5km7.xinstall.top/tolink/"
-#define ZC_KEY @""                  //智齿key
+#define SL_UNIVERSAL_LINK @"https://re5l1p.xinstall.top/tolink/"
+#define ZC_KEY @"9072849c597949adbf5dd8d6df535637"                  //智齿key
 
 #endif
 

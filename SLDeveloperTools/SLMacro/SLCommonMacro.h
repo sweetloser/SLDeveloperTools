@@ -275,29 +275,6 @@ alpha:1.f]
 #define LINE_COLOR            [UIColor colorWithRed:224.0f/255.0f green:224.0f/255.0f blue:224.0f/255.0f alpha:1.0]
 
 
-#define isiPhoneX \
-({BOOL isPhoneX = NO;\
-if (@available(iOS 11.0, *)) {\
-isPhoneX = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom > 0.0;\
-}\
-(isPhoneX);})
-
-#define statusHeight \
-({CGFloat height = 20.0;\
-if (isiPhoneX) {\
-height = 44.0;\
-}\
-(height);})
-
-#define navBarHeight 44.0
-
-#define bottomSafeAreaHeight  \
-({CGFloat height = 0.0;\
-if (isiPhoneX) {\
-height = 34.0;\
-}\
-(height);})
-
 #define B2B2C_THE_COLOR  [UIColor colorWithHexString:@"#F5F9FC"]
 
 

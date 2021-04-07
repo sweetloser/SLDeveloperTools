@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SLKFWebViewController : UIViewController
+#import "BaseVC.h"
+@interface SLKFWebViewController : BaseVC
 
 @property (nonatomic,copy)NSString *url;
 

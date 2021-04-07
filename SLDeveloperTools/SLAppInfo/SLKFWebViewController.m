@@ -33,7 +33,6 @@ static NSString *const CSUserDefaultsGuestID = @"CSUserDefaultsGuestID";
     [super viewDidLoad];
     self.fd_prefersNavigationBarHidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.title = @"WebView";
     self.view.backgroundColor = [UIColor whiteColor];
     [self initWkWebView];
 }

@@ -109,6 +109,7 @@ MJCodingImplementation
     self.app_balance_unit = app_base_info[@"app_balance_unit"];
     self.contact_tel = app_base_info[@"contact_tel"];
     self.ios_app_hidden = jsonDic[@"ios_app_hidden"];
+    self.ios_app_hidden_version = jsonDic[@"ios_app_hidden_version"];
     self.one_key_login = regist_dic[@"one_key_login"];
     self.invite_code = regist_dic[@"invite_code"];
     self.refresh_texts = [NSArray arrayWithArray:jsonDic[@"refresh_text"]];
