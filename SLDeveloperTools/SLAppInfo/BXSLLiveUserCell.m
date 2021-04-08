@@ -122,7 +122,7 @@
     _idLb.text = [NSString stringWithFormat:@"%@：%@",[BXAppInfo appInfo].app_account_name,liveUser.user_id];
     _infoLb.text = liveUser.sign;
     
-    if ([liveUser.is_live integerValue] == 1) {
+    if ([liveUser.is_live integerValue] == 1 || dynmodel.msgdetailmodel.sysModel.is_live.integerValue == 1) {
         _livingImageView.hidden = NO;
     }else{
         _livingImageView.hidden = YES;

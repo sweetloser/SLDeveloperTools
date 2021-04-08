@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)NSString *full_reduction;
 @property(nonatomic, strong)NSString *roomid;
 @property(nonatomic, strong)NSString *jump;
+@property(nonatomic, strong)NSString *is_live;
 
 @end
 

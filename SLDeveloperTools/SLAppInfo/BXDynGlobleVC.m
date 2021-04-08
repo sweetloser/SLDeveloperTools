@@ -730,6 +730,23 @@
         vc.model = self.dataArray[indexPath.row];
         [self pushVc:vc];
     }
+    if (render_type == 14) {
+        BXDynamicModel *dynmodel= _dataArray[indexPath.row];
+        if (dynmodel.msgdetailmodel.sysModel.is_live.integerValue == 1) {
+            
+            if (dynmodel.msgdetailmodel.sysModel.jump != nil || dynmodel.msgdetailmodel.sysModel.roomid.integerValue != 0) {
+                NSString *jump = dynmodel.msgdetailmodel.sysModel.jump;
+                if (jump == nil) {
+                    jump = [NSString stringWithFormat:@"bx://router.bxtv.com/enter_room?room_id=%@&from=search",dynmodel.msgdetailmodel.sysModel.roomid];
+                }
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:BXLoadURL object:nil userInfo:@{@"vc":self,@"url":jump}];
+            }
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":dynmodel.msgdetailmodel.user_id,@"isShow":@"",@"nav":self.navigationController}];
+        }
+    }
+    
     if (render_type == 16) {
         BXDynamicModel *dynmodel = _dataArray[indexPath.row];
         BXSLLiveRoom *roommodel = [[BXSLLiveRoom alloc]init];
