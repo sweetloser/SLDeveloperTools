@@ -128,8 +128,20 @@ static FUManager *shareManager = NULL;
     NSLog(@"版本--%@--",[FURenderer getVersion]);
     /**加载美颜道具*/
     [self loadFilter];
+    
+    //加载人脸识别
+    [self loadAIModle];
 }
-
+-(void)loadAIModle{
+//    NSData *ai_human_processor = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ai_human_processor.bundle" ofType:nil]];
+//    [FURenderer loadAIModelFromPackage:(void *)ai_human_processor.bytes size:(int)ai_human_processor.length aitype:FUAITYPE_HUMAN_PROCESSOR];
+    NSData *ai_face_processor = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ai_face_processor.bundle" ofType:nil]];
+    [FURenderer loadAIModelFromPackage:(void *)ai_face_processor.bytes size:(int)ai_face_processor.length aitype:FUAITYPE_FACEPROCESSOR];
+    
+//    NSData *ai_gesture = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ai_hand_processor.bundle" ofType:nil]];
+//    [FURenderer loadAIModelFromPackage:(void *)ai_gesture.bytes size:(int)ai_gesture.length aitype:FUAITYPE_HANDGESTURE];
+//
+}
 
 /**销毁全部道具*/
 - (void)destoryItems{
@@ -322,8 +334,8 @@ static FUManager *shareManager = NULL;
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"heavy_blur" value:@(self.blurShape)]; // 美肤类型 (0、1、) 清晰：0，朦胧：1
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"blur_level" value:@(self.blurLevel * 6.0 )]; //磨皮 (0.0 - 6.0)
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"blur_type" value:@(0)]; //磨皮精细度
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"color_level" value:@(self.whiteLevel)]; //美白 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"red_level" value:@(self.redLevel)]; //红润 (0~1)
+    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"color_level" value:@(self.whiteLevel * 2.0)]; //美白 (0~1)
+    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"red_level" value:@(self.redLevel * 2.0)]; //红润 (0~1)
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"eye_bright" value:@(self.eyelightingLevel)]; // 亮眼
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"tooth_whiten" value:@(self.beautyToothLevel)];// 美牙
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"face_shape" value:@(self.faceShape)]; //美型类型 (0、1、2、3、4)女神：0，网红：1，自然：2，默认：3，自定义：4
@@ -362,7 +374,7 @@ static FUManager *shareManager = NULL;
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"red_level" value:@(self.redLevel)]; //红润 (0~1)
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"eye_bright" value:@(self.eyelightingLevel)]; // 亮眼
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"tooth_whiten" value:@(self.beautyToothLevel)];// 美牙
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"face_shape" value:@(self.faceShape)]; //美型类型 (0、1、2、3、4)女神：0，网红：1，自然：2，默认：3，自定义：4
+    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"face_shape" value:@(4)]; //美型类型 (0、1、2、3、4)女神：0，网红：1，自然：2，默认：3，自定义：4
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"eye_enlarging" value:@(self.enlargingLevel)]; //大眼 (0~1)
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"cheek_thinning" value:@(self.thinningLevel)]; //瘦脸 (0~1)
     [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_chin" value:@(self.jewLevel)]; /**下巴 (0~1)*/
