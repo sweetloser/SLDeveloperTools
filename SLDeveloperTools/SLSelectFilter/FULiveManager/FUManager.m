@@ -8,36 +8,26 @@
 
 #import "FUManager.h"
 #import <libCNamaSDK/CNamaSDK.h>
-#import <libCNamaSDK/FURenderer.h>
+
+#import <CoreMotion/CoreMotion.h>
 #import "authpack.h"
 #import <sys/utsname.h>
-#import <CoreMotion/CoreMotion.h>
-#import "HMItem.h"
 #import "../SLSelectFilterHeader.h"
-#import <MMKV/MMKV.h>
-#import <YYCategories/YYCategories.h>
+#import "FUManager+SLExtension.h"
 
 BeautyStatus bs = {0,@"",@""};
-
 @interface FUManager ()
 {
-    int items[12];
+    //MARK: Faceunity
+    int items[FUNamaHandleTotal];
     int frameID;
-    
-    dispatch_queue_t makeupQueue;
-    dispatch_queue_t asyncLoadQueue;
+    NSString *oldMakeup;
 }
 
-@property (nonatomic, strong) EAGLContext *txContext;
-
 @property (nonatomic, strong) CMMotionManager *motionManager;
-@property (nonatomic) int deviceOrientation;
-/* 重力感应道具 */
-@property (nonatomic,assign) BOOL isMotionItem;
-/* 当前加载的道具资源 */
-@property (nonatomic,copy) NSString *currentBoudleName;
-/* 需提示item */
-@property (nonatomic, strong) NSDictionary *hintDic;
+
+@property (nonatomic, assign) int deviceOrientation;
+
 
 @end
 
@@ -51,452 +41,532 @@ static FUManager *shareManager = NULL;
     dispatch_once(&onceToken, ^{
         shareManager = [[FUManager alloc] init];
     });
-    
+
     return shareManager;
 }
 
 - (instancetype)init
 {
     if (self = [super init]) {
-        [self setupDeviceMotion];
-        makeupQueue = dispatch_queue_create("com.faceUMakeup", DISPATCH_QUEUE_SERIAL);
-        asyncLoadQueue = dispatch_queue_create("com.faceLoadItem", DISPATCH_QUEUE_SERIAL);
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"v3.bundle" ofType:nil];
         
+        [self setupDeviceMotion];
+        _asyncLoadQueue = dispatch_queue_create("com.faceLoadItem", DISPATCH_QUEUE_SERIAL);
+
         /**这里新增了一个参数shouldCreateContext，设为YES的话，不用在外部设置context操作，我们会在内部创建并持有一个context。
          还有设置为YES,则需要调用FURenderer.h中的接口，不能再调用funama.h中的接口。*/
-        if (bs.code == 2) {
-            NSData *data = [NSData dataWithBase64EncodedString:bs.key];
-            char *auth_byte = (char *)data.bytes;
-            [[FURenderer shareRenderer] setupWithDataPath:path authPackage:auth_byte authSize:(int)(data.length) shouldCreateContext:YES];
-            
-            dispatch_async(asyncLoadQueue, ^{
-
-                   NSData *tongueData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tongue.bundle" ofType:nil]];
-                   int ret0 = fuLoadTongueModel((void *)tongueData.bytes, (int)tongueData.length) ;
-                   NSLog(@"fuLoadTongueModel %@",ret0 == 0 ? @"failure":@"success" );
-
-               });
-
-               [self setBeautyDefaultParameters];
-
-
-               /* 提示语句 */
-               [self setupItmeHintData];
-
-               // 默认竖屏
-            self.deviceOrientation = 0 ;
-            fuSetDefalutOrientation() ;
-               
-               // 性能优先关闭
-               self.performance = NO ;
-        }
-
-//        [[FURenderer shareRenderer] setupWithDataPath:path authPackage:&auth_keykey authSize:sizeof(auth_keykey) shouldCreateContext:YES];
+        [[FURenderer shareRenderer] setupWithData:nil dataSize:0 ardata:nil authPackage:&g_auth_package authSize:sizeof(g_auth_package) shouldCreateContext:YES];
+        
+        /* 加载AI模型 */
+        [self loadAIModle];
+        
+        /* 美颜 */
+        [self setupFilterData];
+        [self setupShapData];
+        [self setupSkinData];
+        [self loadFilter];
+        NSLog(@"faceunitySDK version:%@",[FURenderer getVersion]);
+        [FURenderer setMaxFaces:4];
+        self.deviceOrientation = 0;
+        self.isRender = YES;
+        
+        [self setBeautyDefaultParameters];
     }
     
     return self;
 }
 
--(void)setupItmeHintData{
-    self.hintDic = @{
-                @"future_warrior":@"张嘴试试",
-                @"jet_mask":@"鼓腮帮子",
-                @"sdx2":@"皱眉触发",
-                @"luhantongkuan_ztt_fu":@"眨一眨眼",
-                @"qingqing_ztt_fu":@"嘟嘴试试",
-                @"xiaobianzi_zh_fu":@"微笑触发",
-                @"xiaoxueshen_ztt_fu":@"吹气触发",
-                @"hez_ztt_fu":@"张嘴试试",
-                @"fu_lm_koreaheart":@"单手手指比心",
-                @"fu_zh_baoquan":@"双手抱拳",
-                @"fu_zh_hezxiong":@"双手合十",
-                @"fu_ztt_live520":@"双手比心",
-                @"ssd_thread_thumb":@"竖个拇指",
-                @"ssd_thread_six":@"比个六",
-                @"ssd_thread_cute":@"双拳靠近脸颊卖萌",
-                @"ctrl_rain":@"推出手掌",
-                @"ctrl_snow":@"推出手掌",
-                @"ctrl_flower":@"推出手掌",
-                };
+
+#pragma mark -  nama查询&设置
+- (void)   setAsyncTrackFaceEnable:(BOOL)enable{
+    
+    [FURenderer setAsyncTrackFaceEnable:enable];
 }
 
-- (void)loadItems
-{
-    /**加载普通道具*/
-    [self loadItem:self.selectedItem];
-    NSLog(@"版本--%@--",[FURenderer getVersion]);
-    /**加载美颜道具*/
-    [self loadFilter];
-    
-    //加载人脸识别
-    [self loadAIModle];
-}
 -(void)loadAIModle{
-//    NSData *ai_human_processor = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ai_human_processor.bundle" ofType:nil]];
-//    [FURenderer loadAIModelFromPackage:(void *)ai_human_processor.bytes size:(int)ai_human_processor.length aitype:FUAITYPE_HUMAN_PROCESSOR];
+
+    NSData *ai_human_processor = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ai_human_processor.bundle" ofType:nil]];
+    [FURenderer loadAIModelFromPackage:(void *)ai_human_processor.bytes size:(int)ai_human_processor.length aitype:FUAITYPE_HUMAN_PROCESSOR];
+    
     NSData *ai_face_processor = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ai_face_processor.bundle" ofType:nil]];
     [FURenderer loadAIModelFromPackage:(void *)ai_face_processor.bytes size:(int)ai_face_processor.length aitype:FUAITYPE_FACEPROCESSOR];
-    
-//    NSData *ai_gesture = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ai_hand_processor.bundle" ofType:nil]];
-//    [FURenderer loadAIModelFromPackage:(void *)ai_gesture.bytes size:(int)ai_gesture.length aitype:FUAITYPE_HANDGESTURE];
-//
 }
 
-/**销毁全部道具*/
-- (void)destoryItems{
-    dispatch_async(asyncLoadQueue, ^{
-        if ([EAGLContext currentContext] != self.txContext){
-            [EAGLContext setCurrentContext:self.txContext];
+- (void)loadBundleWithName:(NSString *)name aboutType:(FUNamaHandleType)type{
+    dispatch_async(_asyncLoadQueue, ^{
+        if (self->items[type] != 0) {
+            NSLog(@"faceunity: destroy item");
+            [FURenderer destroyItem:self->items[type]];
+            self->items[type] = 0;
         }
-        
-//        [FURenderer destroyAllItems];
-        fuDestroyAllItems();
-        fuOnDeviceLost();
-        fuOnCameraChange();
-        /**销毁道具后，为保证被销毁的句柄不再被使用，需要将int数组中的元素都设为0*/
-        for (int i = 0; i < sizeof(self->items) / sizeof(int); i++) {
-            self->items[i] = 0;
+        if ([name isEqualToString:@""] || !name) {
+            return ;
         }
-        
-        /**销毁道具后，清除context缓存*/
-//        [FURenderer OnDeviceLost];
-        /**销毁道具后，重置人脸检测*/
-//        [FURenderer onCameraChange];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:name ofType:@"bundle"];
+        self->items[type] = [FURenderer itemWithContentsOfFile:filePath];
     });
 }
 
-/**销毁老道具句柄*/
+-(void)setParamItemAboutType:(FUNamaHandleType)type name:(NSString *)paramName value:(float)value{
+    dispatch_async(_asyncLoadQueue, ^{
+        if(self->items[type]){
+            [FURenderer itemSetParam:self->items[type] withName:paramName value:@(value)];
+        NSLog(@"设置type(%lu)----参数（%@）-----值（%lf",(unsigned long)self->items[type],paramName,value);
+       }
+    });
+}
+
+
 - (void)destoryItemAboutType:(FUNamaHandleType)type;
 {
-    /**后销毁老道具句柄*/
-    if (items[type] != 0) {
-        NSLog(@"faceunity: destroy item");
-        [FURenderer destroyItem:items[type]];
-        items[type] = 0;
-    }
-}
-
-/**加载手势识别道具，默认未不加载*/
-- (void)loadGesture
-{
-    dispatch_async(asyncLoadQueue, ^{
-        if (self->items[FUNamaHandleTypeGesture] != 0) {
-            NSLog(@"faceunity: destroy gesture");
-            [FURenderer destroyItem:self->items[FUNamaHandleTypeGesture]];
-            self->items[FUNamaHandleTypeGesture] = 0;
+    dispatch_async(_asyncLoadQueue, ^{
+        /**后销毁老道具句柄*/
+        if (self->items[type] != 0) {
+            NSLog(@"faceunity: destroy item");
+            [FURenderer destroyItem:self->items[type]];
+            self->items[type] = 0;
         }
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"heart_v2.bundle" ofType:nil];
-        self->items[FUNamaHandleTypeGesture] = [FURenderer itemWithContentsOfFile:path];
     });
 }
-/*
- is3DFlipH 翻转模型
- isFlipExpr 翻转表情
- isFlipTrack 翻转位置和旋转
- isFlipLight 翻转光照
- */
-- (void)set3DFlipH
-{
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"is3DFlipH" value:@(1)];
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"isFlipExpr" value:@(1)];
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"isFlipTrack" value:@(1)];
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"isFlipLight" value:@(1)];
+
+-(int)getHandleAboutType:(FUNamaHandleType)type{
+    return items[type];
 }
 
-- (void)setLoc_xy_flip
-{
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"loc_x_flip" value:@(1)];
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"loc_y_flip" value:@(1)];
+-(void)setRenderType:(FUDataType)dateType{
+    _currentType = dateType;
 }
+
+static int oldHandle = 0;
+-(void)filterValueChange:(FUBeautyParam *)param{
+    dispatch_async(_asyncLoadQueue, ^{
+        [[FURenderer shareRenderer] setUpCurrentContext];
+           if (param.type == FUDataTypeBeautify) {
+               if(self->items[FUNamaHandleTypeBeauty] == 0){
+                   [self loadFilter];
+               }
+               if ([param.mParam isEqualToString:@"cheek_narrow"] || [param.mParam isEqualToString:@"cheek_small"]){//程度值 只去一半
+                   [FURenderer itemSetParam:self->items[FUNamaHandleTypeBeauty] withName:param.mParam value:@(param.mValue * 0.5)];
+
+               }else if([param.mParam isEqualToString:@"blur_level"]) {//磨皮 0~6
+                   [FURenderer itemSetParam:self->items[FUNamaHandleTypeBeauty] withName:param.mParam value:@(param.mValue * 6)];
+               }else{
+                   [FURenderer itemSetParam:self->items[FUNamaHandleTypeBeauty] withName:param.mParam value:@(param.mValue)];
+               }
+           }else if (param.type == FUDataTypeFilter){
+               if(self->items[FUNamaHandleTypeBeauty] == 0){
+                   [self loadFilter];
+               }
+               
+               int handle = [[FUManager shareManager] getHandleAboutType:FUNamaHandleTypeBeauty];
+               [FURenderer itemSetParam:handle withName:@"filter_name" value:[param.mParam lowercaseString]];
+               [FURenderer itemSetParam:handle withName:@"filter_level" value:@(param.mValue)]; //滤镜程度
+
+           }else if (param.type == FUDataTypeMakeup){
+               self->_currentType = FUDataTypeMakeup;
+               if (self->items[FUNamaHandleTypeMakeup] == 0) {
+                   NSString *path = [[NSBundle mainBundle] pathForResource:@"face_makeup.bundle" ofType:nil];
+                   self->items[FUNamaHandleTypeMakeup] = [FURenderer itemWithContentsOfFile:path];
+                   [FURenderer itemSetParam:self->items[FUNamaHandleTypeMakeup] withName:@"is_makeup_on" value:@(1)];
+
+               }
+               if ([param.mParam isEqualToString:self->oldMakeup]) {
+                   [FURenderer itemSetParam:self->items[FUNamaHandleTypeMakeup] withName:@"makeup_intensity" value:@(param.mValue)];
+                   return ;
+               }
+
+               /* 切换bundle,清空当前bind道具 */
+               [FURenderer itemSetParam:self->items[FUNamaHandleTypeMakeup] withName:@"is_clear_makeup" value:@(1)];
+               NSString *path = [[NSBundle mainBundle] pathForResource:param.mParam ofType:@"bundle"];
+               int subHandle = [FURenderer itemWithContentsOfFile:path];
+               
+               if (oldHandle) {//存在旧美妆道具，先销毁
+                   [FURenderer unBindItems:self->items[FUNamaHandleTypeMakeup] items:&oldHandle itemsCount:1];
+                    [FURenderer destroyItem:oldHandle];
+                    oldHandle = 0;
+               }
+               self->oldMakeup = param.mParam;
+               /* 设置妆容程度值 */
+               int aaa = [FURenderer itemSetParam:self->items[FUNamaHandleTypeMakeup] withName:@"makeup_intensity" value:@(param.mValue)];
+               
+               NSLog(@"------aaa = %d",aaa);
+               [FURenderer bindItems:self->items[FUNamaHandleTypeMakeup] items:&subHandle itemsCount:1];
+                oldHandle = subHandle;
+               
+           }else if (param.type == FUDataTypebody){
+               self->_currentType = FUDataTypebody;
+               if (self->items[FUNamaHandleTypeBodySlim] == 0) {
+                   NSString *path = [[NSBundle mainBundle] pathForResource:@"body_slim.bundle" ofType:nil];
+                   self->items[FUNamaHandleTypeBodySlim] = [FURenderer itemWithContentsOfFile:path];
+                   [FURenderer itemSetParam:self->items[FUNamaHandleTypeBodySlim] withName:@"Debug" value:@(0)];
+               }
+            
+              
+               [FURenderer itemSetParam:self->items[FUNamaHandleTypeBodySlim] withName:param.mParam value:@(param.mValue)]; //滤镜程度
+               
+               NSLog(@"设置type(%lu)----参数（%@）-----值（%lf",(unsigned long)FUNamaHandleTypeBodySlim,param.mParam ,param.mValue);
+           }else if (param.type == FUDataTypeStrick){
+               self->_currentType = FUDataTypeStrick;
+               int destoryItem = self->items[FUNamaHandleTypeItem];
+               
+               NSString *path = [[NSBundle mainBundle] pathForResource:param.mParam ofType:@"bundle"];
+               int newHandle = [FURenderer itemWithContentsOfFile:path];
+               
+               self->items[FUNamaHandleTypeItem] = newHandle;
+               
+              /**后销毁老道具句柄*/
+              if (destoryItem != 0){
+                  NSLog(@"faceunity: destroy item");
+                  [FURenderer destroyItem:destoryItem];
+              }
+
+           }
+        
+        [[FURenderer shareRenderer] setBackCurrentContext];
+    });
+
+}
+
 
 /**加载美颜道具*/
 - (void)loadFilter{
-    dispatch_async(asyncLoadQueue, ^{
-        NSLog(@"aaaaa111");
-        if (self->items[FUMNamaHandleTypeBeauty] == 0) {
+    dispatch_async(_asyncLoadQueue, ^{
+        if (items[FUNamaHandleTypeBeauty] == 0) {
+
+            CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
             NSString *path = [[NSBundle mainBundle] pathForResource:@"face_beautification.bundle" ofType:nil];
-            self->items[FUMNamaHandleTypeBeauty] = [FURenderer itemWithContentsOfFile:path];
+            items[FUNamaHandleTypeBeauty] = [FURenderer itemWithContentsOfFile:path];
+            
+            [self setBeautyParameters];
+            
+            CFAbsoluteTime endTime = (CFAbsoluteTimeGetCurrent() - startTime);
+
+            NSLog(@"加载美颜道具耗时: %f ms", endTime * 1000.0);
+     
         }
     });
 }
 
 
-/*设置默认参数*/
-- (void)setBeautyDefaultParameters {
-    self.whiteLevel             = 0.6 ; // 美白
-    self.blurLevel              = 0.6 ; // 磨皮， 实际设置的时候 x6
-    self.thinningLevel_new      = 0.6 ; // 瘦脸
-    self.enlargingLevel         = 0.3 ; // 大眼
-    self.redLevel               = 0.3 ; // 红润
-    self.jewLevel               = 0.5 ; // 下巴
-    self.foreheadLevel          = 0.5 ; // 额头
-    self.noseLevel              = 0.2 ; // 鼻子
-    
-    self.selectedFilter = @"origin";
-    self.selectedFilterLevel = 0.7;
-    
-    self.selectedItem = @"filter_nono";
-    
-    self.faceShape              = 4 ;   // 脸型
-    self.skinDetectEnable       = YES;// 精准美肤
-    self.blurShape              = 0 ;
-    self.thinningLevel          = 0.6 ; // 瘦脸
-    self.enlargingLevel_new     = 0.3 ; // 大眼
-    self.eyelightingLevel       = 0; // 亮眼
-    self.beautyToothLevel       = 0; // 美牙
-    self.mouthLevel             = 0.0 ; // 嘴
-    
-
-    self.enableGesture = NO;
-    self.enableMaxFaces = NO;
-    MMKV *mmkv = [MMKV defaultMMKV];
-    if (self.isLive) {
-        NSLog(@"直播美颜");
-        NSString *filterName = [mmkv getStringForKey:@"DSFilterName"];
-        if (filterName) {
-            self.selectedFilter = filterName;
-        }
-        
-        CGFloat colorLevel = [mmkv getFloatForKey:@"DSColorLevel"];
-        if (colorLevel) {
-            self.whiteLevel = colorLevel;
-        }
-        CGFloat blurLevel = [mmkv getFloatForKey:@"DSBlurLevel"];
-        if (blurLevel) {
-            self.blurLevel = blurLevel;
-        }
-        CGFloat enlargingLevel = [mmkv getFloatForKey:@"DSEnlargingLevel"];
-        if (enlargingLevel) {
-            self.enlargingLevel = enlargingLevel;
-        }
-        CGFloat thinningLevel = [mmkv getFloatForKey:@"DSThinningLevel"];
-        if (thinningLevel) {
-            self.thinningLevel = thinningLevel;
-        }
-        CGFloat redLevel = [mmkv getFloatForKey:@"DSRedLevel"];
-        if (redLevel) {
-            self.redLevel = redLevel;
-        }
-        CGFloat chinLevel = [mmkv getFloatForKey:@"DSChinLevel"];
-        if (chinLevel) {
-            self.jewLevel = chinLevel;
-        }
-        CGFloat foreheadLevel = [mmkv getFloatForKey:@"DSForeheadLevel"];
-        if (foreheadLevel) {
-            self.foreheadLevel = foreheadLevel;
-        }
-        CGFloat noseLevel = [mmkv getFloatForKey:@"DSNoseLevel"];
-        if (noseLevel) {
-            self.noseLevel = noseLevel;
-        }
-    }else{
-        NSLog(@"短视频");
-        self.selectedFilter = @"origin";
-        CGFloat colorLevel = [mmkv getFloatForKey:@"DSColorLevelShort"];
-        if (colorLevel) {
-            self.whiteLevel = colorLevel;
-        }
-        CGFloat blurLevel = [mmkv getFloatForKey:@"DSBlurLevelShort"];
-        if (blurLevel) {
-            self.blurLevel = blurLevel;
-        }
-        CGFloat enlargingLevel = [mmkv getFloatForKey:@"DSEnlargingLevelShort"];
-        if (enlargingLevel) {
-            self.enlargingLevel = enlargingLevel;
-        }
-        CGFloat thinningLevel = [mmkv getFloatForKey:@"DSThinningLevelShort"];
-        if (thinningLevel) {
-            self.thinningLevel = thinningLevel;
-        }
-        CGFloat redLevel = [mmkv getFloatForKey:@"DSRedLevelShort"];
-        if (redLevel) {
-            self.redLevel = redLevel;
-        }
-        CGFloat chinLevel = [mmkv getFloatForKey:@"DSChinLevelShort"];
-        if (chinLevel) {
-            self.jewLevel = chinLevel;
-        }
-        CGFloat foreheadLevel = [mmkv getFloatForKey:@"DSForeheadLevelShort"];
-        if (foreheadLevel) {
-            self.foreheadLevel = foreheadLevel;
-        }
-        CGFloat noseLevel = [mmkv getFloatForKey:@"DSNoseLevelShort"];
-        if (noseLevel) {
-            self.noseLevel = noseLevel;
+- (void)setBeautyParameters{
+       for (FUBeautyParam *modle in _skinParams){
+        if ([modle.mParam isEqualToString:@"blur_level"]) {
+            [FURenderer itemSetParam:items[FUNamaHandleTypeBeauty] withName:modle.mParam value:@(modle.mValue * 6)];
+        }else{
+            [FURenderer itemSetParam:items[FUNamaHandleTypeBeauty] withName:modle.mParam value:@(modle.mValue)];
         }
     }
-}
-
-/**设置美颜参数*/
-- (void)resetAllBeautyParams{
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"skin_detect" value:@(self.skinDetectEnable)]; //是否开启皮肤检测
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"heavy_blur" value:@(self.blurShape)]; // 美肤类型 (0、1、) 清晰：0，朦胧：1
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"blur_level" value:@(self.blurLevel * 6.0 )]; //磨皮 (0.0 - 6.0)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"blur_type" value:@(0)]; //磨皮精细度
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"color_level" value:@(self.whiteLevel * 2.0)]; //美白 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"red_level" value:@(self.redLevel * 2.0)]; //红润 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"eye_bright" value:@(self.eyelightingLevel)]; // 亮眼
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"tooth_whiten" value:@(self.beautyToothLevel)];// 美牙
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"face_shape" value:@(self.faceShape)]; //美型类型 (0、1、2、3、4)女神：0，网红：1，自然：2，默认：3，自定义：4
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"eye_enlarging" value:@(self.enlargingLevel)]; //大眼 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"cheek_thinning" value:@(self.thinningLevel)]; //瘦脸 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_chin" value:@(self.jewLevel)]; /**下巴 (0~1)*/
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_nose" value:@(self.noseLevel)];/**鼻子 (0~1)*/
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_forehead" value:@(self.foreheadLevel)];/**额头 (0~1)*/
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_mouth" value:@(self.mouthLevel)];/**嘴型 (0~1)*/
-    //滤镜名称需要小写
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"filter_name" value:[self.selectedFilter lowercaseString]];
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"filter_level" value:@(self.selectedFilterLevel)]; //滤镜程度
-}
-
-//外部重置美颜参数
--(void)ckresetALLBeautParams {
-    self.selectedFilter = @"origin";
-    self.selectedFilterLevel = 0.7;
     
-    self.selectedItem = @"filter_nono";
-    
-    self.whiteLevel             = 0.6 ; // 美白
-    self.blurLevel              = 0.6 ; // 磨皮， 实际设置的时候 x6
-    self.thinningLevel_new      = 0.6 ; // 瘦脸
-    self.enlargingLevel         = 0.3 ; // 大眼
-    self.redLevel               = 0.3 ; // 红润
-    self.jewLevel               = 0.5 ; // 下巴
-    self.foreheadLevel          = 0.5 ; // 额头
-    self.noseLevel              = 0.2 ; // 鼻子
+    for (FUBeautyParam *modle in _shapeParams){
+         [FURenderer itemSetParam:items[FUNamaHandleTypeBeauty] withName:modle.mParam value:@(modle.mValue)];
+     }
     
     
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"skin_detect" value:@(self.skinDetectEnable)]; //是否开启皮肤检测
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"heavy_blur" value:@(self.blurShape)]; // 美肤类型 (0、1、) 清晰：0，朦胧：1
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"blur_level" value:@(self.blurLevel * 6.0 )]; //磨皮 (0.0 - 6.0)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"color_level" value:@(self.whiteLevel)]; //美白 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"red_level" value:@(self.redLevel)]; //红润 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"eye_bright" value:@(self.eyelightingLevel)]; // 亮眼
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"tooth_whiten" value:@(self.beautyToothLevel)];// 美牙
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"face_shape" value:@(4)]; //美型类型 (0、1、2、3、4)女神：0，网红：1，自然：2，默认：3，自定义：4
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"eye_enlarging" value:@(self.enlargingLevel)]; //大眼 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"cheek_thinning" value:@(self.thinningLevel)]; //瘦脸 (0~1)
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_chin" value:@(self.jewLevel)]; /**下巴 (0~1)*/
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_nose" value:@(self.noseLevel)];/**鼻子 (0~1)*/
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_forehead" value:@(self.foreheadLevel)];/**额头 (0~1)*/
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"intensity_mouth" value:@(self.mouthLevel)];/**嘴型 (0~1)*/
-    //滤镜名称需要小写
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"filter_name" value:[self.selectedFilter lowercaseString]];
-    [FURenderer itemSetParam:items[FUMNamaHandleTypeBeauty] withName:@"filter_level" value:@(self.selectedFilterLevel)]; //滤镜程度
+    /* 设置默认状态 */
+    if (self.seletedFliter) {
+        [FURenderer itemSetParam:items[FUNamaHandleTypeBeauty] withName:@"filter_name" value:[self.seletedFliter.mParam lowercaseString]];
+        [FURenderer itemSetParam:items[FUNamaHandleTypeBeauty] withName:@"filter_level" value:@(self.seletedFliter.mValue)];
+    }
     
 }
 
-
-/**
- 加载普通道具
- - 先创建再释放可以有效缓解切换道具卡顿问题
- */
-- (void)loadItem:(NSString *)itemName{
-    dispatch_async(asyncLoadQueue, ^{
-        self.selectedItem = itemName ;
+-(void)setupFilterData{
+    NSArray *beautyFiltersDataSource = @[@"origin",@"ziran1",@"ziran2",@"ziran3",@"ziran4",@"ziran5",@"ziran6",@"ziran7",@"ziran8",
+    @"zhiganhui1",@"zhiganhui2",@"zhiganhui3",@"zhiganhui4",@"zhiganhui5",@"zhiganhui6",@"zhiganhui7",@"zhiganhui8",
+                                          @"mitao1",@"mitao2",@"mitao3",@"mitao4",@"mitao5",@"mitao6",@"mitao7",@"mitao8",
+                                         @"bailiang1",@"bailiang2",@"bailiang3",@"bailiang4",@"bailiang5",@"bailiang6",@"bailiang7"
+                                         ,@"fennen1",@"fennen2",@"fennen3",@"fennen5",@"fennen6",@"fennen7",@"fennen8",
+                                         @"lengsediao1",@"lengsediao2",@"lengsediao3",@"lengsediao4",@"lengsediao7",@"lengsediao8",@"lengsediao11",
+                                         @"nuansediao1",@"nuansediao2",
+                                         @"gexing1",@"gexing2",@"gexing3",@"gexing4",@"gexing5",@"gexing7",@"gexing10",@"gexing11",
+                                         @"xiaoqingxin1",@"xiaoqingxin3",@"xiaoqingxin4",@"xiaoqingxin6",
+                                         @"heibai1",@"heibai2",@"heibai3",@"heibai4"];
+    
+    NSDictionary *filtersCHName = @{@"origin":@"原图",@"bailiang1":@"白亮1",@"bailiang2":@"白亮2",@"bailiang3":@"白亮3",@"bailiang4":@"白亮4",@"bailiang5":@"白亮5",@"bailiang6":@"白亮6",@"bailiang7":@"白亮7"
+                                    ,@"fennen1":@"粉嫩1",@"fennen2":@"粉嫩2",@"fennen3":@"粉嫩3",@"fennen4":@"粉嫩4",@"fennen5":@"粉嫩5",@"fennen6":@"粉嫩6",@"fennen7":@"粉嫩7",@"fennen8":@"粉嫩8",
+                                    @"gexing1":@"个性1",@"gexing2":@"个性2",@"gexing3":@"个性3",@"gexing4":@"个性4",@"gexing5":@"个性5",@"gexing6":@"个性6",@"gexing7":@"个性7",@"gexing8":@"个性8",@"gexing9":@"个性9",@"gexing10":@"个性10",@"gexing11":@"个性11",
+                                    @"heibai1":@"黑白1",@"heibai2":@"黑白2",@"heibai3":@"黑白3",@"heibai4":@"黑白4",@"heibai5":@"黑白5",
+                                    @"lengsediao1":@"冷色调1",@"lengsediao2":@"冷色调2",@"lengsediao3":@"冷色调3",@"lengsediao4":@"冷色调4",@"lengsediao5":@"冷色调5",@"lengsediao6":@"冷色调6",@"lengsediao7":@"冷色调7",@"lengsediao8":@"冷色调8",@"lengsediao9":@"冷色调9",@"lengsediao10":@"冷色调10",@"lengsediao11":@"冷色调11",
+                                    @"nuansediao1":@"暖色调1",@"nuansediao2":@"暖色调2",@"nuansediao3":@"暖色调3",@"xiaoqingxin1":@"小清新1",@"xiaoqingxin2":@"小清新2",@"xiaoqingxin3":@"小清新3",@"xiaoqingxin4":@"小清新4",@"xiaoqingxin5":@"小清新5",@"xiaoqingxin6":@"小清新6",
+                                    @"ziran1":@"自然1",@"ziran2":@"自然2",@"ziran3":@"自然3",@"ziran4":@"自然4",@"ziran5":@"自然5",@"ziran6":@"自然6",@"ziran7":@"自然7",@"ziran8":@"自然8",
+                                    @"mitao1":@"蜜桃1",@"mitao2":@"蜜桃2",@"mitao3":@"蜜桃3",@"mitao4":@"蜜桃4",@"mitao5":@"蜜桃5",@"mitao6":@"蜜桃6",@"mitao7":@"蜜桃7",@"mitao8":@"蜜桃8",
+                                    @"zhiganhui1":@"质感灰1",@"zhiganhui2":@"质感灰2",@"zhiganhui3":@"质感灰3",@"zhiganhui4":@"质感灰4",@"zhiganhui5":@"质感灰5",@"zhiganhui6":@"质感灰6",@"zhiganhui7":@"质感灰7",@"zhiganhui8":@"质感灰8"
+    };
+    if (!_filters) {
+        _filters = [[NSMutableArray alloc] init];
+    }
+    
+    
+    for (int i = 0; i < beautyFiltersDataSource.count; i++) {
         
-        int destoryItem = items[FUMNamaHandleTypeItem];
+        FUBeautyParam *modle = [[FUBeautyParam alloc] init];
+        modle.mParam = beautyFiltersDataSource[i];
+        modle.mTitle = [filtersCHName valueForKey:beautyFiltersDataSource[i]];
         
-        if (itemName != nil && ![itemName isEqual: @"noitem"]) {
-            /**先创建道具句柄*/
-            NSString *path = [HMItem allFilePathWithName:itemName];
-            int itemHandle = [FURenderer itemWithContentsOfFile:path];
-            
-            if ([itemName isEqualToString:@"luhantongkuan_ztt_fu"]) {
-                [FURenderer itemSetParam:itemHandle withName:@"flip_action" value:@(1)];
-            }
-            
-            if ([itemName isEqualToString:@"ctrl_rain"] || [itemName isEqualToString:@"ctrl_snow"] || [itemName isEqualToString:@"ctrl_flower"]) {//带重力感应道具
-                [FURenderer itemSetParam:itemHandle withName:@"rotMode" value:@(self.deviceOrientation)];
-                self.isMotionItem = YES;
-            }else{
-                self.isMotionItem = NO;
-            }
-            
-            if ([itemName isEqualToString:@"fu_lm_koreaheart"]) {//比心道具手动调整下
-                 [FURenderer itemSetParam:itemHandle withName:@"handOffY" value:@(-100)];
-            }
-            /**将刚刚创建的句柄存放在items[FUMNamaHandleTypeItem]中*/
-            items[FUMNamaHandleTypeItem] = itemHandle;
+        if (i == 1) {
+        
+            modle.mValue = 1.0;
             
         }else{
-            /**为避免道具句柄被销毁会后仍被使用导致程序出错，这里需要将存放道具句柄的items[FUMNamaHandleTypeItem]设为0*/
-            items[FUMNamaHandleTypeItem] = 0;
+            modle.mValue = 0.0;
         }
-        NSLog(@"faceunity: load item");
         
-        /**后销毁老道具句柄*/
-        if (destoryItem != 0)
-        {
-            NSLog(@"faceunity: destroy item");
-            [FURenderer destroyItem:destoryItem];
-        }
-    });
- 
+        modle.type = FUDataTypeFilter;
+        [_filters addObject:modle];
+    }
+    self.seletedFliter = _filters[1];
+    
 }
+
+-(void)setupSkinData{
+    NSArray *prams = @[@"blur_level",@"color_level",@"red_level",@"sharpen",@"eye_bright",@"tooth_whiten",@"remove_pouch_strength",@"remove_nasolabial_folds_strength"];//
+    NSDictionary *titelDic = @{@"blur_level":@"精细磨皮",@"color_level":@"美白",@"red_level":@"红润",@"sharpen":@"锐化",@"remove_pouch_strength":@"去黑眼圈",@"remove_nasolabial_folds_strength":@"去法令纹",@"eye_bright":@"亮眼",@"tooth_whiten":@"美牙"};
+    NSDictionary *defaultValueDic = @{@"blur_level":@(1.0),@"color_level":@(1.0),@"red_level":@(0.0),@"sharpen":@(0.0),@"remove_pouch_strength":@(0),@"remove_nasolabial_folds_strength":@(0),@"eye_bright":@(0),@"tooth_whiten":@(0)};
+    
+    
+    if (!_skinParams) {
+        _skinParams = [[NSMutableArray alloc] init];
+    }
+
+    for (NSString *str in prams) {
+
+        FUBeautyParam *modle = [[FUBeautyParam alloc] init];
+        modle.mParam = str;
+        modle.mTitle = [titelDic valueForKey:str];
+        modle.mValue = [[defaultValueDic valueForKey:str] floatValue];
+        modle.defaultValue = modle.mValue;
+        [_skinParams addObject:modle];
+    }
+
+}
+
+-(void)setupShapData{
+   NSArray *prams = @[@"cheek_thinning",@"cheek_v",@"cheek_narrow",@"cheek_small",@"eye_enlarging",@"intensity_chin",@"intensity_forehead",@"intensity_nose",@"intensity_mouth",@"intensity_canthus",@"intensity_eye_space",@"intensity_eye_rotate",@"intensity_long_nose",@"intensity_philtrum",@"intensity_smile"];
+    NSDictionary *titelDic = @{@"cheek_thinning":@"瘦脸",@"cheek_v":@"v脸",@"cheek_narrow":@"窄脸",@"cheek_small":@"小脸",@"eye_enlarging":@"大眼",@"intensity_chin":@"下巴",
+                               @"intensity_forehead":@"额头",@"intensity_nose":@"瘦鼻",@"intensity_mouth":@"嘴型",@"intensity_canthus":@"开眼角",@"intensity_eye_space":@"眼距",@"intensity_eye_rotate":@"眼睛角度",@"intensity_long_nose":@"长鼻",@"intensity_philtrum":@"缩人中",@"intensity_smile":@"微笑嘴角"
+    };
+    
+    NSDictionary *defaultValueDic = @{@"cheek_thinning":@(0),@"cheek_v":@(1.0),@"cheek_narrow":@(0),@"cheek_small":@(0),@"eye_enlarging":@(1.0),@"intensity_chin":@(0.5),
+                               @"intensity_forehead":@(0.5),@"intensity_nose":@(0.0),@"intensity_mouth":@(0.5),@"intensity_canthus":@(0),@"intensity_eye_space":@(0.5),@"intensity_eye_rotate":@(0.5),@"intensity_long_nose":@(0.5),@"intensity_philtrum":@(0.5),@"intensity_smile":@(0)
+    };
+    
+   
+   if (!_shapeParams) {
+       _shapeParams = [[NSMutableArray alloc] init];
+   }
+   
+   for (NSString *str in prams) {
+       BOOL isStyle101 = NO;
+       if ([str isEqualToString:@"intensity_chin"] || [str isEqualToString:@"intensity_forehead"] || [str isEqualToString:@"intensity_mouth"] || [str isEqualToString:@"intensity_eye_space"] || [str isEqualToString:@"intensity_eye_rotate"] || [str isEqualToString:@"intensity_long_nose"] || [str isEqualToString:@"intensity_philtrum"]) {
+           isStyle101 = YES;
+       }
+       
+       FUBeautyParam *modle = [[FUBeautyParam alloc] init];
+       modle.mParam = str;
+       modle.mTitle = [titelDic valueForKey:str];
+       modle.mValue = [[defaultValueDic valueForKey:str] floatValue];
+       modle.defaultValue = modle.mValue;
+       modle.iSStyle101 = isStyle101;
+       [_shapeParams addObject:modle];
+   }
+}
+
+/**销毁全部道具*/
+- (void)destoryItems
+{
+    [FURenderer destroyAllItems];
+    
+    /**销毁道具后，为保证被销毁的句柄不再被使用，需要将int数组中的元素都设为0*/
+    for (int i = 0; i < sizeof(items) / sizeof(int); i++) {
+        items[i] = 0;
+    }
+    
+    /**销毁道具后，清除context缓存*/
+    [FURenderer OnDeviceLost];
+    
+    /**销毁道具后，重置人脸检测*/
+    [FURenderer onCameraChange];
+    
+    oldMakeup = nil;
+    
+}
+
+//-(void)getNeedRenderItems:()
 
 
 #pragma mark -  render
 /**将道具绘制到pixelBuffer*/
-- (CVPixelBufferRef)renderItemsToPixelBuffer:(CVPixelBufferRef)pixelBuffer flip:(BOOL)flip
-{
-	// 在未识别到人脸时根据重力方向设置人脸检测方向
+- (CVPixelBufferRef)renderItemsToPixelBuffer:(CVPixelBufferRef)pixelBuffer{
     if ([self isDeviceMotionChange]) {
-        fuSetDefalutOrientation();
+        fuSetDefaultRotationMode(self.deviceOrientation);
+            /* 解决旋转屏幕效果异常 onCameraChange*/
+        [FURenderer onCameraChange];
+    }
+    
+    if (_isRender) {
+        /* 由于 rose 妆可能会镜像，下面代码对妆容做镜像翻转 */
+         int temp = self.flipx? 1:0;
+        [FURenderer itemSetParam:items[FUNamaHandleTypeMakeup] withName:@"is_flip_points" value:@(temp)];
         
+        /* 美妆，美体，贴纸 性能问题不共用 */
+        static int readerItems[2] = {0};
+        readerItems[0] = items[FUNamaHandleTypeBeauty];
+        if (_currentType == FUDataTypeMakeup) {
+            readerItems[1] = items[FUNamaHandleTypeMakeup];
+        }
+        if (_currentType == FUDataTypeStrick) {
+            readerItems[1] = items[FUNamaHandleTypeItem];
+        }
+        if (_currentType == FUDataTypebody) {
+            readerItems[1] = items[FUNamaHandleTypeBodySlim];
+            [FURenderer itemSetParam:items[FUNamaHandleTypeBodySlim] withName:@"Orientation" value:@(self.deviceOrientation)];
+        }
+
+        CVPixelBufferRef buffer = [[FURenderer shareRenderer] renderPixelBuffer:pixelBuffer withFrameId:frameID items:readerItems itemCount:2 flipx:_flipx];//flipx 参数设为YES可以使道具做水平方向的镜像翻转
+        frameID += 1;
     }
-    if (self.isMotionItem) {//针对带重力道具
-        [FURenderer itemSetParam:items[FUMNamaHandleTypeItem] withName:@"rotMode" value:@(self.deviceOrientation)];
+
+    
+    return pixelBuffer;
+}
+
+/**处理YUV*/
+- (void)processFrameWithY:(void*)y U:(void*)u V:(void*)v yStride:(int)ystride uStride:(int)ustride vStride:(int)vstride FrameWidth:(int)width FrameHeight:(int)height {
+    if ([self isDeviceMotionChange]) {
+        fuSetDefaultRotationMode(self.deviceOrientation);
+        /* 解决旋转屏幕效果异常 onCameraChange*/
+        [FURenderer onCameraChange];
     }
-    /**设置美颜参数*/
+    
+    /* 由于 rose 妆可能会镜像，下面代码对妆容做镜像翻转 */
+     int temp = self.flipx? 1:0;
+    [FURenderer itemSetParam:items[FUNamaHandleTypeMakeup] withName:@"is_flip_points" value:@(temp)];
+    
+    /* 美妆，美体，贴纸 性能问题不共用 */
+    static int readerItems[2] = {0};
+    readerItems[0] = items[FUNamaHandleTypeBeauty];
+    if (_currentType == FUDataTypeMakeup) {
+        readerItems[1] = items[FUNamaHandleTypeMakeup];
+    }
+    if (_currentType == FUDataTypeStrick) {
+        readerItems[1] = items[FUNamaHandleTypeItem];
+    }
+    if (_currentType == FUDataTypebody) {
+        readerItems[1] = items[FUNamaHandleTypeBodySlim];
+    }
+    
+    [[FURenderer shareRenderer] renderFrame:y u:u  v:v  ystride:ystride ustride:ustride vstride:vstride width:width height:height frameId:frameID items:readerItems itemCount:2];
+    frameID ++ ;
+}
+
+/**将道具绘制到pixelBuffer*/
+
+- (int)renderItemWithTexture:(int)texture Width:(int)width Height:(int)height {
+    if ([self isDeviceMotionChange]) {
+        // 设置识别方向
+        fuSetDefaultRotationMode(self.deviceOrientation);
+        /* 解决旋转屏幕效果异常 onCameraChange*/
+        [FURenderer onCameraChange];
+    }
+    
     [self resetAllBeautyParams];
     
-    /*Faceunity核心接口，将道具及美颜效果绘制到pixelBuffer中，执行完此函数后pixelBuffer即包含美颜及贴纸效果*/
-    CVPixelBufferRef buffer = [[FURenderer shareRenderer] renderPixelBuffer:pixelBuffer withFrameId:frameID items:items itemCount:sizeof(items)/sizeof(int) flipx:NO];//flipx 参数设为YES可以使道具做水平方向的镜像翻转
-    frameID += 1;
-    return buffer;
-}
-#pragma mark -  nama查询&设置
-- (void)setAsyncTrackFaceEnable:(BOOL)enable{
-    [FURenderer setAsyncTrackFaceEnable:enable];
-}
-
-- (void)setEnableGesture:(BOOL)enableGesture
-{
-    _enableGesture = enableGesture;
-    /**开启手势识别*/
-    if (_enableGesture) {
-        [self loadGesture];
-    }else{
-        if (items[FUNamaHandleTypeGesture] != 0) {
-            
-            NSLog(@"faceunity: destroy gesture");
-            
-            [FURenderer destroyItem:items[FUNamaHandleTypeGesture]];
-            
-            items[FUNamaHandleTypeGesture] = 0;
+    if (_isRender) {
+        
+        [self prepareToRender];
+        
+        /* 由于 rose 妆可能会镜像，下面代码对妆容做镜像翻转 */
+         int temp = self.flipx? 1:0;
+        [FURenderer itemSetParam:items[FUNamaHandleTypeMakeup] withName:@"is_flip_points" value:@(temp)];
+        
+        /* 美妆，美体，贴纸 性能问题不共用 */
+        static int readerItems[2] = {0};
+        readerItems[0] = items[FUNamaHandleTypeBeauty];
+        if (_currentType == FUDataTypeMakeup) {
+            readerItems[1] = items[FUNamaHandleTypeMakeup];
         }
-    }
-}
-
-/**开启多脸识别（最高可设为8，不过考虑到性能问题建议设为4以内*/
-- (void)setEnableMaxFaces:(BOOL)enableMaxFaces
-{
-    if (_enableMaxFaces == enableMaxFaces) {
-        return;
-    }
-    
-    _enableMaxFaces = enableMaxFaces;
-    
-    if (bs.code == 2) {
-        if (_enableMaxFaces) {
-            [FURenderer setMaxFaces:4];
+        if (_currentType == FUDataTypeStrick) {
+            readerItems[1] = items[FUNamaHandleTypeItem];
+        }
+        if (_currentType == FUDataTypebody) {
+            readerItems[1] = items[FUNamaHandleTypeBodySlim];
+            [FURenderer itemSetParam:items[FUNamaHandleTypeBodySlim] withName:@"Orientation" value:@(self.deviceOrientation)];
+        }
+        
+        if(self.flipx){
+           fuRenderItemsEx2(FU_FORMAT_RGBA_TEXTURE,&texture, FU_FORMAT_RGBA_TEXTURE, &texture, width, height, frameID, readerItems, 2, NAMA_RENDER_OPTION_FLIP_X | NAMA_RENDER_FEATURE_FULL, NULL);
         }else{
-            [FURenderer setMaxFaces:1];
+           fuRenderItemsEx(FU_FORMAT_RGBA_TEXTURE, &texture, FU_FORMAT_RGBA_TEXTURE, &texture, width, height, frameID, readerItems, 2) ;
+        }
+
+        [self renderFlush];
+        
+        frameID ++ ;
+    }
+    
+    return texture;
+}
+
+// 此方法用于提高 FaceUnity SDK 和 腾讯 SDK 的兼容性
+ static int enabled[10];
+- (void)prepareToRender {
+    for (int i = 0; i<10; i++) {
+        glGetVertexAttribiv(i,GL_VERTEX_ATTRIB_ARRAY_ENABLED,&enabled[i]);
+    }
+}
+
+// 此方法用于提高 FaceUnity SDK 和 腾讯 SDK 的兼容性
+- (void)renderFlush {
+    glFlush();
+    
+    for (int i = 0; i<10; i++) {
+        
+        if(enabled[i]){
+            glEnableVertexAttribArray(i);
+        }
+        else{
+            glDisableVertexAttribArray(i);
         }
     }
 }
+
+
+#pragma mark -  重力感应
+-(void)setupDeviceMotion{
+    // 初始化陀螺仪
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.motionManager.accelerometerUpdateInterval = 0.5;// 1s刷新一次
+    
+    if ([self.motionManager isDeviceMotionAvailable]) {
+       [self.motionManager startAccelerometerUpdates];
+         [self.motionManager startDeviceMotionUpdates];
+    }
+}
+
+-(BOOL)isDeviceMotionChange{
+//    if (![FURenderer isTracking]) {
+        CMAcceleration acceleration = self.motionManager.accelerometerData.acceleration ;
+        int orientation = 0;
+        if (acceleration.x >= 0.75) {
+            orientation = self.trackFlipx ? 3:1;
+        } else if (acceleration.x <= -0.75) {
+            orientation = self.trackFlipx ? 1:3;;
+        } else if (acceleration.y <= -0.75) {
+            orientation = 0;
+        } else if (acceleration.y >= 0.75) {
+            orientation = 2;
+        }
+    
+        if (self.deviceOrientation != orientation) {
+            self.deviceOrientation = orientation ;
+            NSLog(@"屏幕方向-----%d",self.deviceOrientation);
+
+            return YES;
+        }
+//    }
+    return NO;
+}
+
+
 
 /**获取图像中人脸中心点*/
 - (CGPoint)getFaceCenterInFrameSize:(CGSize)frameSize{
@@ -504,7 +574,7 @@ static FUManager *shareManager = NULL;
     static CGPoint preCenter;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        preCenter = CGPointMake(0.49, 0.5);
+        preCenter = CGPointMake(0.5, 0.5);
     });
     
     // 获取人脸矩形框，坐标系原点为图像右下角，float数组为矩形框右下角及左上角两个点的x,y坐标（前两位为右下角的x,y信息，后两位为左上角的x,y信息）
@@ -532,112 +602,16 @@ static FUManager *shareManager = NULL;
     
     return center;
 }
-/**将道具绘制到pixelBuffer*/
 
-- (int)renderItemWithTexture:(int)texture Width:(int)width Height:(int)height {
-    if ([EAGLContext currentContext] != self.txContext) {
-        self.txContext = [EAGLContext currentContext];
-        NSLog(@"上下文修改-----------%@---%@",self.txContext,[EAGLContext currentContext]);
-    }
-    [self resetAllBeautyParams];
-
-    [self prepareToRender];
-    
-    fuRenderItemsEx(FU_FORMAT_RGBA_TEXTURE, &texture, FU_FORMAT_RGBA_TEXTURE, &texture, width, height, frameID, items, sizeof(items)/sizeof(int)) ;
-    
-    [self renderFlush];
-    
-    frameID ++ ;
-    
-    return texture;
-}
-/**将道具绘制到texture*/
-- (int)renderItemWithTexture:(int)texture Width:(int)width Height:(int)height flipx:(BOOL)flip{
-    if ([EAGLContext currentContext] != self.txContext) {
-        self.txContext = [EAGLContext currentContext];
-        NSLog(@"上下文修改-----------%@---%@",self.txContext,[EAGLContext currentContext]);
-    }
-    [self resetAllBeautyParams];
-    
-    [self prepareToRender];
-    
-    if (flip) {
-        fuRenderItemsEx2(FU_FORMAT_RGBA_TEXTURE, &texture, FU_FORMAT_RGBA_TEXTURE, &texture, width, height, frameID, items, sizeof(items)/sizeof(int), NAMA_RENDER_OPTION_FLIP_X | NAMA_RENDER_FEATURE_FULL, NULL);
-    }else{
-        fuRenderItemsEx2(FU_FORMAT_RGBA_TEXTURE, &texture, FU_FORMAT_RGBA_TEXTURE, &texture, width, height, frameID, items, sizeof(items)/sizeof(int), NAMA_RENDER_FEATURE_FULL, NULL);
-    }
-    
-    [self renderFlush];
-    
-    frameID ++ ;
-    
-    return texture;
-}
-
-// 此方法用于提高 FaceUnity SDK 和 腾讯 SDK 的兼容性
-static int enabled[10];
-- (void)prepareToRender {
-    for (int i = 0; i<10; i++) {
-        glGetVertexAttribiv(i,GL_VERTEX_ATTRIB_ARRAY_ENABLED,&enabled[i]);
-    }
-}
-
-// 此方法用于提高 FaceUnity SDK 和 腾讯 SDK 的兼容性
-- (void)renderFlush {
-    glFlush();
-    
-    for (int i = 0; i<10; i++) {
-        
-        if(enabled[i]){
-            glEnableVertexAttribArray(i);
-        }
-        else{
-            glDisableVertexAttribArray(i);
-        }
-    }
-}
 /**获取75个人脸特征点*/
-- (void)getLandmarks:(float *)landmarks index:(int)index;
+- (void)getLandmarks:(float *)landmarks
 {
-    int ret = [FURenderer getFaceInfo:index name:@"landmarks" pret:landmarks number:150];
+    int ret = [FURenderer getFaceInfo:0 name:@"landmarks" pret:landmarks number:150];
     
     if (ret == 0) {
         memset(landmarks, 0, sizeof(float)*150);
     }
 }
-
-- (CGRect)getFaceRectWithIndex:(int)index size:(CGSize)renderImageSize{
-    CGRect rect = CGRectZero ;
-    float faceRect[4];
-    
-    [FURenderer getFaceInfo:index name:@"face_rect" pret:faceRect number:4];
-    
-    CGFloat centerX = (faceRect[0] + faceRect[2]) * 0.5;
-    CGFloat centerY = (faceRect[1] + faceRect[3]) * 0.5;
-    CGFloat width = faceRect[2] - faceRect[0] ;
-    CGFloat height = faceRect[3] - faceRect[1] ;
-    
-    centerX = renderImageSize.width - centerX;
-    centerX = centerX / renderImageSize.width;
-    
-    centerY = renderImageSize.height - centerY;
-    centerY = centerY / renderImageSize.height;
-    
-    width = width / renderImageSize.width ;
-    
-    height = height / renderImageSize.height ;
-    
-    CGPoint center = CGPointMake(centerX, centerY);
-    
-    CGSize size = CGSizeMake(width, height) ;
-    
-    rect.origin = CGPointMake(center.x - size.width / 2.0, center.y - size.height / 2.0) ;
-    rect.size = size ;
-    
-    
-    return rect ;
-}
-
 
 /**判断是否检测到人脸*/
 - (BOOL)isTracking
@@ -646,7 +620,8 @@ static int enabled[10];
 }
 
 /**切换摄像头要调用此函数*/
-- (void)onCameraChange{
+- (void)onCameraChange
+{
     [FURenderer onCameraChange];
 }
 
@@ -666,99 +641,4 @@ static int enabled[10];
     
     return nil;
 }
-
-
-/**判断 SDK 是否是 lite 版本**/
-- (BOOL)isLiteSDK {
-    NSString *version = [FURenderer getVersion];
-    return [version containsString:@"lite"];
-}
-
-
-//保证正脸
--(BOOL)isGoodFace:(int)index{
-    // 保证正脸
-    float rotation[4] ;
-    float DetectionAngle = 15.0 ;
-    [FURenderer getFaceInfo:index name:@"rotation" pret:rotation number:4];
-    
-    float q0 = rotation[0];
-    float q1 = rotation[1];
-    float q2 = rotation[2];
-    float q3 = rotation[3];
-    
-    float z =  atan2(2*(q0*q1 + q2 * q3), 1 - 2*(q1 * q1 + q2 * q2)) * 180 / M_PI;
-    float y =  asin(2 *(q0*q2 - q1*q3)) * 180 / M_PI;
-    float x = atan(2*(q0*q3 + q1*q2)/(1 - 2*(q2*q2 + q3*q3))) * 180 / M_PI;
-    NSLog(@"x=%lf  y=%lf z=%lf",x,y,z);
-    if (x > DetectionAngle || x < - 5 || fabs(y) > DetectionAngle || fabs(z) > DetectionAngle) {//抬头低头角度限制：仰角不大于5°，俯角不大于15°
-        return NO;
-    }
-    
-    return YES;
-}
-
-/* 是否夸张 */
--(BOOL)isExaggeration:(int)index{
-    float expression[46] ;
-    [FURenderer getFaceInfo:index name:@"expression" pret:expression number:46];
-    
-    for (int i = 0 ; i < 46; i ++) {
-        
-        if (expression[i] > 0.60) {
-            
-            return YES;
-        }
-    }
-    return NO;
-}
-
-
-#pragma mark -  其他
-/**
- 获取item的提示语
- 
- @param item 道具名
- @return 提示语
- */
-- (NSString *)hintForItem:(NSString *)item
-{
-    return self.hintDic[item];
-}
-
-#pragma mark -  重力感应
--(void)setupDeviceMotion{
-    
-    // 初始化陀螺仪
-    self.motionManager = [[CMMotionManager alloc] init];
-    self.motionManager.accelerometerUpdateInterval = 0.5;// 1s刷新一次
-    
-    if ([self.motionManager isDeviceMotionAvailable]) {
-       [self.motionManager startAccelerometerUpdates];
-    }
-}
-
-#pragma mark -  设备类型
--(BOOL)isDeviceMotionChange{
-    if (![FURenderer isTracking]) {
-        CMAcceleration acceleration = self.motionManager.accelerometerData.acceleration ;
-        int orientation = 0;
-        if (acceleration.x >= 0.75) {
-            orientation = 3;
-        } else if (acceleration.x <= -0.75) {
-            orientation = 1;
-        } else if (acceleration.y <= -0.75) {
-            orientation = 0;
-        } else if (acceleration.y >= 0.75) {
-            orientation = 2;
-        }
-        
-        if (self.deviceOrientation != orientation) {
-            self.deviceOrientation = orientation ;
-            return YES;
-        }
-    }
-    return NO;
-}
-
 @end

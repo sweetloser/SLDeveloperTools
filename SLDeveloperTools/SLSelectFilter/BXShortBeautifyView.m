@@ -15,6 +15,7 @@
 #import "../SLCategory/SLCategory.h"
 #import "../SLMacro/SLMacro.h"
 #import <MMKV/MMKV.h>
+#import "FUManager+SLExtension.h"
 
 @interface BXShortBeautifyView ()<HMBeautifySlideViewDelegate>
 
