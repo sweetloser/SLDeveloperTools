@@ -10,7 +10,7 @@
 
 //#define SiShiLiveURL  //肆拾直播
 
-//#define BXLiveURL     //秉信互娱
+#define BXLiveURL     //秉信互娱
 
 //#define DuoLaLiveURL    //朵拉互娱
 
@@ -18,7 +18,7 @@
 
 //#define MeiWoYouPinURL  //每窝优品
 
-#define MaiKeXiuURL  //麦客秀
+//#define MaiKeXiuURL  //麦客秀
 
 #ifdef MaiKeXiuURL
 
