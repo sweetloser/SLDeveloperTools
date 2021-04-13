@@ -19,6 +19,7 @@
 #import "../SLSelectFilterConst.h"
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <Masonry/Masonry.h>
+#import "FUManager+SLExtension.h"
 
 @interface HMBeautifyView ()<UIScrollViewDelegate,HMFilterViewDelegate, HMBeautifySlideViewDelegate>
 
