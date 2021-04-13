@@ -113,6 +113,8 @@
 
 @property (nonatomic , strong) NSDictionary * target_info;  //pk右边用户信息
 @property (nonatomic , strong) NSDictionary * active_info;  //pk左边用户信息
+@property (nonatomic, copy) NSString *target_energy;
+@property (nonatomic, copy) NSString *active_energy;
 
 @property (nonatomic , strong)  NSArray * pk_conf;  //pk 配置信息
 
