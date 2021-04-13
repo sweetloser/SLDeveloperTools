@@ -35,6 +35,7 @@
 -(void)goToWithdraw:(NSString *)draw_type;
 
 -(void)goToKefu:(NSString *)data_type;
+-(void)customerPhoneKefu:(NSString *)phoneString;
 
 - (void)toRecharge;
 - (void)goToWithUrl:(NSString *)url;
