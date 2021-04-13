@@ -179,6 +179,8 @@ static NSString * const kWXAppID = @"";
     
     //联系客服
     [self.userContentController addScriptMessageHandler:self name:@"customerKefu"];
+    [self.userContentController addScriptMessageHandler:self name:@"customerPhoneKefu"];
+    
     
     //进入优惠券
     [self.userContentController addScriptMessageHandler:self name:@"goMyCoupon"];
@@ -257,6 +259,8 @@ static NSString * const kWXAppID = @"";
         [self.userContentController removeScriptMessageHandlerForName:@"goToWithdraw"];
         
         [self.userContentController removeScriptMessageHandlerForName:@"customerKefu"];
+        [self.userContentController removeScriptMessageHandlerForName:@"customerPhoneKefu"];
+        
         
         [self.userContentController removeScriptMessageHandlerForName:@"goMyCoupon"];
         
@@ -354,6 +358,8 @@ static NSString * const kWXAppID = @"";
     }
     else if([message.name isEqualToString:@"customerKefu"]) {
         [self goToKefu:[NSString stringWithFormat:@"%@", [message.body description]]];
+    } else if([message.name isEqualToString:@"customerPhoneKefu"]) {
+        [self customerPhoneKefu:[NSString stringWithFormat:@"%@", [message.body description]]];
     }else if([message.name isEqualToString:@"goSeckillGoodsDetail"]) {
         [self goSeckillGoodsDetail:[NSString stringWithFormat:@"%@", [message.body description]]];
     }else if([message.name isEqualToString:@"goMyCoupon"]) {
