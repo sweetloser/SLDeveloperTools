@@ -234,4 +234,25 @@ static NSString *const SLAmwayAttenShareVideo = @"SLAmwayAttenShareVideo";
 //商城首页数据缓存
 static NSString *const SLMallDataCacheKey = @"SLMallDataCacheKey";
 
+
+//个人中心订单
+static NSString *const TMAPPlyAnhcorNotification = @"TMAPPlyAnhcorNotification";
+
+static NSString *const TMNameAuthenticationNotification = @"TMNameAuthenticationNotification";
+
+static NSString *const TMApplySmallShopNotification = @"TMApplySmallShopNotification";
+
+static NSString *const TMMyInviteNotification = @"TMMyInviteNotification";
+
+static NSString *const TMPersonStoreNotification = @"TMPersonStoreNotification";
+
+static NSString *const TMPersonMyTeamNotification = @"TMPersonMyTeamNotification";
+
+static NSString *const TMGoToLinkNotification = @"TMGoToLinkNotification";
+
+static NSString *const TMConverNotification = @"TMConverNotification";
+
+
+
+
 #endif /* SLAppInfoConst_h */
