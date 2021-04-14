@@ -47,6 +47,7 @@
 #define SL_HTTP_H5_URL @"http://shop.wuyalangzi.com/"
 #define SL_UNIVERSAL_LINK @"https://re5l1p.xinstall.top/tolink/"
 #define ZC_KEY @"9072849c597949adbf5dd8d6df535637"                  //智齿key
+#define Scheme_URL @"maikexiuLive"
 
 #endif
 
