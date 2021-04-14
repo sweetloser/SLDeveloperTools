@@ -18,7 +18,23 @@
 
 //#define MeiWoYouPinURL  //每窝优品
 
-#define MaiKeXiuURL  //麦客秀
+//#define MaiKeXiuURL  //麦客秀
+
+#define ChongYouURL  //宠友
+
+#ifdef ChongYouURL
+
+#define New_Http_Base_Url @"http://live.nzpap.cn/api.php?"
+#define New_Http_Base_Url_Without @"http://live.nzpap.cn/api.php"
+#define New_Http_Base_domain @"http://live.nzpap.cn/"
+#define New_Http_Base_make_friend @"http://live.nzpap.cn/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.nzpap.cn/"
+#define SL_HTTP_BASE_API_URL @"http://shop.nzpap.cn/"
+#define SL_HTTP_H5_URL @"http://shop.nzpap.cn/"
+#define SL_UNIVERSAL_LINK @"https://t4zr1e.xinstall.top/tolink/"
+#define ZC_KEY @"d860138a296449a2ae598a859e1b727e"                  //智齿key
+#define Scheme_URL @"nzpapLive"
+#endif
 
 #ifdef MaiKeXiuURL
 
