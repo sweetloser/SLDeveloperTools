@@ -10,7 +10,7 @@
 
 //#define SiShiLiveURL  //肆拾直播
 
-//#define BXLiveURL     //秉信互娱
+#define BXLiveURL     //秉信互娱
 
 //#define DuoLaLiveURL    //朵拉互娱
 
@@ -20,7 +20,7 @@
 
 //#define MaiKeXiuURL  //麦客秀
 
-#define ChongYouURL  //宠友
+//#define ChongYouURL  //宠友
 
 #ifdef ChongYouURL
 
@@ -77,6 +77,7 @@
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
 #define SL_UNIVERSAL_LINK @"https://6s9n03.xinstall.top/tolink/"
 #define ZC_KEY @"0937ca53a36741d081f01297039d1060"                      //智齿key
+#define Scheme_URL @"bingxinkejiLive"
 
 #endif
 
@@ -106,6 +107,7 @@
 #define SL_HTTP_H5_URL @"http://shop.libx.com.cn/"
 #define SL_UNIVERSAL_LINK @"https://y5hmz8.xinstall.top/tolink/"
 #define ZC_KEY @"e85ba28f99df4e14957406b63e438653"                      //智齿key
+#define Scheme_URL @"duolalive"
 
 #endif
 
