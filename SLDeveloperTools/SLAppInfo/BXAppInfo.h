@@ -117,4 +117,7 @@
 
 + (NSDictionary *)getAllParametersWithParameters:(NSDictionary *)parameters;
 + (void)refreshTokenWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
++(BOOL)isAppHidden;
+
 @end
