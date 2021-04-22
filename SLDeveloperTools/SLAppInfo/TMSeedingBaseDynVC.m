@@ -23,22 +23,19 @@
 #import "BXDynMoreAlertView.h"
 #import "BXDynCircelOperAlert.h"
 
-//#import "SLTHShortRecordVideoVC.h"
 #import "BaseNavVC.h"
 #import "BXShortVideoConfigure.h"
 
 #import "HZPhotoBrowser.h"
 
 #import "SLReportToolVC.h"
-#import "BXDynSynTopicCategoryVC.h"
+//#import "BXDynSynTopicCategoryVC.h"
 
 #import "BXDynamicModel.h"
 #import "SLAmwayListModel.h"
-//#import "SLAmwayVideoShowVC.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import "NSObject+Tag.h"
 #import "BXDynClickPlayVC.h"
-//#import "BXVideoPlayVC.h"
 #import "BXDynAlertRemoveSoundView.h"
 #import <Aspects/Aspects.h>
 #import "BXAVPlayerManager.h"
@@ -405,9 +402,9 @@
 -(void)didClickHeaderCell:(TMSeedingBaseTableviewCell *)cell{
 
     
-    BXDynSynTopicCategoryVC *vc = [[BXDynSynTopicCategoryVC alloc]init];
-    
-    [self pushVc:vc];
+//    BXDynSynTopicCategoryVC *vc = [[BXDynSynTopicCategoryVC alloc]init];
+//
+//    [self pushVc:vc];
 //    BXExpressingWallVC *vc = [[BXExpressingWallVC alloc]init];
 //    [self pushVc:vc];
     

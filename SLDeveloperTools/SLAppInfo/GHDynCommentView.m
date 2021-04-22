@@ -24,10 +24,7 @@
 #import "SLAppInfoConst.h"
 #import "NewHttpRequestHuang.h"
 #import "NewHttpRequestPort.h"
-#import "../SLMacro/SLMacro.h"
-#import "../SLCategory/SLCategory.h"
-#import "../SLWidget/SLRefreshTool/SLRefreshTools.h"
-#import "../SLMaskTools/SLMaskTools.h"
+#import <SLDeveloperTools/SLDeveloperTools.h>
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <YYCategories/YYCategories.h>
 #import "BXLiveUser.h"

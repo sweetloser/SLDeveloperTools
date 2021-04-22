@@ -9,10 +9,8 @@
 #import "GHDynNoPicCommentCell.h"
 #import <YYCategories/YYCategories.h>
 #import <YYText/YYText.h>
-#import "../SLCategory/SLCategory.h"
-#import "../SLMacro/SLMacro.h"
+#import <SLDeveloperTools/SLDeveloperTools.h>
 #import <SDAutoLayout/SDAutoLayout.h>
-#import "SLAppInfoMacro.h"
 @interface GHDynNoPicCommentCell ()
 
 /** 昵称 */

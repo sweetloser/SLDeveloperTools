@@ -33,6 +33,7 @@ TODO: Add long description of the pod here.
   
   s.source_files = 'SLDeveloperTools/SLDeveloperTools.h'
   s.dependency 'CTMediatorSLAmway'
+  s.dependency 'CTMediatorSLDynamic'
   
   s.subspec 'SLCategory' do |category|
       category.source_files = 'SLDeveloperTools/SLCategory/*.{h,m}'

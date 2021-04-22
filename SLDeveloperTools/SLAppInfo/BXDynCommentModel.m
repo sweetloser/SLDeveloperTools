@@ -8,9 +8,8 @@
 
 #import "BXDynCommentModel.h"
 #import "BXHHEmoji.h"
-#import "../SLCategory/SLCategory.h"
+#import <SLDeveloperTools/SLDeveloperTools.h>
 #import <YYText/YYText.h>
-#import "../SLMacro/SLMacro.h"
 #import <YYCategories/YYCategories.h>
 //#import "BXPersonHomeVC.h"
 #import "NSAttributedString+DSText.h"

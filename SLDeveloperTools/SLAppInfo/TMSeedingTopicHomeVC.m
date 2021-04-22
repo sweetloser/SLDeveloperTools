@@ -10,7 +10,6 @@
 #import "JXCategoryTitleView.h"
 #import "JXGradientView.h"
 #import "BXDynTopicHeaderView.h"
-#import "BXDynGlobleVC.h"
 
 #import "TMSeedingTopicListVC.h"
 #import "TMSeedingTopicVideoVC.h"
@@ -25,7 +24,6 @@
 #import "DynSharePopViewManager.h"
 #import "NewHttpManager.h"
 #import "BXLiveUser.h"
-#import "BXOPenIssueDyn.h"
 #import "BaseNavVC.h"
 #import "BXPagerMainScrollView.h"
 #import "HttpMakeFriendRequest.h"
@@ -374,16 +372,6 @@
 
 
 -(void)takeTopicAtc{
-//    WS(weakSelf);
-//    NSLog(@"%@", self.listContainerView);
-//    BXOPenIssueDyn *showVC = [[BXOPenIssueDyn alloc] init];
-//    showVC.IssueSuccess = ^{
-//        [weakSelf.topicVC TableDragWithDown];
-//    };
-//    showVC.topicModel = self.model;
-//    BaseNavVC *nav = [[BaseNavVC alloc]initWithRootViewController:showVC];
-//    nav.modalPresentationStyle =  UIModalPresentationFullScreen;
-//    [self presentViewController:nav animated:YES completion:nil];
 }
 
 -(void)AddClick{

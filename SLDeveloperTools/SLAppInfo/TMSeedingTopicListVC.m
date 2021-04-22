@@ -30,7 +30,7 @@
 #import "HZPhotoBrowser.h"
 
 #import "SLReportToolVC.h"
-#import "BXDynSynTopicCategoryVC.h"
+//#import "BXDynSynTopicCategoryVC.h"
 
 #import "BXDynamicModel.h"
 #import "SLAmwayListModel.h"
@@ -408,16 +408,7 @@
     self.dataArray[indexPath.row] = cell.model;
     [self.tableview reloadData];
 }
--(void)didClickHeaderCell:(TMSeedingBaseTableviewCell *)cell{
 
-    
-    BXDynSynTopicCategoryVC *vc = [[BXDynSynTopicCategoryVC alloc]init];
-    
-    [self pushVc:vc];
-//    BXExpressingWallVC *vc = [[BXExpressingWallVC alloc]init];
-//    [self pushVc:vc];
-    
-}
 -(void)didClickMoreCell:(TMSeedingBaseTableviewCell *)cell{
     NSIndexPath *indexPath = [self.tableview indexPathForCell:cell];
     BXDynamicModel *model = self.dataArray[indexPath.row];

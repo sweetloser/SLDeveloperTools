@@ -22,35 +22,17 @@
 #import "BXClickVideoViewVC.h"
 #import "BXTransitionAnimation.h"
 #import "UIApplication+ActivityViewController.h"
-#import "BXDynNewOnePicCell.h"
-#import "BXDynNewMorePicCell.h"
-#import "BXDynNewFourPicCell.h"
 #import "BXKTVHTTPCacheManager.h"
-#import "BXDynamicDetailsVC.h"
-#import "BXDynNewVideoTableViewCell.h"
-#import "BXDynGoodsCell.h"
-#import "BXDynRecommendCell.h"
-#import "BXDynCircleRecommendHeaderViewcell.h"
-#import "BXDynSoundCell.h"
-#import "BXDynShareLiveCell.h"
-#import "BXDynLivingCell.h"
 #import "BXDynMoreAlertView.h"
-#import "BXDynWhisperAlertView.h"
-//#import "SLTHShortRecordVideoVC.h"
 #import "BaseNavVC.h"
 #import "BXShortVideoConfigure.h"
-#import "BXOPenIssueDyn.h"
 #import "HZPhotoBrowser.h"
-//#import "BXExpressingWallVC.h"
 #import "BXDynTipOffVC.h"
-#import "BXDynSynTopicCategoryVC.h"
-#import "BXDynCircleCategoryVC.h"
 #import "HttpMakeFriendRequest.h"
 #import "BXDynamicModel.h"
 #import "DynPlayMp3Voice.h"
 #import "NSObject+Tag.h"
 #import "BXDynClickPlayVC.h"
-//#import "BXVideoPlayVC.h"
 #import <Aspects/Aspects.h>
 #import "SLAppInfoConst.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
@@ -64,7 +46,7 @@
 #import "NewHttpRequestHuang.h"
 #import "../SLWidget/SLBaseEmptyVC/SLEmptyHeader.h"
 
-@interface BXSLSearchAllVC () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,BXAttentionVideoCelllDelegate,BXDynBaseCellDelegate,playDelegate>
+@interface BXSLSearchAllVC () <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,BXAttentionVideoCelllDelegate,playDelegate>
 
 //@property (nonatomic, strong) UITableView *tableView;
 
@@ -91,7 +73,6 @@
 @property(nonatomic, strong)DynPlayMp3Voice *playSound;
 @property(nonatomic, assign)NSInteger playFlag;
 
-@property(nonatomic, strong)BXDynSoundCell *currentSoundCell;
 @property (nonatomic, strong) NSIndexPath *SoundcurrentIndexPath;
 
 @end

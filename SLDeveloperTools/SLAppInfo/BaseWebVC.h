@@ -32,6 +32,8 @@
 
 -(void)goToCouponList;
 
+-(void)goToReleaseGass;
+
 -(void)goToWithdraw:(NSString *)draw_type;
 
 -(void)goToKefu:(NSString *)data_type;
