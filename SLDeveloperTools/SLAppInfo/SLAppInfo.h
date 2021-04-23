@@ -45,8 +45,6 @@
 #import "SLAppInfoConst.h"
 #import "SLAppInfoMacro.h"
 #import "SLUpLoadAndDownloadTools.h"
-#import "GHDynCommentFooterView.h"
-#import "BXDynCommentModel.h"
 #import "BXDynAlertRemoveSoundView.h"
 #import "BXHHEmojiView.h"
 #import "BXHHEmojiFlowLayout.h"

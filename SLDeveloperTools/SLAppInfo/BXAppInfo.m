@@ -279,4 +279,9 @@ MJCodingImplementation
     return netconnType;
 }
 
+
++(BOOL)isAppHidden{
+    return ([BXAppInfo.appInfo.ios_app_hidden_version isEqualToString:[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"]] && [[BXAppInfo appInfo].ios_app_hidden integerValue] == 1);
+}
+
 @end

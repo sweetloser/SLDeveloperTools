@@ -209,6 +209,9 @@ static NSString * const kWXAppID = @"";
     
     //心愿单弹出礼物视图
     [self.userContentController addScriptMessageHandler:self name:@"giftClickDialog"];
+    
+//    跳转发布种草页面
+    [self.userContentController addScriptMessageHandler:self name:@"releaseGass"];
 
 }
 - (void)shareWithTitle:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key{
@@ -288,6 +291,7 @@ static NSString * const kWXAppID = @"";
     
     [self.userContentController removeScriptMessageHandlerForName:@"giftClickDialog"];
     
+    [self.userContentController removeScriptMessageHandlerForName:@"releaseGass"];
 }
 
 #pragma mark 计算wkWebView进度条
@@ -364,6 +368,8 @@ static NSString * const kWXAppID = @"";
         [self goSeckillGoodsDetail:[NSString stringWithFormat:@"%@", [message.body description]]];
     }else if([message.name isEqualToString:@"goMyCoupon"]) {
         [self goToCouponList];
+    }else if([message.name isEqualToString:@"releaseGass"]) {
+        [self goToReleaseGass];
     }else if([message.name isEqualToString:@"giftClickDialog"]) {
         NSLog(@"%@",message.body);
         if ([message.body isKindOfClass:[NSString class]]) {
@@ -390,6 +396,7 @@ static NSString * const kWXAppID = @"";
 -(void)smallShopPay:(id)params{}
 -(void)smallShopAliPay:(id)params{}
 -(void)goToCouponList{}
+-(void)goToReleaseGass{}
 -(void)uploadWithType:(NSString *)type{}
 -(void)goSeckillGoodsDetail:(NSString *)kill_id{}
 -(void)goGoodsDetail:(NSString *)sku_id{}

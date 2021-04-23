@@ -12,7 +12,6 @@
 #import "BXHMovieModel.h"
 #import "HttpMakeFriendRequest.h"
 #import "NSObject+Tag.h"
-#import "BXDynTopicCircleVideoVC.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import <MJExtension/MJExtension.h>
 #import <Masonry/Masonry.h>
@@ -182,12 +181,6 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    BXDynTopicCircleVideoVC *vc = [[BXDynTopicCircleVideoVC alloc]initWithvideo_id:[[self.dataArray[indexPath.row] msgdetailmodel] video]];
-//    [self pushVc:vc];
-//    BXDynTopicCircleVideoVC *vc = [[BXDynTopicCircleVideoVC alloc]init];
-//    vc.videos = self.dataArray;
-//    vc.index = indexPath.row;
-//    [self pushVc:vc];
     BXDynamicModel *model = _dataArray[indexPath.row];
     SLAmwayListModel *m = self.SLDataArray[indexPath.row];
     if ([model.msgdetailmodel.render_type intValue] == 7) {

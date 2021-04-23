@@ -12,7 +12,5 @@
 #import "BXDynAddHuaTiVC.h"
 #import "BXDynTopicDelItemCell.h"
 #import "BXDynPlayVideoCell.h"
-#import "BXDynTopicHeaderView.h"
-#import "BXDynTopicVideoCell.h"
 
 #endif /* SLAddTopicTools_h */

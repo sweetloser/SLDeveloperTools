@@ -10,17 +10,34 @@
 
 //#define SiShiLiveURL  //肆拾直播
 
-#define BXLiveURL     //秉信互娱
+//#define BXLiveURL     //秉信互娱
 
 //#define DuoLaLiveURL    //朵拉互娱
 
 //#define DaBaiLiveURL    //大白直播
 
-//#define MeiWoYouPinURL  //每窝优品
+#define MeiWoYouPinURL  //每窝优品
 
 //#define MaiKeXiuURL  //麦客秀
 
 //#define ChongYouURL  //宠友
+
+//#define HuHaLiveURL  //呼哈直播
+
+#ifdef HuHaLiveURL
+
+#define New_Http_Base_Url @"http://api.tglzb.com/api.php?"
+#define New_Http_Base_Url_Without @"http://api.tglzb.com/api.php"
+#define New_Http_Base_domain @"http://api.tglzb.com/"
+#define New_Http_Base_make_friend @"http://api.tglzb.com/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.nzpap.cn/"
+#define SL_HTTP_BASE_API_URL @"http://shop.nzpap.cn/"
+#define SL_HTTP_H5_URL @"http://shop.nzpap.cn/"
+#define SL_UNIVERSAL_LINK @"https://0g42ov.xinstall.com.cn/tolink/"
+#define ZC_KEY @"d860138a296449a2ae598a859e1b727e"                  //智齿key
+#define Scheme_URL @"nzpapLive"
+
+#endif
 
 #ifdef ChongYouURL
 
@@ -34,6 +51,7 @@
 #define SL_UNIVERSAL_LINK @"https://t4zr1e.xinstall.top/tolink/"
 #define ZC_KEY @"d860138a296449a2ae598a859e1b727e"                  //智齿key
 #define Scheme_URL @"nzpapLive"
+
 #endif
 
 #ifdef MaiKeXiuURL
@@ -123,7 +141,7 @@
 #define SL_HTTP_H5_URL @"http://shop.meiwoyoupin.com/"
 #define SL_UNIVERSAL_LINK @"https://ylzgr6.xinstall.top/tolink/"
 #define ZC_KEY @"e85ba28f99df4e14957406b63e438653"                      //智齿key
-
+#define Scheme_URL @"meiwoyoupinLive"
 #endif
 
 

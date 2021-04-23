@@ -10,10 +10,9 @@
 #import <YYText/YYText.h>
 #import <YYImage/YYImage.h>
 #import <Masonry/Masonry.h>
-#import "../SLMacro/SLMacro.h"
-#import "../SLCategory/SLCategory.h"
 #import <YYWebImage/YYWebImage.h>
-#import "../SLUtilities/SLUtilities.h"
+#import <SLDeveloperTools/SLDeveloperTools.h>
+
 @interface BXDynTopicVideoCell ()
 
 @property (strong, nonatomic) UIImageView *coverIv;

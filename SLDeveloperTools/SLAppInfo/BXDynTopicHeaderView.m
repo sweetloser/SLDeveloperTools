@@ -8,9 +8,7 @@
 
 #import "BXDynTopicHeaderView.h"
 #import "HttpMakeFriendRequest.h"
-#import "../SLCategory/SLCategory.h"
-#import "../SLMacro/SLMacro.h"
-#import "../SLMaskTools/SLMaskTools.h"
+#import <SLDeveloperTools/SLDeveloperTools.h>
 #import <Masonry/Masonry.h>
 #import <SDWebImage/SDWebImage.h>
 

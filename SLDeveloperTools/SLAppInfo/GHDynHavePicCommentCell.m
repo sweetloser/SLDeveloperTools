@@ -11,8 +11,7 @@
 #import <YYCategories/YYCategories.h>
 #import <YYText/YYText.h>
 #import <SDAutoLayout/SDAutoLayout.h>
-#import "../SLMacro/SLMacro.h"
-#import "../SLUtilities/SLUtilities.h"
+#import <SLDeveloperTools/SLDeveloperTools.h>
 
 @interface GHDynHavePicCommentCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 

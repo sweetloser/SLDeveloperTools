@@ -10,15 +10,12 @@
 #import <Lottie/Lottie.h>
 #import "DetailSendcomCollectionViewCell.h"
 #import "HZPhotoBrowser.h"
-//#import "BXPersonHomeVC.h"
-#import "SLAppInfoConst.h"
 #import <YYText/YYText.h>
 #import <YYCategories/YYCategories.h>
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <Masonry/Masonry.h>
-#import "SLAppInfoMacro.h"
 #import <SDWebImage/SDWebImage.h>
-#import "../SLMacro/SLMacro.h"
+#import <SLDeveloperTools/SLDeveloperTools.h>
 
 @interface GHDynCommentPictureHeaderView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 

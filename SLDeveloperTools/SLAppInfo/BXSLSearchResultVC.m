@@ -18,7 +18,9 @@
 #import "BXSLSearchLiveVC.h"
 #import "BXSLSearchManager.h"
 //#import "SLSearchDynamicVC.h"
-#import "BXDynGlobleVC.h"
+//#import "BXDynGlobleVC.h"
+#import <CTMediatorSLDynamic/CTMediator+SLDynamic.h>
+
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import "../SLMacro/SLMacro.h"
 #import "../SLCategory/SLCategory.h"
@@ -196,9 +198,10 @@
         allVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
         [_childVcs addObject:allVc];
     }else{
-        BXDynGlobleVC *allVc = [[BXDynGlobleVC alloc] init];
-        allVc.dyntype = @"6";//类型6 综合
-        allVc.searchResultVC = self;
+        UIViewController *allVc = [[CTMediator sharedInstance] BXDynGlobleVC_ViewControllerWithDyntype:@"6" searchResultVC:self];
+//        BXDynGlobleVC *allVc = [[BXDynGlobleVC alloc] init];
+//        allVc.dyntype = @"6";//类型6 综合
+//        allVc.searchResultVC = self;
         [_childVcs addObject:allVc];
     }
 
@@ -228,9 +231,10 @@
     if ([[BXAppInfo appInfo].is_dynamic_open intValue] == 0) {
         
     }else{
-        BXDynGlobleVC *dynamicVc = [[BXDynGlobleVC alloc] init];
-        dynamicVc.dyntype = @"5";//类型5 搜索
-        dynamicVc.searchResultVC = self;
+        UIViewController *dynamicVc = [[CTMediator sharedInstance] BXDynGlobleVC_ViewControllerWithDyntype:@"5" searchResultVC:self];
+//        BXDynGlobleVC *dynamicVc = [[BXDynGlobleVC alloc] init];
+//        dynamicVc.dyntype = @"5";//类型5 搜索
+//        dynamicVc.searchResultVC = self;
         dynamicVc.view.backgroundColor = [UIColor sl_colorWithHex:0xFFFFFF];
         [_childVcs addObject:dynamicVc];
     }
