@@ -173,6 +173,12 @@
 
 @property(nonatomic,copy)NSString *pdd_pid;
 
+///宠友新增 - 爱宠昵称
+@property(nonatomic,copy)NSString *pet_name;
+
+///宠友新增 - 爱宠品种
+@property(nonatomic,copy)NSString *pet_breed;
+
 + (BOOL)isLogin;
 + (BXLiveUser *)currentBXLiveUser;
 + (void)setCurrentBXLiveUser:(BXLiveUser *)liveUser;
