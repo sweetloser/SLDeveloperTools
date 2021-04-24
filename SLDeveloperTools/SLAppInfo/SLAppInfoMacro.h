@@ -16,11 +16,11 @@
 
 //#define DaBaiLiveURL    //大白直播
 
-//#define MeiWoYouPinURL  //每窝优品
+#define MeiWoYouPinURL  //每窝优品
 
 //#define MaiKeXiuURL  //麦客秀
 
-#define ChongYouURL  //宠友
+//#define ChongYouURL  //宠友
 
 //#define HuHaLiveURL  //呼哈直播
 
