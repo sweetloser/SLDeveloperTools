@@ -45,5 +45,7 @@
 
 -(void)wishGift:(NSDictionary *)giftDict;
 
+///电话客服
+-(void)makePhone:(NSString *)phone;
 
 @end

@@ -212,12 +212,12 @@ static NSString * const kWXAppID = @"";
     
 //    跳转发布种草页面
     [self.userContentController addScriptMessageHandler:self name:@"releaseGass"];
+    
+//    电话客服
+    [self.userContentController addScriptMessageHandler:self name:@"makePhone"];
 
 }
 - (void)shareWithTitle:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key{
-//    [ShareManager shareWithShareType:nil targetId:nil title:title descr:descr thumb:thumb url:url share_key:share_key currentVC:self shareCompletion:^(NSString *share_channel, NSError *error) {
-//
-//        }];
 }
 
 
@@ -292,6 +292,8 @@ static NSString * const kWXAppID = @"";
     [self.userContentController removeScriptMessageHandlerForName:@"giftClickDialog"];
     
     [self.userContentController removeScriptMessageHandlerForName:@"releaseGass"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"makePhone"];
 }
 
 #pragma mark 计算wkWebView进度条
@@ -370,6 +372,9 @@ static NSString * const kWXAppID = @"";
         [self goToCouponList];
     }else if([message.name isEqualToString:@"releaseGass"]) {
         [self goToReleaseGass];
+    }else if([message.name isEqualToString:@"makePhone"]) {
+        NSLog(@"%@",message.body);
+        [self makePhone:message.body];
     }else if([message.name isEqualToString:@"giftClickDialog"]) {
         NSLog(@"%@",message.body);
         if ([message.body isKindOfClass:[NSString class]]) {
@@ -405,7 +410,7 @@ static NSString * const kWXAppID = @"";
 -(void)openRecharge{}
 -(void)goToWithdraw:(NSString *)draw_type{}
 -(void)wishGift:(NSDictionary *)giftDict;{}
-
+-(void)makePhone:(NSString *)phone;{}
 
 -(void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler{
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
