@@ -286,7 +286,7 @@ TODO: Add long description of the pod here.
   
   
   
-  s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle','SLDeveloperTools/Resources/*'
+  s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle','SLDeveloperTools/Resources/MP3/*','SLDeveloperTools/Resources/PlaceholderIcon/*'
 
   # s.public_header_files = 'Pod/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

@@ -205,6 +205,7 @@ static NSString * const kWXAppID = @"";
     
     [self.userContentController addScriptMessageHandler:self name:@"recharge"];
     [self.userContentController addScriptMessageHandler:self name:@"goTo"];
+    
     [self.userContentController addScriptMessageHandler:self name:@"openWxAPP"];
     
     //心愿单弹出礼物视图
