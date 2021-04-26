@@ -74,7 +74,7 @@
 @property (strong, nonatomic) NSNumber *charge_rec_duration;
 @property (assign, nonatomic) NSInteger unread_total;
 @property (copy, nonatomic) NSString *open_anchor_type;  //open_anchor_type 初始化加了这个字段  0那么开启小店和会员中心都不出现申请主播东西  1就是小店的地方出现 2就是会员中心出现
-
+@property (copy, nonatomic) NSString *firstinvest_status;//是否开启首充
 //首次进入 隐私政策和服务协议
 @property(nonatomic,copy)NSString *alert_title;
 @property(nonatomic,copy)NSString *alert_content;

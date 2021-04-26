@@ -57,6 +57,7 @@ MJCodingImplementation
     [super updateWithJsonDic:jsonDic];
     self.unread_total = [jsonDic[@"unread_total"] integerValue];
     self.open_anchor_type = [NSString stringWithFormat:@"%@", jsonDic[@"open_anchor_type"]];
+    self.firstinvest_status = [NSString stringWithFormat:@"%@", jsonDic[@"firstinvest"][@"firstinvest_status"]];
     NSDictionary *h5_urlsDic = jsonDic[@"h5_urls"];
     NSDictionary *customer_serviceDict = jsonDic[@"customer_service"];
     self.customer_service = customer_serviceDict;
