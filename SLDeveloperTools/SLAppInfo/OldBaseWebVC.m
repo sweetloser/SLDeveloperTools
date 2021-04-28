@@ -229,7 +229,7 @@ static NSString * const kWXAppID = @"";
     
     [self.bridge registerHandler:@"getUser" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSLog(@"aagetUser");
-        responseCallback(BXLiveUser.currentBXLiveUser.user_id);
+        responseCallback(@{@"user_id":BXLiveUser.currentBXLiveUser.user_id});
     }];
     
     [self.bridge registerHandler:@"getDeviceInfo" handler:^(id data, WVJBResponseCallback responseCallback) {
