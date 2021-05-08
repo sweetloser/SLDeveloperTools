@@ -57,12 +57,15 @@
     
     BOOL wxIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession];
     BOOL qqIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ];
+    
+#ifdef ChongYouURL
     BOOL fbIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_Facebook];
     if (fbIsInstall) {
         DynShareObject *objct = [[DynShareObject alloc ] init];
         objct.normalType = DynShareObjectTypeOfFacebook;
         [topIconsNameArray addObject:objct];
     }
+#endif
     
     if (wxIsInstall) {
         for (int i= 0; i < 2; i++) {

@@ -52,11 +52,13 @@
         [shareObjects addObject:shareObject];
         [shareObjects addObject:otherShareObject];
     }
+#ifdef ChongYouURL
     if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_Facebook]) {
         DynShareObject *shareObject = [[DynShareObject alloc]init];
         shareObject.type = DynShareObjectTypeOfFacebook;
         [shareObjects addObject:shareObject];
     }
+#endif
     
     DynShareView *shareView = [[DynShareView alloc]initWithShareObjects:shareObjects];
     shareView.shareTo = ^(DynShareObjectType type) {

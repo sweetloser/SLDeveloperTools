@@ -32,11 +32,12 @@
 
 + (void)shareWithShareType:(NSString *)shareType targetId:(NSString *)targetId title:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key currentVC:(UIViewController *)currentVC shareCompletion:(void (^)(NSString *, NSError *))shareCompletion {
     NSMutableArray *shareObjects = [NSMutableArray array];
-    
+#ifdef ChongYouURL
     ShareObject *shareObjectfb = [[ShareObject alloc]init];
     shareObjectfb.type = ShareObjectTypeOfFacebook;
     
     [shareObjects addObject:shareObjectfb];
+#endif
     
     if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
         ShareObject *shareObject = [[ShareObject alloc]init];
