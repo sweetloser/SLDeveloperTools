@@ -57,6 +57,12 @@
     
     BOOL wxIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession];
     BOOL qqIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ];
+    BOOL fbIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_Facebook];
+    if (fbIsInstall) {
+        DynShareObject *objct = [[DynShareObject alloc ] init];
+        objct.normalType = DynShareObjectTypeOfFacebook;
+        [topIconsNameArray addObject:objct];
+    }
     
     if (wxIsInstall) {
         for (int i= 0; i < 2; i++) {
@@ -94,6 +100,8 @@
     }
     else if (index == DynShareObjectTypeOfQzone) {
         [DynShareManager singleShareWithPlat:UMSocialPlatformType_Qzone type:_share_type anchor:_is_follow targetId:_movieId roomId:_likeNum userId:_user_Id currentVC:_vc];
+    }else if (index == DynShareObjectTypeOfFacebook) {
+        [DynShareManager singleShareWithPlat:UMSocialPlatformType_Facebook type:_share_type anchor:_is_follow targetId:_movieId roomId:_likeNum userId:_user_Id currentVC:_vc];
     }else{
         
     }

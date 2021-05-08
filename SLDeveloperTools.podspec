@@ -248,6 +248,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'UMCShare/UI'
     appInfo.dependency 'UMCShare/Social/ReducedWeChat'
     appInfo.dependency 'UMCShare/Social/ReducedQQ'
+    appInfo.dependency 'UMCShare/Social/Facebook'
     appInfo.dependency 'YYText'
     appInfo.dependency 'YYCategories'
     appInfo.dependency 'RealReachability'

@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) NSArray *shareObjects;
 
+@property (strong, nonatomic) UIScrollView *shareScrollView;
+
 @end
 
 @implementation DynShareView
@@ -46,6 +48,19 @@
         titleLb.font = CBFont(17);
         [contentView addSubview:titleLb];
         
+        _shareScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+        
+        [_contentView addSubview:_shareScrollView];
+        
+        [_shareScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(__ScaleWidth(90));
+            make.top.equalTo(titleLb.mas_bottom);
+        }];
+        
+        [_shareScrollView setContentSize:CGSizeMake(__ScaleWidth(83.6) * shareObjects.count, __ScaleWidth(90))];
+        _shareScrollView.showsHorizontalScrollIndicator = NO;
+        
         
         for (NSInteger i = 0; i < shareObjects.count; i++) {
             DynShareObject * shareObject = shareObjects[i];
@@ -55,7 +70,7 @@
             [shareBtn setImage:CImage(shareObject.iconName) forState:BtnNormal];
             [shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:BtnTouchUpInside];
             shareBtn.imageEdgeInsets = UIEdgeInsetsMake(-16, 0, 16, 0);
-            [contentView addSubview:shareBtn];
+            [_shareScrollView addSubview:shareBtn];
             
             
             UILabel *textLb = [[UILabel alloc]init];

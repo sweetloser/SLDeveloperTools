@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) NSArray *shareObjects;
 
+@property (strong, nonatomic) UIScrollView *shareScrollView;
+
 @end
 
 @implementation ShareView
@@ -74,6 +76,19 @@
         }];
         rightLine.backgroundColor = sl_divideLineColor;
         
+        _shareScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+        
+        [_contentView addSubview:_shareScrollView];
+        
+        [_shareScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(__ScaleWidth(90));
+            make.top.equalTo(titleLb.mas_bottom);
+        }];
+        
+        [_shareScrollView setContentSize:CGSizeMake(__ScaleWidth(90) * shareObjects.count, __ScaleWidth(90))];
+        _shareScrollView.showsHorizontalScrollIndicator = NO;
+        
         NSMutableArray *btnArray = [NSMutableArray new];
         
         CGFloat fixSpace = __ScaleWidth(375-24-24 - 60 * 4) / 3;
@@ -86,7 +101,7 @@
             [shareBtn setImage:CImage(shareObject.iconName) forState:BtnNormal];
             [shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:BtnTouchUpInside];
             shareBtn.imageEdgeInsets = UIEdgeInsetsMake(-__ScaleWidth(10), 0, __ScaleWidth(10), 0);
-            [contentView addSubview:shareBtn];
+            [_shareScrollView addSubview:shareBtn];
             
             [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(titleLb.mas_bottom).offset(__ScaleWidth(20));
@@ -129,7 +144,7 @@
         }];
         
         UIButton *share_dynamicBtn = [[UIButton alloc]initWithFrame:CGRectZero];
-        share_dynamicBtn.tag = 4;
+        share_dynamicBtn.tag = 100;
         [share_dynamicBtn setImage:CImage(@"share_dynamic") forState:BtnNormal];
         [share_dynamicBtn addTarget:self action:@selector(shareAction:) forControlEvents:BtnTouchUpInside];
         share_dynamicBtn.imageEdgeInsets = UIEdgeInsetsMake(-__ScaleWidth(10), 0, __ScaleWidth(10), 0);
@@ -187,7 +202,7 @@
 }
 
 - (void)shareAction:(UIButton *)sender {
-    if (sender.tag == 4) {
+    if (sender.tag == 100) {
 //        分享动态
         if (_shareDynamic) {
             _shareDynamic();

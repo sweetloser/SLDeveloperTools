@@ -21,6 +21,10 @@
 - (void)setType:(DynShareObjectType)type {
     _type = type;
     switch (type) {
+        case DynShareObjectTypeOfFacebook:
+            _name = @"Facebook";
+            _iconName = @"icon_share_facebook";
+            break;
         case DynShareObjectTypeOfQQ:
             _name = @"QQ";
             _iconName = @"视频qq";
@@ -46,6 +50,10 @@
 - (void)setNormalType:(DynShareObjectType)normalType{
     _normalType = normalType;
     switch (normalType) {
+        case DynShareObjectTypeOfFacebook:
+            _name = @"Facebook";
+            _iconName = @"icon_share_facebook";
+            break;
         case DynShareObjectTypeOfQQ:
             _name = @"QQ";
             _iconName = @"video_pop up_icon_qq";

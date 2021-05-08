@@ -21,6 +21,12 @@
 - (void)setType:(ShareObjectType)type {
     _type = type;
     switch (type) {
+            
+        case ShareObjectTypeOfFacebook:
+            _name = @"Facebook";
+            _iconName = @"icon_share_facebook";
+            break;
+            
         case ShareObjectTypeOfQQ:
             _name = @"QQ";
             _iconName = @"视频qq";
@@ -46,6 +52,10 @@
 - (void)setNormalType:(ShareObjectType)normalType{
     _normalType = normalType;
     switch (normalType) {
+        case ShareObjectTypeOfFacebook:
+            _name = @"Facebook";
+            _iconName = @"icon_share_facebook";
+            break;
         case ShareObjectTypeOfQQ:
             _name = @"QQ";
             _iconName = @"video_pop up_icon_qq";
