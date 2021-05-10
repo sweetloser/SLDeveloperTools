@@ -79,10 +79,12 @@
             platformType = UMSocialPlatformType_WechatSession;
         } else if (type == DynShareObjectTypeOfWechatTimeLine) {
             platformType = UMSocialPlatformType_WechatTimeLine;
-        }else if (type == DynShareObjectTypeOfFacebook) {
+        }
+#ifdef ChongYouURL
+        else if (type == DynShareObjectTypeOfFacebook) {
             platformType = UMSocialPlatformType_Facebook;
         }
-        
+#endif
         [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:currentVC completion:^(id data, NSError *error) {
             NSString * platType = @"";
             if (platformType==UMSocialPlatformType_WechatSession) {

@@ -103,9 +103,13 @@
     }
     else if (index == DynShareObjectTypeOfQzone) {
         [DynShareManager singleShareWithPlat:UMSocialPlatformType_Qzone type:_share_type anchor:_is_follow targetId:_movieId roomId:_likeNum userId:_user_Id currentVC:_vc];
-    }else if (index == DynShareObjectTypeOfFacebook) {
+    }
+#ifdef ChongYouURL
+    else if (index == DynShareObjectTypeOfFacebook) {
         [DynShareManager singleShareWithPlat:UMSocialPlatformType_Facebook type:_share_type anchor:_is_follow targetId:_movieId roomId:_likeNum userId:_user_Id currentVC:_vc];
-    }else{
+    }
+#endif
+    else{
         
     }
     
