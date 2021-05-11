@@ -15,6 +15,7 @@
 @interface DynSharePopView()
 @property (nonatomic, strong) UIView           *container;
 @property (nonatomic, strong) UIButton         *cancel;
+@property (strong, nonatomic) UIScrollView *shareScrollView;
 @end
 
 @implementation DynSharePopView
@@ -54,7 +55,18 @@
           segRightlable.backgroundColor = UIColorHex(#EAEAEA);
           [_container addSubview:segRightlable];
         
-
+        _shareScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+        
+        [_container addSubview:_shareScrollView];
+        
+        [_shareScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(__ScaleWidth(90));
+            make.top.equalTo(sharelabel.mas_bottom);
+        }];
+        
+        [_shareScrollView setContentSize:CGSizeMake(__ScaleWidth(90) * topIconsNameArray.count, __ScaleWidth(90))];
+        _shareScrollView.showsHorizontalScrollIndicator = NO;
 
         if (topIconsNameArray.count) {
 //            UIScrollView *topScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 90)];
@@ -65,12 +77,12 @@
             
             for (NSInteger i = 0; i < topIconsNameArray.count; i++) {
                 DynShareObject *dict = topIconsNameArray[i];
-                DynShareItem *item = [[DynShareItem alloc] initWithFrame:CGRectMake(__ScaleWidth(36)* (i+1) + __ScaleWidth(48)*i, 50, __ScaleWidth(48), 90)];
+                DynShareItem *item = [[DynShareItem alloc] initWithFrame:CGRectMake(__ScaleWidth(36)* (i+1) + __ScaleWidth(48)*i, 0, __ScaleWidth(48), 90)];
                 item.icon.image = [UIImage imageNamed:dict.iconName];
                 item.label.text = dict.name;
                 item.type = dict.normalType;
                 [item.clickBtn addTarget:self action:@selector(onShareItemTap:) forControlEvents:UIControlEventTouchUpInside];
-                [_container addSubview:item];
+                [_shareScrollView addSubview:item];
             }
             
 //            UIView *splitLine = [[UIView alloc] initWithFrame:CGRectMake(0, 132, SCREEN_WIDTH, 0.5f)];

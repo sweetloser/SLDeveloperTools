@@ -13,6 +13,7 @@
 #import <UMShare/UMShare.h>
 #import "ZZLActionSheetView.h"
 #import <Toast/UIView+Toast.h>
+#import "SLAppInfoMacro.h"
 
 @interface DynSharePopViewManager ()<DynSharePopViewDelegate>
 @property (copy, nonatomic) NSString *movieId;
@@ -59,6 +60,15 @@
     BOOL wxIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession];
     BOOL qqIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ];
     
+#ifdef ChongYouURL
+    BOOL fbIsInstall = [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_Facebook];
+    if (fbIsInstall) {
+        DynShareObject *objct = [[DynShareObject alloc ] init];
+        objct.normalType = DynShareObjectTypeOfFacebook;
+        [topIconsNameArray addObject:objct];
+    }
+#endif
+    
     if (wxIsInstall) {
         for (int i= 0; i < 2; i++) {
             DynShareObject *objct = [[DynShareObject alloc ] init];
@@ -100,7 +110,13 @@
     }
     else if (index == DynShareObjectTypeOfQzone) {
         [DynShareManager singleShareWithPlat:UMSocialPlatformType_Qzone type:_share_type anchor:_is_follow targetId:_movieId roomId:_likeNum userId:_user_Id currentVC:_vc];
-    }else{
+    }
+#ifdef ChongYouURL
+    else if (index == DynShareObjectTypeOfFacebook) {
+        [DynShareManager singleShareWithPlat:UMSocialPlatformType_Facebook type:_share_type anchor:_is_follow targetId:_movieId roomId:_likeNum userId:_user_Id currentVC:_vc];
+    }
+#endif
+    else{
         
     }
     

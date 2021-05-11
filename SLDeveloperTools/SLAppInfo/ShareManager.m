@@ -13,6 +13,7 @@
 #import "SLAppInfoConst.h"
 #import "../SLCategory/SLCategory.h"
 #import "../SLMaskTools/SLMaskTools.h"
+#import "SLAppInfoMacro.h"
 
 
 @implementation ShareManager
@@ -32,6 +33,13 @@
 
 + (void)shareWithShareType:(NSString *)shareType targetId:(NSString *)targetId title:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key currentVC:(UIViewController *)currentVC shareCompletion:(void (^)(NSString *, NSError *))shareCompletion {
     NSMutableArray *shareObjects = [NSMutableArray array];
+#ifdef ChongYouURL
+    ShareObject *shareObjectfb = [[ShareObject alloc]init];
+    shareObjectfb.type = ShareObjectTypeOfFacebook;
+    
+    [shareObjects addObject:shareObjectfb];
+#endif
+    
     if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
         ShareObject *shareObject = [[ShareObject alloc]init];
         shareObject.type = ShareObjectTypeOfWechatSession;
@@ -54,6 +62,9 @@
         [shareObjects addObject:otherShareObject];
     }
     
+
+
+    
     ShareView *shareView = [[ShareView alloc]initWithShareObjects:shareObjects];
     shareView.shareTo = ^(ShareObjectType type) {
         //创建分享消息对象
@@ -74,9 +85,14 @@
         } else if (type == ShareObjectTypeOfWechatTimeLine) {
             platformType = UMSocialPlatformType_WechatTimeLine;
         }
+#ifdef ChongYouURL
+        else if (type == ShareObjectTypeOfFacebook) {
+            platformType = UMSocialPlatformType_Facebook;
+        }
+#endif
         
         [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:currentVC completion:^(id data, NSError *error) {
-            NSString * platType;
+            NSString * platType = @"";
             if (platformType==UMSocialPlatformType_WechatSession) {
                 platType = @"wx";
             }else if(platformType == UMSocialPlatformType_WechatTimeLine){
@@ -85,8 +101,8 @@
                 platType = @"qq";
             }else if(platformType == UMSocialPlatformType_Qzone){
                 platType = @"qzone";
-            }else if(platformType == UMSocialPlatformType_Sina){
-                platType = @"weibo";
+            }else if(platformType == UMSocialPlatformType_Facebook){
+                platType = @"facebook";
             }
             
             NSString *nowId = nil;
@@ -118,7 +134,7 @@
                 messageObject.shareObject = shareObject;
                 
                 [[UMSocialManager defaultManager] shareToPlatform:plat messageObject:messageObject currentViewController:currentVC completion:^(id data, NSError *error) {
-                    NSString * platType;
+                    NSString * platType = @"";
                     if (plat==UMSocialPlatformType_WechatSession) {
                         platType = @"wx";
                     }else if(plat == UMSocialPlatformType_WechatTimeLine) {
@@ -127,8 +143,8 @@
                         platType = @"qq";
                     }else if(plat == UMSocialPlatformType_Qzone) {
                         platType = @"qzone";
-                    }else if(plat == UMSocialPlatformType_Sina) {
-                        platType = @"weibo";
+                    }else if(plat == UMSocialPlatformType_Facebook) {
+                        platType = @"facebook";
                     }
                     NSString *nowId = nil;
                     if (targetId && IsEquallString(type, @"film")) {

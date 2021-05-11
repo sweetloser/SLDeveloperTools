@@ -13,6 +13,7 @@ typedef enum : NSUInteger {
     ShareObjectTypeOfWechatTimeLine =1,
     ShareObjectTypeOfQQ,
     ShareObjectTypeOfQzone,
+    ShareObjectTypeOfFacebook,
     ShareObjectTypeOfLike,
     ShareObjectTypeOfCollection,
     ShareObjectTypeOfDownload,

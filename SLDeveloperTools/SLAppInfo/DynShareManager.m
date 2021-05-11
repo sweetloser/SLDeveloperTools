@@ -52,6 +52,13 @@
         [shareObjects addObject:shareObject];
         [shareObjects addObject:otherShareObject];
     }
+#ifdef ChongYouURL
+    if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_Facebook]) {
+        DynShareObject *shareObject = [[DynShareObject alloc]init];
+        shareObject.type = DynShareObjectTypeOfFacebook;
+        [shareObjects addObject:shareObject];
+    }
+#endif
     
     DynShareView *shareView = [[DynShareView alloc]initWithShareObjects:shareObjects];
     shareView.shareTo = ^(DynShareObjectType type) {
@@ -73,9 +80,13 @@
         } else if (type == DynShareObjectTypeOfWechatTimeLine) {
             platformType = UMSocialPlatformType_WechatTimeLine;
         }
-        
+#ifdef ChongYouURL
+        else if (type == DynShareObjectTypeOfFacebook) {
+            platformType = UMSocialPlatformType_Facebook;
+        }
+#endif
         [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:currentVC completion:^(id data, NSError *error) {
-            NSString * platType;
+            NSString * platType = @"";
             if (platformType==UMSocialPlatformType_WechatSession) {
                 platType = @"wx";
             }else if(platformType == UMSocialPlatformType_WechatTimeLine){
@@ -84,8 +95,8 @@
                 platType = @"qq";
             }else if(platformType == UMSocialPlatformType_Qzone){
                 platType = @"qzone";
-            }else if(platformType == UMSocialPlatformType_Sina){
-                platType = @"weibo";
+            }else if(platformType == UMSocialPlatformType_Facebook){
+                platType = @"facebook";
             }
             
             NSString *nowId = nil;
@@ -122,8 +133,8 @@
                 platType = @"qq";
             }else if(plat == UMSocialPlatformType_Qzone) {
                 platType = @"qzone";
-            }else if(plat == UMSocialPlatformType_Sina) {
-                platType = @"weibo";
+            }else if(plat == UMSocialPlatformType_Facebook) {
+                platType = @"facebook";
             }
             NSString *nowId = nil;
             if (targetId && IsEquallString(type, @"film")) {
