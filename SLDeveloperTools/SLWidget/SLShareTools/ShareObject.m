@@ -7,7 +7,7 @@
 //
 
 #import "ShareObject.h"
-
+#import "SLAppInfoMacro.h"
 @interface ShareObject ()
 
 @property (copy, nonatomic) NSString *likeNum;

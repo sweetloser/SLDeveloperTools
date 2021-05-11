@@ -12,6 +12,7 @@
 #import "DynShareManager.h"
 #import <UMShare/UMShare.h>
 #import "ZZLActionSheetView.h"
+#import "SLAppInfoMacro.h"
 
 @interface DynSharePopViewManager ()<DynSharePopViewDelegate>
 @property (copy, nonatomic) NSString *movieId;

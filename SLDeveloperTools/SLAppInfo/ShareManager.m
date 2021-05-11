@@ -13,6 +13,7 @@
 #import "SLAppInfoConst.h"
 #import "../SLCategory/SLCategory.h"
 #import "../SLMaskTools/SLMaskTools.h"
+#import "SLAppInfoMacro.h"
 
 
 @implementation ShareManager

@@ -7,7 +7,7 @@
 //
 
 #import "DynShareObject.h"
-
+#import "SLAppInfoMacro.h"
 @interface DynShareObject ()
 
 @property (copy, nonatomic) NSString *likeNum;
