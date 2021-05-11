@@ -12,6 +12,7 @@
 #import "DynShareManager.h"
 #import <UMShare/UMShare.h>
 #import "ZZLActionSheetView.h"
+#import <Toast/UIView+Toast.h>
 
 @interface DynSharePopViewManager ()<DynSharePopViewDelegate>
 @property (copy, nonatomic) NSString *movieId;
@@ -73,10 +74,15 @@
         }
     }
     
-  
-    DynSharePopView *pop = [[DynSharePopView alloc] initWithFrame:CGRectZero topIconsNameArray:topIconsNameArray bottomIconsNameArray:bottomIconsNameArray];
-    pop.delegate = self;
-    [pop show];
+    if (topIconsNameArray.count > 0) {
+        DynSharePopView *pop = [[DynSharePopView alloc] initWithFrame:CGRectZero topIconsNameArray:topIconsNameArray bottomIconsNameArray:bottomIconsNameArray];
+        pop.delegate = self;
+        [pop show];
+    }else {
+        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+        [window makeToast:@"您还未下载QQ或者微信，请先下载再分享" duration:2 position:CSToastPositionCenter];
+    }
+    
     
     
 }
