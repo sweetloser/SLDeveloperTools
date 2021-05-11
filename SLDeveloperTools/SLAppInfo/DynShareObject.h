@@ -15,7 +15,7 @@ typedef enum : NSUInteger {
     DynShareObjectTypeOfQzone,
     DynShareObjectTypeOfLike,
 #ifdef ChongYouURL
-    DynShareObjectTypeOfFacebook,、
+    DynShareObjectTypeOfFacebook,
 #endif
     DynShareObjectTypeOfCollection,
     DynShareObjectTypeOfDownload,
