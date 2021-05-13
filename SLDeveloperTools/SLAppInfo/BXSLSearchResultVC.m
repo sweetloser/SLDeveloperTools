@@ -17,8 +17,6 @@
 #import "BXSLSearchUserVC.h"
 #import "BXSLSearchLiveVC.h"
 #import "BXSLSearchManager.h"
-//#import "SLSearchDynamicVC.h"
-//#import "BXDynGlobleVC.h"
 #import <CTMediatorSLDynamic/CTMediator+SLDynamic.h>
 
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
