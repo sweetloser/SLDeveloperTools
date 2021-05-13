@@ -11,6 +11,7 @@
 #import "../SLCategory/SLCategory.h"
 #import <SDAutoLayout/SDAutoLayout.h>
 #import <SDWebImage/SDWebImage.h>
+#import "SLCommonMacro.h"
 @interface DetailHeaderView()
 @property(nonatomic, strong)UILabel *NotCommentLable;
 @property(nonatomic, strong)UILabel *allcommentLabel;
