@@ -135,7 +135,7 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec "SLSelectFilter" do |sf|
-      sf.source_files = 'SLDeveloperTools/SLSelectFilter/**/*','SLDeveloperTools/SLSelectFilter/*.{h,m}','SLDeveloperTools/SLSelectFilter/Nama-lite/FaceUnity-SDK-iOS-v6.4.0-lite/Headers/*.h'
+      sf.source_files = 'SLDeveloperTools/SLSelectFilter/**/*','SLDeveloperTools/SLSelectFilter/*.{h,m}'
       sf.dependency 'SLDeveloperTools/SLMaskTools'
       sf.dependency 'SLDeveloperTools/SLCategory'
       sf.dependency 'SLDeveloperTools/SLMacro'
@@ -146,7 +146,7 @@ TODO: Add long description of the pod here.
       sf.dependency 'YYCategories'
       sf.dependency 'AFNetworking'
       sf.dependency 'MMKV'
-      sf.dependency 'Nama-lite', '7.3.2'
+      sf.dependency 'Nama-lite', '~> 7.3.2'
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
   end
   s.subspec "SLBaseClass" do |baseClass|
@@ -248,7 +248,6 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'UMCShare/UI'
     appInfo.dependency 'UMCShare/Social/ReducedWeChat'
     appInfo.dependency 'UMCShare/Social/ReducedQQ'
-    appInfo.dependency 'UMCShare/Social/Facebook'
     appInfo.dependency 'YYText'
     appInfo.dependency 'YYCategories'
     appInfo.dependency 'RealReachability'
