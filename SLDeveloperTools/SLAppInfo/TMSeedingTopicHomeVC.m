@@ -160,7 +160,7 @@
 -(void)initJXView{
 
     _categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#F5F9FC"];
+    self.view.backgroundColor = sl_subBGColors;
 
     self.categoryView.titles = self.titles;
     self.categoryView.delegate = self;

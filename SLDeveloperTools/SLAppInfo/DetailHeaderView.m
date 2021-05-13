@@ -25,7 +25,7 @@
 }
 -(void)setView{
     _topView = [[UIView alloc]init];
-    _topView.backgroundColor = [UIColor colorWithRed:0.96 green:0.98 blue:0.99 alpha:1.00];
+    _topView.backgroundColor = sl_subBGColors;
     _topView.layer.cornerRadius = 5;
     _topView.layer.masksToBounds = YES;
     
@@ -140,7 +140,7 @@
     _addressname.font = [UIFont systemFontOfSize:12];
     
     _quanzibackview = [[UIView alloc]init];
-    _quanzibackview.backgroundColor = [UIColor colorWithRed:0.96 green:0.98 blue:0.99 alpha:1.00];
+    _quanzibackview.backgroundColor = sl_subBGColors;
     _quanzibackview.layer.cornerRadius = 10;
     _quanzibackview.layer.masksToBounds = YES;
     

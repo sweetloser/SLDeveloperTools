@@ -72,7 +72,7 @@
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [self.view addSubview:self.collectionView];
-    self.collectionView.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
+    self.collectionView.backgroundColor = sl_BGColors;
     self.collectionView.autoresizingMask = (0x1<<6) - 1;
     self.collectionView.emptyDataSetSource = self;
     self.collectionView.emptyDataSetDelegate = self;

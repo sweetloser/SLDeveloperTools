@@ -114,7 +114,7 @@
         [view1 addSubview:titleLabel];
         titleLabel.font = SLBFont(14);
         titleLabel.text = @"美颜";
-        titleLabel.textColor = [UIColor colorWithHexString:@"#282828"];
+        titleLabel.textColor = sl_blackBGColors;
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(__ScaleWidth(12));
             make.top.mas_equalTo(__ScaleWidth(14.5));

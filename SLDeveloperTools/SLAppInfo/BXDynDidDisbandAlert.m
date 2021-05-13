@@ -235,12 +235,12 @@
 - (NSMutableAttributedString *)attriWithString:(NSString *)string{
     NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc] initWithString:string];
     NSDictionary *attrisDic1 = @{
-                                NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#FF2D52"],
+                                NSForegroundColorAttributeName:sl_FF2DtextColors,
                                 NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18]
                                 };
     [AttributedStr addAttributes:attrisDic1 range:NSMakeRange(0, [string length]-1)];
     NSDictionary *attrisDic2 = @{
-                                NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#8C8C8C"],
+                                NSForegroundColorAttributeName:sl_textSubColors,
                                 NSFontAttributeName:CFont(12)
                                 };
     [AttributedStr addAttributes:attrisDic2 range:NSMakeRange([string length]-1, 1)];

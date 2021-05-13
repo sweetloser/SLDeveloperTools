@@ -48,8 +48,8 @@
         _slider = [[UISlider alloc]init];
         [_slider setThumbImage:[UIImage imageNamed:@"lc_meiyan_slider_circle"] forState:UIControlStateNormal];
         [_slider setThumbImage:[UIImage imageNamed:@"lc_meiyan_slider_circle"] forState:UIControlStateHighlighted];
-//        [_slider setThumbImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#FF2D52"]] forState:UIControlStateNormal];
-//        [_slider setThumbImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#FF2D52"]] forState:UIControlStateHighlighted];
+//        [_slider setThumbImage:[UIImage imageWithColor:sl_FF2DtextColors] forState:UIControlStateNormal];
+//        [_slider setThumbImage:[UIImage imageWithColor:sl_FF2DtextColors] forState:UIControlStateHighlighted];
         
 //        _slider.minimumTrackTintColor = normalColors;
 //        _slider.maximumTrackTintColor = CHHCOLOR_D(0xA8AFAF);
@@ -69,7 +69,7 @@
         gradient.cornerRadius = 2.0;
         gradient.masksToBounds = YES;
 
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#FFD576"] CGColor], (id)[[UIColor colorWithHexString:@"#FF2D52"] CGColor], nil];
+        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#FFD576"] CGColor], (id)[sl_FF2DtextColors CGColor], nil];
 
         gradient.startPoint=CGPointMake(0,0.5);
 
