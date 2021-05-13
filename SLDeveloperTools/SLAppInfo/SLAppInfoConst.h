@@ -194,6 +194,7 @@ static NSString *const SLLastLoginAvatarKey = @"lastloginavatar";
 
 static NSString *const SLLastLoginMethodOneKey = @"onekey";
 static NSString *const SLLastLoginMethodWechat = @"wechat";
+static NSString *const SLLastLoginMethodApple = @"apple";
 static NSString *const SLLastLoginMethodQQ = @"qq";
 static NSString *const SLLastLoginMethodFB = @"FB";
 static NSString *const SLLastLoginMethodPassword = @"password";
