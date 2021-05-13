@@ -69,7 +69,7 @@
         gradient.cornerRadius = 2.0;
         gradient.masksToBounds = YES;
 
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#FFD576"] CGColor], (id)[sl_FF2DtextColors CGColor], nil];
+        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#FFD576"] CGColor], (id)[[UIColor colorWithHexString:@"#FF2D52"] CGColor], nil];
 
         gradient.startPoint=CGPointMake(0,0.5);
 
