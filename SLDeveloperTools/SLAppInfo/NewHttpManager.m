@@ -1091,5 +1091,182 @@ code
     }];
 }
 
+//实名认证
++ (void)verificationWithName:(NSString *)name
+                    card_num:(NSString *)card_num
+                 idcard_type:(NSString *)idcard_type
+                 hand_idcard:(NSString *)hand_idcard
+                front_idcard:(NSString *)front_idcard
+                 back_idcard:(NSString *)back_idcard
+                   is_anchor:(NSString *)is_anchor
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure; {
+    NSDictionary *params = @{@"name":[self stringNoNil:name], @"card_num":[self stringNoNil:card_num], @"idcard_type":[self stringNoNil:idcard_type], @"hand_idcard":[self stringNoNil:hand_idcard], @"front_idcard":[self stringNoNil:front_idcard], @"back_idcard":[self stringNoNil:back_idcard], @"is_anchor":[self stringNoNil:is_anchor]};
+    [[NewHttpManager sharedNetManager] POST:@"s=User.verification&api_v=v2" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//下次修改昵称时间
++ (void)nextRenickTimeWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                          failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=User.nextRenickTime" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+//获取后台所有标签
++(void)GetAllImpressionSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=User.getAllImpression" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
++(void)SaveUserIpmpressWithids:(NSString *)ids
+                       success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                       failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=User.saveUserImpression" parameters:@{@"ids":[self stringNoNil:ids]} success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+#pragma - mark 会员中心
+
++(void)GetuserImpressionSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=User.getUserImpression" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//获取验证码
++ (void)sendSmsCodeWithPhone:(NSString *)phone
+                       scene:(NSString *)scene
+                   phoneCode:(NSString *)phoneCode
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"phone":[self stringNoNil:phone],@"scene":[self stringNoNil:scene],@"phone_code":[self stringNoNil:phoneCode]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Common.sendSmsCode" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//绑定第三方账号
++ (void)bindThirdWithType:(NSString *)type
+                   openid:(NSString *)openid
+                 nickname:(NSString *)nickname
+                   avatar:(NSString *)avatar
+                   gender:(NSString *)gender
+                     uuid:(NSString *)uuid
+                  success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                  failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"type":[self stringNoNil:type],@"openid":[self stringNoNil:openid],@"nickname":[self stringNoNil:nickname],@"avatar":[self stringNoNil:avatar],@"gender":[self stringNoNil:gender],@"uuid":[self stringNoNil:uuid]};
+    [[NewHttpManager sharedNetManager] POST:@"s=User.bindThird" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//修改或设置密码
++ (void)changePwdWithPassword:(NSString *)password
+                 old_password:(NSString *)old_password
+             confirm_password:(NSString *)confirm_password
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"password":[self stringNoNil:password],@"old_password":[self stringNoNil:old_password],@"confirm_password":[self stringNoNil:confirm_password]};
+    [[NewHttpManager sharedNetManager] POST:@"s=User.changePwd" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//绑定手机号(非第三方登录)
++ (void)bindPhoneNumWithPhone:(NSString *)phone
+                         code:(NSString *)code
+                    phoneCode:(NSString *)phoneCode
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"code":[self stringNoNil:code],@"phone":[self stringNoNil:phone],@"phone_code":[self stringNoNil:phoneCode]};
+    [[NewHttpManager sharedNetManager] POST:@"s=User.bindPhone" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//获取手机区号
++ (void)getPhoneCodesSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure {
+    [[NewHttpManager sharedNetManager] POST:@"s=Common.getPhoneCodes" parameters:nil success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
 @end
 

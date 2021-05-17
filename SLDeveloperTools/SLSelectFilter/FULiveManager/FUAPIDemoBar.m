@@ -63,7 +63,7 @@
     if (self) {self.backgroundColor = [UIColor clearColor];
         
         self.backgroundColor = [UIColor clearColor];
-        NSBundle *bundle = [NSBundle bundleForClass:[FUAPIDemoBar class]];
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"SLDeveloperTools" ofType:@"bundle"]];
         self = (FUAPIDemoBar *)[bundle loadNibNamed:@"FUAPIDemoBar" owner:self options:nil].firstObject;
         self.frame = frame;
     }

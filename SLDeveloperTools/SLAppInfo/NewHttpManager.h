@@ -283,6 +283,76 @@ typedef void (^Failure)(NSError *error);        // 失败Blcok
                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
                     failure:(void(^)(NSError *error))failure;
 
+//实名认证
++ (void)verificationWithName:(NSString *)name
+                    card_num:(NSString *)card_num
+                 idcard_type:(NSString *)idcard_type
+                 hand_idcard:(NSString *)hand_idcard
+                front_idcard:(NSString *)front_idcard
+                 back_idcard:(NSString *)back_idcard
+                   is_anchor:(NSString *)is_anchor
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure;
+
+//下次修改昵称时间
++ (void)nextRenickTimeWithSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                            failure:(void(^)(NSError *error))failure;
+
+/// 获取后台所有标签
+/// @param success 成功
+/// @param failure 失败
++(void)GetAllImpressionSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                       failure:(void(^)(NSError *error))failure;
+
+/// 修改用户标签
+/// @param ids 标签id
+/// @param success 成功
+/// @param failure 失败
++(void)SaveUserIpmpressWithids:(NSString *)ids
+                       success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                       failure:(void(^)(NSError *error))failure;
+
+/// 获取会员中心用户标签
+/// @param success 成功
+/// @param failure 失败
++(void)GetuserImpressionSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure;
+
+//获取验证码
++ (void)sendSmsCodeWithPhone:(NSString *)phone
+                       scene:(NSString *)scene
+                   phoneCode:(NSString *)phoneCode
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure;
+
+//绑定第三方账号
++ (void)bindThirdWithType:(NSString *)type
+                   openid:(NSString *)openid
+                 nickname:(NSString *)nickname
+                   avatar:(NSString *)avatar
+                   gender:(NSString *)gender
+                     uuid:(NSString *)uuid
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure;
+
+//修改或设置密码
++ (void)changePwdWithPassword:(NSString *)password
+                 old_password:(NSString *)old_password
+             confirm_password:(NSString *)confirm_password
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure;
+
+//绑定手机号(非第三方登录)
++ (void)bindPhoneNumWithPhone:(NSString *)phone
+                         code:(NSString *)code
+                    phoneCode:(NSString *)phoneCode
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure;
+
+//获取手机区号
++ (void)getPhoneCodesSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                        failure:(void(^)(NSError *error))failure;
+
 #pragma mark - tool
 +(NSString *)stringNoNil:(NSString *)str;
 
