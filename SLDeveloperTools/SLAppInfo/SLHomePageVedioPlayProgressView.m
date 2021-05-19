@@ -50,7 +50,7 @@
         _underLayer.frame = self.bounds;
         _underLayer.path = underPath.CGPath;
         _underLayer.lineWidth = lineW;
-        _underLayer.strokeColor = [UIColor sl_colorWithHex:0x000000 alpha:0.2].CGColor;
+        _underLayer.strokeColor = [UIColor colorWithColor:sl_blackColors alpha:0.2].CGColor;
         _underLayer.fillColor = SLClearColor.CGColor;
         [self.layer addSublayer:_underLayer];
         _underLayer.strokeEnd = 1.0;

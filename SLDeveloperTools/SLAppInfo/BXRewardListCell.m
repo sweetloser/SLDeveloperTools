@@ -53,7 +53,7 @@
         [_attentionBtn setTitleColor:[UIColor sl_colorWithHex:0xF8F8F8] forState:BtnNormal];
         [_attentionBtn setTitleColor:sl_textSubColors forState:BtnSelected];
         [_attentionBtn setBackgroundImage:[UIImage imageWithColor:sl_normalColors] forState:BtnNormal];
-        [_attentionBtn setBackgroundImage:[UIImage imageWithColor:[UIColor sl_colorWithHex:0xF5F9FC]] forState:BtnSelected];
+        [_attentionBtn setBackgroundImage:[UIImage imageWithColor:sl_subBGColors] forState:BtnSelected];
         _attentionBtn.layer.cornerRadius = __ScaleWidth(15);
         _attentionBtn.layer.masksToBounds = YES;
         [_attentionBtn addTarget:self action:@selector(attentionAction:) forControlEvents:BtnTouchUpInside];

@@ -9,6 +9,7 @@
 #import "MorePicCollectionViewCell.h"
 #import <YYCategories/YYCategories.h>
 #import <SDAutoLayout/SDAutoLayout.h>
+#import "../SLMacro/SLMacro.h"
 
 @interface MorePicCollectionViewCell()
 @end
@@ -27,7 +28,7 @@
     _CoverimageView.layer.masksToBounds = YES;
     _CoverimageView.contentMode=UIViewContentModeScaleAspectFill;
     _CoverimageView.clipsToBounds=YES;//  是否剪切掉超出 UIImageView 范围的图片
-    _CoverimageView.backgroundColor = UIColorHex(F5F9FC);
+    _CoverimageView.backgroundColor = sl_subBGColors;
     [self.contentView addSubview:_CoverimageView];
     
     _identificationImage = [[UIImageView alloc]init];

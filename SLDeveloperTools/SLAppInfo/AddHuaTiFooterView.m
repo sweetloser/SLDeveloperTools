@@ -253,7 +253,7 @@
 //        }
         titlelabel.text = _topicArray[indexPath.section][@"name"];
         titlelabel.textAlignment = 0;
-        titlelabel.textColor = UIColorHex(#8C8C8C);
+        titlelabel.textColor = sl_textSubColors;
         titlelabel.font = [UIFont systemFontOfSize:14];
         [headView addSubview:titlelabel];
         return headView;
@@ -326,7 +326,7 @@
     _searchBar.layer.borderColor = [UIColor whiteColor].CGColor;
     
     UITextField * searchField = [self.searchBar valueForKey:@"searchField"];
-    searchField.backgroundColor = UIColorHex(#F5F9FC);
+    searchField.backgroundColor = sl_subBGColors;
     searchField.layer.masksToBounds = YES;
     searchField.layer.cornerRadius = 18;
     UIButton * clearBtn = [searchField valueForKey:@"_clearButton"];
@@ -334,7 +334,7 @@
     
 //    UIImage * searchBarBg = [UIImage new];
 //    [self.searchBar setBackgroundImage:searchBarBg];
-//    [self.searchBar setBackgroundColor:UIColorHex(#F5F9FC)];
+//    [self.searchBar setBackgroundColor:sl_subBGColors];
 //    [self.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
 //    self.searchBar.layer.cornerRadius = 17.0f;
 //    self.searchBar.layer.masksToBounds = YES;

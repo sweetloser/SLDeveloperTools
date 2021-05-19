@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self createview];
-        self.contentView.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+        self.contentView.backgroundColor = sl_subBGColors;
     }
     return self;
 }

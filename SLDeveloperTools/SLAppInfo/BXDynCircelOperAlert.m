@@ -24,7 +24,7 @@
 -(instancetype)initWithItemArray:(nonnull NSArray *)ItemArray{
     self = [super initWithFrame:CGRectMake(0, 0, __kWidth, __kHeight)];
     if (self) {
-        self.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.3];
+        self.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.3];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
         
@@ -60,7 +60,7 @@
             }else{
                 NoWatchButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
                 [NoWatchButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                NoWatchButton.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+                NoWatchButton.backgroundColor = sl_subBGColors;
             }
             if (i == 0) {
                 [NoWatchButton mas_makeConstraints:^(MASConstraintMaker *make) {

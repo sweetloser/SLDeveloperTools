@@ -63,7 +63,7 @@
     
    UILabel *_viewTitlelabel = [[UILabel alloc]init];
     _viewTitlelabel.text = @"圈子描述";
-    _viewTitlelabel.textColor = UIColorHex(#282828);
+    _viewTitlelabel.textColor = sl_blackBGColors;
     _viewTitlelabel.textAlignment = 1;
     _viewTitlelabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
     [_navView addSubview:_viewTitlelabel];
@@ -78,7 +78,7 @@
 //    [_issueBtn setImage:CImage(@"nav_icon_news_black") forState:BtnNormal];
     [_issueBtn setTitle:@"保存" forState:UIControlStateNormal];
     [_issueBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
-    _issueBtn.backgroundColor = DynUnSendButtonBackColor;
+    _issueBtn.backgroundColor = sl_subBGColors;
     _issueBtn.titleLabel.font = SLPFFont(14);
     _issueBtn.layer.cornerRadius = 13;
     _issueBtn.layer.masksToBounds = YES;
@@ -110,7 +110,7 @@
     _textView = [[UITextView alloc] init];
     _textView.layer.cornerRadius = 5;
     _textView.font = [UIFont systemFontOfSize:14];
-    _textView.backgroundColor = UIColorHex(#F5F9FC);
+    _textView.backgroundColor = sl_subBGColors;
     _textView.textColor = [UIColor blackColor];
     
     //字体
@@ -146,7 +146,7 @@
     
     
     _textlabel = [[UILabel alloc]init];
-    _textlabel.textColor = UIColorHex(#8C8C8C);
+    _textlabel.textColor = sl_textSubColors;
     _textlabel.font = [UIFont systemFontOfSize:12];
     _textlabel.textAlignment = 2;
     _textlabel.text = @"0/60";
@@ -194,7 +194,7 @@
     }
     else{
         [_issueBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
-        _issueBtn.backgroundColor = DynUnSendButtonBackColor;
+        _issueBtn.backgroundColor = sl_subBGColors;
         _issueBtn.userInteractionEnabled = NO;
     }
     if (textView.text.length >= 60) {

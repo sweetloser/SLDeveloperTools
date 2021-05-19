@@ -40,7 +40,7 @@
         _textView.layer.cornerRadius = 5;
 //        [_textView becomeFirstResponder];
         _textView.layer.masksToBounds = YES;
-    self.textView.backgroundColor =  UIColorHex(#F5F9FC);
+    self.textView.backgroundColor =  sl_subBGColors;
         
         //文本
         _textView.text = @" 陈述理由(字数最多140个字)";
@@ -282,7 +282,7 @@
         _manager.configuration.photoCanEdit = NO;
         _manager.configuration.videoCanEdit = NO;
         _manager.configuration.rowCount = 4;
-        _manager.configuration.themeColor = [UIColor colorWithHex:0xF92C56];
+        _manager.configuration.themeColor = sl_normalColors;
 //        _manager.configuration.restoreNavigationBar = YES;
     }
     return _manager;

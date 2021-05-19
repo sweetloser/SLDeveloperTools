@@ -165,8 +165,8 @@
     self.categoryView.titles = self.titles;
     self.categoryView.delegate = self;
     self.categoryView.backgroundColor = UIColorHex(FFFFFF);
-    self.categoryView.titleSelectedColor = UIColorHex(282828);
-    self.categoryView.titleColor = UIColorHex(8C8C8C);
+    self.categoryView.titleSelectedColor = sl_blackBGColors;
+    self.categoryView.titleColor = sl_textSubColors;
     self.categoryView.titleFont = SLPFFont(16);
     self.categoryView.cellWidth = 40;
     self.categoryView.contentEdgeInsetLeft = 24;

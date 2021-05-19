@@ -38,7 +38,7 @@
     
     
     _nameLabel = [UILabel new];
-    _nameLabel.textColor = UIColorHex(#282828);
+    _nameLabel.textColor = sl_blackBGColors;
     _nameLabel.textAlignment = 0;
     _nameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
     

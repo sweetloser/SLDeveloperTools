@@ -43,7 +43,7 @@
     _topConcentlable = [UILabel new];
     _topConcentlable.backgroundColor = [UIColor randomColor];
     _topConcentlable.textAlignment = 0;
-    _topConcentlable.textColor = UIColorHex(#8C8C8C);
+    _topConcentlable.textColor = sl_textSubColors;
     _topConcentlable.font = [UIFont systemFontOfSize:12];
     
     UIImageView *rightRowImage = [[UIImageView alloc]init];

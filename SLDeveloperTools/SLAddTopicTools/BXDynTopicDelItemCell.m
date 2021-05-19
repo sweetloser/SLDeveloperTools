@@ -21,13 +21,13 @@
         self.layer.masksToBounds = YES;
         self.userInteractionEnabled = YES;
         self.layer.cornerRadius = 19;
-        self.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+        self.backgroundColor = sl_subBGColors;
     }
     return self;
 }
 -(void)initView{
     _concentLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
-    _concentLabel.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+    _concentLabel.backgroundColor = sl_subBGColors;
     _concentLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
     _concentLabel.textColor = [UIColor blackColor];
     _concentLabel.layer.masksToBounds = YES;

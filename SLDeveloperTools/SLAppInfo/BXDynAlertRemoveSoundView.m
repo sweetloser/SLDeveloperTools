@@ -22,7 +22,7 @@
 -(instancetype)initWithFrame:(CGRect)frame Title:(nonnull NSString *)title Sure:(nonnull NSString *)sure Cancle:(nonnull NSString *)cancle{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.3];
+        self.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.3];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
         

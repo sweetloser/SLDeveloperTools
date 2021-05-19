@@ -165,7 +165,7 @@ static CGFloat keyboardAnimationDuration = 0.5;
             
 //            背景视图
             _bgView = [[UIView alloc] initWithFrame:CGRectMake(__ScaleWidth(15), __ScaleWidth(15), __ScaleWidth(345), __ScaleWidth(115))];
-            _bgView.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+            _bgView.backgroundColor = sl_subBGColors;
             _bgView.layer.masksToBounds = YES;
             _bgView.layer.cornerRadius = 12;
             _bgView.layer.borderColor = sl_divideLineColor.CGColor;
@@ -222,7 +222,7 @@ static CGFloat keyboardAnimationDuration = 0.5;
             _sendButton.titleLabel.font = SLPFFont(__ScaleWidth(14));
             _sendButton.layer.cornerRadius = __ScaleWidth(13);
             _sendButton.layer.masksToBounds = YES;
-            _sendButton.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+            _sendButton.backgroundColor = sl_subBGColors;
             [_sendButton addTarget:self action:@selector(sendButtonClick:) forControlEvents:UIControlEventTouchUpInside];
             [_inputView addSubview:_sendButton];
             
@@ -230,7 +230,7 @@ static CGFloat keyboardAnimationDuration = 0.5;
 //            gl.frame = CGRectMake(0,0,__ScaleWidth(52), __ScaleWidth(26));
 //            gl.startPoint = CGPointMake(0.98, 0.5);
 //            gl.endPoint = CGPointMake(0, 0.5);
-//            gl.colors = @[(__bridge id)[UIColor sl_colorWithHex:0xF5F9FC].CGColor, (__bridge id)[UIColor sl_colorWithHex:0xF5F9FC].CGColor];
+//            gl.colors = @[(__bridge id)sl_subBGColors.CGColor, (__bridge id)sl_subBGColors.CGColor];
 //            gl.locations = @[@(0), @(1.0f)];
 //            [_sendButton.layer insertSublayer:gl atIndex:0];
             

@@ -11,29 +11,6 @@
 #import "SLLiveActivityGoods.h"
 #import "SLLiveCoupon.h"
 #import "SLLiveGoodsModel.h"
-/*
- {
- detail : {
- discount_price : 5.00,
- coupon_price : 0,
- img : https://static.cnibx.cn/upload/5/common/images/20201113/20201113085733160522905329064.jpg,
- shop_type : Z,
- title : 我的昵称很长很长很长--商品名称
-},
- top_time : 0,
- add_time : 1607652874,
- live_status : 0,
- id : 313,
- content : ,
- goods_activty : {
- start_time : 0,
- end_time : 2591680,
- promotion_type : 1
-},
- goods_type : 1,
- goods_id : 39
-}
- */
 
 
 @interface BXSLLiveRoom : BaseObject
@@ -47,9 +24,9 @@
 @property (copy, nonatomic) NSString *cover_url;            //房间封面
 @property (copy, nonatomic) NSString *title;               //直播标题
 @property (copy, nonatomic) NSString *create_time;         //创建时间
-@property (strong, nonatomic) NSNumber *audience;            //观众数量
+@property (copy, nonatomic) NSNumber *audience;            //观众数量
 @property (copy, nonatomic) NSString *status_desc;         //直播状态
-@property (strong, nonatomic) NSNumber *type;              //房间类型
+@property (copy, nonatomic) NSNumber *type;              //房间类型
 @property (copy, nonatomic) NSString *type_val;            //类型具体值
 @property (copy, nonatomic) NSString *photo_frame;//相框
 
@@ -107,7 +84,7 @@
 
 @property (copy, nonatomic) NSString *tips;                 //弹出文字
 
-@property (strong, nonatomic) NSNumber *is_follow;          //本人是否已关注
+@property (copy, nonatomic) NSNumber *is_follow;          //本人是否已关注
 @property (copy, nonatomic) NSString *act_balance;
 
 @property (strong, nonatomic, readonly) NSMutableArray *advertisements;    //广告
@@ -133,11 +110,11 @@
 
 @property (nonatomic, copy) NSString *mode;
 
-@property (nonatomic, strong)NSString *shop_type;
+@property (nonatomic, copy)NSString *shop_type;
 
 //附近
-@property (nonatomic, strong)NSNumber *gender;
-@property (nonatomic, strong)NSNumber *distance;
+@property (nonatomic, copy)NSNumber *gender;
+@property (nonatomic, copy)NSNumber *distance;
 
 ///讲解商品
 @property (nonatomic, strong)SLLiveGoodsModel *say_goods;

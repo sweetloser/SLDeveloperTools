@@ -51,7 +51,7 @@
 //        渐变背景
         _gradientLayer = [CAGradientLayer layer];
         _gradientLayer.frame = CGRectMake(0, 0, frame.size.width,frame.size.height);
-        _gradientLayer.colors = @[(__bridge id)[UIColor sl_colorWithHex:0x000000 alpha:0.0].CGColor,(__bridge id)[UIColor sl_colorWithHex:0x000000 alpha:0.3].CGColor];
+        _gradientLayer.colors = @[(__bridge id)[UIColor colorWithColor:sl_blackColors alpha:0.0].CGColor,(__bridge id)[UIColor colorWithColor:sl_blackColors alpha:0.3].CGColor];
         _gradientLayer.startPoint = CGPointMake(0, 0);
         _gradientLayer.endPoint = CGPointMake(0, 1);
         _gradientLayer.locations = @[@0.68];

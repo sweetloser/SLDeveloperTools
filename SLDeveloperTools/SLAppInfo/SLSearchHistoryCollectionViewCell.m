@@ -33,7 +33,7 @@
         _historyLabel.textAlignment = NSTextAlignmentCenter;
         
         
-        self.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+        self.backgroundColor = sl_subBGColors;
         
         self.layer.masksToBounds = YES;
         

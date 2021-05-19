@@ -31,7 +31,7 @@
 -(instancetype)initWithFrame:(CGRect)frame user_id:(nonnull NSString *)user_id{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.3];
+        self.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.3];
         self.user_id = user_id;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
@@ -59,7 +59,7 @@
         [NoWatchButton setTitle:@"不看TA的动态" forState:UIControlStateNormal];
         NoWatchButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
         [NoWatchButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        NoWatchButton.backgroundColor = UIColorHex(#F5F9FC);
+        NoWatchButton.backgroundColor = sl_subBGColors;
         NoWatchButton.layer.cornerRadius = 22;
         NoWatchButton.tag = 100;
         NoWatchButton.layer.masksToBounds = YES;

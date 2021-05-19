@@ -152,7 +152,7 @@
     _searchBar.tintColor = sl_normalColors;
     UIView* backgroundView = [_searchBar subViewOfClassName:@"UISearchBarTextField"];
     if (backgroundView) {
-        backgroundView.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+        backgroundView.backgroundColor = sl_subBGColors;
         backgroundView.layer.cornerRadius = __ScaleWidth(17);
         backgroundView.clipsToBounds = YES;
         UITextField *searchTF = (UITextField *)backgroundView;
@@ -238,8 +238,8 @@
                 weakSelf.issueBtn.backgroundColor = [UIColor sl_colorWithHex:0xFF2D52];
                 weakSelf.issueBtn.userInteractionEnabled = YES;
             }else{
-                [weakSelf.issueBtn setTitleColor:[UIColor sl_colorWithHex:0x8C8C8C] forState:UIControlStateNormal];
-                weakSelf.issueBtn.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+                [weakSelf.issueBtn setTitleColor:sl_textSubColors forState:UIControlStateNormal];
+                weakSelf.issueBtn.backgroundColor = sl_subBGColors;
                 weakSelf.issueBtn.userInteractionEnabled = NO;
             }
             
@@ -280,8 +280,8 @@
                 weakSelf.issueBtn.backgroundColor = [UIColor sl_colorWithHex:0xFF2D52];
                 weakSelf.issueBtn.userInteractionEnabled = YES;
             }else{
-                [weakSelf.issueBtn setTitleColor:[UIColor sl_colorWithHex:0x8C8C8C] forState:UIControlStateNormal];
-                weakSelf.issueBtn.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+                [weakSelf.issueBtn setTitleColor:sl_textSubColors forState:UIControlStateNormal];
+                weakSelf.issueBtn.backgroundColor = sl_subBGColors;
 
                 weakSelf.issueBtn.userInteractionEnabled = NO;
             }
@@ -327,8 +327,8 @@
                 weakSelf.issueBtn.backgroundColor = [UIColor sl_colorWithHex:0xFF2D52];
                 weakSelf.issueBtn.userInteractionEnabled = YES;
             }else{
-                [weakSelf.issueBtn setTitleColor:[UIColor sl_colorWithHex:0x8C8C8C] forState:UIControlStateNormal];
-                weakSelf.issueBtn.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+                [weakSelf.issueBtn setTitleColor:sl_textSubColors forState:UIControlStateNormal];
+                weakSelf.issueBtn.backgroundColor = sl_subBGColors;
                 weakSelf.issueBtn.userInteractionEnabled = NO;
             }
 //            if (weakSelf.SelFriendBlock) {

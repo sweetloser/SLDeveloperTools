@@ -9,6 +9,7 @@
 #import "YYLabel+HCExtension.h"
 #import <YYText/YYText.h>
 #import <YYCategories/YYCategories.h>
+#import "../SLMacro/SLMacro.h"
 
 @implementation YYLabel (HCExtension)
 
@@ -66,7 +67,7 @@
     
     NSMutableAttributedString *nameAttr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", nameString]];
     nameAttr.yy_font = [UIFont fontWithName:@"PingFangSC-Medium" size:13];;
-    nameAttr.yy_color = [UIColor colorWithHexString:@"#000000"];
+    nameAttr.yy_color = sl_blackColors;
     nameAttr.yy_lineSpacing = 5;
     
     [goodsNameAttr appendAttributedString:tempAttr];

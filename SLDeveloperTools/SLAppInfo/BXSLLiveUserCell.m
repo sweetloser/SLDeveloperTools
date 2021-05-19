@@ -63,7 +63,7 @@
         [_followBtn setTitle:@"关注" forState:BtnNormal];
         [_followBtn setTitle:@"已关注" forState:BtnSelected];
         [_followBtn setBackgroundImage:[UIImage imageWithColor:sl_normalColors] forState:BtnNormal];
-        [_followBtn setBackgroundImage:[UIImage imageWithColor:[UIColor sl_colorWithHex:0xF5F9FC]] forState:BtnSelected];
+        [_followBtn setBackgroundImage:[UIImage imageWithColor:sl_subBGColors] forState:BtnSelected];
         [_followBtn setTitleColor:[UIColor sl_colorWithHex:0xF8F8F8] forState:BtnNormal];
         [_followBtn setTitleColor:sl_textSubColors forState:BtnSelected];
         _followBtn.titleLabel.font = SLPFFont(__ScaleWidth(14));

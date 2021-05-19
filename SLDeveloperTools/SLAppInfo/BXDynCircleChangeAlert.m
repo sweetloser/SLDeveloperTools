@@ -20,7 +20,7 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.3];
+        self.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.3];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
         
@@ -57,7 +57,7 @@
         UILabel *titleLabel = [[UILabel alloc]init];
         titleLabel.text = @"30天内仅能修改一次街区信息";
         titleLabel.textAlignment = 1;
-        titleLabel.textColor = UIColorHex(#8C8C8C);
+        titleLabel.textColor = sl_textSubColors;
         titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
         [self.contentView addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,12 +88,12 @@
         
         UIButton *CancleButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [CancleButton setTitle:@"取消" forState:UIControlStateNormal];
-        [CancleButton setTitleColor:UIColorHex(#282828) forState:UIControlStateNormal];
+        [CancleButton setTitleColor:sl_blackBGColors forState:UIControlStateNormal];
         CancleButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
         CancleButton.tag = 100;
         CancleButton.layer.cornerRadius = 22;
         CancleButton.layer.masksToBounds = YES;
-        CancleButton.backgroundColor = UIColorHex(#F5F9FC);
+        CancleButton.backgroundColor = sl_subBGColors;
         [CancleButton addTarget:self action:@selector(btnOnClick:) forControlEvents:BtnTouchUpInside];
         [self.contentView addSubview:CancleButton];
         [CancleButton mas_makeConstraints:^(MASConstraintMaker *make) {

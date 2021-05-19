@@ -60,7 +60,7 @@
     _Nametextfield.layer.masksToBounds = YES;
     _Nametextfield.layer.cornerRadius = 5;
     _Nametextfield.font = [UIFont systemFontOfSize:14];
-    _Nametextfield.backgroundColor = UIColorHex(#F5F9FC);
+    _Nametextfield.backgroundColor = sl_subBGColors;
     _Nametextfield.textColor = [UIColor blackColor];
     [self.Nametextfield addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:_Nametextfield];
@@ -72,7 +72,7 @@
     }];
     
     _numberLabel = [[UILabel alloc]init];
-    _numberLabel.textColor = UIColorHex(#8C8C8C);
+    _numberLabel.textColor = sl_textSubColors;
     _numberLabel.font = [UIFont systemFontOfSize:12];
     _numberLabel.text = @"0/12";
     [self.view addSubview:_numberLabel];
@@ -91,7 +91,7 @@
     
    UILabel *_viewTitlelabel = [[UILabel alloc]init];
     _viewTitlelabel.text = @"圈子名称";
-    _viewTitlelabel.textColor = UIColorHex(#282828);
+    _viewTitlelabel.textColor = sl_blackBGColors;
     _viewTitlelabel.textAlignment = 1;
     _viewTitlelabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
     [_navView addSubview:_viewTitlelabel];
@@ -106,7 +106,7 @@
 //    [_issueBtn setImage:CImage(@"nav_icon_news_black") forState:BtnNormal];
     [_issueBtn setTitle:@"保存" forState:UIControlStateNormal];
     [_issueBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
-    _issueBtn.backgroundColor = DynUnSendButtonBackColor;
+    _issueBtn.backgroundColor = sl_subBGColors;
     _issueBtn.titleLabel.font = SLPFFont(14);
     _issueBtn.layer.cornerRadius = 13;
     _issueBtn.layer.masksToBounds = YES;
@@ -160,7 +160,7 @@
     }
     else{
         [_issueBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
-        _issueBtn.backgroundColor = DynUnSendButtonBackColor;
+        _issueBtn.backgroundColor = sl_subBGColors;
         _issueBtn.userInteractionEnabled = NO;
     }
   

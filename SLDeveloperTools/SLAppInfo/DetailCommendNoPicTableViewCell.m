@@ -37,7 +37,7 @@
     _headNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
     
     _headTimeLabel = [UILabel new];
-    _headTimeLabel.textColor = UIColorHex(#8C8C8C);
+    _headTimeLabel.textColor = sl_textSubColors;
     _headTimeLabel.font = [UIFont systemFontOfSize:12];
     
     UIImageView *more = [UIImageView new];

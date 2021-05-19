@@ -38,7 +38,7 @@
         
         _gradientLayer = [CAGradientLayer layer];
         _gradientLayer.opacity = .4;
-        _gradientLayer.colors = @[(__bridge id)CHHCOLOR(0x000000, 0).CGColor, (__bridge id)CHHCOLOR_D(0x000000).CGColor];
+        _gradientLayer.colors = @[(__bridge id)[UIColor colorWithColor:sl_blackColors alpha:0].CGColor, (__bridge id)sl_blackColors.CGColor];
         [_coverIv.layer addSublayer:_gradientLayer];
         
         UIImageView *playIconIv = [[UIImageView alloc]init];

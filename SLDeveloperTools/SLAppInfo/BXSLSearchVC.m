@@ -101,7 +101,7 @@
     [leftview addSubview:iconIv];
     
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(__ScaleWidth(41), 20 + __kTopAddHeight + 5, __ScaleWidth(294), 34)];
-    textField.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+    textField.backgroundColor = sl_subBGColors;
     textField.layer.cornerRadius = 17;
     textField.layer.masksToBounds = YES;
     textField.font = SLPFFont(14);

@@ -215,6 +215,8 @@ alpha:1.f]
 //SL黑色景色 (#282828)
 #define sl_blackBGColors               [UIColor colorWithRed:40/255.0 green:40/255.0 blue:40/255.0 alpha:1]
 
+//SL纯黑色景色 (#000000)
+#define sl_blackColors               [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1]
 
 //SL字体颜色（#282828）
 #define sl_textColors               [UIColor colorWithRed:40/255.0 green:40/255.0 blue:40/255.0 alpha:1]
@@ -275,7 +277,7 @@ alpha:1.f]
 #define LINE_COLOR            [UIColor colorWithRed:224.0f/255.0f green:224.0f/255.0f blue:224.0f/255.0f alpha:1.0]
 
 
-#define B2B2C_THE_COLOR  [UIColor colorWithHexString:@"#F5F9FC"]
+#define B2B2C_THE_COLOR  sl_subBGColors
 
 
 /// 首页左右滑动的通知

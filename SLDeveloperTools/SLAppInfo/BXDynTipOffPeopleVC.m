@@ -138,7 +138,7 @@
     
    UILabel *_viewTitlelabel = [[UILabel alloc]init];
     _viewTitlelabel.text = @"举报内容";
-    _viewTitlelabel.textColor = UIColorHex(#282828);
+    _viewTitlelabel.textColor = sl_blackBGColors;
     _viewTitlelabel.textAlignment = 1;
     _viewTitlelabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
     [_navView addSubview:_viewTitlelabel];
@@ -153,7 +153,7 @@
     //    [_issueBtn setImage:CImage(@"nav_icon_news_black") forState:BtnNormal];
     [_issueBtn setTitle:@"提交" forState:UIControlStateNormal];
     _issueBtn.titleLabel.font = SLPFFont(14);
-    [_issueBtn setTitleColor:UIColorHex(#8C8C8C) forState:UIControlStateNormal];
+    [_issueBtn setTitleColor:sl_textSubColors forState:UIControlStateNormal];
     _issueBtn.backgroundColor = DynDownLineColor;
     _issueBtn.layer.cornerRadius = 13;
     _issueBtn.layer.masksToBounds = YES;
@@ -193,7 +193,7 @@
     }];
     
     _tipoffObjLabel = [[UILabel alloc]init];
-    _tipoffObjLabel.textColor = UIColorHex(#8C8C8C);
+    _tipoffObjLabel.textColor = sl_textSubColors;
     _tipoffObjLabel.font = [UIFont systemFontOfSize:16];
     [backview addSubview:_tipoffObjLabel];
     [_tipoffObjLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -204,7 +204,7 @@
     }];
     
     _tipoffConcentLabel = [[UILabel alloc]init];
-    _tipoffConcentLabel.textColor = UIColorHex(#282828);
+    _tipoffConcentLabel.textColor = sl_blackBGColors;
     _tipoffConcentLabel.font = [UIFont systemFontOfSize:14];
     [backview addSubview:_tipoffConcentLabel];
     [_tipoffConcentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -357,7 +357,7 @@
         _issueBtn.userInteractionEnabled = YES;
         self.tipOffTextView.hidden = NO;
     }else{
-        [_issueBtn setTitleColor:UIColorHex(#8C8C8C) forState:UIControlStateNormal];
+        [_issueBtn setTitleColor:sl_textSubColors forState:UIControlStateNormal];
         _issueBtn.backgroundColor = DynDownLineColor;
         _issueBtn.userInteractionEnabled = NO;
         self.tipOffTextView.hidden = YES;

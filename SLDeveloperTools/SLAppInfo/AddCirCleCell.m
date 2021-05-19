@@ -29,7 +29,7 @@
     UIView *backView = [[UIView alloc]init];
     backView.layer.cornerRadius = 5;
     backView.layer.masksToBounds = YES;
-    backView.backgroundColor = UIColorHex(#F5F9FC);
+    backView.backgroundColor = sl_subBGColors;
     [self.contentView addSubview:backView];
     [backView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.mas_equalTo(self.contentView);
@@ -47,7 +47,7 @@
     }];
     
     _titleLable = [[UILabel alloc]init];
-    _titleLable.textColor = UIColorHex(#282828);
+    _titleLable.textColor = sl_blackBGColors;
     _titleLable.font = [UIFont systemFontOfSize:14];
     _titleLable.textAlignment = 1;
     [backView addSubview:_titleLable];
@@ -60,7 +60,7 @@
     
     _numLable = [[UILabel alloc]init];
     _numLable.textAlignment = 1;
-    _numLable.textColor = UIColorHex(#8C8C8C);
+    _numLable.textColor = sl_textSubColors;
     _numLable.font = [UIFont systemFontOfSize:12];
     [backView addSubview:_numLable];
     [_numLable mas_makeConstraints:^(MASConstraintMaker *make) {

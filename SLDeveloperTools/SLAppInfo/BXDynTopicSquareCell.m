@@ -31,7 +31,7 @@
     _huatiNumLabel = [UILabel new];
     _huatiNumLabel.text = @"创建话题";
     _huatiNumLabel.textAlignment = 2;
-    _huatiNumLabel.textColor = UIColorHex(#8C8C8C);
+    _huatiNumLabel.textColor = sl_textSubColors;
     _huatiNumLabel.font = [UIFont systemFontOfSize:14];
 
     

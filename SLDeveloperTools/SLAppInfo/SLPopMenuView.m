@@ -63,7 +63,7 @@
         [btn setTitle:title forState:UIControlStateNormal];
         [btn setTag:i];
         [btn addTarget:self action:@selector(menuItemOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitleColor:[UIColor sl_colorWithHex:0x282828]];
+        [btn setTitleColor:sl_blackBGColors];
         [btn.titleLabel setFont:SLPFFont(14)];
         [self addSubview:btn];
         

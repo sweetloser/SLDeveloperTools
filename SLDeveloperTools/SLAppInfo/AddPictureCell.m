@@ -12,6 +12,8 @@
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #import <YYCategories/YYCategories.h>
 #import <Masonry/Masonry.h>
+#import "../SLMacro/SLMacro.h"
+
 @interface AddPictureCell()
 @property(nonatomic, strong)UIButton *Delbtn;
 @property (nonatomic,strong) AddPicturePhotoShow *groupView;
@@ -22,7 +24,7 @@
     if (self) {
         [self.contentView addSubview:self.groupView];
         [self createview];
-        self.contentView.backgroundColor = UIColorHex(#F5F9FC);
+        self.contentView.backgroundColor = sl_subBGColors;
     }
     return self;
 }

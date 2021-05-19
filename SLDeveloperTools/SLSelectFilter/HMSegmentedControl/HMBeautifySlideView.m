@@ -78,7 +78,7 @@
             }
         }];
         
-        self.textLabel = [UILabel initWithFrame:CGRectZero size:10 color:[UIColor sl_colorWithHex:0x8C8C8C] alignment:1 lines:1];
+        self.textLabel = [UILabel initWithFrame:CGRectZero size:10 color:sl_textSubColors alignment:1 lines:1];
         [self addSubview:self.textLabel];
         [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.iconImage.mas_centerX);

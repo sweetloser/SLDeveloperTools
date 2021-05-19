@@ -154,7 +154,7 @@
         _manager.configuration.photoCanEdit = NO;
         _manager.configuration.videoCanEdit = NO;
         _manager.configuration.rowCount = 4;
-        _manager.configuration.themeColor = [UIColor colorWithHex:0xF92C56];
+        _manager.configuration.themeColor = sl_normalColors;
 //        _manager.configuration.restoreNavigationBar = YES;
     }
     return _manager;

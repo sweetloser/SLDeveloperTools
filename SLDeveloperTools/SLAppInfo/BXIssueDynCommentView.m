@@ -140,7 +140,7 @@
         _micrAnilabel = [[UILabel alloc]init];
         _micrAnilabel.text = @"开始录音";
         _micrAnilabel.textAlignment = 1;
-        _micrAnilabel.textColor = UIColorHex(#8C8C8C);
+        _micrAnilabel.textColor = sl_textSubColors;
         _micrAnilabel.font = [UIFont systemFontOfSize:12];
         [_micrBackView addSubview:_micrAnilabel];
         [_micrAnilabel mas_makeConstraints:^(MASConstraintMaker *make) {

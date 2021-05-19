@@ -48,7 +48,7 @@
     _OneImageView.layer.cornerRadius = 5;
     _OneImageView.contentMode=UIViewContentModeScaleAspectFill;
     _OneImageView.clipsToBounds=YES;//  是否剪切掉超出 UIImageView 范围的图片
-    _OneImageView.backgroundColor = UIColorHex(F5F9FC);
+    _OneImageView.backgroundColor = sl_subBGColors;
     _identificationImage = [[UIImageView alloc]init];
     _identificationImage.image = CImage(@"Image_type_gif");
     _identificationImage.hidden = YES;

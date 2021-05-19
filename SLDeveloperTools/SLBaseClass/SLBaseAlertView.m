@@ -25,7 +25,7 @@
         UIView *maskView = [UIView new];
         maskView.frame = self.bounds;
         [self addSubview:maskView];
-        maskView.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.6];
+        maskView.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.6];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
         [maskView addGestureRecognizer:tap];

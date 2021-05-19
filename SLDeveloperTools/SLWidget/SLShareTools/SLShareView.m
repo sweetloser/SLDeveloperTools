@@ -30,7 +30,7 @@
     if (self) {
         
         UIView *maskView = [[UIView alloc]initWithFrame:self.bounds];
-        maskView.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.6];
+        maskView.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.6];
         [self addSubview:maskView];
         
         UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, __kHeight, __kWidth, __ScaleWidth(218-34) + __kBottomAddHeight)];

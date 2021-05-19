@@ -95,7 +95,7 @@
 //    [_issueBtn setImage:CImage(@"nav_icon_news_black") forState:BtnNormal];
     [_issueBtn setTitle:@"确定" forState:UIControlStateNormal];
     [_issueBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
-    _issueBtn.backgroundColor = DynUnSendButtonBackColor;
+    _issueBtn.backgroundColor = sl_subBGColors;
     _issueBtn.titleLabel.font = SLPFFont(14);
     _issueBtn.layer.cornerRadius = 13;
     _issueBtn.layer.masksToBounds = YES;
@@ -156,7 +156,7 @@
         _issueBtn.userInteractionEnabled = YES;
     }else{
         [_issueBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
-        _issueBtn.backgroundColor = DynUnSendButtonBackColor;
+        _issueBtn.backgroundColor = sl_subBGColors;
         _issueBtn.userInteractionEnabled = NO;
     }
 }

@@ -29,7 +29,7 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:CGRectMake(0, 0, __kWidth, __kHeight)];
     if (self) {
-        self.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.3];
+        self.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.3];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
@@ -78,7 +78,7 @@
         
         NSMutableArray *btnArr = [NSMutableArray new];
         NSArray *titleArr = @[@"取消",@"确定"];
-        NSArray *titleColors = @[[UIColor sl_colorWithHex:0x8C8C8C],sl_textColors];
+        NSArray *titleColors = @[sl_textSubColors,sl_textColors];
         NSArray *fonts = @[SLPFFont(16),SLBFont(16)];
         for (int i=0; i<2; i++) {
             UIButton *btn =  [UIButton buttonWithType:UIButtonTypeCustom];

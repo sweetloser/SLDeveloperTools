@@ -29,7 +29,7 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.3];
+        self.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.3];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
         
@@ -109,7 +109,7 @@
         titleLabel.text = @"该社区已解散";
         titleLabel.textAlignment = 1;
         titleLabel.numberOfLines = 0;
-        titleLabel.textColor = UIColorHex(#8C8C8C);
+        titleLabel.textColor = sl_textSubColors;
         titleLabel.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -105,7 +105,7 @@
         _sendBtn = [[UIButton alloc]init];
         [_sendBtn setTitle:@"发送" forState:BtnNormal];
         _sendBtn.titleLabel.font = CFont(15);
-        _sendBtn.backgroundColor = DynUnSendButtonBackColor;
+        _sendBtn.backgroundColor = sl_subBGColors;
         [_sendBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
         _sendBtn.layer.cornerRadius = 13;
         _sendBtn.layer.masksToBounds = YES;
@@ -460,7 +460,7 @@
         [_sendBtn setTitleColor:DynSendButtonTitle forState:UIControlStateNormal];
     }
     else{
-        _sendBtn.backgroundColor = DynUnSendButtonBackColor;
+        _sendBtn.backgroundColor = sl_subBGColors;
         [_sendBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
     }
     
@@ -554,7 +554,7 @@
         [_sendBtn setTitleColor:DynSendButtonTitle forState:UIControlStateNormal];
     }
     else{
-        _sendBtn.backgroundColor = DynUnSendButtonBackColor;
+        _sendBtn.backgroundColor = sl_subBGColors;
         [_sendBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
     }
     UITextRange *selectedRange = growingTextView.internalTextView.markedTextRange;

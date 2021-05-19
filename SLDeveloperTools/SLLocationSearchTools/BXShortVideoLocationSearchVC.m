@@ -101,7 +101,7 @@
     
     self.searchField = [[UITextField alloc] initWithFrame:CGRectMake(__ScaleWidth(12), navtion.height+__ScaleWidth(10), SCREEN_WIDTH-__ScaleWidth(24), __ScaleWidth(34))];
     self.searchField.textColor = sl_textColors;
-    self.searchField.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+    self.searchField.backgroundColor = sl_subBGColors;
     self.searchField.layer.cornerRadius = 17;
     self.searchField.font = CFont(14);
     UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sousuo_icon_sousuo"]];
@@ -173,7 +173,7 @@
     
     
     
-    self.placeLabel = [UILabel initWithFrame:CGRectZero size:12 color:[UIColor sl_colorWithHex:0xF5F9FC] alignment:1 lines:0];
+    self.placeLabel = [UILabel initWithFrame:CGRectZero size:12 color:sl_subBGColors alignment:1 lines:0];
     
     [self.tableView addSubview:self.placeLabel];
     [self.placeLabel mas_makeConstraints:^(MASConstraintMaker *make) {

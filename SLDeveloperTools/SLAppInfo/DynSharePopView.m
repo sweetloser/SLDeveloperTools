@@ -43,7 +43,7 @@
         
         UILabel *sharelabel = [[UILabel alloc]initWithFrame:CGRectMake(_container.frame.size.width / 2 - 30, 25, 60, 20)];
         sharelabel.text = @"分享到";
-        sharelabel.textColor = UIColorHex(#8C8C8C);
+        sharelabel.textColor = sl_textSubColors;
         sharelabel.font = [UIFont systemFontOfSize:16];
         [_container addSubview:sharelabel];
         

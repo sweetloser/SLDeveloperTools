@@ -34,7 +34,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.model = model;
-        self.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.3];
+        self.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.3];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tap];
         
@@ -61,7 +61,7 @@
         [NoWatchButton setTitle:@"不看TA的动态" forState:UIControlStateNormal];
         NoWatchButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
         [NoWatchButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        NoWatchButton.backgroundColor = UIColorHex(#F5F9FC);
+        NoWatchButton.backgroundColor = sl_subBGColors;
         NoWatchButton.layer.cornerRadius = 22;
         NoWatchButton.tag = 100;
         NoWatchButton.layer.masksToBounds = YES;
@@ -78,7 +78,7 @@
         [NoWatchDynButton setTitle:@"不看这条动态" forState:UIControlStateNormal];
         NoWatchDynButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
         [NoWatchDynButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        NoWatchDynButton.backgroundColor = UIColorHex(#F5F9FC);
+        NoWatchDynButton.backgroundColor = sl_subBGColors;
         NoWatchDynButton.layer.cornerRadius = 22;
         NoWatchDynButton.tag = 101;
         NoWatchDynButton.layer.masksToBounds = YES;
@@ -95,7 +95,7 @@
         [ReportButton setTitle:@"举报" forState:UIControlStateNormal];
         ReportButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
         [ReportButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        ReportButton.backgroundColor = UIColorHex(#F5F9FC);
+        ReportButton.backgroundColor = sl_subBGColors;
         ReportButton.layer.cornerRadius = 22;
         ReportButton.tag = 102;
         ReportButton.layer.masksToBounds = YES;

@@ -40,7 +40,7 @@
 //    self.growingTextView.placeholderColor = UIColorHex(B0B0B0);
 //    self.growingTextView.returnKeyType = UIReturnKeySend;
 //    self.growingTextView.enablesReturnKeyAutomatically = YES;
-//    self.growingTextView.backgroundColor =  UIColorHex(#F5F9FC);
+//    self.growingTextView.backgroundColor =  sl_subBGColors;
 //    [self addSubview:self.growingTextView];
     
      _textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 20, 335, 200)];

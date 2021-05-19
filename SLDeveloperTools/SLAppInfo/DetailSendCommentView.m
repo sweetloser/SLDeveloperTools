@@ -157,7 +157,7 @@
         _sendBtn = [[UIButton alloc]init];
         [_sendBtn setTitle:@"发送" forState:BtnNormal];
         _sendBtn.titleLabel.font = CFont(14);
-        _sendBtn.backgroundColor = DynUnSendButtonBackColor;
+        _sendBtn.backgroundColor = sl_subBGColors;
         [_sendBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
         _sendBtn.layer.cornerRadius = 13;
         _sendBtn.layer.masksToBounds = YES;
@@ -577,7 +577,7 @@
     }
     else{
         _sendBtn.titleLabel.font = CFont(14);
-        _sendBtn.backgroundColor = DynUnSendButtonBackColor;
+        _sendBtn.backgroundColor = sl_subBGColors;
         [_sendBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
     }
     if ([text isEqualToString:@""])
@@ -672,7 +672,7 @@
     }
     else{
         _sendBtn.titleLabel.font = CFont(14);
-        _sendBtn.backgroundColor = DynUnSendButtonBackColor;
+        _sendBtn.backgroundColor = sl_subBGColors;
         [_sendBtn setTitleColor:DynUnSendButtonTitle forState:UIControlStateNormal];
     }
     _sendBtn.selected = !growingTextView.text.length;
@@ -830,7 +830,7 @@
         _manager.configuration.photoCanEdit = NO;
         _manager.configuration.videoCanEdit = NO;
         _manager.configuration.rowCount = 4;
-        _manager.configuration.themeColor = [UIColor sl_colorWithHex:0xF92C56];
+        _manager.configuration.themeColor = sl_normalColors;
 //        _manager.configuration.restoreNavigationBar = YES;
     }
     return _manager;

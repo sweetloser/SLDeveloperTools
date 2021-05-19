@@ -69,7 +69,7 @@
     [leftview addSubview:iconIv];
     
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(50, 20 + __kTopAddHeight + 5, SearchTextFieldNormalWidth, 34)];
-    textField.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+    textField.backgroundColor = sl_subBGColors;
     textField.layer.cornerRadius = 17;
     textField.textColor = sl_textColors;
     textField.returnKeyType = UIReturnKeySearch;

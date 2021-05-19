@@ -40,7 +40,7 @@
     self = [super initWithFrame:CGRectMake(0, 0, __kWidth, __kHeight)];
     if (self) {
         _maskView = [UIView new];
-        _maskView.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.6];
+        _maskView.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.6];
         [self addSubview:_maskView];
         _maskView.frame = self.bounds;
         UITapGestureRecognizer *hiddenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenTapAction:)];

@@ -111,7 +111,7 @@
     if (self == [super initWithFrame:frame]) {
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = __ScaleWidth(15);
-        self.backgroundColor = [UIColor sl_colorWithHex:0xF5F9FC];
+        self.backgroundColor = sl_subBGColors;
         [self createView];
     }
     return self;
@@ -126,7 +126,7 @@
 //    [self.contentView addSubview:_btn];
 //    _btn.layer.masksToBounds = YES;
 //    _btn.layer.cornerRadius = __ScaleWidth(15);
-//    [_btn setBackgroundColor:[UIColor sl_colorWithHex:0xF5F9FC]];
+//    [_btn setBackgroundColor:sl_subBGColors];
 //    [_btn setTitleColor:sl_normalColors forState:BtnSelected];
 //    [_btn setTitleColor:sl_textSubColors forState:BtnNormal];
 //    [_btn setImage:CImage(@"near_triangle_normal") forState:BtnNormal];

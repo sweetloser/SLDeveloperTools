@@ -36,7 +36,7 @@
         [maskV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.bottom.mas_equalTo(0);
         }];
-        maskV.backgroundColor = [UIColor sl_colorWithHex:0x000000 alpha:0.6];
+        maskV.backgroundColor = [UIColor colorWithColor:sl_blackColors alpha:0.6];
         
         UIImageView *imgv = [UIImageView new];
         [self addSubview:imgv];
