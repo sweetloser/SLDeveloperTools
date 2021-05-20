@@ -13,6 +13,7 @@
 
 @property (copy, nonatomic) NSString  *badge;
 @property (copy, nonatomic) NSString  *giftId;
+@property (copy, nonatomic) NSString  *isguard;
 @property (copy, nonatomic) NSString  *giftType;
 @property (copy, nonatomic) NSNumber  *is_vip;
 @property (copy, nonatomic) NSString  *music_url;
