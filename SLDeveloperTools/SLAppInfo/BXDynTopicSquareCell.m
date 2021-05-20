@@ -9,6 +9,7 @@
 #import "BXDynTopicSquareCell.h"
 #import <YYCategories/YYCategories.h>
 #import <SDAutoLayout/SDAutoLayout.h>
+#import "../SLMacro/SLMacro.h"
 
 @implementation BXDynTopicSquareCell
 - (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{

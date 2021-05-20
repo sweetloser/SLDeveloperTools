@@ -9,6 +9,7 @@
 #import "DetailCommendNoPicTableViewCell.h"
 #import <YYCategories/YYCategories.h>
 #import <SDAutoLayout/SDAutoLayout.h>
+#import "../SLMacro/SLMacro.h"
 
 @interface DetailCommendNoPicTableViewCell()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UIImageView *headImage;
