@@ -264,7 +264,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'SDWebImage', '5.10.0'
     appInfo.dependency 'ZFPlayer/ControlView', '3.3.3'
     appInfo.dependency 'ZFPlayer/AVPlayer', '3.3.3'
-    appInfo.dependency 'TXLiteAVSDK_Professional','~> 8.4.9944'
+    appInfo.dependency 'TXLiteAVSDK_Professional','~> 8.6.10094'
     appInfo.dependency 'NIMKit', '3.1.4'
     appInfo.dependency 'FMDB'
     appInfo.dependency 'WebViewJavascriptBridge', '~> 6.0'
@@ -286,7 +286,7 @@ TODO: Add long description of the pod here.
   
   
   
-  s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle','SLDeveloperTools/Resources/MP3/*','SLDeveloperTools/Resources/PlaceholderIcon/*'
+  s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle','SLDeveloperTools/Resources/MP3/*','SLDeveloperTools/Resources/PlaceholderIcon/*','SLDeveloperTools/Resources/skin/*'
 
   # s.public_header_files = 'Pod/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

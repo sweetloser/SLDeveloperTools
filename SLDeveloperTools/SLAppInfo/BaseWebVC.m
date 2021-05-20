@@ -19,12 +19,6 @@
 #import <Aspects/Aspects.h>
 #import <SobotKit/ZCSobot.h>
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
-//#import <WXApi.h>
-//#import <WXApiObject.h>
-//#import "QuickRechargePopView.h"
-//#import "BXImagePickerManager.h"
-//#import <Aspects.h>
-//#import "ShareManager.h"
 
 static NSString * const kWXAppID = @"";
 

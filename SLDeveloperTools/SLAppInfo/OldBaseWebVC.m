@@ -20,12 +20,6 @@
 #import <Aspects/Aspects.h>
 #import <SobotKit/ZCSobot.h>
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
-//#import <WXApi.h>
-//#import <WXApiObject.h>
-//#import "QuickRechargePopView.h"
-//#import "BXImagePickerManager.h"
-//#import <Aspects.h>
-//#import "ShareManager.h"
 #import <WKWebViewJavascriptBridge.h>
 
 static NSString * const kWXAppID = @"";
@@ -33,12 +27,6 @@ static NSString * const kWXAppID = @"";
 @interface OldBaseWebVC ()<WKNavigationDelegate,WKScriptMessageHandler>
 
 @property (strong, nonatomic) WKWebViewJavascriptBridge *bridge;
-
-
-
-//@property (strong, nonatomic) BXImagePickerManager *manager;
-
-
 
 @end
 
