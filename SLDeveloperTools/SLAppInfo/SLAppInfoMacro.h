@@ -8,9 +8,9 @@
 #ifndef SLAppInfoMacro_h
 #define SLAppInfoMacro_h
 
-//#define SiShiLiveURL  //肆拾直播
+#define SiShiLiveURL  //肆拾直播
 
-#define BXLiveURL     //秉信互娱
+//#define BXLiveURL     //秉信互娱
 
 //#define DuoLaLiveURL    //朵拉互娱
 
@@ -80,6 +80,7 @@
 #define SL_HTTP_H5_URL @"http://shop.40zhibopingtai.com/"
 #define SL_UNIVERSAL_LINK @"https://yq5km7.xinstall.top/tolink/"
 #define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"SiShiLive"
 
 #endif
 
