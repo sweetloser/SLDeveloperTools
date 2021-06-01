@@ -8,7 +8,7 @@
 #ifndef SLAppInfoMacro_h
 #define SLAppInfoMacro_h
 
-#define SiShiLiveURL  //肆拾直播
+//#define SiShiLiveURL  //肆拾直播
 
 //#define BXLiveURL     //秉信互娱
 
@@ -16,7 +16,7 @@
 
 //#define DaBaiLiveURL    //大白直播
 
-//#define MeiWoYouPinURL  //每窝优品
+#define MeiWoYouPinURL  //每窝优品
 
 //#define MaiKeXiuURL  //麦客秀
 
@@ -35,7 +35,7 @@
 #define SL_HTTP_H5_URL @"http://shop.nzpap.cn/"
 #define SL_UNIVERSAL_LINK @"https://0g42ov.xinstall.com.cn/tolink/"
 #define ZC_KEY @"d860138a296449a2ae598a859e1b727e"                  //智齿key
-#define Scheme_URL @"nzpapLive"
+#define Scheme_URL @""
 
 #endif
 

@@ -146,7 +146,7 @@ TODO: Add long description of the pod here.
       sf.dependency 'YYCategories'
       sf.dependency 'AFNetworking'
       sf.dependency 'MMKV'
-      sf.dependency 'Nama-lite', '~> 7.3.2'
+      sf.dependency 'Nama-lite', '~> 7.4'
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
   end
   s.subspec "SLBaseClass" do |baseClass|
@@ -265,7 +265,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'ZFPlayer/ControlView', '3.3.3'
     appInfo.dependency 'ZFPlayer/AVPlayer', '3.3.3'
     appInfo.dependency 'TXLiteAVSDK_Professional','~> 8.6.10094'
-    appInfo.dependency 'NIMKit', '3.1.4'
+    appInfo.dependency 'NIMKit'
     appInfo.dependency 'FMDB'
     appInfo.dependency 'WebViewJavascriptBridge', '~> 6.0'
     appInfo.dependency 'AlibcTradeSDK', '4.0.1.6'
