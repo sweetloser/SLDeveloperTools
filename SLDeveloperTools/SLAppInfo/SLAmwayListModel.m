@@ -16,7 +16,7 @@
 @implementation SLAmwayListModel
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName{
-    return @{@"list_id":@"id"};
+    return @{@"list_id":@"id",@"user":@"usermsg"};
 }
 
 +(NSDictionary *)mj_objectClassInArray{
