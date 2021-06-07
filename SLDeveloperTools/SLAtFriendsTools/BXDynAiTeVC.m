@@ -222,7 +222,6 @@
 //        self.tableView.isRefresh = NO;
 //        self.tableView.isNoNetwork = !error.isNetWorkConnectionAvailable;
 //    }];
-    
 }
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 
