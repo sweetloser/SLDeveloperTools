@@ -87,6 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSNumber *is_follow;
 @property(nonatomic,strong)NSNumber *mylive;
 @property(nonatomic,strong)BXMusicModel *voice_msg;
+-(void)ChangeUsermsg;
 @end
 
 NS_ASSUME_NONNULL_END

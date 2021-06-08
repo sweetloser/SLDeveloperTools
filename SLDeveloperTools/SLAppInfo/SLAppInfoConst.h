@@ -63,6 +63,7 @@ static NSString *const kEndShowAdvertisementNotification = @"EndShowAdvertisemen
 static NSString *const kHomepageTypeNotification = @"HomepageTypeNotification";
 static NSString *const kNeedGetHomepageDataNotification = @"NeedGetHomepageDataNotification";
 static NSString *const NeedGetMyDyanmicDataNotification = @"NeedGetMyDyanmicDataNotification";
+static NSString *const NeedGetMyPersonalDataNotification = @"NeedGetMyPersonalDataNotification";
 static NSString *const kDidPlayNotification = @"DidPlayNotification";                                 //播放视频（统计播放次数）
 //static NSString *const kDidZanNotification = @"DidZanNotification";                                   //赞或取消赞
 //static NSString *const kDidCollectNotification = @"DidCollectNotification";                           //收藏或取消收藏
