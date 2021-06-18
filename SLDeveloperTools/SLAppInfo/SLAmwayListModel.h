@@ -78,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSNumber *list_id;
 @property(nonatomic,strong)NSString *dynamic_title;
 @property(nonatomic,strong)SLAmwayPublicUser *user;
+@property(nonatomic,strong)SLAmwayPublicUser *usermsg;
 @property(nonatomic,strong)NSNumber *uid;
 @property(nonatomic,strong)NSNumber *is_recommend;
 @property(nonatomic,strong)NSString *cover_url;
@@ -86,6 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSNumber *is_follow;
 @property(nonatomic,strong)NSNumber *mylive;
 @property(nonatomic,strong)BXMusicModel *voice_msg;
+-(void)ChangeUsermsg;
 @end
 
 NS_ASSUME_NONNULL_END

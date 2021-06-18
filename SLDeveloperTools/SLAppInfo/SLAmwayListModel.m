@@ -17,8 +17,18 @@
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName{
     return @{@"list_id":@"id"};
-}
 
+}
+-(void)ChangeUsermsg{
+    if (_usermsg) {
+        _user = [[SLAmwayPublicUser alloc]init];
+        _user.user_id = _usermsg.user_id;
+        _user.nickname = _usermsg.nickname;
+        _user.follow_num = _usermsg.follow_num;
+        _user.avatar = _usermsg.avatar;
+
+    }
+}
 +(NSDictionary *)mj_objectClassInArray{
     
     return @{@"privatemsg": @"BXLiveUser",
