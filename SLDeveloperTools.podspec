@@ -30,11 +30,11 @@ TODO: Add long description of the pod here.
   s.platform     = :ios, "9.0"
   s.requires_arc = true
   s.static_framework = true
-  
+
   s.source_files = 'SLDeveloperTools/SLDeveloperTools.h'
   s.dependency 'CTMediatorSLAmway'
   s.dependency 'CTMediatorSLDynamic'
-  
+
   s.subspec 'SLCategory' do |category|
       category.source_files = 'SLDeveloperTools/SLCategory/*.{h,m}'
       category.dependency 'SLDeveloperTools/SLMacro'
@@ -43,11 +43,11 @@ TODO: Add long description of the pod here.
       category.dependency 'YYText'
       category.frameworks = 'OpenGLES'
   end
-  
+
   s.subspec 'SLMacro' do |macro|
     macro.source_files = 'SLDeveloperTools/SLMacro/*.h'
   end
-  
+
   s.subspec 'SLUtilities' do |utils|
     utils.dependency 'SLDeveloperTools/SLMacro'
       utils.dependency 'KTVHTTPCache', '~> 1.1.7'
@@ -85,7 +85,7 @@ TODO: Add long description of the pod here.
         st.dependency 'SLDeveloperTools/SLBaseClass'
         st.dependency 'SLDeveloperTools/SLCategory'
       end
-      
+
 #      JXCategoryView（二次封装组件）
       widget.subspec 'SLJXCategoryView'  do |jx|
         jx.source_files = 'SLDeveloperTools/SLWidget/SLJXCategoryView/**/*.{h,m}','SLDeveloperTools/SLWidget/SLJXCategoryView/**/**/*.{h,m}','SLDeveloperTools/SLWidget/SLJXCategoryView/JXCategoryView.h'
@@ -101,7 +101,7 @@ TODO: Add long description of the pod here.
       widget.subspec 'SLSDCycleScrollView' do |sd|
         sd.source_files = 'SLDeveloperTools/SLWidget/SLSDCycleScrollView/*.{h,m}'
       end
-      
+
   end
 
   s.subspec 'SLNetTools' do |netTools|
@@ -111,7 +111,7 @@ TODO: Add long description of the pod here.
     netTools.dependency 'AFNetworking'
     netTools.dependency 'SDWebImage', '= 5.10.0'
   end
-  
+
   s.subspec "SLMaskTools" do |maskTools|
     maskTools.source_files = 'SLDeveloperTools/SLMaskTools/*.{h,m}'
     maskTools.dependency 'SLDeveloperTools/SLMacro'
@@ -164,7 +164,7 @@ TODO: Add long description of the pod here.
     ugc.source_files = 'SLDeveloperTools/UGC_Upload/*.{h,m}','SLDeveloperTools/UGC_Upload/include/*.h'
     ugc.vendored_frameworks = 'SLDeveloperTools/UGC_Upload/COSSDK/QCloudCore.framework', 'SLDeveloperTools/UGC_Upload/COSSDK/QCloudCOSXML.framework'
   end
-  
+
 #  图片预览组件
   s.subspec 'HZPhotoBrowser' do |hz|
     hz.source_files = 'SLDeveloperTools/HZPhotoBrowser/**/*.{h,m}'
@@ -176,11 +176,11 @@ TODO: Add long description of the pod here.
     hz.dependency 'SDAutoLayout'
     hz.dependency 'DZNEmptyDataSet'
   end
-  
+
   s.subspec 'SDPhotoBrowser' do |pb|
     pb.source_files = 'SLDeveloperTools/SDPhotoBrowser/*.{h,m}'
   end
-  
+
 #  添加话题组件
   s.subspec 'SLAddTopicTools' do |tt|
     tt.source_files = 'SLDeveloperTools/SLAddTopicTools/*.{h,m}'
@@ -215,7 +215,7 @@ TODO: Add long description of the pod here.
     ls.dependency 'SDAutoLayout'
     ls.dependency 'DZNEmptyDataSet'
   end
-  
+
 #  选择音乐
  s.subspec 'SLMusicTools' do |mt|
    mt.source_files = 'SLDeveloperTools/SLMusicTools/**/*.{h,m}'
@@ -244,7 +244,6 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'MMKV'
     appInfo.dependency 'UMCPush'
     appInfo.dependency 'UMCCommon', '7.2.5'
-    appInfo.dependency 'UMCSecurityPlugins'
     appInfo.dependency 'UMCShare/UI'
     appInfo.dependency 'UMCShare/Social/ReducedWeChat'
     appInfo.dependency 'UMCShare/Social/ReducedQQ'
@@ -277,13 +276,15 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'WindVane', '8.5.0.46-bc11'
     
     
+
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.vendored_libraries = 'SLDeveloperTools/SLAppInfo/libmp3lame.a'
     appInfo.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
     appInfo.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   end
-  
+
+
   s.subspec 'SLLiveTools' do |live|
     live.source_files = 'SLDeveloperTools/SLLive/**/*.{h,m}'
     live.dependency 'Masonry'
@@ -291,10 +292,10 @@ TODO: Add long description of the pod here.
   end
   
   
-  
+
   s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle','SLDeveloperTools/Resources/MP3/*','SLDeveloperTools/Resources/PlaceholderIcon/*','SLDeveloperTools/Resources/skin/*'
 
   # s.public_header_files = 'Pod/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  
+
 end
