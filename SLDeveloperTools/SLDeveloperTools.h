@@ -20,3 +20,4 @@
 #import "SLAtFriendsTools.h"
 #import "SLMosicTools.h"
 #import "HZPhotoBrowserTools.h"
+#import "SLLiveTools.h"

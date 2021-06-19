@@ -284,6 +284,12 @@ TODO: Add long description of the pod here.
     appInfo.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   end
   
+  s.subspec 'SLLiveTools' do |live|
+    live.source_files = 'SLDeveloperTools/SLLive/**/*.{h,m}'
+    live.dependency 'Masonry'
+    live.dependency 'SDAutoLayout'
+  end
+  
   
   
   s.resource     = 'SLDeveloperTools/SLDeveloperTools.bundle','SLDeveloperTools/Resources/MP3/*','SLDeveloperTools/Resources/PlaceholderIcon/*','SLDeveloperTools/Resources/skin/*'

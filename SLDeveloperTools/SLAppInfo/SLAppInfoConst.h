@@ -103,6 +103,8 @@ static NSString *const kFollow_push_1 = @"follow_push_1";                       
 static NSString *const kRoundPetchNotification = @"RoundPetchNotification";           //pk匹配
 static NSString *const kClosePetchViewNotification = @"ClosePetchViewNotification";           //pk匹配
 
+static NSString *const kCloseVoiceLiveNotification = @"kCloseVoiceLiveNotification";           //pk匹配
+
 static NSString *const kMessageStatusNotification = @"MessageStatusNotification";           //pk匹配
 
 static NSString *const kLinkMicStatusNotification = @"LinkMicStatusNotification";
