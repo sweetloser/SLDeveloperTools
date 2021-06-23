@@ -10,11 +10,11 @@
 
 //#define SiShiLiveURL  //肆拾直播
 
-#define BXLiveURL     //秉信互娱
+//#define BXLiveURL     //秉信互娱
 
 //#define DuoLaLiveURL    //朵拉互娱
 
-//#define DaBaiLiveURL    //大白直播
+#define DaBaiLiveURL    //大白直播
 
 //#define MeiWoYouPinURL  //每窝优品
 
