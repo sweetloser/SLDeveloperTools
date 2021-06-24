@@ -9,4 +9,5 @@
 #define SLLiveTools_h
 #import "GYRollingNoticeView.h"
 #import "BXGameListVC.h"
+#import "ListCollection.h"
 #endif /* SLLiveTools_h */
