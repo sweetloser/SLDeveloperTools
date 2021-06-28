@@ -11,11 +11,13 @@
 #import <Masonry/Masonry.h>
 #import <SLCategory.h>
 #import <YYWebImage/YYWebImage.h>
+#import <YYLabel.h>
+#import "NSAttributedString+HTML.h"
 @interface BXHeadlineOneCell ()
 
 @property (nonatomic, strong) UILabel *titleLb;
 @property (nonatomic, strong) UIImageView *infoIv;
-@property (nonatomic, strong) UILabel *authorLb;
+@property (nonatomic, strong) YYLabel *authorLb;
 @property (nonatomic, strong) UILabel *timeLb;
 @property (nonatomic, strong) UILabel *countLb;
 @property (nonatomic, strong) UIView *whiteView;
@@ -88,7 +90,7 @@
             make.height.mas_equalTo(__ScaleWidth(22));
         }];
         
-        _authorLb = [[UILabel alloc]init];
+        _authorLb = [[YYLabel alloc]init];
         _authorLb.textColor = sl_textSubColors;
         _authorLb.numberOfLines = 0;
         _authorLb.font = SLPFFont(__ScaleWidth(14));
@@ -164,7 +166,14 @@
         }];
     }
 //    _countLb.text = [NSString stringWithFormat:@"%@图",headline.imageCount];
-    _authorLb.text = headline.author;
+    NSData *data = [headline.author dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSAttributedString *attrtring = [[NSAttributedString alloc] initWithHTMLData:data documentAttributes:NULL];
+    _authorLb.attributedText = attrtring;
+    _authorLb.textColor = sl_textSubColors;
+    _authorLb.numberOfLines = 0;
+    _authorLb.font = SLPFFont(__ScaleWidth(14));
+    
     _timeLb.text = headline.release_time;
     
     CGFloat authorH = [UILabel getHeightByWidth:__ScaleWidth(321) title:headline.author font:SLPFFont(14)];
