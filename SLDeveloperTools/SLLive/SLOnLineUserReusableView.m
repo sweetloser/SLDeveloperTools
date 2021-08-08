@@ -7,10 +7,10 @@
 //
 
 #import "SLOnLineUserReusableView.h"
-#import <Masonry/Masonry.h>
-#import <SDAutoLayout/SDAutoLayout.h>
-#import <SLDeveloperTools/SLDeveloperTools.h>
-#import <YYWebImage.h>
+#import "SLMacro.h"
+#import <YYWebImage/YYWebImage.h>
+#import "SLCategory.h"
+
 @interface SLOnLineUserReusableView()
 @property(nonatomic,strong)UIImageView *fGuardImg;
 @property(nonatomic,strong)UIImageView *sGuardImg;
