@@ -60,7 +60,7 @@
         self.model = model;
         self.contentid = contentid;
         self.touid = touid;
-        if ([NSString stringWithFormat:@"%@",model.msgdetailmodel.comment_img_limit]) {
+        if (model.msgdetailmodel.comment_img_limit && model.msgdetailmodel.comment_img_limit.intValue != 0) {
             
             self.picSelEnableNum = [model.msgdetailmodel.comment_img_limit integerValue];
         }else{

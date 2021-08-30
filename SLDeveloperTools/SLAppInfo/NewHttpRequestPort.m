@@ -132,6 +132,7 @@ DEFINE_SINGLETON_FOR_CLASS(NewHttpRequestPort)
  @param failure 失败
  */
 -(void)shareGetParams:(NSDictionary *)dict Success:(void(^)(id responseObject))success Failure:(void(^)(NSError *error))failure{
+    NSLog(@"a");
     [[NewHttpManager sharedNetManager] POST:@"s=Share.getParams" parameters:dict success:^(id  _Nonnull responseObject) {
         success(responseObject);
     } failure:^(NSError * _Nonnull error) {

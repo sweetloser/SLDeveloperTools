@@ -24,6 +24,24 @@
 
 //#define HuHaLiveURL  //呼哈直播
 
+//#define LYGLiveURL      //洛英格
+
+
+#ifdef LYGLiveURL
+
+#define New_Http_Base_Url @"http://www.luoyinggeliangzi.com/api.php?"
+#define New_Http_Base_Url_Without @"http://www.luoyinggeliangzi.com/api.php"
+#define New_Http_Base_domain @"http://www.luoyinggeliangzi.com/"
+#define New_Http_Base_make_friend @"http://www.luoyinggeliangzi.com/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.luoyinggeliangzi.com/"
+#define SL_HTTP_BASE_API_URL @"http://shop.luoyinggeliangzi.com/"
+#define SL_HTTP_H5_URL @"http://shop.luoyinggeliangzi.com/"
+#define SL_UNIVERSAL_LINK @"https://gq4tym.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"lyglive"
+
+#endif
+
 #ifdef HuHaLiveURL
 
 #define New_Http_Base_Url @"http://api.tglzb.com/api.php?"

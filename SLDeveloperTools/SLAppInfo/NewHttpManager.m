@@ -313,12 +313,22 @@ code
             if (error) {
                 [BGProgressHUD showInfoWithMessage:@"下载失败"];
             } else {
+#ifdef LYGLiveURL
+                [BXVideoWatcerHelp watermarkingWithVideoUrl:filePath waterImg:@"" text:@"" isShow:YES completion:^(NSString * _Nonnull videofilePath) {
+                    [BXSavePhotoHelper savePhotos:videofilePath completion:^(NSError *error) {
+                        [FilePathHelper removeFileAtPath:videofilePath];
+                    }];
+                    [FilePathHelper removeFileAtPath:[filePath path]];
+                } isSystem:YES];
+#else
                 [BXVideoWatcerHelp watermarkingWithVideoUrl:filePath waterImg:[BXAppInfo appInfo].water_marker text:[NSString stringWithFormat:@"ID：%@",userId] isShow:YES completion:^(NSString * _Nonnull videofilePath) {
                     [BXSavePhotoHelper savePhotos:videofilePath completion:^(NSError *error) {
                         [FilePathHelper removeFileAtPath:videofilePath];
                     }];
                     [FilePathHelper removeFileAtPath:[filePath path]];
                 } isSystem:YES];
+#endif
+                
             }
         });
     }];
