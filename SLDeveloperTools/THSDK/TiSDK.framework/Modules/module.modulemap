@@ -1,6 +1,0 @@
-framework module TiSDK {
-  umbrella header "TiSDK.h"
-
-  export *
-  module * { export * }
-}
