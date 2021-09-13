@@ -10,13 +10,13 @@
 
 //#define SiShiLiveURL  //肆拾直播
 
-#define BXLiveURL     //秉信互娱
+//#define BXLiveURL     //秉信互娱
 
 //#define DuoLaLiveURL    //朵拉互娱
 
 //#define DaBaiLiveURL    //大白直播
 
-//#define MeiWoYouPinURL  //每窝优品
+#define MeiWoYouPinURL  //每窝优品
 
 //#define MaiKeXiuURL  //麦客秀
 
@@ -26,6 +26,23 @@
 
 //#define LYGLiveURL      //洛英格
 
+//#define WLLiveURL      //喂来
+
+
+#ifdef WLLiveURL
+
+#define New_Http_Base_Url @"http://vapi.shenqianvip.com/api.php?"
+#define New_Http_Base_Url_Without @"http://vapi.shenqianvip.com/api.php"
+#define New_Http_Base_domain @"http://vapi.shenqianvip.com/"
+#define New_Http_Base_make_friend @"http://vapi.shenqianvip.com/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.shenqianvip.com/"
+#define SL_HTTP_BASE_API_URL @"http://shop.shenqianvip.com/"
+#define SL_HTTP_H5_URL @"http://shop.shenqianvip.com/"
+#define SL_UNIVERSAL_LINK @"https://c7db9u.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"wllive"
+
+#endif
 
 #ifdef LYGLiveURL
 
