@@ -16,7 +16,7 @@
 
 //#define DaBaiLiveURL    //大白直播
 
-#define MeiWoYouPinURL  //每窝优品
+//#define MeiWoYouPinURL  //每窝优品
 
 //#define MaiKeXiuURL  //麦客秀
 
@@ -26,7 +26,7 @@
 
 //#define LYGLiveURL      //洛英格
 
-//#define WLLiveURL      //喂来
+#define WLLiveURL      //喂来
 
 
 #ifdef WLLiveURL

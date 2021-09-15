@@ -236,6 +236,11 @@ static NSString * const kWXAppID = @"";
             [self openWxAPP:data[@"userName"] path:data[@"path"] miniProgramType:[data[@"miniProgramType"] integerValue]];
         }
     }];
+    
+    [self.bridge registerHandler:@"goImService" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"%@",data);
+    }];
+    
 }
 - (void)shareWithTitle:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key{
 //    [ShareManager shareWithShareType:nil targetId:nil title:title descr:descr thumb:thumb url:url share_key:share_key currentVC:self shareCompletion:^(NSString *share_channel, NSError *error) {
@@ -313,6 +318,7 @@ static NSString * const kWXAppID = @"";
 //    开启小店调用支付
     [self.bridge removeHandler:@"getPayWxDetail"];
     
+    [self.bridge removeHandler:@""];
     
     
     
@@ -385,14 +391,19 @@ static NSString * const kWXAppID = @"";
     }
     else if([message.name isEqualToString:@"customerKefu"]) {
         [self goToKefu:[NSString stringWithFormat:@"%@", [message.body description]]];
+    }else if([message.name isEqualToString:@"toImService"]) {
+        [self toImService:[NSString stringWithFormat:@"%@", [message.body description]]];
     }else if([message.name isEqualToString:@"goSeckillGoodsDetail"]) {
         [self goSeckillGoodsDetail:[NSString stringWithFormat:@"%@", [message.body description]]];
     }else if([message.name isEqualToString:@"goMyCoupon"]) {
         [self goToCouponList];
     }
-    
+}
+
+-(void)toImService:(NSString *)linkUrl{
     
 }
+
 -(void)smallShopPay:(id)params{
     
 }

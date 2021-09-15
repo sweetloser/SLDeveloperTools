@@ -174,7 +174,7 @@ static NSString * const kWXAppID = @"";
     //联系客服
     [self.userContentController addScriptMessageHandler:self name:@"customerKefu"];
     [self.userContentController addScriptMessageHandler:self name:@"customerPhoneKefu"];
-    
+    [self.userContentController addScriptMessageHandler:self name:@"toImService"];
     
     //进入优惠券
     [self.userContentController addScriptMessageHandler:self name:@"goMyCoupon"];
@@ -211,6 +211,9 @@ static NSString * const kWXAppID = @"";
 //    电话客服
     [self.userContentController addScriptMessageHandler:self name:@"makePhone"];
 
+//    洛英格新增
+    [self.userContentController addScriptMessageHandler:self name:@"goImService"];
+    
 }
 - (void)shareWithTitle:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key{
 }
@@ -258,11 +261,10 @@ static NSString * const kWXAppID = @"";
         
         [self.userContentController removeScriptMessageHandlerForName:@"customerKefu"];
         [self.userContentController removeScriptMessageHandlerForName:@"customerPhoneKefu"];
-        
-        
+        [self.userContentController removeScriptMessageHandlerForName:@"toImService"];
+
         [self.userContentController removeScriptMessageHandlerForName:@"goMyCoupon"];
-        
-        
+ 
     }
     
     
@@ -289,6 +291,8 @@ static NSString * const kWXAppID = @"";
     [self.userContentController removeScriptMessageHandlerForName:@"releaseGass"];
     
     [self.userContentController removeScriptMessageHandlerForName:@"makePhone"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"goImService"];
 }
 
 #pragma mark 计算wkWebView进度条
@@ -391,6 +395,8 @@ static NSString * const kWXAppID = @"";
                 }
             }
         }
+    }else if ([message.name isEqualToString:@"goImService"]){
+        NSLog(@"%@",message.body);
     }
 }
 -(void)smallShopPay:(id)params{}
