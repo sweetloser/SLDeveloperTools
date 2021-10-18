@@ -85,6 +85,8 @@
 @property (copy, nonatomic) NSString *tips;                 //弹出文字
 
 @property (copy, nonatomic) NSNumber *is_follow;          //本人是否已关注
+
+/// 钻石余额
 @property (copy, nonatomic) NSString *act_balance;
 
 @property (strong, nonatomic, readonly) NSMutableArray *advertisements;    //广告

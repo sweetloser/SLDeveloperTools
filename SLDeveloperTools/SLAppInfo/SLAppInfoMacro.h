@@ -26,8 +26,58 @@
 
 //#define LYGLiveURL      //洛英格
 
-#define WLLiveURL      //喂来
+//#define WLLiveURL      //喂来
 
+//#define GNGLiveURL      //呱牛购
+
+//#define HSLiveURL      //红手
+
+#define ShiBeiLiveURL
+
+#ifdef ShiBeiLiveURL
+
+#define New_Http_Base_Url @"http://live.smxlive.net/api.php?"
+#define New_Http_Base_Url_Without @"http://live.smxlive.net/api.php"
+#define New_Http_Base_domain @"http://live.smxlive.net/"
+#define New_Http_Base_make_friend @"http://live.smxlive.net/api/"
+#define SL_HTTP_BASE_AMWAY_URL @""
+#define SL_HTTP_BASE_API_URL @""
+#define SL_HTTP_H5_URL @""
+#define SL_UNIVERSAL_LINK @"https://bh2ouk.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"shibeilive"
+
+#endif
+
+#ifdef HSLiveURL
+
+#define New_Http_Base_Url @"http://live.sawee.shop/api.php?"
+#define New_Http_Base_Url_Without @"http://live.sawee.shop/api.php"
+#define New_Http_Base_domain @"http://live.sawee.shop/"
+#define New_Http_Base_make_friend @"http://live.sawee.shop/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://hsshop.sawee.shop/"
+#define SL_HTTP_BASE_API_URL @"http://hsshop.sawee.shop/"
+#define SL_HTTP_H5_URL @"http://hsshop.sawee.shop/"
+#define SL_UNIVERSAL_LINK @"https://bh2ouk.xinstall.com.cn/tolink/"
+#define ZC_KEY @"d860138a296449a2ae598a859e1b727e"                  //智齿key
+#define Scheme_URL @"hslive"
+
+#endif
+
+#ifdef GNGLiveURL
+
+#define New_Http_Base_Url @"http://api.guaniugo.com/api.php?"
+#define New_Http_Base_Url_Without @"http://api.guaniugo.com/api.php"
+#define New_Http_Base_domain @"http://api.guaniugo.com/"
+#define New_Http_Base_make_friend @"http://api.guaniugo.com/api/"
+#define SL_HTTP_BASE_AMWAY_URL @"http://shop.guaniugo.com/"
+#define SL_HTTP_BASE_API_URL @"http://shop.guaniugo.com/"
+#define SL_HTTP_H5_URL @"http://shop.guaniugo.com/"
+#define SL_UNIVERSAL_LINK @"https://r30b76.xinstall.com.cn/tolink/"
+#define ZC_KEY @"a37a02441dfb4974bbbef7dbbc4a78c8"                  //智齿key
+#define Scheme_URL @"gnglive"
+
+#endif
 
 #ifdef WLLiveURL
 

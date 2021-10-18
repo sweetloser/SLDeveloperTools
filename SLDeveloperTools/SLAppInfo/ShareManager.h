@@ -11,7 +11,7 @@
 
 @interface ShareManager : NSObject
 
-+ (void)shareWithType:(NSString *)type anchor:(NSString *)anchor targetId:(NSString *)targetId roomId:(NSString *)roomId userId:(NSString *)userId currentVC:(UIViewController *)currentVC shareCompletion:(void(^)(NSString *share_channel, NSError *error))shareCompletion;
++ (void)shareWithType:(NSString *)type anchor:(NSString *)anchor targetId:(NSString *)targetId roomId:(NSString *)roomId userId:(NSString *)userId topicId:(NSString *)topicId voteId:(NSString *)vote_id currentVC:(UIViewController *)currentVC shareCompletion:(void(^)(NSString *share_channel, NSError *error))shareCompletion;
 
 + (void)shareWithShareType:(NSString *)shareType targetId:(NSString *)targetId title:(NSString *)title descr:(NSString *)descr thumb:(NSString *)thumb url:(NSString *)url share_key:(NSString *)share_key currentVC:(UIViewController *)currentVC shareCompletion:(void(^)(NSString *share_channel, NSError *error))shareCompletion;
 

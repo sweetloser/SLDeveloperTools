@@ -19,6 +19,7 @@
 #import <Aspects/Aspects.h>
 #import <SobotKit/ZCSobot.h>
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
+#import "ShareManager.h"
 
 static NSString * const kWXAppID = @"";
 
@@ -68,11 +69,41 @@ static NSString * const kWXAppID = @"";
     [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+//    分享
+    if ([self.loadUrl containsString:@"active=vote"]) {
+        UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+        [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        shareButton.titleLabel.font = SLPFFont(14);
+        shareButton.frame = CGRectMake(0, 0, 44, 44);
+        shareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
+    }
+    
     self.view.backgroundColor = [UIColor clearColor];
     
     
 }
 
+-(void)shareButtonAction{
+    
+    NSURL *url = [NSURL URLWithString:self.loadUrl];
+    if (self.wkWebView.URL) {
+        url = self.wkWebView.URL;
+    }
+    NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+    //url中参数的key value
+    NSMutableDictionary *parameter = [NSMutableDictionary dictionary];
+    for (NSURLQueryItem *item in urlComponents.queryItems) {
+        [parameter setValue:item.value forKey:item.name];
+    }
+    
+    [ShareManager shareWithType:@"Vote" anchor:@"" targetId:@"" roomId:@"" userId:@"" topicId:parameter[@"topic_id"] voteId:parameter[@"vote_id"]?parameter[@"vote_id"]:@"" currentVC:self shareCompletion:^(NSString *share_channel, NSError *error) {
+        
+    }];
+}
 - (void)back{
     if ([self.wkWebView canGoBack]) {
         [self.wkWebView goBack];
