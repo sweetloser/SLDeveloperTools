@@ -254,6 +254,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'SLAlipaySDK_NO_UTDID'
     appInfo.dependency 'SLWechatOpenSDK'
     appInfo.dependency 'HPGrowingTextView'
+    appInfo.dependency 'SocketRocket'
     appInfo.dependency 'STPopup'
     appInfo.dependency 'FLAnimatedImage'
     appInfo.dependency 'SobotKit', '~> 3.0.2'

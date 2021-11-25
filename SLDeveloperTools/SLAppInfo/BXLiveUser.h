@@ -179,6 +179,9 @@
 ///宠友新增 - 爱宠品种
 @property(nonatomic,copy)NSString *pet_breed;
 
+/// 酷乐新增 - 是否区域代理商
+@property(nonatomic,copy)NSNumber *agent_is;
+
 + (BOOL)isLogin;
 + (BXLiveUser *)currentBXLiveUser;
 + (void)setCurrentBXLiveUser:(BXLiveUser *)liveUser;

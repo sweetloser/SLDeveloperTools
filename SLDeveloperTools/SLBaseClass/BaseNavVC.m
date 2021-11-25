@@ -8,7 +8,7 @@
 
 #import "BaseNavVC.h"
 #import "../SLMacro/SLMacro.h"
-@interface BaseNavVC ()
+@interface BaseNavVC ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -73,4 +73,11 @@
     [self popViewControllerAnimated:YES];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    //如果手势是触摸的UISlider滑块触发的，侧滑返回手势就不响应
+    if ([touch.view isKindOfClass:[UISlider class]]) {
+        return NO;
+    }
+    return YES;
+}
 @end

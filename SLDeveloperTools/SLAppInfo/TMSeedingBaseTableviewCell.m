@@ -10,9 +10,6 @@
 
 #import "BXLiveUser.h"
 #import "DynSharePopViewManager.h"
-//#import "BXCodeLoginVC.h"
-
-//#import "BXPersonHomeVC.h"
 #import <SDWebImage/SDWebImage.h>
 #import "BXDynDidDisbandAlert.h"
 #import "SLAppInfoConst.h"
@@ -402,7 +399,6 @@
 
 }
 - (void)pushToLoginVC {
-//    [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
     [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.viewController.navigationController}];
 }
 - (void)awakeFromNib {

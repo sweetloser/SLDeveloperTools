@@ -106,8 +106,11 @@
 @property (nonatomic,copy)NSString *teenager_model_show;
 @property (nonatomic,copy)NSString *teenager_model_switch;
 
-//注销账号
+///注销账号
 @property (nonatomic,copy)NSString *account_desc_url;
+
+@property(nonatomic,strong)NSArray *user_center;
+
 + (BOOL)isGetAppInfo;
 + (BXAppInfo *)appInfo;
 + (void)setAppInfo:(BXAppInfo *)appInfo;

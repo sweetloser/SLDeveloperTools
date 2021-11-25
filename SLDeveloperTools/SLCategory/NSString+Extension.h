@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(NSDictionary *)jsonStringToDictionary;
 -(NSArray *)jsonString2Array;
+
+//传入 秒  得到 xx:xx:xx
++(NSString *)sl_HHMMSSFromSSString:(NSString *)totalTime;
++(NSString *)sl_HHMMSSFromSS:(NSTimeInterval)totalTime;
 @end
 
 NS_ASSUME_NONNULL_END

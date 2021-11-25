@@ -126,4 +126,7 @@
 ///优惠券信息
 @property (nonatomic, strong)SLLiveCoupon *coupon;
 
+#pragma mark - 竞技直播新增
+@property(nonatomic,copy)NSString *catory_title;
+
 @end

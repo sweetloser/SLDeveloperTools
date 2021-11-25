@@ -353,6 +353,39 @@ typedef void (^Failure)(NSError *error);        // 失败Blcok
 + (void)getPhoneCodesSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
                         failure:(void(^)(NSError *error))failure;
 
+//用户名密码登录
++ (void)loginWithUserName:(NSString *)userName
+                 password:(NSString *)password
+                phoneCode:(NSString *)phoneCode
+                  success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                  failure:(void(^)(NSError *error))failure;
+
+//重置密码
++ (void)resetPwdWithPassword:(NSString *)password
+              confirmPassword:(NSString *)confirmPassword
+                         code:(NSString *)code
+                        phone:(NSString *)phone
+                    phoneCode:(NSString *)phoneCode
+                      success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                      failure:(void(^)(NSError *error))failure;
+
+//检查直播间
++ (void)verifyRoomWithRoomId:(NSString *)roomId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+//进入直播间
++ (void)enterRoomWithRoomId:(NSString *)roomId password:(NSString *)password success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
+//查询用户信息（弹窗用)
++ (void)liveUserPopWithRoomId:(NSString *)roomId userId:(NSString *)userId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
+//踢人
++ (void)kickingWithRoomId:(NSString *)roomId userId:(NSString *)userId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
+//禁言
++ (void)shutSpeakWithRoomId:(NSString *)roomId userId:(NSString *)userId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
+//场控
++ (void)manageSwitchWithUserId:(NSString *)userId anchorId:(NSString *)anchorId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure;
+
 #pragma mark - tool
 +(NSString *)stringNoNil:(NSString *)str;
 

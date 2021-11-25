@@ -118,8 +118,7 @@
 
 
 #pragma mark- rolling
-- (void)layoutCurrentCellAndWillShowCell
-{
+- (void)layoutCurrentCellAndWillShowCell {
     int count = (int)[self.dataSource numberOfRowsForRollingNoticeView:self];
     if (_cIdx > count - 1) {
         _cIdx = 0;

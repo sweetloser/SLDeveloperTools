@@ -458,7 +458,6 @@
 //        [self.viewController.navigationController pushViewController:vc animated:YES];
     } else {
         UINavigationController *nav = [UIApplication currentTabbarSelectedNavigationController];
-//        [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
         [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":nav}];
     }
 }
@@ -467,11 +466,9 @@
     UINavigationController *nav = [UIApplication currentTabbarSelectedNavigationController];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":userId,@"isShow":@"",@"nav":nav}];
-//    [BXPersonHomeVC toPersonHomeWithUserId:userId isShow:nil nav:self.viewController.navigationController handle:nil];
 }
 -(void)iconImageClick{
     [[NSNotificationCenter defaultCenter] postNotificationName:BXDynMsgDetailModel2PersonHome object:nil userInfo:@{@"user_id":_model.user_id,@"isShow":@"",@"nav":self.viewController.navigationController}];
-//    [BXPersonHomeVC toPersonHomeWithUserId:_model.user_id isShow:nil nav:self.viewController.navigationController handle:nil];
 }
 
 #pragma - mark tool

@@ -94,4 +94,54 @@
     return array;
 }
 
++(NSString *)sl_HHMMSSFromSSString:(NSString *)totalTime{
+
+    NSMutableString *format_time = [NSMutableString new];
+    
+    NSInteger seconds = [totalTime integerValue];
+
+    //format of hour
+    NSInteger hour = seconds/3600;
+    NSString *str_hour = [NSString stringWithFormat:@"%02ld",seconds/3600];
+    if (hour > 0) {
+        [format_time appendString:str_hour];
+        [format_time appendString:@":"];
+    }
+    //format of minute
+    NSInteger minute = (seconds%3600)/60;
+    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(seconds%3600)/60];
+    
+    [format_time appendString:str_minute];
+    [format_time appendString:@":"];
+    
+    NSString *str_second = [NSString stringWithFormat:@"%02ld",seconds%60];
+    [format_time appendString:str_second];
+    
+    return format_time;
+}
+
++(NSString *)sl_HHMMSSFromSS:(NSTimeInterval)totalTime{
+
+    NSMutableString *format_time = [NSMutableString new];
+    
+    NSInteger seconds = ceil(totalTime);
+
+    //format of hour
+    NSInteger hour = seconds/3600;
+    NSString *str_hour = [NSString stringWithFormat:@"%02ld",seconds/3600];
+    if (hour > 0) {
+        [format_time appendString:str_hour];
+        [format_time appendString:@":"];
+    }
+    //format of minute
+    NSInteger minute = (seconds%3600)/60;
+    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(seconds%3600)/60];
+    [format_time appendString:str_minute];
+    [format_time appendString:@":"];
+    NSString *str_second = [NSString stringWithFormat:@"%02ld",seconds%60];
+    [format_time appendString:str_second];
+    
+    return format_time;
+}
+
 @end

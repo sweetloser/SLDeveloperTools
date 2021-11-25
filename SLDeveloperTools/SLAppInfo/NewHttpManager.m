@@ -1263,6 +1263,135 @@ code
     }];
 }
 
+//用户名密码登录
++ (void)loginWithUserName:(NSString *)userName
+                 password:(NSString *)password
+                phoneCode:(NSString *)phoneCode
+                  success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                  failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"username":[self stringNoNil:userName],@"password":[self stringNoNil:password],@"phone_code":[self stringNoNil:phoneCode]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Account.login" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//重置密码
++ (void)resetPwdWithPassword:(NSString *)password
+             confirmPassword:(NSString *)confirmPassword
+                        code:(NSString *)code
+                       phone:(NSString *)phone
+                   phoneCode:(NSString *)phoneCode
+                     success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+                     failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"password":[self stringNoNil:password],@"confirm_password":[self stringNoNil:confirmPassword],@"code":[self stringNoNil:code],@"phone":[self stringNoNil:phone],@"phone_code":[self stringNoNil:phoneCode]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Account.resetPwd" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//检查直播间
++ (void)verifyRoomWithRoomId:(NSString *)roomId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"room_id":[self stringNoNil:roomId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.verifyRoom" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//进入直播间
++ (void)enterRoomWithRoomId:(NSString *)roomId password:(NSString *)password success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"room_id":[self stringNoNil:roomId],@"password":[self stringNoNil:password]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.enterRoom" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//查询用户信息（弹窗用)
++ (void)liveUserPopWithRoomId:(NSString *)roomId userId:(NSString *)userId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"room_id":[self stringNoNil:roomId],@"user_id":[self stringNoNil:userId],@"api_v":@"v2"};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.liveUserPop&api_v=v2" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//踢人
++ (void)kickingWithRoomId:(NSString *)roomId userId:(NSString *)userId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"room_id":[self stringNoNil:roomId],@"user_id":[self stringNoNil:userId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.kicking" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+//禁言
++ (void)shutSpeakWithRoomId:(NSString *)roomId userId:(NSString *)userId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"room_id":[self stringNoNil:roomId],@"user_id":[self stringNoNil:userId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.shutSpeak" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+//场控
++ (void)manageSwitchWithUserId:(NSString *)userId anchorId:(NSString *)anchorId success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success failure:(void(^)(NSError *error))failure {
+    NSDictionary *params = @{@"user_id":[self stringNoNil:userId], @"anchor_id":[self stringNoNil:anchorId]};
+    [[NewHttpManager sharedNetManager] POST:@"s=Room.manageSwitch" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
 //获取手机区号
 + (void)getPhoneCodesSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
                      failure:(void(^)(NSError *error))failure {

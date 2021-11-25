@@ -15,9 +15,12 @@ static BOOL GYRollingDebugLog = NO;
 
 @property (nonatomic, readonly, strong) UIView *contentView;
 @property (nonatomic, readonly, strong) UILabel *textLabel;
+@property (nonatomic, readonly, strong) UIView *textLabelContentView;
 @property (nonatomic, readonly, strong) UIImageView *imageV;
 @property (nonatomic, readonly,   copy) NSString *reuseIdentifier;
 
+/// 内容
+@property(nonatomic,copy)NSString *contentText;
 
 /// 普通用法label，左右间距， 必须>=0, 默认10
 @property (nonatomic, assign) CGFloat textLabelLeading;

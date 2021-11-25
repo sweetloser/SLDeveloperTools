@@ -32,7 +32,65 @@
 
 //#define HSLiveURL      //红手
 
-#define ShiBeiLiveURL
+//#define ShiBeiLiveURL     //拾贝直播
+
+//#define KuLeShiJieURL     //酷乐世界
+
+#define JingJiLiveURL     //竞技直播
+
+//#define HuanZhuHeHeLiveURL     //还珠盒盒
+
+#ifdef HuanZhuHeHeLiveURL
+
+#define New_Http_Base_domain        @"http://api.lllkw.com/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.lllkw.com/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+
+#define SL_UNIVERSAL_LINK @"https://ux538k.xinstall.com.cn/tolink/"
+#define ZC_KEY @"d860138a296449a2ae598a859e1b727e"                  //智齿key
+#define Scheme_URL @"hzhhlive"
+
+#endif
+
+
+#ifdef JingJiLiveURL
+
+#define New_Http_Base_domain        @"http://live.fallowgame.com/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.kuleshijie.cn/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+
+#define SL_UNIVERSAL_LINK @"https://gv10jm.xinstall.com.cn/tolink/"
+#define ZC_KEY @"d860138a296449a2ae598a859e1b727e"                  //智齿key
+#define Scheme_URL @""
+
+#endif
+
+#ifdef KuLeShiJieURL
+
+#define New_Http_Base_domain        @"http://www.kuleshijie.cn/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.kuleshijie.cn/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+
+#define SL_UNIVERSAL_LINK @"https://gv10jm.xinstall.com.cn/tolink/"
+#define ZC_KEY @"d860138a296449a2ae598a859e1b727e"                  //智齿key
+#define Scheme_URL @"klsjlive"
+
+#endif
 
 #ifdef ShiBeiLiveURL
 
@@ -43,7 +101,7 @@
 #define SL_HTTP_BASE_AMWAY_URL @""
 #define SL_HTTP_BASE_API_URL @""
 #define SL_HTTP_H5_URL @""
-#define SL_UNIVERSAL_LINK @"https://bh2ouk.xinstall.com.cn/tolink/"
+#define SL_UNIVERSAL_LINK @"https://2kwajt.xinstall.com.cn/tolink/"
 #define ZC_KEY @""                  //智齿key
 #define Scheme_URL @"shibeilive"
 

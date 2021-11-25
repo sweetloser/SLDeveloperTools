@@ -12,8 +12,12 @@
 
 @property (copy, nonatomic) NSString *channelId;
 @property (copy, nonatomic) NSString *sub_channel;
+/// 图标
 @property (copy, nonatomic) NSString *icon;
+/// 标题
 @property (copy, nonatomic) NSString *name;
+/// 是否需要横屏
+@property(nonatomic,copy)NSNumber *is_transverse;
 @property (copy, nonatomic) NSString *descriptions;
 
 

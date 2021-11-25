@@ -378,7 +378,6 @@
     if ([BXLiveUser isLogin]) {
         [DynSharePopViewManager shareWithVideoId:self.topic_id user_Id:@"" likeNum:@"" is_zan:@"" is_collect:@"" is_follow:@"" vc:self type:1 share_type:@"PlantingGrass"];
     }else{
-//        [BXCodeLoginVC toLoginViewControllerWithNav:self.navigationController];
         [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.navigationController}];
     }
 }

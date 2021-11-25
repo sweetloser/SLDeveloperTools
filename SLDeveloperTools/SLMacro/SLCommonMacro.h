@@ -16,7 +16,13 @@
 #define __UIWidth 375
 #define __UIHeight 812
 #define __ScaleWRatio (__kWidth / __UIWidth)
+
+//适用竖屏
 #define __ScaleWidth(width) (__kWidth / __UIWidth) * (width)
+
+//通用
+#define __GenScaleWidth(width) (MIN(__kWidth,__kHeight) / __UIWidth) * (width)
+
 #define __ScaleHeight(height) (__kHeight / __UIHeight) * height
 
 #define __k5Width                  320
@@ -58,6 +64,8 @@
 #define FromeMessageToVideo @"pushVideo"
 
 #define CImage(image) [UIImage imageNamed:(image)]
+#define CImageInBundle(bundle,image) [UIImage imageNamed:(image)]
+
 
 #define IsNull(__Text) [__Text isKindOfClass:[NSNull class]]
 #define IsEquallString(_Str1,_Str2)  [_Str1 isEqualToString:_Str2]

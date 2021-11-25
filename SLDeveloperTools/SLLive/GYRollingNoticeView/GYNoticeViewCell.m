@@ -54,8 +54,14 @@
         make.width.height.mas_equalTo(15);
     }];
     _imageV.image = [UIImage imageNamed:@"lc_play_laba"];
+    
+    _textLabelContentView = [UIView new];
+    _textLabelContentView.clipsToBounds = YES;
+    [_contentView addSubview:_textLabelContentView];
+    
+    
     _textLabel = [[UILabel alloc]init];
-    [_contentView addSubview:_textLabel];
+    [_textLabelContentView addSubview:_textLabel];
 }
 
 
@@ -81,10 +87,30 @@
             NSLog(@"⚠️⚠️width must >= 0⚠️⚠️");
             width = 0;
         }
-        _textLabel.frame = CGRectMake(lead, 0, width, self.frame.size.height);
+        _textLabelContentView.frame = CGRectMake(lead, 0, width, self.frame.size.height);
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1000, 0)];
+        label.text = self.textLabel.text;
+        label.font = self.textLabel.font;
+        [label sizeToFit];
+        CGFloat textW = CGRectGetWidth(label.frame);
+        self.textLabel.frame = CGRectMake(0, 0, textW, _textLabelContentView.frame.size.height);
+        if (textW>width) {
+//            [self.textLabel.layer removeAllAnimations];
+        //添加帧动画 实现滚动效果 其实就是改变x的值
+            CAKeyframeAnimation* keyFrame = [CAKeyframeAnimation animation];
+            keyFrame.keyPath = @"transform.translation.x";
+            keyFrame.values = @[@(0), @(-textW - 10 + self.textLabelContentView.bounds.size.width)];
+            keyFrame.repeatCount = NSIntegerMax;
+            keyFrame.autoreverses = NO;
+            keyFrame.duration = 0.3 * self.textLabel.text.length*0.8;
+            [self.textLabel.layer addAnimation:keyFrame forKey:@"keyFrame"];
+        }
     }
-    
-    
+}
+
+- (void)setContentText:(NSString *)contentText{
+    _contentText = contentText;
+    self.textLabel.text = contentText;
 }
 
 - (void)dealloc

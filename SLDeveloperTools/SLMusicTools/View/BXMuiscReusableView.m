@@ -168,7 +168,6 @@
 //            [BXPersonHomeVC toPersonHomeWithUserId:_music.user_id isShow:nil nav:self.viewController.navigationController handle:nil];
         }
     } else {
-//        [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
         [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.viewController.navigationController}];
     }
 }
@@ -212,7 +211,6 @@
             [BGProgressHUD showInfoWithMessage:@"操作失败"];
         }];
     } else {
-//        [BXCodeLoginVC toLoginViewControllerWithNav:self.viewController.navigationController];
         [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":self.viewController.navigationController}];
     }
 }

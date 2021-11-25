@@ -36,7 +36,6 @@
             make.bottom.mas_equalTo(0);
         }];
         [self resetControlView];
-        
     }
     return self;
 }
