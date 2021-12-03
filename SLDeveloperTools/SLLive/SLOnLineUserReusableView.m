@@ -42,7 +42,6 @@
             UIButton *guardBtn = [UIButton buttonWithFrame:CGRectMake(40*i, 0, 40, 40) Title:nil Font:CFont(9) Color:nil Image:[UIImage imageNamed:@"守护"] Target:self action:@selector(guardAction) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:guardBtn];
         }
-//        self.backgroundColor = [UIColor randomColor];
     }
     return self;
 }

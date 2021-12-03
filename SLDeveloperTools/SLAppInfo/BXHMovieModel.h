@@ -78,6 +78,17 @@
 
 @property (nonatomic, assign) CGFloat replayTimeSp;
 
+#pragma mark - 赢销客新增    视频红包
+/// 金额
+@property(nonatomic,copy)NSString *price;
+/// 数量
+@property(nonatomic,copy)NSString *num;
+/// 红包金额
+@property(nonatomic,copy)NSString *red_price;
+/// 红包id
+@property(nonatomic,copy)NSString *red_id;
+
+
 @property (nonatomic, copy) void (^didFinishedLayout)();
 @property (nonatomic, assign) CGFloat bottomSpace;
 

@@ -77,6 +77,7 @@ MJCodingImplementation
     self.charm_desc = h5_urlsDic[@"charm_desc"];
     self.task_center = h5_urlsDic[@"task_center"];
     self.team = h5_urlsDic[@"team"];
+    self.score_transfer = h5_urlsDic[@"score_transfer"];
     self.agent = h5_urlsDic[@"agent"];
     self.create_agent = h5_urlsDic[@"create_agent"];
     

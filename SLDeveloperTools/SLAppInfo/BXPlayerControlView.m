@@ -29,6 +29,8 @@
 #import "BXLiveUser.h"
 #import "NewHttpManager.h"
 #import "../SLMaskTools/SLMaskTools.h"
+#import <SDAutoLayout/SDAutoLayout.h>
+
 @interface BXPlayerControlView ()
 
 @property (strong, nonatomic) UIImageView *coverIv;
@@ -53,6 +55,9 @@
 @property (nonatomic, assign) NSInteger start_time;
 @property (nonatomic, assign) NSInteger duration;
 @property (nonatomic, assign) NSInteger type;
+
+/// 红包按钮
+@property(nonatomic,strong)UIButton *redEnvelopeButton;
 
 @end
 
@@ -193,6 +198,11 @@
             make.height.mas_equalTo(93);
         }];
         
+//        红包按钮
+        [self addSubview:self.redEnvelopeButton];
+        self.redEnvelopeButton.sd_layout.rightSpaceToView(self, __ScaleWidth(20)).topSpaceToView(self, __kTopAddHeight+64+__ScaleWidth(5)).heightIs(__ScaleWidth(89)).widthIs(__ScaleWidth(50));
+        self.redEnvelopeButton.hidden = YES;
+        
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
         longPress.minimumPressDuration = 1;
         [self addGestureRecognizer:longPress];
@@ -214,7 +224,13 @@
     [super layoutSubviews];
     _coverIv.frame = self.player.currentPlayerManager.view.bounds;
 }
-
+#pragma mark - UI交互
+-(void)redEnvelopeButtonAction{
+    NSLog(@"抢红包");
+    if (self.showRedEnvelopeViewBlock) {
+        self.showRedEnvelopeViewBlock(self.video);
+    }
+}
 - (void)sliderTouchDownAction:(UISlider *)sender {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hiddenSlider) object:nil];
     sender.ds_Tag = 1;
@@ -293,6 +309,7 @@
     }];
 }
 
+
 - (void)showCoverURL:(NSString *)coverUrl scalingMode:(NSInteger)scalingMode{
     [self resetControlView];
     _coverIv.contentMode = scalingMode;
@@ -323,6 +340,11 @@
         [self removeTreasureChestView];
     }
     
+    if (![video isEqual:_video] && video.red_id.integerValue != 0 && video.red_price.integerValue != 0) {
+        self.redEnvelopeButton.hidden = YES;
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showRedEnvelopeButton) object:nil];
+        [self performSelector:@selector(showRedEnvelopeButton) afterDelay:15];
+    }
     _video = video;
     
     if (isDisPlayRewardTopThreeView) {
@@ -343,6 +365,11 @@
     };
 
     _start_time = [TimeHelper getTimeSp] * 1000;
+    
+}
+-(void)showRedEnvelopeButton{
+    NSLog(@"显示红包按钮");
+    self.redEnvelopeButton.hidden = NO;
 }
 
 - (void)updateRewardTopThreeViewWithVideo:(BXHMovieModel *)video {
@@ -652,13 +679,14 @@
     }
 }
 
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+#pragma mark - 懒加载
+- (UIButton *)redEnvelopeButton{
+    if (!_redEnvelopeButton) {
+        _redEnvelopeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_redEnvelopeButton setImage:[UIImage imageNamed:@"red_envelope_btn"] forState:UIControlStateNormal];
+        [_redEnvelopeButton addTarget:self action:@selector(redEnvelopeButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _redEnvelopeButton;
 }
-*/
 
 @end

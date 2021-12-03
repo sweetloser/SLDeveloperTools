@@ -20,10 +20,16 @@
 #import <SobotKit/ZCSobot.h>
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import "ShareManager.h"
+#import <SDAutoLayout/SDAutoLayout.h>
+
 
 static NSString * const kWXAppID = @"";
 
 @interface BaseWebVC ()<WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
+
+@property(nonatomic,strong)UIView *navigationView;
+@property(nonatomic,strong)UIButton *backButton;
+@property(nonatomic,strong)UILabel *titleLabel;
 
 @end
 
@@ -57,35 +63,35 @@ static NSString * const kWXAppID = @"";
     if ([self isMemberOfClass:[BaseWebVC class]]) {
         [self createData];
     }
-    [self createNav];
+//    [self createNav];
+    self.view.backgroundColor = sl_BGColors;
+    self.fd_prefersNavigationBarHidden = YES;
 }
--(void)createNav{
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, 44, 44);
-    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
-//    分享
-    if ([self.loadUrl containsString:@"active=vote"]) {
-        UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-        [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        shareButton.titleLabel.font = SLPFFont(14);
-        shareButton.frame = CGRectMake(0, 0, 44, 44);
-        shareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
-    }
-    
-    self.view.backgroundColor = [UIColor clearColor];
-    
-    
-}
+//-(void)createNav{
+//
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+//    button.frame = CGRectMake(0, 0, 44, 44);
+//    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+//    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+//
+////    分享
+//    if ([self.loadUrl containsString:@"active=vote"]) {
+//        UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [shareButton setTitle:@"分享" forState:UIControlStateNormal];
+//        [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        shareButton.titleLabel.font = SLPFFont(14);
+//        shareButton.frame = CGRectMake(0, 0, 44, 44);
+//        shareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//        [shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
+//    }
+//
+//    self.view.backgroundColor = sl_BGColors;
+//}
 
 -(void)shareButtonAction{
     
@@ -144,18 +150,16 @@ static NSString * const kWXAppID = @"";
     [_userContentController addScriptMessageHandler:self name:@"OOXX"];
     config.userContentController = _userContentController;
     
-    self.wkWebView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
+    self.wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, self.navigationView.height, SCREEN_WIDTH, self.view.height-self.navigationView.height) configuration:config];
     if (@available(iOS 11.0, *)) {
         self.wkWebView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        // Fallback on earlier versions
     }
     self.wkWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.wkWebView.backgroundColor = [UIColor whiteColor];
     self.wkWebView.navigationDelegate = self;
     self.wkWebView.UIDelegate = self;
     [self.wkWebView setCustomUserAgent:@"dsbrowser_ios"];
-    [self.view addSubview:self.wkWebView];
+    [self.view sd_addSubviews:@[self.navigationView,self.wkWebView]];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]];
     [self.wkWebView loadRequest:request];
     
@@ -539,11 +543,7 @@ static NSString * const kWXAppID = @"";
     [webView evaluateJavaScript:[NSString stringWithFormat:@"document.title"] completionHandler:^(id _Nullable response, NSError * _Nullable error) {
         if (response) {
             NSString *title = [NSString stringWithFormat:@"%@",response];
-//            if (self.isHiddenNav) {
-//            }else{
-                self.navigationItem.title = title;
-
-//            }
+            self.titleLabel.text = title;
         }
     }];
     NSString *js = [NSString stringWithFormat:@"getToken(%@)", [BXAppInfo appInfo].access_token];
@@ -564,6 +564,35 @@ static NSString * const kWXAppID = @"";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 懒加载
+- (UIView *)navigationView{
+    if (!_navigationView) {
+        _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, __kTopAddHeight+64)];
+        _navigationView.backgroundColor = sl_BGColors;
+        
+        [_navigationView sd_addSubviews:@[self.backButton,self.titleLabel]];
+        self.backButton.sd_layout.leftEqualToView(_navigationView).bottomEqualToView(_navigationView).heightIs(44).widthIs(50);
+        self.titleLabel.sd_layout.centerYEqualToView(self.backButton).centerXEqualToView(_navigationView).widthIs(200).heightIs(25);
+    }
+    return _navigationView;
+}
+
+- (UIButton *)backButton{
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
+}
+- (UILabel *)titleLabel{
+    if (!_titleLabel) {
+        _titleLabel = [UILabel createLabelWithFrame:CGRectZero BackgroundColor:SLClearColor Text:@"" Font:SLBFont(18)];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _titleLabel;
 }
 
 @end

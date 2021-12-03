@@ -12,9 +12,10 @@
 
 @interface BXPlayerControlView : UIView <ZFPlayerMediaControl>
 
-@property (nonatomic, strong) BXHMovieModel *video;
-@property (nonatomic, copy) void (^likeAction)();
-@property (nonatomic, copy) void (^didLongPressAction)(CGPoint point);
+@property(nonatomic,strong)BXHMovieModel *video;
+@property(nonatomic,copy)void(^likeAction)();
+@property(nonatomic,copy)void(^didLongPressAction)(CGPoint point);
+@property(nonatomic,copy)void(^showRedEnvelopeViewBlock)(BXHMovieModel *videoModel);
 
 //type：0 有底部 1：无底部 进度条无凸起
 - (instancetype)initWithFrame:(CGRect)frame type:(NSInteger)type;

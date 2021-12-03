@@ -31,6 +31,9 @@
 @property (copy, nonatomic) NSString *agent;               //家族
 @property (copy, nonatomic) NSString *create_agent;               //家族驻地
 
+#pragma mark - 积分转换
+@property(nonatomic,copy)NSString *score_transfer;
+
 @property (copy, nonatomic) NSString *service_agree;
 @property (copy, nonatomic) NSString *anchor_agree;
 

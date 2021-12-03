@@ -44,7 +44,7 @@
     
     _location = [[BXLocation alloc]init];
     NSDictionary *locationDic = jsonDic[@"location"];
-    if (locationDic && locationDic.count) {
+    if (locationDic && locationDic.isDictionary && locationDic.count) {
         [_location updateWithJsonDic:locationDic];
     }
     

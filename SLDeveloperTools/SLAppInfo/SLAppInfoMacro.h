@@ -36,9 +36,47 @@
 
 //#define KuLeShiJieURL     //酷乐世界
 
-#define JingJiLiveURL     //竞技直播
+//#define JingJiLiveURL     //竞技直播
 
 //#define HuanZhuHeHeLiveURL     //还珠盒盒
+
+#define YingXiaoKeLiveURL     //赢销客
+
+//#define HCLMLiveURL     //辉创联盟
+
+#ifdef HCLMLiveURL
+
+#define New_Http_Base_domain        @"http://api.huichuanglianmeng.com/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.huichuanglianmeng.com/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+
+#define SL_UNIVERSAL_LINK @"https://kd5iup.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"hclmlive"
+
+#endif
+
+#ifdef YingXiaoKeLiveURL
+
+#define New_Http_Base_domain        @"http://api.zhongnaruiheng.com/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.zhongnaruiheng.com/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+
+#define SL_UNIVERSAL_LINK @"https://ux538k.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"yxklive"
+
+#endif
 
 #ifdef HuanZhuHeHeLiveURL
 
