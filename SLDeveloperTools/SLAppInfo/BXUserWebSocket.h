@@ -46,6 +46,10 @@
 - (void)superClose:(NSDictionary *)dict;
 //15、用户退出直播间事件
 - (void)exit:(NSDictionary *)dict;
+// 守护列表
+- (void)guardlist:(NSDictionary *)dict;
+//观众列表
+- (void)allAudienceList:(NSDictionary *)dict;
 //公屏广播事件
 - (void)broadCast:(NSDictionary *)dict;
 //关注

@@ -23,6 +23,4 @@
 
 -(void)updateGuardData:(NSArray *)guardData;
 
--(void)updateListData;
-
 @end

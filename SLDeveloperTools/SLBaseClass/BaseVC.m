@@ -32,9 +32,22 @@
     if (self.navigationController) {
      self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
     }
-    [self.navigationController.navigationBar setShadowImage:[UIImage yy_imageWithColor:PageBackgroundColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage yy_imageWithColor:PageBackgroundColor] forBarMetrics:UIBarMetricsDefault];
-    self.view.backgroundColor = PageBackgroundColor;
+    
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.barTintColor = sl_BGColors;
+    //ios 15系统
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appperance = [[UINavigationBarAppearance alloc]init];
+        //添加背景色
+        appperance.backgroundColor = sl_BGColors;
+        appperance.shadowImage = [[UIImage alloc]init];
+        appperance.shadowColor = sl_divideLineColor;
+        //设置字体颜色大小
+        [appperance setTitleTextAttributes:@{NSForegroundColorAttributeName:sl_textColors,NSFontAttributeName:SLBFont(18)}];
+        self.navigationController.navigationBar.standardAppearance = appperance;
+        self.navigationController.navigationBar.scrollEdgeAppearance = appperance;
+    }
+    self.view.backgroundColor = sl_BGColors;
     
 }
 

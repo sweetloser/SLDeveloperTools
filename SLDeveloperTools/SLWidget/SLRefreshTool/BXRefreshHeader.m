@@ -7,7 +7,7 @@
 //
 
 #import "BXRefreshHeader.h"
-#import "../../SLCategory/UIColor+Kit.h"
+#import "../../SLCategory/SLCategory.h"
 #import "../../SLMacro/SLMacro.h"
 @interface BXRefreshHeader ()
 
@@ -37,7 +37,7 @@ CGRect kBounds = {0,0,25,25};
 {
     [super prepare];
     
-    self.mj_h = 60;
+    self.height = 60;
     
     _shapeLayer = [self creatCircleShapeLayerWithBounds:kBounds startAngle:M_PI / 4 endAngle:M_PI * 2 clockwise:YES];
     [self.circleView.layer addSublayer:_shapeLayer];
@@ -71,11 +71,11 @@ CGRect kBounds = {0,0,25,25};
 - (void)placeSubviews
 {
     [super placeSubviews];
-    self.logoView.center = CGPointMake(self.mj_w/2.0, self.mj_h/2.0 + 10);// +10是为了logoView在中心点往下一点的位置，方便观看
+    self.logoView.center = CGPointMake(self.width/2.0, self.height/2.0 + 10);// +10是为了logoView在中心点往下一点的位置，方便观看
     self.logoView.bounds = kBounds;
     self.circleView.frame = self.logoView.bounds;
     
-    _titleLb.frame = CGRectMake(0, self.logoView.mj_y - 24, self.mj_w, 20);
+    _titleLb.frame = CGRectMake(0, self.logoView.y - 24, self.width, 20);
 }
 
 #pragma mark - setter & getter

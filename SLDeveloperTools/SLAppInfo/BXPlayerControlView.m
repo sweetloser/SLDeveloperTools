@@ -340,10 +340,13 @@
         [self removeTreasureChestView];
     }
     
-    if (![video isEqual:_video] && video.red_id.integerValue != 0 && video.red_price.integerValue != 0) {
+    if (![video isEqual:_video]) {
         self.redEnvelopeButton.hidden = YES;
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showRedEnvelopeButton) object:nil];
         [self performSelector:@selector(showRedEnvelopeButton) afterDelay:15];
+    }
+    if (video.red_id.integerValue == 0 || video.red_price.integerValue == 0) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showRedEnvelopeButton) object:nil];
     }
     _video = video;
     

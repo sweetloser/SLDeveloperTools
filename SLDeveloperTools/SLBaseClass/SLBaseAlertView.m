@@ -38,14 +38,6 @@
 }
 
 -(void)hiddenView;{
-//    [UIView animateWithDuration:0.15f delay:0.0f options:UIViewAnimationOptionCurveEaseIn animations:^{
-//        CGRect frame = self.contentView.frame;
-//        frame.origin.y = frame.origin.y + frame.size.height;
-//        self.contentView.frame = frame;
-//    }
-//    completion:^(BOOL finished) {
-//        [self removeFromSuperview];
-//    }];
     [self removeFromSuperview];
 }
 

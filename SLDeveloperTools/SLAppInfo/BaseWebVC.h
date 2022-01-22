@@ -15,7 +15,9 @@
 @property (strong, nonatomic) UIProgressView *progressView;
 @property (nonatomic,copy) NSString *loadUrl;
 
+/// 是否隐藏导航栏
 @property (assign, nonatomic)BOOL isHiddenNav;
+
 - (void)createData;
 - (void)back;
 -(void)uploadWithType:(NSString *)type;

@@ -355,22 +355,20 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(adminSystemMsg:)]) {
             [self.delegate adminSystemMsg:dict];
         }
+    }else if ([emit isEqualToString:@"guardlist"]) {
+        NSLog(@"%@",dict);
+        if (self.delegate && [self.delegate respondsToSelector:@selector(guardlist:)]) {
+            [self.delegate guardlist:dict];
+        }
+    }else if ([emit isEqualToString:@"allAudienceList"]) {
+        NSLog(@"aaa");
+        /**
+         数据类型:{"code":0,data:[{"user_id":10004419,"gender":1,"nickname":"我的昵称很长","level":55}],"msg":"ok","emit":"allAudienceList"}
+         */
+        if (self.delegate && [self.delegate respondsToSelector:@selector(allAudienceList:)]) {
+            [self.delegate allAudienceList:dict];
+        }
     }
-/*
- {
-     code : 0,
-     data : {
-     live_status : 4,
-     room_id : 11344,
-     goods : [
-     {
-     goods_id : 27
- }
- ]
- },
-     msg : 置顶成功,
-     emit : switchTopGoods
- }*/
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean{

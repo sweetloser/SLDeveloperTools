@@ -272,27 +272,24 @@ static NSString * const kWXAppID = @"";
 //移除js方法
 - (void)removeJSFunction {
     
+    [self.bridge removeHandler:@"goGoodsDetail"];
     
+    [self.bridge removeHandler:@"goSeckillGoodsDetail"];
     
-    {
-        [self.bridge removeHandler:@"goGoodsDetail"];
-        
-        [self.bridge removeHandler:@"goSeckillGoodsDetail"];
-        
-        [self.bridge removeHandler:@"getfinish"];
-        
-        [self.bridge removeHandler:@"goToShop"];
-        
-        [self.bridge removeHandler:@"openAccount"];
-        
-        [self.bridge removeHandler:@"openRecharge"];
-        
-        [self.bridge removeHandler:@"goToWithdraw"];
-        
-        [self.bridge removeHandler:@"customerKefu"];
-        
-        [self.bridge removeHandler:@"goMyCoupon"];
-    }
+    [self.bridge removeHandler:@"getfinish"];
+    
+    [self.bridge removeHandler:@"goToShop"];
+    
+    [self.bridge removeHandler:@"openAccount"];
+    
+    [self.bridge removeHandler:@"openRecharge"];
+    
+    [self.bridge removeHandler:@"goToWithdraw"];
+    
+    [self.bridge removeHandler:@"customerKefu"];
+    
+    [self.bridge removeHandler:@"goMyCoupon"];
+    
     [self.bridge removeHandler:@"navigateBack"];
     
     [self.bridge removeHandler:@"openAccount"];

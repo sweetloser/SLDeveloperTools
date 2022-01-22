@@ -9,8 +9,7 @@
 #import "BXPayManager.h"
 @implementation BXPayManager
 
-+ (BXPayManager *)getInstance
-{
++ (BXPayManager *)getInstance {
     static BXPayManager *instance = nil;
     
     static dispatch_once_t onceToken;
@@ -24,28 +23,22 @@
 }
 
 //微信
-+ (BOOL)isWXAppInstalled
-{
++ (BOOL)isWXAppInstalled {
     return [WXApi isWXAppInstalled];
 }
-+ (BOOL)wechatRegisterAppWithAppId:(NSString *)appId
-{
-//    return [WXApi registerApp:appId];
++ (BOOL)wechatRegisterAppWithAppId:(NSString *)appId {
 
     BOOL isOk = [WXApi registerApp:appId universalLink:SL_UNIVERSAL_LINK];
-    
     return isOk;
 }
 + (BOOL)wechatHandCKpenURL:(NSURL *)url
 {
     return [WXApi handleOpenURL:url delegate:[BXPayManager getInstance]];
 }
-- (void)wechatPayWithAppId:(NSString *)appId partnerId:(NSString *)partnerId prepayId:(NSString *)prepayId package:(NSString *)package nonceStr:(NSString *)nonceStr timeStamp:(NSString *)timeStamp sign:(NSString *)sign respBlock:(BXPayManagerRespBlock)block
-{
+- (void)wechatPayWithAppId:(NSString *)appId partnerId:(NSString *)partnerId prepayId:(NSString *)prepayId package:(NSString *)package nonceStr:(NSString *)nonceStr timeStamp:(NSString *)timeStamp sign:(NSString *)sign respBlock:(BXPayManagerRespBlock)block {
     self.wechatRespBlock = block;
     
-    if([WXApi isWXAppInstalled])
-    {
+    if([WXApi isWXAppInstalled]) {
         PayReq *req = [[PayReq alloc] init];
         req.openID = appId;
         req.partnerId = partnerId;
@@ -66,16 +59,12 @@
 }
 
 #pragma mark - WXApiDelegate
-- (void)onResp:(BaseResp*)resp
-{
-    if([resp isKindOfClass:[PayResp class]])
-    {
-        switch (resp.errCode)
-        {
+- (void)onResp:(BaseResp*)resp {
+    if([resp isKindOfClass:[PayResp class]]) {
+        switch (resp.errCode) {
             case 0:
             {
-                if(self.wechatRespBlock)
-                {
+                if(self.wechatRespBlock) {
                     self.wechatRespBlock(0, @"支付成功");
                 }
                 

@@ -19,53 +19,104 @@
 @end
 @implementation ListCollection
 
--(void)updateListData{
-    [self loadData:self.room_id];
-}
-
-//懒加载
--(NSMutableArray *)listArray{
-    if (!_listArray) {
-        _listArray = [NSMutableArray array];
-    }
-    return _listArray;
-}
-
+#pragma mark - 生命周期
 -(instancetype)initWithID:(NSString *)roomId{
     self = [super init];
     if (self) {
         [self listCollectionview];
         self.room_id = roomId;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateOnLineNum) name:@"updateOnLineNum" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAllAudienceList:) name:@"updateAllAudienceList" object:nil];
     }
     return self;
 }
--(void)loadData:(NSString *)room_id{
-    
-    NSDictionary *params = @{@"room_id":room_id};
-    [[NewHttpManager sharedNetManager] POST:@"s=Room.onlineAudience" parameters:params success:^(id  _Nonnull responseObject) {
-        NSString *code = responseObject[@"code"];
-        if (![code integerValue]) {
-            [self.listArray removeAllObjects];
-            NSArray *data = responseObject[@"data"];
-            if ([data isArray]) {
-                if (data && data.count) {
-                    for (NSDictionary *dic in data) {
-                        listModel *model = [listModel modelWithDic:dic];
-                        [self.listArray addObject:model];
-                    }
-                }
-            }
-        }
-        [self.listCollectionview reloadData];
-    } failure:^(NSError * _Nonnull error) {
-    }];
-}
--(void)updateOnLineNum{
-    [self loadData:self.room_id];
-}
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _gradientLayer.frame = _listCollectionview.frame;
+}
+
+#pragma mark - 交互
+
+-(void)guardAction{
+    if (self.headerGuardClick) {
+        self.headerGuardClick();
+    }
+}
+#pragma mark - 更新守护列表
+-(void)updateGuardData:(NSArray *)guardData{
+//    更新守护
+    self.guardData = [NSArray arrayWithArray:guardData];
+    [self.hV updateGuardData:self.guardData];
+}
+#pragma mark - UICollectionView代理方法
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.listArray.count;
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 0;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 0;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(40*3,40);
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        _hV = (SLOnLineUserReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"SLOnLineUserReusableView" forIndexPath:indexPath];
+//        3个守护
+        WS(weakSelf);
+        _hV.guardActionBlock = ^{
+            [weakSelf guardAction];
+        };
+        if (self.guardData) {
+            [_hV updateGuardData:self.guardData];
+        }
+        return _hV;
+    }
+    return nil;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    listCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"listCell" forIndexPath:indexPath];
+    listModel *model = self.listArray[indexPath.row];
+    cell.model = model;
+    [cell loadCellData:model indexPath:indexPath];
+    return cell;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    listModel *model = [self.listArray objectAtIndex:indexPath.row];
+    NSDictionary *subdic  = [NSDictionary dictionaryWithObjects:@[model.user_id,model.nickname] forKeys:@[@"id",@"name"]];
+    [self.delegate GetInformessage:subdic];
+}
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(35,40);
+}
+
+#pragma mark - 通知
+-(void)updateAllAudienceList:(NSNotification *)noti{
+    NSArray *list = noti.userInfo[@"allAudienceList"];
+    [self.listArray removeAllObjects];
+    for (NSDictionary *userDict in list) {
+        listModel *model = [listModel modelWithDic:userDict];
+        [self.listArray addObject:model];
+    }
+    [self.listCollectionview reloadData];
+}
+#pragma mark - 懒加载
+-(NSMutableArray *)listArray{
+    if (!_listArray) {
+        _listArray = [NSMutableArray array];
+    }
+    return _listArray;
 }
 -(UICollectionView *)listCollectionview{
     if (!_listCollectionview) {
@@ -96,85 +147,6 @@
     }
     return _listCollectionview;
 
-}
-
--(void)guardAction{
-    if (self.headerGuardClick) {
-        self.headerGuardClick();
-    }
-}
-
--(void)updateGuardData:(NSArray *)guardData;{
-    
-//    更新守护
-    self.guardData = [NSArray arrayWithArray:guardData];
-    
-    [self.hV updateGuardData:self.guardData];
-    
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    _gradientLayer.frame = _listCollectionview.frame;
-}
-//用户列表
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.listArray.count;
-}
-//定义section的个数
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
-//cell的最小行间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 0;
-}
-//cell的最小列间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 0;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-//    if (self.listArray.count == 0) {
-    return CGSizeMake(40*3,40);
-//    }
-//    return CGSizeZero;
-}
-
-//返回一个头部视图（当当前没有人再直播间的时候，显示头部视图，
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        _hV = (SLOnLineUserReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"SLOnLineUserReusableView" forIndexPath:indexPath];
-//        3个守护
-        WS(weakSelf);
-        _hV.guardActionBlock = ^{
-            [weakSelf guardAction];
-        };
-        if (self.guardData) {
-            [_hV updateGuardData:self.guardData];
-        }
-        return _hV;
-    }
-    return nil;
-}
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    listCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"listCell" forIndexPath:indexPath];
-    listModel *model = self.listArray[indexPath.row];
-    cell.model = model;
-    [cell loadCellData:model indexPath:indexPath];
-    return cell;
-}
-//UICollectionView被选中时调用的方法
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    listModel *model = [self.listArray objectAtIndex:indexPath.row];
-    NSDictionary *subdic  = [NSDictionary dictionaryWithObjects:@[model.user_id,model.nickname] forKeys:@[@"id",@"name"]];
-    [self.delegate GetInformessage:subdic];
-}
-//每个cell的大小
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(35,40);
 }
 
 @end

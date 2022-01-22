@@ -7,7 +7,7 @@
 //
 
 #import "BXRefreshFooter.h"
-#import "../../SLCategory/UIColor+Kit.h"
+#import "../../SLCategory/SLCategory.h"
 #import "../../SLMacro/SLMacro.h"
 @interface BXRefreshFooter ()
 
@@ -54,10 +54,10 @@ CGRect kABounds = {0,0,25,25};
 #pragma mark 在这里设置子控件的位置和尺寸
 - (void)placeSubviews {
     [super placeSubviews];
-    self.logoView.center = CGPointMake(self.mj_w/2.0, self.mj_h/2.0);// -3是为了logoView在中心点往下一点的位置，方便观看
+    self.logoView.center = CGPointMake(self.width/2.0, self.height/2.0);// -3是为了logoView在中心点往下一点的位置，方便观看
     self.logoView.bounds = kABounds;
     self.circleView.frame = self.logoView.bounds;
-    _noMoreDataLb.frame = CGRectMake(0, self.logoView.mj_y + self.logoView.mj_h + 2, self.mj_w, 20);
+    _noMoreDataLb.frame = CGRectMake(0, self.logoView.y + self.logoView.height + 2, self.width, 20);
 }
 
 #pragma mark - setter & getter

@@ -31,6 +31,8 @@ static NSString * const kWXAppID = @"";
 @property(nonatomic,strong)UIButton *backButton;
 @property(nonatomic,strong)UILabel *titleLabel;
 
+@property(nonatomic,strong)UIButton *shareButton;
+
 @end
 
 @implementation BaseWebVC
@@ -41,58 +43,22 @@ static NSString * const kWXAppID = @"";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [self.navigationController.navigationBar setShadowImage:[UIImage yy_imageWithColor:[UIColor sl_colorWithHex:0xDFE9E9]]];
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    NSDictionary *attributes = @{NSForegroundColorAttributeName:WhiteBgTitleColor, NSFontAttributeName:CBFont(20)};
-    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    [self.navigationController.navigationBar setShadowImage:[UIImage yy_imageWithColor:PageBackgroundColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage yy_imageWithColor:PageBackgroundColor] forBarMetrics:UIBarMetricsDefault];
-    NSDictionary *attributes = @{NSForegroundColorAttributeName:MainTitleColor, NSFontAttributeName:CBFont(20)};
-    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.fd_prefersNavigationBarHidden = YES;
     if ([self isMemberOfClass:[BaseWebVC class]]) {
         [self createData];
     }
-//    [self createNav];
     self.view.backgroundColor = sl_BGColors;
-    self.fd_prefersNavigationBarHidden = YES;
 }
-//-(void)createNav{
-//
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [button setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
-//    button.frame = CGRectMake(0, 0, 44, 44);
-//    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [button setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-//    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-//
-////    分享
-//    if ([self.loadUrl containsString:@"active=vote"]) {
-//        UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-//        [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        shareButton.titleLabel.font = SLPFFont(14);
-//        shareButton.frame = CGRectMake(0, 0, 44, 44);
-//        shareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//        [shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:UIControlEventTouchUpInside];
-//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
-//    }
-//
-//    self.view.backgroundColor = sl_BGColors;
-//}
 
+#pragma mark - UI交互
 -(void)shareButtonAction{
     
     NSURL *url = [NSURL URLWithString:self.loadUrl];
@@ -128,17 +94,7 @@ static NSString * const kWXAppID = @"";
     }
 }
 
-#pragma mark - ***** 进度条
-- (UIProgressView *)progressView {
-    if (!_progressView) {
-        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3.0)];
-        _progressView.progressTintColor = sl_webProgressTintColor;
-        [self.view addSubview:_progressView];
-    }
-    return _progressView;
-}
-
-#pragma mark - ***** UI创建
+#pragma mark - UI创建
 - (void)createData {
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     config.preferences = [[WKPreferences alloc] init];
@@ -159,14 +115,13 @@ static NSString * const kWXAppID = @"";
     self.wkWebView.navigationDelegate = self;
     self.wkWebView.UIDelegate = self;
     [self.wkWebView setCustomUserAgent:@"dsbrowser_ios"];
-    [self.view sd_addSubviews:@[self.navigationView,self.wkWebView]];
+    
+    [self.view sd_addSubviews:@[self.navigationView,self.wkWebView,self.progressView]];
+    self.progressView.sd_layout.leftEqualToView(self.wkWebView).rightEqualToView(self.wkWebView).heightIs(3).topEqualToView(self.wkWebView);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl]];
     [self.wkWebView loadRequest:request];
     
     [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
-    
-//    [self.wkWebView evaluateJavaScript:@"document.documentElement.style.webkitTouchCallout='createGuildPullImage';"completionHandler:nil];
-//    [self.wkWebView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='createGuildPullImage';"completionHandler:nil];
 
     __weak WKWebView *wkwebView = self.wkWebView;
     // 添加下拉刷新控件
@@ -174,10 +129,6 @@ static NSString * const kWXAppID = @"";
         [wkwebView reload];
     }];
     self.wkWebView.scrollView.mj_header = header;
-    
-//    [WKWebViewJavascriptBridge enableLogging];
-//    self.bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.wkWebView];
-//    [self.bridge setWebViewDelegate:self];
     
     [self registJSFunction];
 }
@@ -279,30 +230,25 @@ static NSString * const kWXAppID = @"";
 //移除js方法
 - (void)removeJSFunction {
     
-    {
-        [self.userContentController removeScriptMessageHandlerForName:@"goGoodsDetail"];
-        
-        [self.userContentController removeScriptMessageHandlerForName:@"goSeckillGoodsDetail"];
-        
-        [self.userContentController removeScriptMessageHandlerForName:@"getfinish"];
-        
-        [self.userContentController removeScriptMessageHandlerForName:@"goToShop"];
-        
-        [self.userContentController removeScriptMessageHandlerForName:@"openAccount"];
-        
-        [self.userContentController removeScriptMessageHandlerForName:@"openRecharge"];
-        
-        [self.userContentController removeScriptMessageHandlerForName:@"goToWithdraw"];
-        
-        [self.userContentController removeScriptMessageHandlerForName:@"customerKefu"];
-        [self.userContentController removeScriptMessageHandlerForName:@"customerPhoneKefu"];
-        [self.userContentController removeScriptMessageHandlerForName:@"toImService"];
+    [self.userContentController removeScriptMessageHandlerForName:@"goGoodsDetail"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"goSeckillGoodsDetail"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"getfinish"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"goToShop"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"openAccount"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"openRecharge"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"goToWithdraw"];
+    
+    [self.userContentController removeScriptMessageHandlerForName:@"customerKefu"];
+    [self.userContentController removeScriptMessageHandlerForName:@"customerPhoneKefu"];
+    [self.userContentController removeScriptMessageHandlerForName:@"toImService"];
 
-        [self.userContentController removeScriptMessageHandlerForName:@"goMyCoupon"];
- 
-    }
-    
-    
+    [self.userContentController removeScriptMessageHandlerForName:@"goMyCoupon"];
     [self.userContentController removeScriptMessageHandlerForName:@"navigateBack"];
     [self.userContentController removeScriptMessageHandlerForName:@"openAccount"];
     [self.userContentController removeScriptMessageHandlerForName:@"share"];
@@ -570,11 +516,20 @@ static NSString * const kWXAppID = @"";
 - (UIView *)navigationView{
     if (!_navigationView) {
         _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, __kTopAddHeight+64)];
+        if (self.isHiddenNav) {
+            _navigationView.height-=(64+__kTopAddHeight);
+        }
         _navigationView.backgroundColor = sl_BGColors;
         
         [_navigationView sd_addSubviews:@[self.backButton,self.titleLabel]];
         self.backButton.sd_layout.leftEqualToView(_navigationView).bottomEqualToView(_navigationView).heightIs(44).widthIs(50);
         self.titleLabel.sd_layout.centerYEqualToView(self.backButton).centerXEqualToView(_navigationView).widthIs(200).heightIs(25);
+        
+        if ([self.loadUrl containsString:@"active=vote"]) {
+            [_navigationView addSubview:self.shareButton];
+            self.shareButton.sd_layout.centerYEqualToView(self.backButton).heightIs(44).widthIs(50).rightEqualToView(_navigationView);
+        }
+        
     }
     return _navigationView;
 }
@@ -594,5 +549,24 @@ static NSString * const kWXAppID = @"";
     }
     return _titleLabel;
 }
+- (UIButton *)shareButton{
+    if (!_shareButton) {
+        _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_shareButton setTitle:@"分享" forState:UIControlStateNormal];
+        [_shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _shareButton.titleLabel.font = SLPFFont(14);
+        _shareButton.frame = CGRectMake(0, 0, 44, 44);
+        _shareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _shareButton;
+}
 
+- (UIProgressView *)progressView {
+    if (!_progressView) {
+        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3.0)];
+        _progressView.progressTintColor = sl_webProgressTintColor;
+    }
+    return _progressView;
+}
 @end
