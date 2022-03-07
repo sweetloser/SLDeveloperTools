@@ -81,6 +81,8 @@ MJCodingImplementation
     self.agent = h5_urlsDic[@"agent"];
     self.create_agent = h5_urlsDic[@"create_agent"];
     
+    self.exchange_transfer = h5_urlsDic[@"exchange_transfer"];
+    
     self.flow_desc = h5_urlsDic[@"flow_desc"];
     self.privacy_protocol = h5_urlsDic[@"privacy_protocol"];
     self.recharge_url = h5_urlsDic[@"recharge"];
@@ -162,6 +164,11 @@ MJCodingImplementation
     NSDictionary *shop = jsonDic[@"shop"];
     if (shop && [shop isDictionary]) {
         self.user_shop = shop[@"user_shop"];
+    }
+    
+    NSDictionary *rank_open = jsonDic[@"rank_open"];
+    if (shop && [shop isDictionary]) {
+        self.rank_open = rank_open[@"rank_open"];
     }
     
 }

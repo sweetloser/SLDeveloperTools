@@ -126,6 +126,10 @@
 ///优惠券信息
 @property (nonatomic, strong)SLLiveCoupon *coupon;
 
+/// 红包id
+@property(nonatomic,strong)NSMutableArray *all_red_id;
+@property(nonatomic,strong)NSMutableArray *all_red_model;
+
 #pragma mark - 竞技直播新增
 @property(nonatomic,copy)NSString *catory_title;
 

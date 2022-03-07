@@ -257,7 +257,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'SocketRocket'
     appInfo.dependency 'STPopup'
     appInfo.dependency 'FLAnimatedImage'
-    appInfo.dependency 'SobotKit', '~> 3.0.2'
+    appInfo.dependency 'SobotKit', '3.0.2'
     appInfo.dependency 'ZFPlayer', '3.3.3'
     appInfo.dependency 'JXPagingView/Pager'
     appInfo.dependency 'SDWebImage', '5.10.0'

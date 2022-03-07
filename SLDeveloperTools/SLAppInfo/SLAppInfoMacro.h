@@ -10,7 +10,7 @@
 
 //#define SiShiLiveURL  //肆拾直播
 
-//#define BXLiveURL     //秉信互娱
+#define BXLiveURL     //秉信互娱
 
 //#define DuoLaLiveURL    //朵拉互娱
 
@@ -46,7 +46,23 @@
 
 //#define YingYinLiveURL     //赢音直播
 
-#define XiLuoBoLiveURL     //喜萝播
+//#define XiLuoBoLiveURL     //喜萝播
+
+//#define AiMiLiveURL         //爱米直播
+
+#pragma mark - 爱米直播
+#ifdef AiMiLiveURL
+#define New_Http_Base_domain        @"http://api.whzccxx.cn/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.xiluobo.cn/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+#define SL_UNIVERSAL_LINK @"https://vk812a.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"amlive"
+#endif
 
 #pragma mark - 喜萝播
 #ifdef XiLuoBoLiveURL

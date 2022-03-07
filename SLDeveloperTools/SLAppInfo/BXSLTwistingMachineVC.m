@@ -12,7 +12,6 @@
 #import <SDAutoLayout/SDAutoLayout.h>
 #import "../SLWidget/SLRefreshTool/SLRefreshTools.h"
 
-//#import "QuickRechargePopView.h"
 
 @interface BXSLTwistingMachineVC () <WKNavigationDelegate>
 

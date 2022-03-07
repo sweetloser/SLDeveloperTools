@@ -135,12 +135,6 @@
     
     [self TableDragWithDown];
     @weakify(self)
-    _tableView.zf_scrollViewDidStopScrollCallback = ^(NSIndexPath * _Nonnull indexPath) {
-        @strongify(self)
-        if (!self.player.playingIndexPath) {
-            [self playTheVideoAtIndexPath:indexPath scrollToTop:NO];
-        }
-    };
     
     self.playerManager = [[ZFAVPlayerManager alloc] init];
     self.player = [ZFPlayerController playerWithScrollView:self.tableView playerManager:self.playerManager containerViewTag:101];
@@ -154,6 +148,12 @@
     self.player.playerDidToEnd = ^(id  _Nonnull asset) {
         @strongify(self);
         [self.player.currentPlayerManager replay];
+    };
+    self.player.zf_scrollViewDidEndScrollingCallback = ^(NSIndexPath * _Nonnull indexPath) {
+        @strongify(self)
+        if (!self.player.playingIndexPath) {
+            [self playTheVideoAtIndexPath:indexPath scrollToTop:NO];
+        }
     };
     
     

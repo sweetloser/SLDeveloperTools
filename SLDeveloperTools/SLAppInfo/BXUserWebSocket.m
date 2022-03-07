@@ -361,12 +361,12 @@
             [self.delegate guardlist:dict];
         }
     }else if ([emit isEqualToString:@"allAudienceList"]) {
-        NSLog(@"aaa");
-        /**
-         数据类型:{"code":0,data:[{"user_id":10004419,"gender":1,"nickname":"我的昵称很长","level":55}],"msg":"ok","emit":"allAudienceList"}
-         */
         if (self.delegate && [self.delegate respondsToSelector:@selector(allAudienceList:)]) {
             [self.delegate allAudienceList:dict];
+        }
+    }else if ([emit isEqualToString:@"send_red_packet"]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(sendRedPackage:)]) {
+            [self.delegate sendRedPackage:dict];
         }
     }
 }
@@ -645,7 +645,12 @@
     NSDictionary *params = @{@"act":@"switchLiveGoods", @"args":args};
     [self executionWithParams:params close:NO mod:nil];
 }
-
+#pragma mark - 发红包
+-(void)sendRedPackage:(NSDictionary *)dict {
+    NSDictionary *args = @{@"room_id":dict[@"room_id"],@"price":dict[@"price"],@"num":dict[@"num"],@"red_type":dict[@"red_type"],@"timing_time":dict[@"timing_time"],@"title":dict[@"title"],@"send_mode":dict[@"send_mode"],@"user_id":dict[@"user_id"]};
+    NSDictionary *params = @{@"act":@"sendRedPacket", @"args":args};
+    [self executionWithParams:params close:NO mod:@"RedPacket"];
+}
 - (NSString *)getUserId {
     return _liveUser.user_id;
 }

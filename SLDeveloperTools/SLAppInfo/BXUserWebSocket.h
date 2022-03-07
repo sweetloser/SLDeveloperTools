@@ -104,6 +104,10 @@
 
 #pragma mark - 公告
 -(void)adminSystemMsg:(NSDictionary *)dict;
+
+#pragma mark - 红包消息
+-(void)sendRedPackage:(NSDictionary *)dict;
+
 @end
 
 
@@ -175,5 +179,8 @@
 - (void)liveGoodsOperation:(NSDictionary *)dict;
 
 -(void)gerLotteryMsg:(NSDictionary *)dict;
+
+#pragma mark - 发红包
+-(void)sendRedPackage:(NSDictionary *)dict;
 
 @end

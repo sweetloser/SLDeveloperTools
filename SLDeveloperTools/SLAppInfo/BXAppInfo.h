@@ -114,6 +114,13 @@
 
 @property(nonatomic,strong)NSArray *user_center;
 
+/// 兑换
+@property(nonatomic,copy)NSString *exchange_transfer;
+
+
+@property(nonatomic,copy)NSString *rank_open;
+
+
 + (BOOL)isGetAppInfo;
 + (BXAppInfo *)appInfo;
 + (void)setAppInfo:(BXAppInfo *)appInfo;
