@@ -160,6 +160,7 @@ MJCodingImplementation
         self.is_dynamic_open = activityDict[@"is_dynamic_open"];
         self.agent_front_status = activityDict[@"agent_front_status"];
         self.team_status = activityDict[@"team_status"];
+        self.private_ios_letter_status = activityDict[@"private_ios_letter_status"];
     }
     NSDictionary *shop = jsonDic[@"shop"];
     if (shop && [shop isDictionary]) {

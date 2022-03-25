@@ -64,6 +64,7 @@
 @property (nonatomic, copy) NSString *app_settlement_unit;
 @property (nonatomic, copy) NSString *contact_tel;
 
+/// 客服选择 {"type":"0","link":"url"}          根据type判断用哪种类型的客服.  0 - 智齿客服     1 - 网页url
 @property (nonatomic, copy) NSDictionary *customer_service;
 
 @property (copy, nonatomic) NSString *code;        
@@ -97,6 +98,8 @@
 @property(nonatomic,copy)NSString *is_user_task_open;   //个人任务中心是否开启
 @property(nonatomic,copy)NSString *team_status;   //我的团队前端显示控制 0是关闭 1是显示
 @property(nonatomic,copy)NSString *agent_front_status;   //公会前端显示控制 0是关闭 1是显示
+/// 私信控制  0 关闭            1 显示
+@property(nonatomic,copy)NSString *private_ios_letter_status;
 
 @property(nonatomic,copy)NSString *one_key_login;   //1 开启本机号码一键登录
 @property(nonatomic,copy)NSString *invite_code; //邀请码 2 必填

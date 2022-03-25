@@ -10,7 +10,7 @@
 
 //#define SiShiLiveURL  //肆拾直播
 
-#define BXLiveURL     //秉信互娱
+//#define BXLiveURL     //秉信互娱
 
 //#define DuoLaLiveURL    //朵拉互娱
 
@@ -32,7 +32,7 @@
 
 //#define HSLiveURL      //红手
 
-//#define ShiBeiLiveURL     //拾贝直播
+#define ShiBeiLiveURL     //拾贝直播
 
 //#define KuLeShiJieURL     //酷乐世界
 
@@ -49,6 +49,22 @@
 //#define XiLuoBoLiveURL     //喜萝播
 
 //#define AiMiLiveURL         //爱米直播
+
+//#define HaoYouGouLiveURL        //好优购
+
+#pragma mark - 好优购
+#ifdef HaoYouGouLiveURL
+#define New_Http_Base_domain        @"http://api.renminfeiyi.cn/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.renminfeiyi.cn/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+#define SL_UNIVERSAL_LINK @"https://vk812a.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"hyglive"
+#endif
 
 #pragma mark - 爱米直播
 #ifdef AiMiLiveURL

@@ -178,21 +178,7 @@
     _fView.hidden = YES;
     _sView.hidden = YES;
     _tView.hidden = YES;
-//    unsigned long count = MIN(listModel.count, 3);
-//    for (int i=0; i<count; i++) {
-//        BXDaemonListModel *model = listModel[i];
-//        if (i==0) {
-//            _fView.hidden = NO;
-//            [_fView updateUIWithModel:model];
-//        }else if(i==1){
-//            _sView.hidden = NO;
-//            [_sView updateUIWithModel:model];
-//        }else if (i==2){
-//            _tView.hidden = NO;
-//            [_tView updateUIWithModel:model];
-//        }
-//    }
-//
+
     if (listModel.count >= 3) {
         _fView.hidden = NO;
         _sView.hidden = NO;

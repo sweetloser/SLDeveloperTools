@@ -101,7 +101,7 @@
     
     [self.giftImgV yy_setImageWithURL:[NSURL URLWithString:model.picture_url] placeholder:[UIImage imageNamed:@"placeholder_liwu_55"]];
     self.giftTitleL.text = model.name;
-    self.giftPriceL.text = [NSString stringWithFormat:@"%@钻石", model.price];
+    self.giftPriceL.text = [NSString stringWithFormat:@"%@%@", model.price,BXAppInfo.appInfo.app_millet_unit];
 }
 
 /*

@@ -97,12 +97,6 @@
 - (void)initView {
     if (self.type) {
         
-//        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(12 , 12)];
-//
-//        CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
-//        shapeLayer.frame = self.view.bounds;
-//        shapeLayer.path = path.CGPath;
-//        self.view.layer.mask = shapeLayer;
         _tableView = [[UITableView alloc]init];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
@@ -236,13 +230,6 @@
 
 -(void)updateTitleImage{
     if (self.allArray.count > 0) {
-//        BXDaemonListModel *m = [self.allArray firstObject];
-//        [self.topImageView yy_setImageWithURL:[NSURL URLWithString:m.avatar] placeholder:[UIImage imageNamed:@"placeholder_guard_82"]];
-//        UITapGestureRecognizer *toptap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-//               [BXPersonHomeVC toPersonHomeWithUserId:m.user_id isShow:nil nav:self.navigationController handle:nil];
-//           }];
-//           [self.topImageView addGestureRecognizer:toptap];
-//           self.topImageView.userInteractionEnabled = YES;
     }
 }
 
@@ -261,26 +248,12 @@
 //        点击了购买
         NSLog(@"购买%@",gift.name);
         if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(sendGiftWithData:andLianFa:type:)]) {
-            [weakSelf.delegate sendGiftWithData:@{@"gift_id":gift.giftId,@"gift_amount":@"1"} andLianFa:@"n" type:@"gift"];
+            [weakSelf.delegate sendGiftWithData:@{@"gift_id":gift.giftId,@"gift_amount":@"1",@"isguard":@"1"} andLianFa:@"n" type:@"gift"];
         }
         
     };
     [headview addSubview:view];
     headview.backgroundColor = [UIColor clearColor];
-//    if (_allArray.count == 0) {
-//        UILabel *nonLabel = [[UILabel alloc]init];
-//        [headview addSubview:nonLabel];
-//        nonLabel.font = SLPFFont(14);
-//        nonLabel.textColor = [UIColor colorWithHexString:@"#8C8C8C"];
-//        nonLabel.text  = @"暂无人上榜";
-//        [nonLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerX.mas_equalTo(0);
-//            make.top.mas_equalTo(view.mas_bottom).offset(0);
-//        }];
-//    }else{
-//
-//    }
-    
     return headview;
     }
     else{

@@ -120,7 +120,7 @@
     if (IsNilString(price)) {
         self.giftPriceL.text = @"";
     }else{
-        self.giftPriceL.text = [NSString stringWithFormat:@"%@钻石", model.user_millet];
+        self.giftPriceL.text = [NSString stringWithFormat:@"%@%@", model.user_millet,BXAppInfo.appInfo.app_recharge_unit];
     }
     [self.levelImgV setImage:[UIImage imageNamed:[NSString stringWithFormat:@"level_%@",model.level]]];
     [self.levelImgV mas_updateConstraints:^(MASConstraintMaker *make) {
