@@ -8,6 +8,7 @@
 
 #import "BXLikeView.h"
 #import "../SLMacro/SLMacro.h"
+#import <SDAutoLayout/SDAutoLayout.h>
 
 static const NSInteger klikeViewLikeBeforeTag  = 0x01;
 static const NSInteger klikeViewLikeAfterTag   = 0x02;
@@ -36,6 +37,10 @@ static const NSInteger klikeViewLikeAfterTag   = 0x02;
         [_likeAfter setHidden:YES];
         [_likeAfter addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)]];
         [self addSubview:_likeAfter];
+        
+        _likeBefore.sd_layout.centerXEqualToView(self).topEqualToView(self).widthIs(30).heightIs(30);
+        _likeAfter.sd_layout.centerXEqualToView(self).topEqualToView(self).widthIs(30).heightIs(30);
+
     }
     return self;
 }

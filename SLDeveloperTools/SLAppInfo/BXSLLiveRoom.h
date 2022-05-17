@@ -22,18 +22,18 @@
 
 @property (copy, nonatomic) NSString *room_id;              //房间号
 @property (copy, nonatomic) NSString *cover_url;            //房间封面
-@property (copy, nonatomic) NSString *title;               //直播标题
-@property (copy, nonatomic) NSString *create_time;         //创建时间
-@property (copy, nonatomic) NSNumber *audience;            //观众数量
-@property (copy, nonatomic) NSString *status_desc;         //直播状态
-@property (copy, nonatomic) NSNumber *type;              //房间类型
-@property (copy, nonatomic) NSString *type_val;            //类型具体值
-@property (copy, nonatomic) NSString *photo_frame;//相框
+@property (copy, nonatomic) NSString *title;                //直播标题
+@property (copy, nonatomic) NSString *create_time;          //创建时间
+@property (copy, nonatomic) NSNumber *audience;             //观众数量
+@property (copy, nonatomic) NSString *status_desc;          //直播状态
+@property (copy, nonatomic) NSNumber *type;                 //房间类型
+@property (copy, nonatomic) NSString *type_val;             //类型具体值
+@property (copy, nonatomic) NSString *photo_frame;          //相框
 
-@property (copy, nonatomic) NSString *room_model;          //内容内容类型
-@property (copy, nonatomic) NSString *room_desc;           //房间类型描述
-@property (copy, nonatomic) NSString *province;            //开播定位省份
-@property (copy, nonatomic) NSString *city;                //开播定位城市
+@property (copy, nonatomic) NSString *room_model;           //内容内容类型
+@property (copy, nonatomic) NSString *room_desc;            //房间类型描述
+@property (copy, nonatomic) NSString *province;             //开播定位省份
+@property (copy, nonatomic) NSString *city;                 //开播定位城市
 
 @property (copy, nonatomic) NSString *red_icon;
 

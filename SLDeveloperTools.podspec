@@ -267,14 +267,8 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'NIMKit'
     appInfo.dependency 'FMDB'
     appInfo.dependency 'WebViewJavascriptBridge', '~> 6.0'
-    appInfo.dependency 'AlibcTradeSDK', '4.0.1.15'
-    appInfo.dependency 'AliAuthSDK', '1.1.0.42-BC3'
-    appInfo.dependency 'mtopSDK', '3.0.0.3-BC'
-    appInfo.dependency 'securityGuard' ,'5.4.191'
-    appInfo.dependency 'AliLinkPartnerSDK', '4.0.0.24'
-    appInfo.dependency 'BCUserTrack', '5.2.0.18-appkeys'
-    appInfo.dependency 'WindVane', '8.5.0.46-bc11'
-
+    appInfo.dependency 'SLBaiChuanSDK'
+    
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
     appInfo.vendored_libraries = 'SLDeveloperTools/SLAppInfo/libmp3lame.a'

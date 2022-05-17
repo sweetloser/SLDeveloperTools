@@ -8,49 +8,81 @@
 #ifndef SLAppInfoMacro_h
 #define SLAppInfoMacro_h
 
-//#define SiShiLiveURL  //肆拾直播
+//#define SiShiLiveURL          //肆拾直播
 
-//#define BXLiveURL     //秉信互娱
+//#define BXLiveURL             //秉信互娱
 
-//#define DuoLaLiveURL    //朵拉互娱
+//#define DuoLaLiveURL          //朵拉互娱
 
-//#define DaBaiLiveURL    //大白直播
+//#define DaBaiLiveURL          //大白直播
 
-//#define MeiWoYouPinURL  //每窝优品
+//#define MeiWoYouPinURL        //每窝优品
 
-//#define MaiKeXiuURL  //麦客秀
+//#define MaiKeXiuURL           //麦客秀
 
-//#define ChongYouURL  //宠友
+//#define ChongYouURL           //宠友
 
-//#define HuHaLiveURL  //呼哈直播
+//#define HuHaLiveURL           //呼哈直播
 
-//#define LYGLiveURL      //洛英格
+//#define LYGLiveURL            //洛英格
 
-//#define WLLiveURL      //喂来
+//#define WLLiveURL             //喂来
 
-//#define GNGLiveURL      //呱牛购
+//#define GNGLiveURL            //呱牛购
 
-//#define HSLiveURL      //红手
+//#define HSLiveURL             //红手
 
-#define ShiBeiLiveURL     //拾贝直播
+//#define ShiBeiLiveURL         //拾贝直播
 
-//#define KuLeShiJieURL     //酷乐世界
+//#define KuLeShiJieURL         //酷乐世界
 
-//#define JingJiLiveURL     //竞技直播
+//#define JingJiLiveURL         //竞技直播
 
-//#define HuanZhuHeHeLiveURL     //还珠盒盒
+//#define HuanZhuHeHeLiveURL    //还珠盒盒
 
 //#define YingXiaoKeLiveURL     //赢销客
 
-//#define HCLMLiveURL     //辉创联盟
+//#define HCLMLiveURL           //辉创联盟
 
-//#define YingYinLiveURL     //赢音直播
+//#define YingYinLiveURL        //赢音直播
 
-//#define XiLuoBoLiveURL     //喜萝播
+//#define XiLuoBoLiveURL        //喜萝播
 
-//#define AiMiLiveURL         //爱米直播
+//#define AiMiLiveURL           //爱米直播
 
-//#define HaoYouGouLiveURL        //好优购
+//#define HaoYouGouLiveURL      //好优购
+
+//#define PiMaoLiveURL          //批猫直播
+
+#define DaYuXingQiuLiveURL    //大鱼星球
+
+#pragma mark - 大鱼星球
+#ifdef DaYuXingQiuLiveURL
+#define New_Http_Base_domain        @"http://api.dayuxingqiu.com/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.dayuxingqiu.com/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+#define SL_UNIVERSAL_LINK @""
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"dyxqlive"
+#endif
+
+#pragma mark - 批猫直播
+#ifdef PiMaoLiveURL
+#define New_Http_Base_domain        @"http://api.pimao.cn/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.pimao.cn/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+#define SL_UNIVERSAL_LINK @"https://pkrcwh.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"pmlive"
+#endif
 
 #pragma mark - 好优购
 #ifdef HaoYouGouLiveURL
