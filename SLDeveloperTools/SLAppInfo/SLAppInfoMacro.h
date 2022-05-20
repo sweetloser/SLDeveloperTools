@@ -10,7 +10,7 @@
 
 //#define SiShiLiveURL          //肆拾直播
 
-//#define BXLiveURL             //秉信互娱
+#define BXLiveURL             //秉信互娱
 
 //#define DuoLaLiveURL          //朵拉互娱
 
@@ -54,7 +54,7 @@
 
 //#define PiMaoLiveURL          //批猫直播
 
-#define DaYuXingQiuLiveURL    //大鱼星球
+//#define DaYuXingQiuLiveURL    //大鱼星球
 
 #pragma mark - 大鱼星球
 #ifdef DaYuXingQiuLiveURL
@@ -65,7 +65,7 @@
 #define SL_HTTP_BASE_AMWAY_URL      @"http://shop.dayuxingqiu.com/"
 #define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
 #define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
-#define SL_UNIVERSAL_LINK @""
+#define SL_UNIVERSAL_LINK @"https://84iuvm.xinstall.com.cn/tolink/"
 #define ZC_KEY @""                  //智齿key
 #define Scheme_URL @"dyxqlive"
 #endif

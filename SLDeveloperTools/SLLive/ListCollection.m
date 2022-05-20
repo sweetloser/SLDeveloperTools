@@ -143,7 +143,6 @@
         _gradientLayer.startPoint = CGPointMake(1, 0.5);
         _gradientLayer.endPoint = CGPointMake(0, 0.5);
         _gradientLayer.frame = _listCollectionview.frame;
-//        self.layer.mask = _gradientLayer;
     }
     return _listCollectionview;
 

@@ -30,7 +30,8 @@
 @property (copy, nonatomic) NSString *type_val;             //类型具体值
 @property (copy, nonatomic) NSString *photo_frame;          //相框
 
-@property (copy, nonatomic) NSString *room_model;           //内容内容类型
+/// 内容类型 (如果是聊天室，5：电台模式         4：派对模式（多人语聊）)
+@property (copy, nonatomic) NSString *room_model;
 @property (copy, nonatomic) NSString *room_desc;            //房间类型描述
 @property (copy, nonatomic) NSString *province;             //开播定位省份
 @property (copy, nonatomic) NSString *city;                 //开播定位城市
