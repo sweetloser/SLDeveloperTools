@@ -182,6 +182,15 @@
 /// 酷乐新增 - 是否区域代理商
 @property(nonatomic,copy)NSNumber *agent_is;
 
+#pragma mark - 语聊新增
+/// 收益
+@property(nonatomic,copy)NSNumber *total_score;
+/// 主播是否给用户关麦 0表示未关麦 1表示已关麦
+@property(nonatomic,copy)NSNumber *is_anchor_speak;
+/// 用户自己是否给自己关麦 0表示未关麦 1表示已关麦
+@property(nonatomic,copy)NSNumber *is_speak;
+
+
 + (BOOL)isLogin;
 + (BXLiveUser *)currentBXLiveUser;
 + (void)setCurrentBXLiveUser:(BXLiveUser *)liveUser;

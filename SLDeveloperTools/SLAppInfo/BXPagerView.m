@@ -9,7 +9,6 @@
 #import "BXPagerView.h"
 #import "BXLocationTitleView.h"
 #import "BXAttentionVideoCell.h"
-//#import "BXVideoPlayVC.h"
 #import "BXLocationDetailVC.h"
 #import "BXNormalControllView.h"
 #import "BXClickVideoViewVC.h"

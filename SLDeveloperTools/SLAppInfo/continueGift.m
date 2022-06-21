@@ -200,8 +200,7 @@
     
     
 }
--(void)startGiftTimer
-{
+-(void)startGiftTimer{
     if (_GiftqueueTIME==nil) {
         _GiftqueueTIME = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(EnGiftqueue) userInfo:nil repeats:YES];
     }
@@ -388,8 +387,7 @@
     viewa=nil;
 }
 //礼物队列
--(void)EnGiftqueue
-{
+-(void)EnGiftqueue {
     NSLog(@"当前队列个数:%lu",(unsigned long)_GiftqueueArray.count);
     if (_GiftqueueArray.count == 0 || _GiftqueueArray == nil) {//判断队列中有item且不是满屏
         [_GiftqueueTIME invalidate];
