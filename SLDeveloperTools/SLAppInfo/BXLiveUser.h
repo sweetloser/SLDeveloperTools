@@ -191,6 +191,16 @@
 @property(nonatomic,copy)NSNumber *is_speak;
 
 
+#pragma mark - 圆规新增
+/// 会员等级icon
+@property(nonatomic,copy)NSString *user_level_image;
+
+/// 分销等级icon
+@property(nonatomic,copy)NSString *fenxiao_level_image;
+@property(nonatomic,copy)NSNumber *fenxiao_level;
+
+@property(nonatomic,copy)NSString *anchor_level_image;
+
 + (BOOL)isLogin;
 + (BXLiveUser *)currentBXLiveUser;
 + (void)setCurrentBXLiveUser:(BXLiveUser *)liveUser;

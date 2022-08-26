@@ -122,7 +122,7 @@
 - (void)beiginProcessVideoDescribeAttri:(BXHMovieModel *)video {
     if (!video.describeAttri && !IsNilString(video.describe)) {
         NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:video.describe];
-        attri.yy_font = CFont(15);
+        attri.yy_font = SLMFont(15);
         attri.yy_color = CHHCOLOR_D(0xE9E9F2);
         attri.yy_lineSpacing = 3;
         
@@ -132,7 +132,7 @@
             NSArray *rangeLocations = [self getRangeLocationsWithText:video.describe subText:topicTitle];
             for (NSNumber *rangeLocation in rangeLocations) {
                 NSRange range = NSMakeRange([rangeLocation integerValue], topicTitle.length);
-                [attri yy_setFont:CBFont(15) range:range];
+                [attri yy_setFont:SLBFont(15) range:range];
                 [attri yy_setTextHighlightRange:range color:TextBrightestColor backgroundColor:nil tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
                     [ws topicDetail:topic.topic_id video:video];
                 }];
@@ -144,7 +144,7 @@
             NSArray *rangeLocations = [self getRangeLocationsWithText:video.describe subText:nickname];
             for (NSNumber *rangeLocation in rangeLocations) {
                 NSRange range = NSMakeRange([rangeLocation integerValue], nickname.length);
-                [attri yy_setFont:CBFont(15) range:range];
+                [attri yy_setFont:SLBFont(15) range:range];
                 [attri yy_setTextHighlightRange:range color:TextBrightestColor backgroundColor:nil tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
                     [ws userDetail:liveUser.user_id];
                 }];
@@ -155,11 +155,7 @@
     }
     
 }
-//if (_video.bgMusic && _video.bgMusic.music_id) {
-//    BXRecordMusicVC *vc = [[BXRecordMusicVC alloc] init];
-//    vc.musicId = _video.bgMusic.music_id;
-//    [self pushWithVC:vc];
-//}
+
 - (void)topicDetail:(NSString *)topicId video:(BXHMovieModel *)video{
     if ([BXLiveUser isLogin]) {
 //        BXTopicDetailVC *vc = [[BXTopicDetailVC alloc]init];
@@ -169,7 +165,7 @@
 //            vc.musicId = video.bgMusic.music_id;
 //            [[[UIApplication sharedApplication] activityViewController].navigationController pushViewController:vc animated:YES];
         }
-    } else {
+    } else { 
         
         [[NSNotificationCenter defaultCenter] postNotificationName:BXGo2Login object:nil userInfo:@{@"nav":[UIApplication sharedApplication].activityViewController.navigationController}];
         

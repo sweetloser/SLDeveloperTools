@@ -10,7 +10,7 @@
 
 //#define SiShiLiveURL          //肆拾直播
 
-#define BXLiveURL             //秉信互娱
+//#define BXLiveURL             //秉信互娱
 
 //#define DuoLaLiveURL          //朵拉互娱
 
@@ -55,6 +55,38 @@
 //#define PiMaoLiveURL          //批猫直播
 
 //#define DaYuXingQiuLiveURL    //大鱼星球
+
+//#define YuanGuiLiveURL         //圆规
+
+#define ShiJiXiangLiveURL         //释吉祥
+
+#pragma mark - 释吉祥
+#ifdef ShiJiXiangLiveURL
+#define New_Http_Base_domain        @"http://api.longyuanshanji.com/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.longyuanshanji.com/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+#define SL_UNIVERSAL_LINK @"https://qc45xe.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"sjxlive"
+#endif
+
+#pragma mark - 圆规
+#ifdef YuanGuiLiveURL
+#define New_Http_Base_domain        @"http://liveapi.ygkj1314.com/"
+#define New_Http_Base_Url           New_Http_Base_domain @"api.php?"
+#define New_Http_Base_Url_Without   New_Http_Base_domain @"api.php"
+#define New_Http_Base_make_friend   New_Http_Base_domain @"api/"
+#define SL_HTTP_BASE_AMWAY_URL      @"http://shop.ygkj1314.com/"
+#define SL_HTTP_BASE_API_URL        SL_HTTP_BASE_AMWAY_URL
+#define SL_HTTP_H5_URL              SL_HTTP_BASE_AMWAY_URL
+#define SL_UNIVERSAL_LINK @"https://c280l6.xinstall.com.cn/tolink/"
+#define ZC_KEY @""                  //智齿key
+#define Scheme_URL @"yglive"
+#endif
 
 #pragma mark - 大鱼星球
 #ifdef DaYuXingQiuLiveURL

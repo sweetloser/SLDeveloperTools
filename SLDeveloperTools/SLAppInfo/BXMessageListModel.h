@@ -18,6 +18,8 @@
 @property (copy, nonatomic) NSString *last_send_time;
 @property (copy, nonatomic) NSString *icon;
 
+/// 聊天置顶标识
+@property(nonatomic,copy)NSNumber *session_mark_top;
 
 
 @end

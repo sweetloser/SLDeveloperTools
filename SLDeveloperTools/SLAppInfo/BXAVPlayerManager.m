@@ -129,11 +129,11 @@
     }
     
     NSLog(@"a");
+    _isPreparedToPlay = YES;
     if (_isFailedPause) {
         _isFailedPause = NO;
         self.seekTime = self.currentTime;
         if (!self.assetURL) return;
-        _isPreparedToPlay = YES;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
         [super performSelector:@selector(initializePlayer)];
@@ -161,6 +161,7 @@
     [self seekToTime:0 completionHandler:^(BOOL finished) {
         NSLog(@"===============:%d",finished);
         if (finished) {
+            _isPreparedToPlay = YES;
             [self play];
         }
     }];

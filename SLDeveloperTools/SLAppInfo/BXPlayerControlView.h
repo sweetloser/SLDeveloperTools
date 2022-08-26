@@ -17,7 +17,7 @@
 @property(nonatomic,copy)void(^didLongPressAction)(CGPoint point);
 @property(nonatomic,copy)void(^showRedEnvelopeViewBlock)(BXHMovieModel *videoModel);
 
-//type：0 有底部 1：无底部 进度条无凸起
+//type：0 有底部且中间凸起   1：无底部 进度条无凸起，距离底部有安全距离       2：无底部，紧贴底部（无安全距离）      3：有底部但无中间凸起
 - (instancetype)initWithFrame:(CGRect)frame type:(NSInteger)type;
 - (void)showCoverURL:(NSString *)coverUrl scalingMode:(NSInteger)scalingMode;
 - (void)resetControlView;

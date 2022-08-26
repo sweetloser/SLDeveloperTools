@@ -314,37 +314,6 @@
     
     [alert showInView:[UIApplication sharedApplication].keyWindow];
     
-    
-//    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:nil message: @"清除该调节项，还原到系统默认值？" preferredStyle:UIAlertControllerStyleAlert];
-//    [alertController addAction:[UIAlertAction actionWithTitle:@"不允许" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//    }]];
-//    [alertController addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//        MMKV *mmkv = [MMKV defaultMMKV];
-//        [mmkv removeValueForKey:@"DSColorLevel"];
-//        [mmkv removeValueForKey:@"DSBlurLevel"];
-//        [mmkv removeValueForKey:@"DSEnlargingLevel"];
-//        [mmkv removeValueForKey:@"DSThinningLevel"];
-//        [mmkv removeValueForKey:@"DSRedLevel"];
-//        [mmkv removeValueForKey:@"DSChinLevel"];
-//        [mmkv removeValueForKey:@"DSForeheadLevel"];
-//        [mmkv removeValueForKey:@"DSNoseLevel"];
-//        [mmkv removeValueForKey:@"DSFilterName"];
-//
-//        for (int i=0; i<4; i++) {
-//            HMBeautifySlideView *view = (HMBeautifySlideView *)[self viewWithTag:19935678 + i];
-//            [view resetParams];
-//        }
-//        for (int i=0; i<4; i++) {
-//            HMBeautifySlideView *view = (HMBeautifySlideView *)[self viewWithTag:19936789 + i];
-//            [view resetParams];
-//        }
-//        HMFilterView *filterView = (HMFilterView *)[self viewWithTag:1993678900];
-//        [filterView resetParams];
-//
-//        [[FUManager shareManager] loadFilter];
-//        [[FUManager shareManager] ckresetALLBeautParams];
-//    }]];
-//    [[[UIApplication sharedApplication] activityViewController] presentViewController:alertController animated:YES completion:nil];
 }
 //关闭和开启美颜
 -(void)skinBtnClick:(UIButton *)sender{

@@ -112,7 +112,6 @@
         }
     
         _progressView = [[SLHomePageVedioPlayProgressView alloc]initWithFrame:CGRectMake(0, 0, __kWidth, 8.5)];
-//        _progressView.backgroundColor = [UIColor randomColor];
         [bottomView addSubview:_progressView];
         [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
@@ -128,7 +127,7 @@
             make.bottom.mas_equalTo(-5);
         }];
         
-        if (type == 2 || type == 1) {
+        if (type == 2 || type == 1 || type == 3) {
             _LineprogressView.hidden = NO;
             _progressView.hidden = YES;
         }else{
@@ -524,6 +523,7 @@
 
 #pragma - mark ZFPlayerMediaContro
 - (void)setPlayer:(ZFPlayerController *)player {
+    NSLog(@"设置player");
     _player = player;
     if (!_coverIv) {
         _coverIv = [[UIImageView alloc] init];
@@ -564,6 +564,7 @@
 }
 
 - (void)videoPlayer:(ZFPlayerController *)videoPlayer playStateChanged:(ZFPlayerPlaybackState)state {
+    NSLog(@"播放状态改变了");
     if (state == ZFPlayerPlayStatePlaying) {
         _playIv.hidden = YES;
         _failView.hidden = YES;
@@ -618,7 +619,7 @@
 #pragma - mark KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     NSNumber *now = change[@"new"];
-    if (self.type == 2 || self.type == 1) {
+    if (self.type == 2 || self.type == 1 || self.type == 3) {
         _LineprogressView.hidden = ![now boolValue];
     }else{
         _progressView.hidden = ![now boolValue];
