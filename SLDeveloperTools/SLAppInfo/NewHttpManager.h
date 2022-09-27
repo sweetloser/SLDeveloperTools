@@ -70,7 +70,12 @@ typedef void (^Failure)(NSError *error);        // 失败Blcok
  */
 + (BOOL)isNetWorkConnectionAvailable;
 
-
+/// 程序初始化
+/// - Parameters:
+///   - success: success description
+///   - failure: failure description
++ (void)appInitSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+               failure:(void(^)(NSError *error))failure;
 
 + (void)collectionAddWithTargetId:(NSString *)targetId
                              type:(NSString *)type

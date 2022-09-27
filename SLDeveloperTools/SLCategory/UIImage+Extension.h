@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIImage *)setColor:(UIColor *)color;
 
++ (UIImage *)imageNamed:(NSString *)name ofBundle:(NSString *)bundleName;
+
 @end
 
 NS_ASSUME_NONNULL_END

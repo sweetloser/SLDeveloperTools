@@ -25,5 +25,6 @@
 #import "ZFModalTransitionAnimator.h"
 #import "ZZLFPSLabel.h"
 #import "Regular.h"
+#import "JsonHelper.h"
 
 #endif /* SLUtilities_h */

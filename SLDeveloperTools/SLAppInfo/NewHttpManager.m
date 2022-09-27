@@ -357,6 +357,26 @@ code
     return [SLHttpManager sl_sharedNetManager].netStatus;
 }
 
++ (void)appInitSuccess:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success
+               failure:(void(^)(NSError *error))failure {
+    NSString *time = [NSString stringWithFormat:@"%ld",[TimeHelper getTimeSp]];
+    NSString *sign = [NSString stringWithFormat:@"%@%@%@%@%@",INIT_TOKEN,[getUUID getUUID],time,@"ios_100",CHANNEL];
+    NSString *app_unique = [[NSBundle mainBundle] bundleIdentifier];
+   
+//    {"time":"时间戳","sign":"","channel":"channel","app_unique":"bundleid"}
+    NSDictionary *params = @{@"time":time, @"sign":[sign sha1], @"channel":CHANNEL, @"app_unique":app_unique};
+    [[NewHttpManager sharedNetManager] POST:@"s=Common.appInit" parameters:params success:^(id  _Nonnull responseObject) {
+        NSString *code = responseObject[@"code"];
+        BOOL flag = NO;
+        if (![code integerValue]) {
+            flag = YES;
+        }
+        success(responseObject,flag,nil);
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
 + (void)collectionAddWithTargetId:(NSString *)targetId
                              type:(NSString *)type
                           success:(void(^)(NSDictionary *jsonDic, BOOL flag, NSMutableArray *models))success

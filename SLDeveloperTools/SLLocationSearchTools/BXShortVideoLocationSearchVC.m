@@ -64,7 +64,7 @@
     request.location = [AMapGeoPoint locationWithLatitude:[location.lat floatValue] longitude:[location.lng floatValue]];
     //关键字
     request.page = self.offset;
-    request.requireExtension = YES;
+//    request.requireExtension = YES;
     //发起周边搜索
     [self.search AMapPOIAroundSearch:request];
 }
@@ -368,7 +368,7 @@
     //关键字
     request.keywords = self.searchField.text;
     request.page = self.offset;
-    request.requireExtension = YES;
+//    request.requireExtension = YES;
     //发起周边搜索
     [self.search AMapPOIKeywordsSearch:request];
     [self.searchField resignFirstResponder];

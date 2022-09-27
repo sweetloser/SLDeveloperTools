@@ -268,6 +268,12 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'FMDB'
     appInfo.dependency 'WebViewJavascriptBridge', '~> 6.0'
     appInfo.dependency 'SLBaiChuanSDK'
+    appInfo.dependency 'IAPHelper'
+    appInfo.dependency 'ReactiveObjC'
+    appInfo.dependency 'DTCoreText'
+    appInfo.dependency 'SSZipArchive'
+    appInfo.dependency 'IQKeyboardManager'
+    
     
     appInfo.frameworks = 'UIKit', 'Foundation', 'SystemConfiguration', 'CoreTelephony', 'Photos'
     appInfo.weak_frameworks    = "UserNotifications"
