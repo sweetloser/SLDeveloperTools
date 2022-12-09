@@ -44,7 +44,7 @@
 
 //#define HCLMLiveURL           //辉创联盟
 
-//#define YingYinLiveURL        //赢音直播
+#define YingYinLiveURL        //赢音直播
 
 //#define XiLuoBoLiveURL        //喜萝播
 
@@ -58,7 +58,7 @@
 
 //#define YuanGuiLiveURL         //圆规
 
-#define ShiJiXiangLiveURL         //释吉祥
+//#define ShiJiXiangLiveURL         //释吉祥
 
 #pragma mark - 释吉祥
 #ifdef ShiJiXiangLiveURL

@@ -147,6 +147,7 @@ TODO: Add long description of the pod here.
       sf.dependency 'AFNetworking'
       sf.dependency 'MMKV'
       sf.dependency 'Nama-lite', '~> 8.2.0'
+      sf.dependency 'THSDKCode'
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
   end
   s.subspec "SLBaseClass" do |baseClass|
@@ -269,7 +270,6 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'WebViewJavascriptBridge', '~> 6.0'
     appInfo.dependency 'SLBaiChuanSDK'
     appInfo.dependency 'IAPHelper'
-    appInfo.dependency 'ReactiveObjC'
     appInfo.dependency 'DTCoreText'
     appInfo.dependency 'SSZipArchive'
     appInfo.dependency 'IQKeyboardManager'
