@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/sweetloser/SLDeveloperTools'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'sweetloser' => '18272160172@163.com' }
+  s.author           = { 'sweetloser' => '8244768@qq.com' }  #18272160172@163.com
   s.source           = { :git => 'https://github.com/sweetloser/SLDeveloperTools.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
   s.platform     = :ios, "9.0"
@@ -39,7 +39,7 @@ TODO: Add long description of the pod here.
       category.source_files = 'SLDeveloperTools/SLCategory/*.{h,m}'
       category.dependency 'SLDeveloperTools/SLMacro'
       category.dependency 'MJRefresh'
-      category.dependency 'MMKV'
+#      category.dependency 'MMKV'
       category.dependency 'YYText'
       category.frameworks = 'OpenGLES'
   end
@@ -145,7 +145,7 @@ TODO: Add long description of the pod here.
       sf.dependency 'SDAutoLayout'
       sf.dependency 'YYCategories'
       sf.dependency 'AFNetworking'
-      sf.dependency 'MMKV'
+#      sf.dependency 'MMKV'
       sf.dependency 'Nama-lite', '~> 8.2.0'
       sf.dependency 'THSDKCode'
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
@@ -242,7 +242,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'SLDeveloperTools/SLMaskTools'
     appInfo.dependency 'SLDeveloperTools/SLVideoWaterMaskTools'
     appInfo.dependency 'MJExtension'
-    appInfo.dependency 'MMKV'
+#    appInfo.dependency 'MMKV'
     appInfo.dependency 'UMPush',  '3.3.1'
     appInfo.dependency 'UMShare/UI', '6.10.4'
     appInfo.dependency 'UMShare/Social/WeChat'
