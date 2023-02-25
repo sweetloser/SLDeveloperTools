@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.0.2'
+  s.version          = '0.0.1'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -39,7 +39,7 @@ TODO: Add long description of the pod here.
       category.source_files = 'SLDeveloperTools/SLCategory/*.{h,m}'
       category.dependency 'SLDeveloperTools/SLMacro'
       category.dependency 'MJRefresh'
-#      category.dependency 'MMKV'
+      category.dependency 'MMKV'
       category.dependency 'YYText'
       category.frameworks = 'OpenGLES'
   end
@@ -145,7 +145,7 @@ TODO: Add long description of the pod here.
       sf.dependency 'SDAutoLayout'
       sf.dependency 'YYCategories'
       sf.dependency 'AFNetworking'
-#      sf.dependency 'MMKV'
+      sf.dependency 'MMKV'
       sf.dependency 'Nama-lite', '~> 8.2.0'
       sf.dependency 'THSDKCode'
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
@@ -242,7 +242,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'SLDeveloperTools/SLMaskTools'
     appInfo.dependency 'SLDeveloperTools/SLVideoWaterMaskTools'
     appInfo.dependency 'MJExtension'
-#    appInfo.dependency 'MMKV'
+    appInfo.dependency 'MMKV'
     appInfo.dependency 'UMPush',  '3.3.1'
     appInfo.dependency 'UMShare/UI', '6.10.4'
     appInfo.dependency 'UMShare/Social/WeChat'
