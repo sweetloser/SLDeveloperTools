@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -264,8 +264,8 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'ZFPlayer', '4.0.3'
     appInfo.dependency 'ZFPlayer/ControlView', '4.0.3'
     appInfo.dependency 'ZFPlayer/AVPlayer', '4.0.3'
-    appInfo.dependency 'TXLiteAVSDK_Professional'
-    appInfo.dependency 'NIMKit/Full'
+#    appInfo.dependency 'TXLiteAVSDK_Professional'
+#    appInfo.dependency 'NIMKit/Full'
     appInfo.dependency 'FMDB'
     appInfo.dependency 'WebViewJavascriptBridge', '~> 6.0'
     appInfo.dependency 'SLBaiChuanSDK'
