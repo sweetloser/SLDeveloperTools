@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -95,7 +95,7 @@ TODO: Add long description of the pod here.
         bt.source_files = 'SLDeveloperTools/SLWidget/SLBannerTools/*.{h,m}'
         bt.dependency 'iCarousel'
         bt.dependency 'SLDeveloperTools/SLCategory'
-        bt.dependency 'SDWebImage', '= 5.10.0'
+        bt.dependency 'SDWebImage'
       end
       
       widget.subspec 'SLSDCycleScrollView' do |sd|
@@ -109,7 +109,7 @@ TODO: Add long description of the pod here.
     netTools.dependency 'SLDeveloperTools/SLUtilities'
     netTools.dependency 'SLDeveloperTools/SLCategory'
     netTools.dependency 'AFNetworking'
-    netTools.dependency 'SDWebImage', '= 5.10.0'
+    netTools.dependency 'SDWebImage'
   end
 
   s.subspec "SLMaskTools" do |maskTools|
@@ -155,7 +155,7 @@ TODO: Add long description of the pod here.
     baseClass.public_header_files = 'SLDeveloperTools/SLBaseClass/*.h'
     baseClass.dependency "SLDeveloperTools/SLCategory"
     baseClass.dependency "SLDeveloperTools/SLMacro"
-    baseClass.dependency 'SDWebImage', '= 5.10.0'
+    baseClass.dependency 'SDWebImage'
     baseClass.dependency 'YYWebImage', '~> 1.0.5'
     baseClass.dependency 'AFNetworking'
     baseClass.frameworks = 'UIKit', 'Foundation'
@@ -172,7 +172,7 @@ TODO: Add long description of the pod here.
     hz.dependency 'FLAnimatedImage'
     hz.dependency 'HXPhotoPicker', '= 3.1.6'
     hz.dependency 'Masonry'
-    hz.dependency 'SDWebImage', '= 5.10.0'
+    hz.dependency 'SDWebImage'
     hz.dependency 'FDFullscreenPopGesture', '1.1'
     hz.dependency 'SDAutoLayout'
     hz.dependency 'DZNEmptyDataSet'
@@ -187,7 +187,7 @@ TODO: Add long description of the pod here.
     tt.source_files = 'SLDeveloperTools/SLAddTopicTools/*.{h,m}'
     tt.dependency 'YYCategories'
     tt.dependency 'Masonry'
-    tt.dependency 'SDWebImage', '= 5.10.0'
+    tt.dependency 'SDWebImage'
     tt.dependency 'FDFullscreenPopGesture', '1.1'
     tt.dependency 'SDAutoLayout'
     tt.dependency 'DZNEmptyDataSet'
@@ -200,7 +200,7 @@ TODO: Add long description of the pod here.
     at.dependency 'ZFPlayer/AVPlayer', '~> 4.0.3'
     at.dependency 'YYCategories'
     at.dependency 'Masonry'
-    at.dependency 'SDWebImage', '= 5.10.0'
+    at.dependency 'SDWebImage'
     at.dependency 'FDFullscreenPopGesture', '1.1'
     at.dependency 'SDAutoLayout'
     at.dependency 'DZNEmptyDataSet'
@@ -211,7 +211,7 @@ TODO: Add long description of the pod here.
     ls.dependency 'AMap2DMap-NO-IDFA'
     ls.dependency 'AMapSearch-NO-IDFA'
     ls.dependency 'Masonry'
-    ls.dependency 'SDWebImage', '= 5.10.0'
+    ls.dependency 'SDWebImage'
     ls.dependency 'FDFullscreenPopGesture', '1.1'
     ls.dependency 'SDAutoLayout'
     ls.dependency 'DZNEmptyDataSet'
@@ -224,7 +224,7 @@ TODO: Add long description of the pod here.
    mt.dependency 'SDAutoLayout'
    mt.dependency 'lottie-ios', '2.5.3'
    mt.dependency 'Masonry'
-   mt.dependency 'SDWebImage', '= 5.10.0'
+#   mt.dependency 'SDWebImage'
    mt.dependency 'FDFullscreenPopGesture', '1.1'
    mt.dependency 'SDAutoLayout'
    mt.dependency 'DZNEmptyDataSet'
@@ -260,7 +260,7 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'FLAnimatedImage'
     appInfo.dependency 'SobotKit', '3.0.2'
     appInfo.dependency 'JXPagingView/Pager'
-    appInfo.dependency 'SDWebImage', '5.10.0'
+    appInfo.dependency 'SDWebImage'
     appInfo.dependency 'ZFPlayer', '4.0.3'
     appInfo.dependency 'ZFPlayer/ControlView', '4.0.3'
     appInfo.dependency 'ZFPlayer/AVPlayer', '4.0.3'
