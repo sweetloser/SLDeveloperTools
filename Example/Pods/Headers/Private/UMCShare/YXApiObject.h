@@ -1,0 +1,1 @@
+../../../UMCShare/UMShare/SocialLibraries/YiXin/YXApiObject.h

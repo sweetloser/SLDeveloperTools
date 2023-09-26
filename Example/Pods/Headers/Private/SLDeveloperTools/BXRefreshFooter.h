@@ -1,0 +1,1 @@
+../../../SLDeveloperTools/SLDeveloperTools/SLWidget/SLRefreshTool/BXRefreshFooter.h

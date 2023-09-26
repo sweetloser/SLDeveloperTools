@@ -1,0 +1,1 @@
+../../../SLDeveloperTools/SLDeveloperTools/SLCategory/NSError+Type.h

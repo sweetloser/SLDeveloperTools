@@ -1,0 +1,1 @@
+../../../SLDeveloperTools/SLDeveloperTools/SLCategory/NSObject+VariableType.h
