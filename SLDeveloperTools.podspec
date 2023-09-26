@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SLDeveloperTools'
-  s.version          = '0.0.5'
+  s.version          = '0.2.0'
   s.summary          = 'A short description of SLDeveloperTools.'
 
 # This description is used to generate tags and improve search results.
@@ -146,8 +146,6 @@ TODO: Add long description of the pod here.
       sf.dependency 'YYCategories'
       sf.dependency 'AFNetworking'
       sf.dependency 'MMKV'
-      sf.dependency 'Nama-lite', '~> 8.2.0'
-      sf.dependency 'THSDKCode'
       sf.frameworks = 'UIKit', 'Foundation', 'AVFoundation', 'CoreMotion', 'QuartzCore'
   end
   s.subspec "SLBaseClass" do |baseClass|
