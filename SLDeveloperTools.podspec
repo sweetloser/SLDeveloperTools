@@ -263,7 +263,6 @@ TODO: Add long description of the pod here.
     appInfo.dependency 'ZFPlayer/ControlView', '4.0.3'
     appInfo.dependency 'ZFPlayer/AVPlayer', '4.0.3'
 #    appInfo.dependency 'TXLiteAVSDK_Professional'
-#    appInfo.dependency 'NIMKit/Full'
     appInfo.dependency 'FMDB'
     appInfo.dependency 'WebViewJavascriptBridge', '~> 6.0'
     appInfo.dependency 'SLBaiChuanSDK'
